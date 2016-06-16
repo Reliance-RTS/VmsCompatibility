@@ -1,0 +1,126 @@
+;;*****************************************************************************
+;;
+;; Title:       SYS$BINTIM.DBL
+;;
+;; Type:        Function
+;;
+;; Description: Emulates the functionality of the OpemVMS routine %SYS$BINTIM
+;;
+;; Author:      Steve Ives, Synergex Professional Services Group
+;;              http://www.synergex.com
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2014, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+function SYS$BINTIM,			^val
+	aDateString,				a
+	%ref(vms_bintim),			i
+	endparams
+	external function 
+		MonthShortNameToNumber,	^val
+	endexternal
+	stack record localData
+		status,					i4
+		group vmsString,		a
+			vsDD,				d2
+			,					a1
+			vsMMM,				a3
+			,					a1
+			vsYYYY,				d4
+			,					a1
+			vsHH,				d2
+			,					a1
+			vsMM,				d2
+			,					a1
+			vsSS,				d2
+			,					a1
+			vsXX,				d2
+		endgroup            	
+		group dateString,		d
+			dtYYYY,				d4
+			dtMM,				d2
+			dtDD,				d2
+		endgroup            	
+		wholeDays,				i4
+		bintim,					i8
+		idSeconds,				d4.2
+	endrecord
+
+	;1 sec = 1000000000 nanoseconds
+	;1 sec = 10000000   100 nanosecond intervals
+	.define INTERVALS_IN_SECOND	10000000
+	.define INTERVALS_IN_MINUTE	600000000
+	.define INTERVALS_IN_HOUR	36000000000
+	.define INTERVALS_IN_DAY	864000000000
+
+proc
+	;;A VMS "binary time" is the number of 100 nanosecond
+	;;intervals since 17th November 1858 00:00
+	
+	init localData
+	
+	if (^size(aDateString)==23) then 
+	begin
+		vmsString = aDateString
+
+		;;Get a YYYYMMDD date from the VMS data
+		dateString.dtYYYY = vmsString.vsYYYY
+		dateString.dtMM	  = %MonthShortNameToNumber(vmsString.vsMMM)
+		dateString.dtDD	  = vmsString.vsDD
+
+		;;How many whole days since 17th November 1858 00:00? 
+		wholeDays = %jperiod(dateString) - %jperiod(18581117)
+	end
+	else
+	begin
+		;It's a DELTA string d[ddd] hh:mm:ss.xx
+		data lPos, i4,   %instr(1,aDateString," ")
+		wholeDays      = %integer(aDateString(1,lPos-1))
+		vmsString.vsHH = %integer(aDateString(lPos+1:2))
+		vmsString.vsMM = %integer(aDateString(lPos+4:2))
+		vmsString.vsSS = %integer(aDateString(lPos+7:2))
+		vmsString.vsXX = %integer(aDateString(lPos+10:2))
+	end
+
+	;;How many 100 microsecond intervals in the number of whole days
+	bintim = wholeDays * INTERVALS_IN_DAY
+	
+	;;Now add the partial day
+	
+	bintim = bintim + (vmsString.vsHH * INTERVALS_IN_HOUR)
+	bintim = bintim + (vmsString.vsMM * INTERVALS_IN_MINUTE)
+	bintim = bintim + (vmsString.vsSS * INTERVALS_IN_SECOND)
+	bintim = bintim + ((vmsString.vsXX / 100.0) * INTERVALS_IN_SECOND)
+	
+	;;Return the result
+	vms_bintim = bintim
+	
+	freturn 1
+	
+endfunction

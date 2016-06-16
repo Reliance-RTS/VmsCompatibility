@@ -1,0 +1,86 @@
+;;*****************************************************************************
+;;
+;; Title:       LIB$GET_FOREIGN.DBL
+;;
+;; Type:        Subroutine
+;;
+;; Description: Emulates the functionality of the OpemVMS routine LIB$GET_FOREIGN
+;;
+;; Author:      Steve Ives, Synergex Professional Services Group
+;;              http://www.synergex.com
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2014, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+;;
+;; *** NOTE *** THIS ROUTINE WON'T WORK FOR PROGRAMS STARTED WITH DBS.EXE!!!
+;;
+subroutine LIB$GET_FOREIGN
+	params,		a
+	endparams
+	record 
+		tmpvar,	a256
+		pos,	i4
+	endrecord
+proc
+	clear params
+	
+	xcall cmdln(tmpvar)
+	upcase tmpvar
+	
+;	;;Strip off the DBR.EXE part of the command
+;	;;Might be a path there, .exe may or mat not be there
+;	;;Might have spaces in
+;	if (pos=%instr(1,tmpvar,"DBR.EXE ")) then
+;	begin
+;		;;Found "DBR.EXE "
+;		tmpvar = tmpvar(pos+8,^size(tmpvar))
+;	end
+;	else if (pos=%instr(1,tmpvar,"DBR "))
+;	begin
+;		;;Found "DBR "
+;		tmpvar = tmpvar(pos+4,^size(tmpvar))
+;	end
+;
+;	;;Now lose the program name. We have to assume no spaces in the program name!
+;	pos = %instr(1,tmpvar," ")
+;	tmpvar = tmpvar(pos+1,^size(tmpvar))
+		
+	if (%instr(1,tmpvar,"RUN.DBR"))
+		clear tmpvar
+
+	if (%instr(1,tmpvar,"MENU.DBR"))
+		clear tmpvar
+	
+	params = tmpvar
+	
+	xreturn
+	
+endsubroutine
+

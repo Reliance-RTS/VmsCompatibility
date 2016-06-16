@@ -1,0 +1,86 @@
+;;*****************************************************************************
+;;
+;; Title:       LIB$DATE_TIME.DBL
+;;
+;; Type:        Subroutine
+;;
+;; Description: Emulates the functionality of the OpemVMS routine LIB$DATE_TIME
+;;
+;; Author:      Steve Ives, Synergex Professional Services Group
+;;              http://www.synergex.com
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2014, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+subroutine LIB$DATE_TIME
+	required out retDate,		a
+	endparams
+
+	external function 
+		MonthNumberToShortName,	a
+	endexternal
+	
+	record
+		tmpDateTime,			a20
+		group vmsDateTime,		a
+			dd,					a2
+			,					a1,	"-"
+			mmm,				a3
+			,					a1,	"-"
+			yyyy,				a4
+			,					a1
+			hh,					a2
+			,					a1,	":"
+			mm,					a2
+			,					a1,	":"
+			ss,					a2
+			,					a1,	"."
+			pp,					a2
+		endgroup
+	endrecord
+
+proc
+
+	tmpDateTime = %datetime
+
+	dd = tmpDateTime(7:2)
+	mmm = %MonthNumberToShortName(%integer(tmpDateTime(5:2)))
+	yyyy = tmpDateTime(1:4)
+
+	hh = tmpDateTime(9:2)
+	mm = tmpDateTime(11:2)
+	ss = tmpDateTime(13:2)
+	pp = tmpDateTime(15:2)
+
+	retDate = vmsDateTime
+	
+	xreturn
+
+endsubroutine
+
