@@ -25,6 +25,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DebugOptimize>Debug</DebugOptimize>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+    <TargetRuntimeLevel>10030300</TargetRuntimeLevel>
+    <LanguageCompatibilityLevel>10030300</LanguageCompatibilityLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
@@ -65,25 +67,28 @@
     </PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DBL%24SETKRF.DBL" />
-    <Compile Include="LIB%24ADD_TIMES.DBL" />
-    <Compile Include="LIB%24DATE_TIME.DBL" />
-    <Compile Include="LIB%24DAY_OF_WEEK.DBL" />
-    <Compile Include="LIB%24GET_COMMON.DBL" />
-    <Compile Include="LIB%24GET_FOREIGN.DBL" />
-    <Compile Include="LIB%24GET_SYMBOL.DBL" />
-    <Compile Include="LIB%24PUT_COMMON.DBL" />
-    <Compile Include="LIB%24SET_LOGICAL.DBL" />
-    <Compile Include="LIB%24SET_SYMBOL.DBL" />
-    <Compile Include="LIB%24STOP.DBL" />
-    <Compile Include="LIB%24SUB_TIMES.DBL" />
-    <Compile Include="MonthNumberToShortName.dbl" />
-    <Compile Include="MonthShortNameToNumber.dbl" />
-    <Compile Include="STR%24CONCAT.DBL" />
-    <Compile Include="STR%24TRIM.DBL" />
-    <Compile Include="SUCCESS.DBL" />
-    <Compile Include="SYS%24ASCTIM.DBL" />
-    <Compile Include="SYS%24BINTIM.DBL" />
-    <Compile Include="SYS%24GETTIM.DBL" />
+    <Compile Include="..\src\DBL%24SETKRF.DBL" />
+    <Compile Include="..\src\LIB%24ADD_TIMES.DBL" />
+    <Compile Include="..\src\LIB%24DATE_TIME.DBL" />
+    <Compile Include="..\src\LIB%24DAY_OF_WEEK.DBL" />
+    <Compile Include="..\src\LIB%24GET_COMMON.DBL" />
+    <Compile Include="..\src\LIB%24GET_FOREIGN.DBL" />
+    <Compile Include="..\src\LIB%24GET_SYMBOL.DBL" />
+    <Compile Include="..\src\LIB%24PUT_COMMON.DBL" />
+    <Compile Include="..\src\LIB%24SET_LOGICAL.DBL" />
+    <Compile Include="..\src\LIB%24SET_SYMBOL.DBL" />
+    <Compile Include="..\src\LIB%24STOP.DBL" />
+    <Compile Include="..\src\LIB%24SUB_TIMES.DBL" />
+    <Compile Include="..\src\MonthNumberToShortName.dbl" />
+    <Compile Include="..\src\MonthShortNameToNumber.dbl" />
+    <Compile Include="..\src\STR%24CONCAT.DBL" />
+    <Compile Include="..\src\STR%24TRIM.DBL" />
+    <Compile Include="..\src\SUCCESS.DBL" />
+    <Compile Include="..\src\SYS%24ASCTIM.DBL" />
+    <Compile Include="..\src\SYS%24BINTIM.DBL" />
+    <Compile Include="..\src\SYS%24GETTIM.DBL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src" />
   </ItemGroup>
 </Project>
