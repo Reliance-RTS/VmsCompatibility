@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(SolutionDir)Common.props" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Configuration)' == '' ">x86</Platform>
+    <Name>VMSLib</Name>
+    <StartupObject>
+    </StartupObject>
+    <OutputName>VMSLib</OutputName>
+    <ProjectGuid>8f421920-eb27-4165-b001-78fcb5d27090</ProjectGuid>
+    <ProjectTypeGuids>{7B8CF543-378A-4EC1-BB1B-98E4DC6E6820};{BBD0F5D1-1CC4-42fd-BA4C-A96779C64378}</ProjectTypeGuids>
+    <OutputType>elb</OutputType>
+    <DBL_qTrim>True</DBL_qTrim>
+    <DBL_qAlign>True</DBL_qAlign>
+    <EnableCommonProperties>True</EnableCommonProperties>
+    <CommonPropertiesFileLocation>$(SolutionDir)Common.props</CommonPropertiesFileLocation>
+    <RootNamespace>VMSLib</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+    <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
+    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DebugOptimize>Debug</DebugOptimize>
+    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+    <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
+    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DebugOptimize>Debug</DebugOptimize>
+    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+    <TargetRuntimeLevel>10030300</TargetRuntimeLevel>
+    <LanguageCompatibilityLevel>10030300</LanguageCompatibilityLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+    <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
+    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DebugOptimize>Optimize</DebugOptimize>
+    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <IncludeDebugInformation>False</IncludeDebugInformation>
+    <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
+    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DebugOptimize>Optimize</DebugOptimize>
+    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+    <TargetRuntimeLevel>10030300</TargetRuntimeLevel>
+    <LanguageCompatibilityLevel>10030300</LanguageCompatibilityLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Synergex\dbl\Synergex.SynergyDE.Traditional.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DBL%24SETKRF.DBL" />
+    <Compile Include="LIB%24ADD_TIMES.DBL" />
+    <Compile Include="LIB%24DATE_TIME.DBL" />
+    <Compile Include="LIB%24DAY_OF_WEEK.DBL" />
+    <Compile Include="LIB%24GET_COMMON.DBL" />
+    <Compile Include="LIB%24GET_FOREIGN.DBL" />
+    <Compile Include="LIB%24GET_SYMBOL.DBL" />
+    <Compile Include="LIB%24PUT_COMMON.DBL" />
+    <Compile Include="LIB%24SET_LOGICAL.DBL" />
+    <Compile Include="LIB%24SET_SYMBOL.DBL" />
+    <Compile Include="LIB%24STOP.DBL" />
+    <Compile Include="LIB%24SUB_TIMES.DBL" />
+    <Compile Include="MonthNumberToShortName.dbl" />
+    <Compile Include="MonthShortNameToNumber.dbl" />
+    <Compile Include="STR%24CONCAT.DBL" />
+    <Compile Include="STR%24TRIM.DBL" />
+    <Compile Include="SUCCESS.DBL" />
+    <Compile Include="SYS%24ASCTIM.DBL" />
+    <Compile Include="SYS%24BINTIM.DBL" />
+    <Compile Include="SYS%24GETTIM.DBL" />
+  </ItemGroup>
+</Project>

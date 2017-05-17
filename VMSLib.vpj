@@ -77,7 +77,7 @@
                 Value="0"/>
             <SynSetting
                 Name="proto_command_line"
-                Value="dblproto -out=VmsCompatibility -platform=x86 %p%n%e"/>
+                Value="dblproto -out=VMSLib -platform=x86 %p%n%e"/>
             <SynSetting
                 Name="compile_command_line"
                 Value='dbl -T -d -qcheck -qalign -o %rn.dbo "%p%n%e"'/>
@@ -129,26 +129,26 @@
         <Folder
             Name="Source Files"
             Filters="*.dbl;*.tpl;*.dbc;*.UT;*.SUB;*.FNC">
-            <F N="src/DBL$SETKRF.DBL"/>
-            <F N="src/LIB$ADD_TIMES.DBL"/>
-            <F N="src/LIB$DATE_TIME.DBL"/>
-            <F N="src/LIB$DAY_OF_WEEK.DBL"/>
-            <F N="src/LIB$GET_COMMON.DBL"/>
-            <F N="src/LIB$GET_FOREIGN.DBL"/>
-            <F N="src/LIB$GET_SYMBOL.DBL"/>
-            <F N="src/LIB$PUT_COMMON.DBL"/>
-            <F N="src/LIB$SET_LOGICAL.DBL"/>
-            <F N="src/LIB$SET_SYMBOL.DBL"/>
-            <F N="src/LIB$STOP.DBL"/>
-            <F N="src/LIB$SUB_TIMES.DBL"/>
-            <F N="src/MonthNumberToShortName.dbl"/>
-            <F N="src/MonthShortNameToNumber.dbl"/>
-            <F N="src/STR$CONCAT.DBL"/>
-            <F N="src/STR$TRIM.DBL"/>
-            <F N="src/SUCCESS.DBL"/>
-            <F N="src/SYS$ASCTIM.DBL"/>
-            <F N="src/SYS$BINTIM.DBL"/>
-            <F N="src/SYS$GETTIM.DBL"/>
+            <F N="VMSLib/DBL$SETKRF.DBL"/>
+            <F N="VMSLib/LIB$ADD_TIMES.DBL"/>
+            <F N="VMSLib/LIB$DATE_TIME.DBL"/>
+            <F N="VMSLib/LIB$DAY_OF_WEEK.DBL"/>
+            <F N="VMSLib/LIB$GET_COMMON.DBL"/>
+            <F N="VMSLib/LIB$GET_FOREIGN.DBL"/>
+            <F N="VMSLib/LIB$GET_SYMBOL.DBL"/>
+            <F N="VMSLib/LIB$PUT_COMMON.DBL"/>
+            <F N="VMSLib/LIB$SET_LOGICAL.DBL"/>
+            <F N="VMSLib/LIB$SET_SYMBOL.DBL"/>
+            <F N="VMSLib/LIB$STOP.DBL"/>
+            <F N="VMSLib/LIB$SUB_TIMES.DBL"/>
+            <F N="VMSLib/MonthNumberToShortName.dbl"/>
+            <F N="VMSLib/MonthShortNameToNumber.dbl"/>
+            <F N="VMSLib/STR$CONCAT.DBL"/>
+            <F N="VMSLib/STR$TRIM.DBL"/>
+            <F N="VMSLib/SUCCESS.DBL"/>
+            <F N="VMSLib/SYS$ASCTIM.DBL"/>
+            <F N="VMSLib/SYS$BINTIM.DBL"/>
+            <F N="VMSLib/SYS$GETTIM.DBL"/>
         </Folder>
         <Folder
             Name="Header Files"
@@ -232,7 +232,7 @@
                 Value="1"/>
             <SynSetting
                 Name="proto_command_line"
-                Value="dblproto -out=VmsCompatibility -platform=x64 %p%n%e"/>
+                Value="dblproto -out=VMSLib -platform=x64 %p%n%e"/>
             <SynSetting
                 Name="compile_command_line"
                 Value='dbl -T -d -qcheck -qalign -o %rn.dbo "%p%n%e"'/>
@@ -352,7 +352,7 @@
                 Value="0"/>
             <SynSetting
                 Name="proto_command_line"
-                Value="dblproto -out=VmsCompatibility -platform=x86 %p%n%e"/>
+                Value="dblproto -out=VMSLib -platform=x86 %p%n%e"/>
             <SynSetting
                 Name="compile_command_line"
                 Value='dbl -T -qstrict -qalign -o %rn.dbo "%p%n%e"'/>
@@ -472,7 +472,7 @@
                 Value="1"/>
             <SynSetting
                 Name="proto_command_line"
-                Value="dblproto -out=VmsCompatibility -platform=x64 %p%n%e"/>
+                Value="dblproto -out=VMSLib -platform=x64 %p%n%e"/>
             <SynSetting
                 Name="compile_command_line"
                 Value='dbl -T -qstrict -qalign -o %rn.dbo "%p%n%e"'/>
