@@ -37,22 +37,34 @@
 ;; POSSIBILITY OF SUCH DAMAGE.
 ;;
 ;;*****************************************************************************
-
 ;;
 ;; *** NOTE *** THIS ROUTINE WON'T WORK FOR PROGRAMS STARTED WITH DBS.EXE!!!
 ;;
+
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="params"></param>
+;;; <param name="propmt"></param>
+;;; <param name="resultant_length"></param>
+;;; <param name="flags"></param>
+;;; <returns></returns>
 subroutine LIB$GET_FOREIGN
-	params,		a
-	endparams
-	record 
+    required out params,					a
+    optional in  propmt,					a
+    optional out ^ref(resultant_length),	i2
+    inout        ^ref(flags),				i4
+    endparams
+
+    record 
 		tmpvar,	a256
 		pos,	i4
-	endrecord
+    endrecord
 proc
-	clear params
+    clear params
 	
-	xcall cmdln(tmpvar)
-	upcase tmpvar
+    xcall cmdln(tmpvar)
+    upcase tmpvar
 	
 ;	;;Strip off the DBR.EXE part of the command
 ;	;;Might be a path there, .exe may or mat not be there
@@ -72,14 +84,17 @@ proc
 ;	pos = %instr(1,tmpvar," ")
 ;	tmpvar = tmpvar(pos+1,^size(tmpvar))
 		
-	if (%instr(1,tmpvar,"RUN.DBR"))
+    if (%instr(1,tmpvar,"RUN.DBR"))
 		clear tmpvar
 
-	if (%instr(1,tmpvar,"MENU.DBR"))
+    if (%instr(1,tmpvar,"MENU.DBR"))
 		clear tmpvar
 	
-	params = tmpvar
-	
+    params = tmpvar
+    
+	if ^passed(resultant_length)
+		resultant_length = %trimz(tmpvar)
+    
 	xreturn
 	
 endsubroutine

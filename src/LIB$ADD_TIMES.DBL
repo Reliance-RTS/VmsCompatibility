@@ -38,6 +38,9 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
 function LIB$ADD_TIMES,		^val
 	%ref(firstTime),		i8
 	%ref(secondTime),		i8

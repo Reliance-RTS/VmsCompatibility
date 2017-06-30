@@ -1,0 +1,80 @@
+;;*****************************************************************************
+;;
+;; Title:       $BRKDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	BRK$C_DEVICE,			i,	1
+	BRK$C_USERNAME,			i,	2
+	BRK$C_ALLUSERS,			i,	3
+	BRK$C_ALLTERMS,			i,	4
+	BRK$C_MAXSENDTYPE,		i,	4
+	BRK$C_GENERAL,			i,	0
+	BRK$C_PHONE,			i,	1
+	BRK$C_MAIL,				i,	2
+	BRK$C_QUEUE,			i,	3
+	BRK$C_SHUTDOWN,			i,	4
+	BRK$C_URGENT,			i,	5
+	BRK$C_DCL,				i,	6
+	BRK$C_OPCOM,			i,	7
+	BRK$C_USER1,			i,	32
+	BRK$C_USER2,			i,	33
+	BRK$C_USER3,			i,	34
+	BRK$C_USER4,			i,	35
+	BRK$C_USER5,			i,	36
+	BRK$C_USER6,			i,	37
+	BRK$C_USER7,			i,	38
+	BRK$C_USER8,			i,	39
+	BRK$C_USER9,			i,	40
+	BRK$C_USER10,			i,	41
+	BRK$C_USER11,			i,	42
+	BRK$C_USER12,			i,	43
+	BRK$C_USER13,			i,	44
+	BRK$C_USER14,			i,	45
+	BRK$C_USER15,			i,	46
+	BRK$C_USER16,			i,	47
+	BRK$M_SCREEN,			i,	%x("100")
+	BRK$M_BOTTOM,			i,	%x("200")
+	BRK$M_NOREFRESH,		i,	%x("400")
+	BRK$M_CLUSTER,			i,	%x("800")
+	BRK$S_FLAGS_INPUT,		i,	2
+	BRK$S_ERASE_LINES,		i,	8
+	BRK$V_ERASE_LINES,		i,	0
+	BRK$V_SCREEN,			i,	8
+	BRK$V_BOTTOM,			i,	9
+	BRK$V_NOREFRESH,		i,	10
+	BRK$V_CLUSTER,			i,	11
+.list

@@ -1,0 +1,76 @@
+;;*****************************************************************************
+;;
+;; Title:       DBL$SNDOPR
+;;
+;; Type:        Subroutine
+;;
+;; Description: 
+;;
+;; Author:      Roger Andrews, Synergex Development
+;;              http://www.synergex.com
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="text"></param>
+;;; <returns></returns>
+subroutine DBL$SNDOPR
+	text	,a
+
+	.include "$OPCDEF" library "DBLSTARLET"
+
+	external function
+		sys$sndopr,	%val
+	endexternal
+
+	.align QUAD
+	record
+		len,				i4
+		group tbuf,			a				; Message buffer
+		    type,			i1				; Message type
+		    target,			i4				; i3 (rq_id overlays 4th byte)
+			,				a3
+			request_id,		i4 @target+3	; Request id
+			message_text,	a255			; Message text
+		endgroup
+	endrecord
+
+proc
+    if ((len=%size(text)).gt.255)
+		len = 255
+	type = OPC$_RQ_RQST
+    target = OPC$M_NM_CENTRL
+	clear request_id
+    message_text = text
+	xreturn %sys$sndopr(tbuf(1:len+8),^val(0))
+endsubroutine
+

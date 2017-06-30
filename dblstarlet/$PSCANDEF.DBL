@@ -1,0 +1,99 @@
+;;*****************************************************************************
+;;
+;; Title:       $PSCANDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	pscan$_BEGIN,				i,	0
+	pscan$_ACCOUNT,				i,	1
+	pscan$_AUTHPRI,				i,	2
+	pscan$_CURPRIV,				i,	3
+	pscan$_GRP,					i,	4
+	pscan$_HW_MODEL,			i,	5
+	pscan$_HW_NAME,				i,	6
+	pscan$_JOBPRCCNT,			i,	7
+	pscan$_JOBTYPE,				i,	8
+	pscan$_MASTER_PID,			i,	9
+	pscan$_MEM,					i,	10
+	pscan$_MODE,				i,	11
+	pscan$_NODE_CSID,			i,	12
+	pscan$_NODENAME,			i,	13
+	pscan$_OWNER,				i,	14
+	pscan$_PRCCNT,				i,	15
+	pscan$_PRCNAM,				i,	16
+	pscan$_PRI,					i,	17
+	pscan$_PRIB,				i,	18
+	pscan$_STATE,				i,	19
+	pscan$_STS,					i,	20
+	pscan$_TERMINAL,			i,	21
+	pscan$_UIC,					i,	22
+	pscan$_USERNAME,			i,	23
+	pscan$_GETJPI_BUFFER_SIZE,	i,	24
+	pscan$_PSCAN_CONTROL_FLAGS,	i,	25
+	pscan$_KT_COUNT,			i,	26
+	pscan$_MULTITHREAD,			i,	27
+	pscan$_SCHED_CLASS_NAME,	i,	28
+	pscan$_END,					i,	29
+	pscan$k_type,				i,	129
+	PSCAN$M_THREAD,				i,	%x("1")
+	PSCAN$S_PSCANCTLDEF,		i,	4
+	PSCAN$V_THREAD,				i,	0
+	pscan$M_OR,					i,	%x("1")
+	pscan$M_BIT_ALL,			i,	%x("2")
+	pscan$M_BIT_ANY,			i,	%x("4")
+	pscan$M_GEQ,				i,	%x("8")
+	pscan$M_GTR,				i,	%x("10")
+	pscan$M_LEQ,				i,	%x("20")
+	pscan$M_LSS,				i,	%x("40")
+	pscan$M_PREFIX_MATCH,		i,	%x("80")
+	pscan$M_WILDCARD,			i,	%x("100")
+	pscan$M_CASE_BLIND,			i,	%x("200")
+	pscan$M_EQL,				i,	%x("400")
+	pscan$M_NEQ,				i,	%x("800")
+	pscan$S_item_specific_flags,i,	2
+	pscan$V_OR,					i,	0
+	pscan$V_BIT_ALL,			i,	1
+	pscan$V_BIT_ANY,			i,	2
+	pscan$V_GEQ,				i,	3
+	pscan$V_GTR,				i,	4
+	pscan$V_LEQ,				i,	5
+	pscan$V_LSS,				i,	6
+	pscan$V_PREFIX_MATCH,		i,	7
+	pscan$V_WILDCARD,			i,	8
+	pscan$V_CASE_BLIND,			i,	9
+	pscan$V_EQL,				i,	10
+	pscan$V_NEQ,				i,	11
+.list

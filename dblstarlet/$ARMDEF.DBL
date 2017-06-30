@@ -1,0 +1,67 @@
+;;*****************************************************************************
+;;
+;; Title:       $ARMDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	ARM$M_READ,				i,	%x("1")
+	ARM$M_WRITE,			i,	%x("2")
+	ARM$M_EXECUTE,			i,	%x("4")
+	ARM$M_DELETE,			i,	%x("8")
+	ARM$M_CONTROL,			i,	%x("10")
+	ARM$M_CREATE,			i,	%x("4")
+	ARM$M_LOCK,				i,	%x("4")
+	ARM$M_PHYSICAL,			i,	%x("4")
+	ARM$M_LOGICAL,			i,	%x("8")
+	ARM$M_ASSOCIATE,		i,	%x("1")
+	ARM$M_SUBMIT,			i,	%x("2")
+	ARM$M_MANAGE,			i,	%x("4")
+	ARM$S_ARMDEF,			i,	4
+	ARM$V_READ,				i,	0
+	ARM$V_WRITE,			i,	1
+	ARM$V_EXECUTE,			i,	2
+	ARM$V_DELETE,			i,	3
+	ARM$V_CONTROL,			i,	4
+	ARM$S_FILL,				i,	27
+	ARM$V_FILL,				i,	5
+	ARM$V_CREATE,			i,	2
+	ARM$V_LOCK,				i,	2
+	ARM$V_PHYSICAL,			i,	2
+	ARM$V_LOGICAL,			i,	3
+	ARM$V_ASSOCIATE,		i,	0
+	ARM$V_SUBMIT,			i,	1
+	ARM$V_MANAGE,			i,	2
+.list

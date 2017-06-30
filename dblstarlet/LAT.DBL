@@ -1,0 +1,425 @@
+;;*****************************************************************************
+;;
+;; Title:       LAT.DBL
+;;
+;; Type:        Subroutine
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 1988, C CAT Ltd
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+;
+.title	'lat'
+;
+; ==========================================================================
+;		routine example of lat system services for use with 
+;		synergy dbl.
+;		this is for VMS AXP 6.1 and VMS 5.5.n & latmaster
+;		this routine is unsupported by Synergex. if you have any
+;		questions on lta devices and implementations of systems
+;		services associated with lta devices call digital support.
+; --------------------------------------------------------------------------
+;
+.ident	'v2.13'
+;
+; lta devices are template devices used in vms. when you do an open
+; you make a connection to the template device only. The LAT connect
+; causes vms to make the Link layer connection to the actual port
+; on the terminal server. The LAT disconnect breaks the link but waits for 
+; data to be transmitted to the device unless the abort flag is set.
+;
+; Such things as VMS type ahead buffers are created in the 1st read to a
+; device hence the 0 length qio on connect, otherwise inbound data may be
+; lost.
+;
+; The QIO connect/disconnect may hang. Hence the timer around the connect 
+; operation.
+;
+; All QIO functions are described in the I/O services manual for the TT
+; and LAT drivers.
+;
+; Timing related things on disconnect are version dependent. Without such
+; timings multple connect failures can occur.
+;
+; Device in use, as expected on a device open to a TTA device can occur
+; on a single node (ie the LTA device is busy). However in a terminal
+; server environment, other systems and servers can also connect to
+; the device so the LAT connect is the 2nd place where a busy device can
+; be reported. SO on LAT devices there are 2 checks for a busy device
+; not one.
+;
+subroutine lat,stack
+chan,	n
+action,	n		; 1 = connect to lat device after open
+			; 2 = disconnect from lat device (non modem control)
+			;	this will wait for any i/o to complete before
+			;	returing. the close statement follows the
+			;	the disconnect.
+			; 3 = get server/port name
+			; 4 = disconnect & abort. this should be used
+			;     only on program abort for modem control lines
+			; 	this will abort any outstanding i/o and
+			;	will complete even if the port is xoffed.
+			;	close should follow the disconnect.
+			; 5 = same as 2 but for modem control
+			; 6 = same as 4 but no modem control
+			;
+rstat,	n		;return status  1 thru 7 (see below)
+			;else	10 + lat failure code.
+			;	for lat failure codes, other than 1-19
+			;	which are documented in the i/O svcs ref man,
+			;	get latmsgdef.msg from digital
+			;
+			; a return rstat of 5 usually means the device is in
+			; use.
+			; return stat of 11 thru 29 implies lat reject codes
+			; 1-19.
+			;
+server,	a		;  returned server name 
+			;or 
+			;  lat disconnect timeout
+			;	ignored for non modem control devices,
+			;	depends on server firmware rev & o/s version
+			; 	for modem control. 
+			;
+port,	a
+rms_error,	n	;system service return status code.
+
+.include	'$iodef'	library	'sys$share:dblstarlet'
+.include	'$ssdef'	library	'sys$share:dblstarlet'
+.include	'$libdef'	library	'sys$share:dblstarlet'
+
+literal
+	FUN_C1,	I4,	IO$_TTY_PORT
+	FUN_C2,	I4,	IO$M_LT_CONNECT
+	FUN_C3,	I4,	IO$M_LT_DISCON
+	FUN_C4,	I4,	IO$M_LT_READPORT
+	FUN_C5,	I4,	(IO$_READVBLK+IO$M_TIMED+IO$M_NOECHO+IO$M_NOFILTR)
+	l_zero_time,i4,	0
+
+	.align quad		
+record				;this record must be long word aligned
+	iosb,	4i2
+record,x
+	iosb1,	i2
+	iosb2,	i2
+	iosb4,	i4
+
+external function
+	sys$qio,	%val
+	sys$qiow,	%val
+	sys$synch,	%val
+	sys$cancel,	%val
+	lib$get_ef,	%val
+	sys$setimr,	%val
+	sys$cantim,	%val
+	lib$free_ef,	%val
+	lib$get_symbol,	%val
+
+.align	quad
+global common
+	lat_chan	,i4
+.align quad
+record
+	bintim		,i8		;time buffer
+	pos		,i4
+	rtry		,i4
+	p1a		,i4
+	status		,i4
+	fun_c		,i4
+	distime		,i4
+	ccat_efn1	,i4	;event flag,
+	timefn		,i4
+	class		,a6
+	buffer		,a80
+	buffer_2_80	,a79 @buffer+1
+	char		,a1
+	aspd		,a1
+
+static record
+	newlat,	i4
+
+;===================================================================================================================================
+
+proc
+	clear timefn, ccat_efn1
+	rstat=1					;set for success
+	if .not.%chopen(chan) goto return
+	xcall dbl$getfnm(chan,buffer)
+	if buffer.eq.'_' buffer=buffer_2_80
+	upcase buffer
+	if (buffer.eq.'TT:'.or.buffer.eq.'SYS$OUTPUT:')
+&				.and.action.eq.3 goto bypass
+	if buffer.ne.'LT' return		;not lat device
+	bintim = -10000000 * 2			;2 seconds
+	status=%lib$get_ef(%ref(timefn))
+	call stcheck
+	status=%lib$get_ef(%ref(ccat_efn1))
+	call stcheck
+bypass,	clear rstat,rtry,p1a
+	xcall dbl$getfa(chan,'SCH',lat_chan)
+	using action range 1 thru 6 select
+		; 1;
+		; lat connect - make link layer connection from lta template
+		;
+	(1),
+	begin
+		fun_c=(FUN_C1.bor.FUN_C2)
+		clear distime
+		if %passed(server) distime=server
+		if .not.newlat
+		begin
+			;
+			; this symbol needs to be set if vms v6.1 (axp or 
+			; vax) is used or VMS 5.5 & the cscpat_055_035 has 
+			; been installed plus 
+			;	decserver 200 firmware oct 1993 onwards 
+			; and 	decserver 300/700/90tl firmware sep 1995 on
+			; and	NAS V1.5 BL95b-34 onwards
+			;
+			status=%lib$get_symbol('new_lat',aspd,,)
+			if aspd.ne." ".and.status.ne.lib$_nosuchsym
+			then	newlat = 2
+			else	newlat = 1
+		end
+		if distime.lt.8 distime=8	;.8 seconds
+		status=%sys$qiow(%val(ccat_efn1),%val(lat_chan),
+&		%val(fun_c5),%ref(iosb),,,%ref(buffer),%val(0)
+&		,%val(l_zero_time),,,)
+		if .not.%success(status).and.status.ne.SS$_TIMEOUT
+		begin
+			rms_error = status
+			rstat = 8
+			goto return
+		end
+	end
+	(4,6),
+		; 4 = normal close wait for data to be transfered
+		; 6 = close of modem control port.
+	begin
+		fun_c=(FUN_C1.bor.FUN_C3)
+		if action.eq.4
+		then	distime=1
+		else
+		begin
+			clear distime
+			if %passed(server) distime=server
+			if newlat.ne.2.and..not.distime distime=7
+		end
+		on error devok
+		pos=%ttsts(chan)	;ensure output complete.
+	devok,	off error
+	end
+	(3),
+		;return port name.
+		;
+		fun_c=(FUN_C1.bor.FUN_C4)
+		;
+	(2,5),
+		;disconnect abort
+		; 2 is for modem control
+		; 5 is for non modem control
+	begin
+		fun_c=(FUN_C1.bor.FUN_C3)
+			;
+			; note: distime is ignored down below if
+			; 	action != 2.
+			;	dstime is always 1.6 if new_lat is set and
+			;	action = 2.
+			;
+		clear distime
+		if %passed(server) distime=server
+		if newlat.ne.2.and..not.distime distime=7
+		;
+		p1a = 1			;flush buffers on qio.
+		;
+		status = %sys$cancel(%val(lat_chan))
+		call stcheck
+		xcall wait10
+	end
+	(%outrange),	goto return
+	endusing
+
+qio,	clear buffer,iosb1,iosb2
+	if action.ne.3
+	begin
+		status=%sys$setimr(%val(timefn),%ref(bintim),%xtrnl(latast),,)
+		call stcheck
+	end
+	using action select
+	(2,4,5,6),	
+		if p1a
+		then	status=%sys$qio(%val(ccat_efn1),%val(lat_chan),
+&			%val(fun_c),%ref(iosb),,,%val(p1a),,,,,)
+		else	status=%sys$qio(%val(ccat_efn1),%val(lat_chan),
+&			%val(fun_c),%ref(iosb),,,,,,,,)
+	(1),	status=%sys$qio(%val(ccat_efn1),%val(lat_chan),%val(fun_c),
+&		%ref(iosb),,,,,,,,)
+	(3),
+	begin
+		status=%sys$qiow(%val(ccat_efn1),%val(lat_chan),%val(fun_c),
+&		%ref(iosb),,,%ref(buffer),%val(80),,,,)
+		call stcheck
+	end
+	endusing
+	if action.ne.3
+	begin
+		if %success(status) status = %sys$synch(%val(ccat_efn1),%ref(iosb))
+		call stcheck
+		xcall sys$cantim(,)			;cancel timer
+	end
+	;
+	status=iosb1
+	if action.ne.1 goto rok
+	if status.eq.SS$_DEVOFFLINE
+	begin
+		sleep 1		;its just reseting it'll be there in a sec
+		incr rtry
+		if rtry.lt.10 goto qio
+		goto rok
+	end
+	if iosb1.eq.SS$_ABORT	;port in use or poss. dtr resetting.
+	begin			;iosb2 holds actual error but do we care ?
+		rms_error=iosb1
+		if iosb2.lt.1.or.iosb2.gt.19	;ie not lat reject codes
+		begin				; latmsgdef codes instead
+			rms_error=iosb2
+			rstat=iosb4
+			goto return
+		end
+		if iosb2.eq.6.or.(iosb2.eq.13.and.newlat.ne.2)
+						;= immediate reject
+		begin				;= port or service in use.
+					;
+					; with correct vms & correct firmware
+					; 6 means device in use
+					; 13 means device not in use but
+					;    resetting due to modem control
+					;    reset timer.
+			rms_error=iosb2
+			rstat=5
+			goto rok1
+		end
+		sleep 1	
+		incr rtry
+		if rtry.lt.9 goto qio	;up to 10 seconds !
+		rms_error=iosb1
+		rstat=10+iosb2
+		goto return
+	end
+rok,	rms_error = status
+	using status select
+	(SS$_NORMAL),	rstat=1		; all ok
+	(SS$_TIMEOUT),	rstat=2		;
+	(SS$_ABORT),	
+	begin
+		rstat = 3
+		if iosb2.lt.1.or.iosb2.gt.19
+		begin
+			rms_error=iosb2
+			rstat=iosb4
+			if iosb2.eq.6.or.iosb2.eq.13	rstat=5
+		end
+	end
+	(SS$_ILLIOFUNC),rstat=4		;
+	(SS$_DEVACTIVE),rstat=5		;
+	(SS$_DEVOFFLINE),rstat=7
+	(),		rstat=6		; god knows
+	endusing
+	if rstat.gt.1 goto rok2
+
+	if action.eq.1
+	begin
+		bintim = -1000000 * distime	;10th of sec
+		call timeit
+	end
+rok1,	if action.eq.2.or.action.eq.6	;ie disconnect modem
+	begin
+		if newlat.eq.2
+		then	bintim = -16000000	;1.6 seconds
+		else 	bintim = -10000000 * distime	;seconds
+		call timeit
+	end
+	if action.eq.5.or.action.eq.4	;ie disconnect non modem
+	begin
+		bintim = -10000000		;1.0 seconds
+		call timeit
+	end
+rok2,
+	if action.eq.3
+	begin
+		clear server,port
+		if .not.%success(status) exit	;out of loop
+		char=buffer
+		pos=%decml(char)
+		if pos.lt.1 goto fail
+		port=buffer(2,pos+1)
+
+		buffer=buffer(pos+2,80)
+
+		char=buffer(1,1)
+		pos=%decml(char)
+		if pos.lt.1 goto fail
+		server=buffer(2,pos+1)
+		rstat=1
+fail,
+	end
+
+return,
+	if timefn status=%lib$free_ef(%ref(timefn))
+	if ccat_efn1 status = %lib$free_ef(%ref(ccat_efn1))
+	xreturn
+
+stcheck,
+	if .not.%success(status)
+	begin
+		rms_error=status
+		rstat=6
+		goto return
+	end
+	return
+timeit,
+	status=%sys$setimr(%val(timefn),%ref(bintim),,,)
+	call stcheck
+	xcall sys$waitfr(%val(timefn))
+	return
+endsubroutine
+
+;
+; AST routine fires if timer fires.
+; DO NO PROCESSING HERE
+;
+subroutine	latast
+common
+	lat_chan,	i4
+proc
+	xcall sys$cancel(%val(lat_chan))
+	xreturn
+endsubroutine
+

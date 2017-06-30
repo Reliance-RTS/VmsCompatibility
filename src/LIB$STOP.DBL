@@ -38,13 +38,22 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="condition"></param>
+;;; <param name="number_of_arguments"></param>
+;;; <param name="fao_argument"></param>
+;;; <returns></returns>
 subroutine LIB$STOP
-	required in condition, i
-	endparams
+    ^val(condition),			i
+    optional ^val(number_of_arguments),	i
+    opt  ^val(fao_argument),		i
+    endparams
 proc
-	if (condition) then
-		stop D_EXIT_FAILURE
-	else
-		stop D_EXIT_SUCCESS
+    if (condition) then
+	stop D_EXIT_FAILURE
+    else
+	stop D_EXIT_SUCCESS
 endsubroutine
 

@@ -1,0 +1,154 @@
+;;*****************************************************************************
+;;
+;; Title:       $LKIDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	LKI$K_LENGTH,			i,	24
+	LKI$C_LENGTH,			i,	24
+	LKI$K_BR_LENGTH,		i,	56
+	LKI$C_BR_LENGTH,		i,	56
+	LKI$S_LKIDEF,			i,	56
+	LKI$L_MSTLKID,			i,	0
+	LKI$L_LOCKID,			i,	0
+	LKI$L_PID,				i,	4
+	LKI$L_MSTCSID,			i,	8
+	LKI$L_SYSID,			i,	8
+	LKI$B_RQMODE,			i,	12
+	LKI$B_GRMODE,			i,	13
+	LKI$B_QUEUE,			i,	14
+	LKI$L_LKID,				i,	16
+	LKI$L_REMLKID,			i,	16
+	LKI$L_CSID,				i,	20
+	LKI$L_REMSYSID,			i,	20
+	LKI$S_RQSTART,			i,	8
+	LKI$Q_RQSTART,			i,	24
+	LKI$S_RQLENGTH,			i,	8
+	LKI$Q_RQLENGTH,			i,	32
+	LKI$S_GRSTART,			i,	8
+	LKI$Q_GRSTART,			i,	40
+	LKI$S_GRLENGTH,			i,	8
+	LKI$Q_GRLENGTH,			i,	48
+	LKI$M_SYSNAM,			i,	%x("80000000")
+	LKI$S_NAMSPACE,			i,	4
+	LKI$W_GROUP,			i,	0
+	LKI$B_RMOD,				i,	2
+	LKI$B_STATUS,			i,	3
+	LKI$R_STATUS_BITS,		i,	0
+	LKI$V_SYSNAM,			i,	31
+	LKI$S_STATEF,			i,	3
+	LKI$B_STATE_RQMODE,		i,	0
+	LKI$B_STATE_GRMODE,		i,	1
+	LKI$B_STATE_QUEUE,		i,	2
+	LKIUSR$K_LENGTH,		i,	20
+	LKIUSR$C_LENGTH,		i,	20
+	LKIUSR$K_BLOCKER_START,	i,	20
+	LKIUSR$S_LKIUSRDEF,		i,	20
+	LKIUSR$S_START,			i,	8
+	LKIUSR$Q_START,			i,	0
+	LKIUSR$S_LENGTH,		i,	8
+	LKIUSR$Q_LENGTH,		i,	8
+	LKIUSR$B_RQMODE,		i,	16
+	LKIUSR$B_IGNORE_OWN,	i,	17
+	LKI$_RNG_S_RNGDEF,		i,	32
+	LKI$_RNG_S_RQSTART,		i,	8
+	LKI$_RNG_Q_RQSTART,		i,	0
+	LKI$_RNG_S_RQLENGTH,	i,	8
+	LKI$_RNG_Q_RQLENGTH,	i,	8
+	LKI$_RNG_S_GRSTART,		i,	8
+	LKI$_RNG_Q_GRSTART,		i,	16
+	LKI$_RNG_S_GRLENGTH,	i,	8
+	LKI$_RNG_Q_GRLENGTH,	i,	24
+	LKI$C_GRANTED,			i,	1
+	LKI$C_CONVERT,			i,	0
+	LKI$C_WAITING,			i,	-1
+	LKI$C_RETRY,			i,	-2
+	LKI$C_SCSWAIT,			i,	-3
+	LKI$C_RSPNOTQED,		i,	-4
+	LKI$C_RSPQUEUED,		i,	-5
+	LKI$C_RSPGRANTD,		i,	-6
+	LKI$C_RSPDOLOCL,		i,	-7
+	LKI$C_RSPRESEND,		i,	-8
+	LKI$C_LKBTYPE,			i,	1
+	LKI$C_RSBTYPE,			i,	2
+	LKI$C_LISTEND,			i,	0
+	LKI$_PID,				i,	256
+	LKI$_STATE,				i,	257
+	LKI$_PARENT,			i,	258
+	LKI$_LCKREFCNT,			i,	259
+	LKI$_LOCKID,			i,	260
+	LKI$_REMLKID,			i,	261
+	LKI$_MSTLKID,			i,	262
+	LKI$_LKID,				i,	263
+	LKI$_CSID,				i,	264
+	LKI$_BRL,				i,	265
+	LKI$_RANGE,				i,	266
+	LKI$_LASTLKB,			i,	267
+	LKI$_NAMSPACE,			i,	512
+	LKI$_RESNAM,			i,	513
+	LKI$_RSBREFCNT,			i,	514
+	LKI$_VALBLK,			i,	515
+	LKI$_SYSTEM,			i,	516
+	LKI$_LCKCOUNT,			i,	517
+	LKI$_BLOCKEDBY,			i,	518
+	LKI$_BLOCKING,			i,	519
+	LKI$_LOCKS,				i,	520
+	LKI$_CVTCOUNT,			i,	521
+	LKI$_WAITCOUNT,			i,	522
+	LKI$_GRANTCOUNT,		i,	523
+	LKI$_MSTCSID,			i,	524
+	LKI$_VALBLKST,			i,	525
+	LKI$_BLOCKEDBY_BR,		i,	526
+	LKI$_BLOCKING_BR,		i,	527
+	LKI$_LOCKS_BR,			i,	528
+	LKI$_BLOCKER_BR,		i,	529
+	LKI$_XVALBLK,			i,	530
+	LKI$_XVALNOTVALID,		i,	531
+	LKI$_LASTRSB,			i,	532
+	LKISND$K_HDRLEN,		i,	16
+	LKISND$C_HDRLEN,		i,	16
+	LKISND$S_LKISNDDEF,		i,	16
+	LKISND$W_RETSIZE,		i,	0
+	LKISND$W_STATUS,		i,	2
+	LKISND$W_FLAGS,			i,	4
+	LKISND$W_SEQNUM,		i,	6
+	LKISND$W_SIZE,			i,	8
+	LKISND$B_TYPE,			i,	10
+	LKISND$B_FILL_2,		i,	11
+	LKISND$B_ITEM_LENGTH,	i,	12
+	LKISND$B_FILL_3,		i,	13
+	LKISND$W_FILL_4,		i,	14
+.list

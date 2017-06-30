@@ -1,0 +1,322 @@
+;;*****************************************************************************
+;;
+;; Title:       $RMSDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	RMS$_FACILITY,				i,	1
+	RMS$V_STVSTATUS,			i,	14
+	RMS$_SUC,					i,	65537
+	RMS$_NORMAL,				i,	65537
+	RMS$_STALL,					i,	98305
+	RMS$_PENDING,				i,	98313
+	RMS$_OK_DUP,				i,	98321
+	RMS$_OK_IDX,				i,	98329
+	RMS$_OK_RLK,				i,	98337
+	RMS$_OK_RRL,				i,	98345
+	RMS$_KFF,					i,	98353
+	RMS$_OK_ALK,				i,	98361
+	RMS$_OK_DEL,				i,	98369
+	RMS$_OK_RNF,				i,	98377
+	RMS$_OK_LIM,				i,	98385
+	RMS$_OK_NOP,				i,	98393
+	RMS$_OK_WAT,				i,	98401
+	RMS$_CRE_STM,				i,	98409
+	RMS$_OK_RULK,				i,	98417
+	RMS$_SYNCH,					i,	98425
+	RMS$_OK_ACT,				i,	98433
+	RMS$_OK_NOCURTID,			i,	98441
+	RMS$_CONTROLC,				i,	67153
+	RMS$_CONTROLO,				i,	67081
+	RMS$_CONTROLY,				i,	67089
+	RMS$_CREATED,				i,	67097
+	RMS$_SUPERSEDE,				i,	67121
+	RMS$_OVRDSKQUOTA,			i,	67177
+	RMS$_FILEPURGED,			i,	67193
+	RMS$_BOF,					i,	98712
+	RMS$_RNL,					i,	98720
+	RMS$_RTB,					i,	98728
+	RMS$_TMO,					i,	98736
+	RMS$_TNS,					i,	98744
+	RMS$_BES,					i,	98752
+	RMS$_PES,					i,	98760
+	RMS$_ACT,					i,	98906
+	RMS$_DEL,					i,	98914
+	RMS$_INCOMPSHR,				i,	98922
+	RMS$_DNR,					i,	98930
+	RMS$_EOF,					i,	98938
+	RMS$_FEX,					i,	98946
+	RMS$_FLK,					i,	98954
+	RMS$_FNF,					i,	98962
+	RMS$_PRV,					i,	98970
+	RMS$_REX,					i,	98978
+	RMS$_RLK,					i,	98986
+	RMS$_RNF,					i,	98994
+	RMS$_WLK,					i,	99002
+	RMS$_EXP,					i,	99010
+	RMS$_NMF,					i,	99018
+	RMS$_SUP,					i,	99026
+	RMS$_RSA,					i,	99034
+	RMS$_CRC,					i,	99042
+	RMS$_WCC,					i,	99050
+	RMS$_IDR,					i,	99058
+	RMS$_LWC,					i,	99066
+	RMS$_UNUSED1,				i,	99074
+	RMS$_NOVALPRS,				i,	99082
+	RMS$_KEY_MISMATCH,			i,	99090
+	RMS$_RUH,					i,	99098
+	RMS$_JND,					i,	99106
+	RMS$_BADPHASE,				i,	99114
+	RMS$_TOWDR,					i,	99122
+	RMS$_NEXDR,					i,	99130
+	RMS$_INVDRMSG,				i,	99138
+	RMS$_RU_ACTIVE,				i,	99146
+	RMS$_UNKRUFAC,				i,	99154
+	RMS$_LIMBO,					i,	99162
+	RMS$_IVATRACE,				i,	99170
+	RMS$_OPNOTSUP,				i,	99178
+	RMS$_EXTNOTFOU,				i,	99186
+	RMS$_EXT_ERR,				i,	99194
+	RMS$_SEMANTICS,				i,	99202
+	RMS$_LSCAN,					i,	99210
+	RMS$_ROOTSRCH,				i,	99218
+	RMS$_IDXSEARCH,				i,	99226
+	RMS$_NETBTS,				i,	99234
+	RMS$_NXR,					i,	99242
+	RMS$_EOFASY_SYNCH,			i,	99250
+	RMS$_ELOOP,					i,	99258
+	RMS$_ACC,					i,	114690
+	RMS$_CRE,					i,	114698
+	RMS$_DAC,					i,	114706
+	RMS$_ENT,					i,	114714
+	RMS$_EXT,					i,	114722
+	RMS$_FND,					i,	114730
+	RMS$_MKD,					i,	114738
+	RMS$_DPE,					i,	114746
+	RMS$_SPL,					i,	114754
+	RMS$_DNF,					i,	114762
+	RMS$_RUF,					i,	114770
+	RMS$_WRTJNL_AIJ,			i,	114778
+	RMS$_WRTJNL_BIJ,			i,	114786
+	RMS$_WRTJNL_ATJ,			i,	114794
+	RMS$_WRTJNL_RUJ,			i,	114802
+	RMS$_RRF,					i,	114810
+	RMS$_DDTM_ERR,				i,	114818
+	RMS$_DTFCDDREC,				i,	99308
+	RMS$_AID,					i,	99316
+	RMS$_ALN,					i,	99324
+	RMS$_ALQ,					i,	99332
+	RMS$_ANI,					i,	99340
+	RMS$_AOP,					i,	99348
+	RMS$_BKS,					i,	99356
+	RMS$_BKZ,					i,	99364
+	RMS$_BLN,					i,	99372
+	RMS$_BUG,					i,	99380
+	RMS$_BUG_DDI,				i,	99388
+	RMS$_BUG_DAP,				i,	99396
+	RMS$_BUG_RU_ACTIVE,			i,	99404
+	RMS$_BUG_RURECERR,			i,	99412
+	RMS$_BUG_FLUSH_JNL_FAILED,	i,	99420
+	RMS$_BUG_RU_ABORT_FAIL,		i,	99428
+	RMS$_BUG_RU_COMMIT_FAIL,	i,	99436
+	RMS$_BUG_XX6,				i,	99444
+	RMS$_BUG_XX7,				i,	99452
+	RMS$_BUG_XX8,				i,	99460
+	RMS$_BUSY,					i,	99468
+	RMS$_CCR,					i,	99476
+	RMS$_CHG,					i,	99484
+	RMS$_CHK,					i,	99492
+	RMS$_COD,					i,	99500
+	RMS$_CUR,					i,	99508
+	RMS$_DAN,					i,	99516
+	RMS$_DEV,					i,	99524
+	RMS$_DIR,					i,	99532
+	RMS$_DME,					i,	99540
+	RMS$_DNA,					i,	99548
+	RMS$_DTP,					i,	99556
+	RMS$_DUP,					i,	99564
+	RMS$_DVI,					i,	99572
+	RMS$_ESA,					i,	99580
+	RMS$_ESS,					i,	99588
+	RMS$_FAB,					i,	99596
+	RMS$_FAC,					i,	99604
+	RMS$_FLG,					i,	99612
+	RMS$_FNA,					i,	99620
+	RMS$_FNM,					i,	99628
+	RMS$_FSZ,					i,	99636
+	RMS$_FOP,					i,	99644
+	RMS$_FUL,					i,	99652
+	RMS$_IAL,					i,	99660
+	RMS$_IAN,					i,	99668
+	RMS$_IDX,					i,	99676
+	RMS$_IFI,					i,	99684
+	RMS$_IMX,					i,	99692
+	RMS$_IOP,					i,	99700
+	RMS$_IRC,					i,	99708
+	RMS$_ISI,					i,	99716
+	RMS$_KBF,					i,	99724
+	RMS$_KEY,					i,	99732
+	RMS$_KRF,					i,	99740
+	RMS$_KSZ,					i,	99748
+	RMS$_LAN,					i,	99756
+	RMS$_RUNDOWN,				i,	99764
+	RMS$_LNE,					i,	99772
+	RMS$_DTFCVT,				i,	99780
+	RMS$_MRN,					i,	99788
+	RMS$_MRS,					i,	99796
+	RMS$_NAM,					i,	99804
+	RMS$_NEF,					i,	99812
+	RMS$_DTFQUASYN,				i,	99820
+	RMS$_NOD,					i,	99828
+	RMS$_NPK,					i,	99836
+	RMS$_ORD,					i,	99844
+	RMS$_ORG,					i,	99852
+	RMS$_PBF,					i,	99860
+	RMS$_PLG,					i,	99868
+	RMS$_POS,					i,	99876
+	RMS$_DTFQUAVAL,				i,	99884
+	RMS$_QUO,					i,	99892
+	RMS$_RAB,					i,	99900
+	RMS$_RAC,					i,	99908
+	RMS$_RAT,					i,	99916
+	RMS$_RBF,					i,	99924
+	RMS$_RFA,					i,	99932
+	RMS$_RFM,					i,	99940
+	RMS$_RHB,					i,	99948
+	RMS$_RLF,					i,	99956
+	RMS$_ROP,					i,	99964
+	RMS$_RRV,					i,	99972
+	RMS$_RVU,					i,	99980
+	RMS$_RSS,					i,	99988
+	RMS$_RST,					i,	99996
+	RMS$_RSZ,					i,	100004
+	RMS$_SEQ,					i,	100012
+	RMS$_SHR,					i,	100020
+	RMS$_SIZ,					i,	100028
+	RMS$_SQO,					i,	100036
+	RMS$_DTFSESEST,				i,	100044
+	RMS$_SYN,					i,	100052
+	RMS$_TRE,					i,	100060
+	RMS$_TYP,					i,	100068
+	RMS$_UBF,					i,	100076
+	RMS$_USZ,					i,	100084
+	RMS$_VER,					i,	100092
+	RMS$_XNF,					i,	100100
+	RMS$_XAB,					i,	100108
+	RMS$_ESL,					i,	100116
+	RMS$_DTFSESTER,				i,	100124
+	RMS$_ENV,					i,	100132
+	RMS$_PLV,					i,	100140
+	RMS$_MBC,					i,	100148
+	RMS$_RSL,					i,	100156
+	RMS$_WLD,					i,	100164
+	RMS$_NET,					i,	100172
+	RMS$_IBF,					i,	100180
+	RMS$_REF,					i,	100188
+	RMS$_IFL,					i,	100196
+	RMS$_DFL,					i,	100204
+	RMS$_KNM,					i,	100212
+	RMS$_IBK,					i,	100220
+	RMS$_KSI,					i,	100228
+	RMS$_LEX,					i,	100236
+	RMS$_SEG,					i,	100244
+	RMS$_SNE,					i,	100252
+	RMS$_SPE,					i,	100260
+	RMS$_UPI,					i,	100268
+	RMS$_ACS,					i,	100276
+	RMS$_STR,					i,	100284
+	RMS$_FTM,					i,	100292
+	RMS$_GBC,					i,	100300
+	RMS$_DEADLOCK,				i,	100308
+	RMS$_EXENQLM,				i,	100316
+	RMS$_JOP,					i,	100324
+	RMS$_RUM,					i,	100332
+	RMS$_JNS,					i,	100340
+	RMS$_NRU,					i,	100348
+	RMS$_IFF,					i,	100356
+	RMS$_DTFTRATBL,				i,	100364
+	RMS$_DTFUNSTYP,				i,	100372
+	RMS$_DTFVERMIS,				i,	100380
+	RMS$_DTFACC,				i,	100386
+	RMS$_BOGUSCOL,				i,	100396
+	RMS$_ERRREADCOL,			i,	100404
+	RMS$_ERRWRITECOL,			i,	100412
+	RMS$_SNS,					i,	100420
+	RMS$_NOEXTEND,				i,	100428
+	RMS$_DTFCRE,				i,	100434
+	RMS$_DELJNS,				i,	100444
+	RMS$_NOTSAMEJNL,			i,	100452
+	RMS$_SNPPF,					i,	100460
+	RMS$_NAML,					i,	100468
+	RMS$_NAMLESS,				i,	100476
+	RMS$_NAMLRSS,				i,	100484
+	RMS$_NAMLFSSIZ,				i,	100492
+	RMS$_NAMLFSINV,				i,	100500
+	RMS$_BADGBH,				i,	100508
+	RMS$_BADGBD,				i,	100516
+	RMS$_FOPEXTMBZ,				i,	100524
+	RMS$_INVOP_SSIO,			i,	100532
+	RMS$_IVSF,					i,	100540
+	RMS$_ATR,					i,	114892
+	RMS$_ATW,					i,	114900
+	RMS$_CCF,					i,	114908
+	RMS$_CDA,					i,	114916
+	RMS$_CHN,					i,	114924
+	RMS$_RER,					i,	114932
+	RMS$_RMV,					i,	114940
+	RMS$_RPL,					i,	114948
+	RMS$_SYS,					i,	114956
+	RMS$_WER,					i,	114964
+	RMS$_WPL,					i,	114972
+	RMS$_IFA,					i,	114980
+	RMS$_WBE,					i,	114988
+	RMS$_ENQ,					i,	114996
+	RMS$_NETFAIL,				i,	115004
+	RMS$_SUPPORT,				i,	115012
+	RMS$_CRMP,					i,	115020
+	RMS$_DTFCFGFIL,				i,	115028
+	RMS$_REENT,					i,	115036
+	RMS$_ACC_RUJ,				i,	115044
+	RMS$_TMR,					i,	115052
+	RMS$_ACC_AIJ,				i,	115060
+	RMS$_ACC_BIJ,				i,	115068
+	RMS$_ACC_ATJ,				i,	115076
+	RMS$_DTFDEFFIL,				i,	115084
+	RMS$_DTFREGFIL,				i,	115092
+	RMS$_JNLNOTAUTH,			i,	115100
+	RMS$_CRBUFOBJ,				i,	115108
+	RMS$_RSESTK_ALLOC,			i,	115116
+.list

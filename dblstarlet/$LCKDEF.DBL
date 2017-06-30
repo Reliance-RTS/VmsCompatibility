@@ -1,0 +1,90 @@
+;;*****************************************************************************
+;;
+;; Title:       $LCKDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	LCK$M_VALBLK,			i,	%x("1")
+	LCK$M_CONVERT,			i,	%x("2")
+	LCK$M_NOQUEUE,			i,	%x("4")
+	LCK$M_SYNCSTS,			i,	%x("8")
+	LCK$M_SYSTEM,			i,	%x("10")
+	LCK$M_NOQUOTA,			i,	%x("20")
+	LCK$M_CVTSYS,			i,	%x("40")
+	LCK$M_RECOVER,			i,	%x("80")
+	LCK$M_PROTECT,			i,	%x("100")
+	LCK$M_NODLCKWT,			i,	%x("200")
+	LCK$M_NODLCKBLK,		i,	%x("400")
+	LCK$M_EXPEDITE,			i,	%x("800")
+	LCK$M_QUECVT,			i,	%x("1000")
+	LCK$M_BYPASS,			i,	%x("2000")
+	LCK$M_NOIOLOCK8,		i,	%x("4000")
+	LCK$M_NOFORK,			i,	%x("8000")
+	LCK$M_XVALBLK,			i,	%x("10000")
+	LCK$M_DEQALL,			i,	%x("1")
+	LCK$M_CANCEL,			i,	%x("2")
+	LCK$M_INVVALBLK,		i,	%x("4")
+	LCK$M_RESV_NOIOLOCK8,	i,	%x("4000")
+	LCK$M_RESV_NOFORK,		i,	%x("8000")
+	LCK$M_RESV_XVALBLK,		i,	%x("10000")
+	LCK$K_NLMODE,			i,	0
+	LCK$K_CRMODE,			i,	1
+	LCK$K_CWMODE,			i,	2
+	LCK$K_PRMODE,			i,	3
+	LCK$K_PWMODE,			i,	4
+	LCK$K_EXMODE,			i,	5
+	LCK$S_LCKDEF,			i,	3
+	LCK$V_VALBLK,			i,	0
+	LCK$V_CONVERT,			i,	1
+	LCK$V_NOQUEUE,			i,	2
+	LCK$V_SYNCSTS,			i,	3
+	LCK$V_SYSTEM,			i,	4
+	LCK$V_NOQUOTA,			i,	5
+	LCK$V_CVTSYS,			i,	6
+	LCK$V_RECOVER,			i,	7
+	LCK$V_PROTECT,			i,	8
+	LCK$V_NODLCKWT,			i,	9
+	LCK$V_NODLCKBLK,		i,	10
+	LCK$V_EXPEDITE,			i,	11
+	LCK$V_QUECVT,			i,	12
+	LCK$V_BYPASS,			i,	13
+	LCK$V_NOIOLOCK8,		i,	14
+	LCK$V_NOFORK,			i,	15
+	LCK$V_XVALBLK,			i,	16
+	LCK$V_DEQALL,			i,	0
+	LCK$V_CANCEL,			i,	1
+	LCK$V_INVVALBLK,		i,	2
+.list

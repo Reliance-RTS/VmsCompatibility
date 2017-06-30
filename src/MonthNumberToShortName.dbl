@@ -38,8 +38,13 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="monthNumber"></param>
+;;; <returns></returns>
 function MonthNumberToShortName,	a
-	required in monthNumber,		n
+	required in  monthNumber,		n
 	endparams
 proc
 	using monthNumber select

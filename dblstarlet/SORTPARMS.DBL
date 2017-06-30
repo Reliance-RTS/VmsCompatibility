@@ -1,0 +1,123 @@
+;;*****************************************************************************
+;;
+;; Title:       SORTPARMS.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+LITERAL
+	SRT_NUM_KEYS,	I,	15
+	SRT_NUM_FILES,	I,	7
+
+RECORD	PARMS
+        
+	INNUM,	D1					; Number of input files
+	INPUT,	[SRT_NUM_FILES]A255 ; File specifications for input file(s)
+								; INPUT=filespec[,filespec,...]
+								; INPUT:filespec[(count)][filespec[(count)],...]
+								; OUTPUT=filespec
+								; OUTPUT:filespec
+	OUTPUT,	A255				; File specification for output file
+
+								; RECLEN:value
+	RECLEN,	D5					; Maximum record length. Never < key length
+        
+								; ISAM
+	ISAM,	D1					; Set if input file is ISAM
+        
+								; PAD:character/user defined EOF character
+	PAD,	[SRT_NUM_FILES]A1, %CHAR(0),%CHAR(0),%CHAR(0),%CHAR(0),%CHAR(0),%CHAR(0),%CHAR(0)
+        
+								; COUNT:value
+	COUNT,	[SRT_NUM_FILES]D1	; Number of records to sort
+								; 0 means all records in file
+								; KEYS:tdp.l[,tdp.l,...]
+								; or KEYS:field_name[-][,field_name[-],...]
+	KEYNUM,	D1					; Number of keys if 0, use ikeynum
+	TYPE,	[SRT_NUM_KEYS]A1	; Key field data type (A=alpha,D=numeric,P=packed, C=CASE INSENSITIVE CHAR, U = Unsigned int)
+	DIRECT,	[SRT_NUM_KEYS]A1	; Sort direction (A=ascending,D=decending)
+	POSTN,	[SRT_NUM_KEYS]D5	; Starting record position for key
+	LENGTH,	[SRT_NUM_KEYS]D3	; Length of key
+        
+								; TAGS:{SORT|LIST|INDEX}
+								; or TAGS:{SORT|LIST|INDEX}
+	TAGS,	A5					; Type of tag sort to be performed (SORT,LIST,or INDEX)
+        
+       							; TTNUM:value
+	TTNUM,	D10, -999			; Terminal number where IDENT program is (will be) running
+								; WORK:value
+								; or WORK:[number][,device,...]
+	WORK,	D1, 2				; Number of work files to use
+								; ASSIGN:device[,device,...]
+								; or WORK:[number][,device,...]
+	DEVNO,	D1					; Number of device specifications
+	DEV,	8A32				; Device specifications for work files
+        
+								; TEMP=filespec
+	TEMP,	A255				; File specification for temporary output file
+        
+;
+; The following fields not used by XCALL interface
+;
+								; CHAIN=filespec
+								; or EXECUTE:filespec
+	CHAIN,	A132				; File specification of program to chain to
+        
+								; IDENT=filespec
+	IDENT,	A39					; Receiver ID of program to receive message
+
+								; MESSAGE:text_string
+	MESSIZ,	D2					; Number of characters in message text
+	MESSGE,	A40					; Message to be sent to program specified by IDENT
+        
+								; LOCKCC
+	LOCKCC,	D1					; Set if CTRL/C should be disabled
+;
+;	The following fields ARE used by the XCALL interface
+;
+	CNTWRK,	D1					; Workfiles are to be contiguous
+
+	FLAGS,	[10]D1				; Series of extra flags to pass to SORT
+        						; (1)	= use VAX sort zoned field comparison
+								;         spaces will cause reserved operand fault
+								; (2)	= use multinational colating sequence
+								; (3)   = allow merge of un sorted input filesd
+								; (4)   = DBL sort mode relative file sorted 
+								;         into its'self with pad or count does
+								;         not include excess records in output
+								;         file.
+	PURGE,	D1, 0				; Set if SORT should purge output file
+								; after successful sort.
+
+	IKEYNUM,	D2				; no. of keys.
+

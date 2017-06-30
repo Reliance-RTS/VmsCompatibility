@@ -38,13 +38,19 @@
 ;;
 ;;*****************************************************************************
 
-function LIB$DAY_OF_WEEK,	^val
-	%ref(i8Date),			i8
-	%ref(dayNumber),		i4
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="i8Date"></param>
+;;; <param name="dayNumber"></param>
+;;; <returns></returns>
+function LIB$DAY_OF_WEEK, ^val
+	required in	 %ref(i8Date), i8
+	required out %ref(dayNumber), i4
 	endparams
 
 	external function 
-	  MonthShortNameToNumber,^val
+	  MonthShortNameToNumber, ^val
 	endexternal
 
 	record 

@@ -1,0 +1,100 @@
+;;*****************************************************************************
+;;
+;; Title:       $XABDATDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	XAB$C_DAT,					i,	18
+	XAB$K_DATLEN_V2,			i,	36
+	XAB$C_DATLEN_V2,			i,	36
+	XAB$K_DATLEN_V54,			i,	44
+	XAB$C_DATLEN_V54,			i,	44
+	XAB$K_DATLEN_PRE_ACCDATES,	i,	60
+	XAB$C_DATLEN_PRE_ACCDATES,	i,	60
+	XAB$K_DATLEN_POST_ACCDATES,	i,	84
+	XAB$C_DATLEN_POST_ACCDATES,	i,	84
+	XAB$S_XABDATDEF,			i,	84
+	XAB$R_CDT_OVERLAY,			i,	20
+	XAB$S_CDT,					i,	8
+	XAB$Q_CDT,					i,	20
+	XAB$R_CDT_FIELDS,			i,	20
+	XAB$L_CDT0,					i,	20
+	XAB$L_CDT4,					i,	24
+	XAB$R_EDT_OVERLAY,			i,	28
+	XAB$S_EDT,					i,	8
+	XAB$Q_EDT,					i,	28
+	XAB$R_EDT_FIELDS,			i,	28
+	XAB$L_EDT0,					i,	28
+	XAB$L_EDT4,					i,	32
+	XAB$R_BDT_OVERLAY,			i,	36
+	XAB$S_BDT,					i,	8
+	XAB$Q_BDT,					i,	36
+	XAB$R_BDT_FIELDS,			i,	36
+	XAB$L_BDT0,					i,	36
+	XAB$L_BDT4,					i,	40
+	XAB$R_RCD_OVERLAY,			i,	44
+	XAB$S_RCD,					i,	8
+	XAB$Q_RCD,					i,	44
+	XAB$R_RCD_FIELDS,			i,	44
+	XAB$L_RCD0,					i,	44
+	XAB$L_RCD4,					i,	48
+	XAB$R_EFF_OVERLAY,			i,	52
+	XAB$S_EFF,					i,	8
+	XAB$Q_EFF,					i,	52
+	XAB$R_EFF_FIELDS,			i,	52
+	XAB$L_EFF0,					i,	52
+	XAB$L_EFF4,					i,	56
+	XAB$R_ACC_OVERLAY,			i,	60
+	XAB$S_ACC,					i,	8
+	XAB$Q_ACC,					i,	60
+	XAB$R_ACC_FIELDS,			i,	60
+	XAB$L_ACC0,					i,	60
+	XAB$L_ACC4,					i,	64
+	XAB$R_ATT_OVERLAY,			i,	68
+	XAB$S_ATT,					i,	8
+	XAB$Q_ATT,					i,	68
+	XAB$R_ATT_FIELDS,			i,	68
+	XAB$L_ATT0,					i,	68
+	XAB$L_ATT4,					i,	72
+	XAB$R_MOD_OVERLAY,			i,	76
+	XAB$S_MOD,					i,	8
+	XAB$Q_MOD,					i,	76
+	XAB$R_MOD_FIELDS,			i,	76
+	XAB$L_MOD0,					i,	76
+	XAB$L_MOD4,					i,	80
+	XAB$K_DATLEN,				i,	84
+	XAB$C_DATLEN,				i,	84
+.list

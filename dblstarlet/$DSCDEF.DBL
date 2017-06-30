@@ -1,0 +1,329 @@
+;;*****************************************************************************
+;;
+;; Title:       $DSCDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	DSC$K_DTYPE_Z,			i,	0
+	DSC64$K_DTYPE_Z,		i,	0
+	DSC$K_DTYPE_BU,			i,	2
+	DSC64$K_DTYPE_BU,		i,	2
+	DSC$K_DTYPE_WU,			i,	3
+	DSC64$K_DTYPE_WU,		i,	3
+	DSC$K_DTYPE_LU,			i,	4
+	DSC64$K_DTYPE_LU,		i,	4
+	DSC$K_DTYPE_QU,			i,	5
+	DSC64$K_DTYPE_QU,		i,	5
+	DSC$K_DTYPE_OU,			i,	25
+	DSC64$K_DTYPE_OU,		i,	25
+	DSC$K_DTYPE_B,			i,	6
+	DSC64$K_DTYPE_B,		i,	6
+	DSC$K_DTYPE_W,			i,	7
+	DSC64$K_DTYPE_W,		i,	7
+	DSC$K_DTYPE_L,			i,	8
+	DSC64$K_DTYPE_L,		i,	8
+	DSC$K_DTYPE_Q,			i,	9
+	DSC64$K_DTYPE_Q,		i,	9
+	DSC$K_DTYPE_O,			i,	26
+	DSC64$K_DTYPE_O,		i,	26
+	DSC$K_DTYPE_F,			i,	10
+	DSC64$K_DTYPE_F,		i,	10
+	DSC$K_DTYPE_D,			i,	11
+	DSC64$K_DTYPE_D,		i,	11
+	DSC$K_DTYPE_G,			i,	27
+	DSC64$K_DTYPE_G,		i,	27
+	DSC$K_DTYPE_H,			i,	28
+	DSC64$K_DTYPE_H,		i,	28
+	DSC$K_DTYPE_FC,			i,	12
+	DSC64$K_DTYPE_FC,		i,	12
+	DSC$K_DTYPE_DC,			i,	13
+	DSC64$K_DTYPE_DC,		i,	13
+	DSC$K_DTYPE_GC,			i,	29
+	DSC64$K_DTYPE_GC,		i,	29
+	DSC$K_DTYPE_HC,			i,	30
+	DSC64$K_DTYPE_HC,		i,	30
+	DSC$K_DTYPE_FS,			i,	52
+	DSC64$K_DTYPE_FS,		i,	52
+	DSC$K_DTYPE_FT,			i,	53
+	DSC64$K_DTYPE_FT,		i,	53
+	DSC$K_DTYPE_FSC,		i,	54
+	DSC64$K_DTYPE_FSC,		i,	54
+	DSC$K_DTYPE_FTC,		i,	55
+	DSC64$K_DTYPE_FTC,		i,	55
+	DSC$K_DTYPE_FX,			i,	57
+	DSC64$K_DTYPE_FX,		i,	57
+	DSC$K_DTYPE_FXC,		i,	58
+	DSC64$K_DTYPE_FXC,		i,	58
+	DSC$K_DTYPE_CIT,		i,	31
+	DSC64$K_DTYPE_CIT,		i,	31
+	DSC$K_DTYPE_T,			i,	14
+	DSC64$K_DTYPE_T,		i,	14
+	DSC$K_DTYPE_VT,			i,	37
+	DSC64$K_DTYPE_VT,		i,	37
+	DSC$K_DTYPE_T2,			i,	38
+	DSC64$K_DTYPE_T2,		i,	38
+	DSC$K_DTYPE_NU,			i,	15
+	DSC64$K_DTYPE_NU,		i,	15
+	DSC$K_DTYPE_NL,			i,	16
+	DSC64$K_DTYPE_NL,		i,	16
+	DSC$K_DTYPE_NLO,		i,	17
+	DSC64$K_DTYPE_NLO,		i,	17
+	DSC$K_DTYPE_NR,			i,	18
+	DSC64$K_DTYPE_NR,		i,	18
+	DSC$K_DTYPE_NRO,		i,	19
+	DSC64$K_DTYPE_NRO,		i,	19
+	DSC$K_DTYPE_NZ,			i,	20
+	DSC64$K_DTYPE_NZ,		i,	20
+	DSC$K_DTYPE_P,			i,	21
+	DSC64$K_DTYPE_P,		i,	21
+	DSC$K_DTYPE_V,			i,	1
+	DSC64$K_DTYPE_V,		i,	1
+	DSC$K_DTYPE_VU,			i,	34
+	DSC64$K_DTYPE_VU,		i,	34
+	DSC$K_DTYPE_ZI,			i,	22
+	DSC64$K_DTYPE_ZI,		i,	22
+	DSC$K_DTYPE_ZEM,		i,	23
+	DSC64$K_DTYPE_ZEM,		i,	23
+	DSC$K_DTYPE_DSC,		i,	24
+	DSC64$K_DTYPE_DSC,		i,	24
+	DSC$K_DTYPE_BPV,		i,	32
+	DSC64$K_DTYPE_BPV,		i,	32
+	DSC$K_DTYPE_BLV,		i,	33
+	DSC64$K_DTYPE_BLV,		i,	33
+	DSC$K_DTYPE_ADT,		i,	35
+	DSC64$K_DTYPE_ADT,		i,	35
+	DSC$K_DTYPE_CAD,		i,	178
+	DSC64$K_DTYPE_CAD,		i,	178
+	DSC$K_DTYPE_ENT,		i,	179
+	DSC64$K_DTYPE_ENT,		i,	179
+	DSC$K_DTYPE_GBL,		i,	180
+	DSC64$K_DTYPE_GBL,		i,	180
+	DSC$K_DTYPE_EPT,		i,	181
+	DSC64$K_DTYPE_EPT,		i,	181
+	DSC$K_DTYPE_R11,		i,	182
+	DSC64$K_DTYPE_R11,		i,	182
+	DSC$K_DTYPE_FLD,		i,	183
+	DSC64$K_DTYPE_FLD,		i,	183
+	DSC$K_DTYPE_PCT,		i,	184
+	DSC64$K_DTYPE_PCT,		i,	184
+	DSC$K_DTYPE_DPC,		i,	185
+	DSC64$K_DTYPE_DPC,		i,	185
+	DSC$K_DTYPE_LBL,		i,	186
+	DSC64$K_DTYPE_LBL,		i,	186
+	DSC$K_DTYPE_SLB,		i,	187
+	DSC64$K_DTYPE_SLB,		i,	187
+	DSC$K_DTYPE_MOD,		i,	188
+	DSC64$K_DTYPE_MOD,		i,	188
+	DSC$K_DTYPE_EOM,		i,	189
+	DSC64$K_DTYPE_EOM,		i,	189
+	DSC$K_DTYPE_RTN,		i,	190
+	DSC64$K_DTYPE_RTN,		i,	190
+	DSC$K_DTYPE_EOR,		i,	191
+	DSC64$K_DTYPE_EOR,		i,	191
+	DSC$K_CLASS_Z,			i,	0
+	DSC64$K_CLASS_Z,		i,	0
+	DSC$K_CLASS_S,			i,	1
+	DSC64$K_CLASS_S,		i,	1
+	DSC$K_CLASS_D,			i,	2
+	DSC64$K_CLASS_D,		i,	2
+	DSC$K_CLASS_V,			i,	3
+	DSC64$K_CLASS_V,		i,	3
+	DSC$K_CLASS_A,			i,	4
+	DSC64$K_CLASS_A,		i,	4
+	DSC$K_CLASS_P,			i,	5
+	DSC64$K_CLASS_P,		i,	5
+	DSC$K_CLASS_PI,			i,	6
+	DSC64$K_CLASS_PI,		i,	6
+	DSC$K_CLASS_J,			i,	7
+	DSC64$K_CLASS_J,		i,	7
+	DSC$K_CLASS_JI,			i,	8
+	DSC$K_CLASS_SD,			i,	9
+	DSC64$K_CLASS_SD,		i,	9
+	DSC$K_CLASS_NCA,		i,	10
+	DSC64$K_CLASS_NCA,		i,	10
+	DSC$K_CLASS_VS,			i,	11
+	DSC64$K_CLASS_VS,		i,	11
+	DSC$K_CLASS_VSA,		i,	12
+	DSC64$K_CLASS_VSA,		i,	12
+	DSC$K_CLASS_UBS,		i,	13
+	DSC64$K_CLASS_UBS,		i,	13
+	DSC$K_CLASS_UBA,		i,	14
+	DSC64$K_CLASS_UBA,		i,	14
+	DSC$K_CLASS_SB,			i,	15
+	DSC64$K_CLASS_SB,		i,	15
+	DSC$K_CLASS_UBSB,		i,	16
+	DSC64$K_CLASS_UBSB,		i,	16
+	DSC$K_CLASS_BFA,		i,	191
+	DSC$S_DSCDEF,			i,	14
+	DSC$A_HANDLE,			i,	-12
+	DSC$L_BYTEOFF,			i,	-8
+	DSC$L_LOGUNIT,			i,	-4
+	DSC$W_LENGTH,			i,	0
+	DSC$S_DSCDEF1,			i,	8
+	DSC$W_MAXSTRLEN,		i,	0
+	DSC$B_DTYPE,			i,	2
+	DSC$B_CLASS,			i,	3
+	DSC$A_POINTER,			i,	4
+	DSC$K_Z_BLN,			i,	8
+	DSC$C_Z_BLN,			i,	8
+	DSC$K_S_BLN,			i,	8
+	DSC$C_S_BLN,			i,	8
+	DSC$K_D_BLN,			i,	8
+	DSC$C_D_BLN,			i,	8
+	DSC$K_P_BLN,			i,	8
+	DSC$C_P_BLN,			i,	8
+	DSC$K_J_BLN,			i,	8
+	DSC$C_J_BLN,			i,	8
+	DSC$K_VS_BLN,			i,	8
+	DSC$C_VS_BLN,			i,	8
+	DSC$S_DSCDEF2,			i,	8
+	DSC$A_BASE,				i,	4
+	DSC$K_UBS_BLN,			i,	12
+	DSC$C_UBS_BLN,			i,	12
+	DSC$S_DSCDEF3,			i,	12
+	DSC$L_POS,				i,	8
+	DSC$S_DSCDEF4,			i,	12
+	DSC$W_MAXLEN,			i,	8
+	DSC$K_SD_BLN,			i,	12
+	DSC$C_SD_BLN,			i,	12
+	DSC$S_DSCDEF5,			i,	20
+	DSC$B_SCALE,			i,	8
+	DSC$B_DIGITS,			i,	9
+	DSC$B_AFLAGS,			i,	10
+	DSC$V_FL_REDIM,			i,	4
+	DSC$V_FL_COLUMN,		i,	5
+	DSC$V_FL_COEFF,			i,	6
+	DSC$V_FL_BOUNDS,		i,	7
+	DSC$B_DIMCT,			i,	11
+	DSC$L_ARSIZE,			i,	12
+	DSC$A_A0,				i,	16
+	DSC$S_DSCDEF6,			i,	28
+	DSC$L_V0,				i,	16
+	DSC$L_S1,				i,	20
+	DSC$L_S2,				i,	24
+	DSC$S_DSCDEF7,			i,	28
+	DSC$L_M1,				i,	20
+	DSC$L_M2,				i,	24
+	DSC$K_PI_BLN,			i,	12
+	DSC$C_PI_BLN,			i,	12
+	DSC$K_JI_BLN,			i,	12
+	DSC$C_JI_BLN,			i,	12
+	DSC$S_DSCDEF8,			i,	12
+	DSC$A_FRAME,			i,	8
+	DSC$S_DSCDEF9,			i,	16
+	DSC$L_SB_L1,			i,	8
+	DSC$L_SB_U1,			i,	12
+	DSC$S_DSCDEF10,			i,	20
+	DSC$L_UBSB_L1,			i,	12
+	DSC$L_UBSB_U1,			i,	16
+	DSC64$S_DSCDEF64,		i,	16
+	DSC64$S_LENGTH,			i,	8
+	DSC64$Q_LENGTH,			i,	8
+	DSC64$S_DSCDEF1_64,		i,	24
+	DSC64$W_MBO,			i,	0
+	DSC64$B_DTYPE,			i,	2
+	DSC64$B_CLASS,			i,	3
+	DSC64$L_MBMO,			i,	4
+	DSC64$S_MAXSTRLEN,		i,	8
+	DSC64$Q_MAXSTRLEN,		i,	8
+	DSC64$S_POINTER,		i,	8
+	DSC64$PQ_POINTER,		i,	16
+	DSC64$K_Z_BLN,			i,	24
+	DSC64$C_Z_BLN,			i,	24
+	DSC64$K_S_BLN,			i,	24
+	DSC64$C_S_BLN,			i,	24
+	DSC64$K_D_BLN,			i,	24
+	DSC64$C_D_BLN,			i,	24
+	DSC64$K_P_BLN,			i,	24
+	DSC64$C_P_BLN,			i,	24
+	DSC64$K_J_BLN,			i,	24
+	DSC64$C_J_BLN,			i,	24
+	DSC64$K_VS_BLN,			i,	24
+	DSC64$C_VS_BLN,			i,	24
+	DSC64$S_DSCDEF2_64,		i,	24
+	DSC64$S_BASE,			i,	8
+	DSC64$PQ_BASE,			i,	16
+	DSC64$K_UBS_BLN,		i,	32
+	DSC64$C_UBS_BLN,		i,	32
+	DSC64$S_DSCDEF3_64,		i,	32
+	DSC64$S_POS,			i,	8
+	DSC64$Q_POS,			i,	24
+	DSC64$K_SD_BLN,			i,	32
+	DSC64$C_SD_BLN,			i,	32
+	DSC64$S_DSCDEF5_64,		i,	48
+	DSC64$B_SCALE,			i,	24
+	DSC64$B_DIGITS,			i,	25
+	DSC64$B_AFLAGS,			i,	26
+	DSC64$V_FL_REDIM,		i,	4
+	DSC64$V_FL_COLUMN,		i,	5
+	DSC64$V_FL_COEFF,		i,	6
+	DSC64$V_FL_BOUNDS,		i,	7
+	DSC64$B_DIMCT,			i,	27
+	DSC64$L_MBZ,			i,	28
+	DSC64$S_ARSIZE,			i,	8
+	DSC64$Q_ARSIZE,			i,	32
+	DSC64$S_A0,				i,	8
+	DSC64$PQ_A0,			i,	40
+	DSC64$S_DSCDEF6_64,		i,	64
+	DSC64$S_V0,				i,	8
+	DSC64$Q_V0,				i,	40
+	DSC64$S_S1,				i,	8
+	DSC64$Q_S1,				i,	48
+	DSC64$S_S2,				i,	8
+	DSC64$Q_S2,				i,	56
+	DSC64$S_DSCDEF7_64,		i,	64
+	DSC64$S_M1,				i,	8
+	DSC64$Q_M1,				i,	48
+	DSC64$S_M2,				i,	8
+	DSC64$Q_M2,				i,	56
+	DSC64$K_PI_BLN,			i,	32
+	DSC64$C_PI_BLN,			i,	32
+	DSC64$K_JI_BLN,			i,	32
+	DSC64$C_JI_BLN,			i,	32
+	DSC64$S_DSCDEF8_64,		i,	32
+	DSC64$S_FRAME,			i,	8
+	DSC64$PQ_FRAME,			i,	24
+	DSC64$S_DSCDEF9_64,		i,	40
+	DSC64$S_SB_L1,			i,	8
+	DSC64$Q_SB_L1,			i,	24
+	DSC64$S_SB_U1,			i,	8
+	DSC64$Q_SB_U1,			i,	32
+	DSC64$S_DSCDEF10_64,	i,	48
+	DSC64$S_UBSB_L1,		i,	8
+	DSC64$Q_UBSB_L1,		i,	32
+	DSC64$S_UBSB_U1,		i,	8
+	DSC64$Q_UBSB_U1,		i,	40
+.list

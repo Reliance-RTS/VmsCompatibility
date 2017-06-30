@@ -1,0 +1,356 @@
+;;*****************************************************************************
+;;
+;; Title:       DBL$DEVCLT
+;;
+;; Type:        Subroutine
+;;
+;; Description: 
+;;
+;; Author:      Roger Andrews, Synergex Development
+;;              http://www.synergex.com
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.title	'dx_devclt'
+
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="chan"></param>
+;;; <param name="devspc"></param>
+;;; <param name="priclass"></param>
+;;; <param name="pritype"></param>
+;;; <param name="secclass"></param>
+;;; <param name="sectype"></param>
+;;; <returns></returns>
+subroutine	dbl$devclt
+	chan,		n	;optional channel
+	devspc,		a	;optional device specifier
+					;
+					; note: either chan or devspc must be passed
+					;  	not both.
+	priclass,	a	;primary class
+	pritype,	a	;type
+	secclass,	a
+	sectype,	a
+
+	.include "$DVIDEF"	library "dblstarlet"
+	.include "$DCDEF" 	library "dblstarlet"
+	.include "$SSDEF" 	library "dblstarlet"
+
+	.align long
+	record
+		status,			i4
+		iosb,			[2]i4  
+		ret_devclass,	i4	
+		ret_type,		i4
+		sec_devclass,	i4
+		sec_type,		i4
+		syschan,		i4
+		idev,			i4
+		itype,			i4
+		lookupflag,		i4
+		type,			a20
+		device,			a254
+	endrecord
+	
+	record
+		group item_list,	[4]a
+			Buff_Length,	i2
+			Item_Code,		i2
+			Buffer_Addr,	i4
+			Return_Length,	i4
+		endgroup
+		end_of_list,		i4
+	endrecord
+
+	external Function
+		sys$getdviw,		%val
+	endexternal
+
+proc
+
+	if .not.%passed(chan).and..not.%passed(devspc) xcall dbl$exiterror(6)
+
+	; Build the item list for $GETDVI
+
+	Item_List[1].Buff_Length = 4
+	Item_List[1].Item_Code = dvi$_devclass
+	Item_List[1].Buffer_Addr = %Addr(ret_devclass)
+	clear Item_List[1].Return_Length
+
+	Item_List[2].Buff_Length = 4
+	Item_List[2].Item_Code = dvi$_devtype
+	Item_List[2].Buffer_Addr = %Addr(ret_type)
+	clear Item_List[2].Return_Length
+
+	Item_List[3].Buff_Length = 4
+	Item_List[3].Item_Code = dvi$_devclass.bor.dvi$c_secondary
+	Item_List[3].Buffer_Addr = %Addr(sec_devclass)
+	clear Item_List[3].Return_Length
+
+	Item_List[4].Buff_Length = 4
+	Item_List[4].Item_Code = dvi$_devtype.bor.dvi$c_secondary
+	Item_List[4].Buffer_Addr = %Addr(sec_type)
+	clear Item_List[4].Return_Length
+
+	clear End_of_list,lookupflag
+
+	; Call $GETDVI
+	
+	if %passed(chan) then
+	begin
+		if .not.%chopen(chan)
+			xcall dbl$exiterror(16)	;not open
+		xcall dbl$getfa(chan,'SCH',syschan)
+		status = %SYS$GETDVIW(,%val(syschan),,%ref(item_list),%ref(iosb),,,)
+	end
+	else
+		status = %SYS$GETDVIW(,,devspc,%ref(item_list),%ref(iosb),,,)
+
+	; Check if non local device...
+
+recheck,
+	if %success(status)
+		status=iosb[1]
+	
+	IF STATUS.EQ.SS$_NONLOCAL THEN
+	begin
+		if %passed(priclass)
+			priCLASS="NETWORK"
+		if %passed(secclass)
+			clear secclass
+		if %passed(pritype)
+			clear pritype
+		if %passed(sectype)
+			clear sectype
+		xreturn
+	end
+
+	; ...or bad status...
+
+	ELSE 
+	BEGIN
+		IF (.NOT. %SUCCESS(Status))
+		BEGIN
+			USING STATUS SELECT
+			(SS$_IVDEVNAM,SS$_IVLOGNAM,SS$_NOSUCHDEV),
+			begin
+				nop
+			end
+
+			(SS$_NOPRIV),
+			begin
+				if %passed(chan).and..not.lookupflag
+				begin
+					lookupflag = 1
+					xcall dbl$getfnm(chan,device)
+						
+					status=%SYS$GETDVIW(,,device,%ref(item_List),%ref(iosb),,,)
+					goto recheck
+				end
+				xcall dbl$exiterror(62)
+			end
+			ENDUSING
+
+			XRETURN
+
+		END
+
+		; ...otherwise display what type of device it is
+
+ok,		if %passed(priclass)
+		USING Ret_Devclass SELECT
+			(Dc$_Disk),			priclass="DISK"
+			(Dc$_Tape),			priclass="TAPE"
+			(Dc$_Scom),			priclass="SCOM"
+			(Dc$_Term),			priclass="TERM"
+			(Dc$_Lp),			priclass="LP"
+			(Dc$_Realtime),		priclass="REAL"
+			(Dc$_Mailbox),		priclass="MLBX"
+			(DC$_WORKSTATION),	priclass='WKST'
+			(),					priclass="OTHER"
+		ENDUSING
+		
+		if %passed(secclass)
+		USING sec_devclass SELECT
+			(Dc$_Disk),			secclass="DISK"
+			(Dc$_Tape),			secclass="TAPE"
+			(Dc$_Scom),			secclass="SCOM"
+			(Dc$_Term),			secclass="TERM"
+			(Dc$_Lp),			secclass="LP"
+			(Dc$_Realtime),		secclass="REAL"
+			(Dc$_Mailbox),		secclass="MLBX"
+			(DC$_WORKSTATION),	secclass='WKST'
+			(),					secclass="OTHER"
+		ENDUSING
+
+		if %passed(pritype)
+		begin
+			idev = ret_devclass
+			itype = ret_type		
+			call decode_type
+			pritype = type
+		end
+		
+		if %passed(sectype)
+		begin
+			idev = sec_devclass
+			itype = sec_type		
+			call decode_type
+			sectype = type
+		end
+	END
+
+	XRETURN
+
+decode_type,
+
+	clear type
+	if idev.eq.dc$_disk
+.ifdef D_VAX
+	using itype select
+	(DT$_RL02),	type="RL02"
+	(DT$_RA80,DT$_RA81,DT$_RA60,DT$_RA70,DT$_RA90,DT$_RA82,DT$_RA72,DT$_RA71,DT$_RAH72,DT$_RA92,DT$_GENERIC_DU),
+		type="RASRS"
+	(DT$_RZ01,DT$_RZF01,DT$_RZ22,DT$_RZ23,DT$_RZ24,DT$_RZ55,DT$_RZ25,DT$_RZ56,DT$_RZ57,DT$_RZ23L,DT$_RZ57I,DT$_RZ31,DT$_RZ58,DT$_RZ72,DT$_RZ73,DT$_RZ35,DT$_RZ24L,DT$_RZ25L,DT$_RZ55L,DT$_RZ56L,DT$_RZ57L,DT$_GENERIC_DK,DT$_SCSI_MO),
+		type="RZSRS"
+	(DT$_RD53,DT$_RD31,DT$_RD32,DT$_RD33,DT$_RD54),
+		type="RD series"
+	(DT$_RX33,DT$_RX23,DT$_RX23S,DT$_RX26,DT$_RX33S),
+		type="RXSRS"
+	(DT$_RF30,DT$_RF70,DT$_RF71,DT$_RF31,DT$_RF72,DT$_RFH31,DT$_RFH72,DT$_RF73,DT$_RFH73,DT$_RF32,DT$_RF35,DT$_RFH32,DT$_RFH35,DT$_RFF31,DT$_RF31F),
+		type="RFSRS"
+	(DT$_ESE20,DT$_ESE25,DT$_RAM_DISK),
+		type="ESE series"
+	(DT$_RRD40S,DT$_RRD40,DT$_RRD42,DT$_CD_LOADER_1,DT$_RWZ01,DT$_RRD50),
+		type="CD ROM"
+	(DT$_SSTRIPE),
+		type="Stripe set"
+	(),
+		type="UNKNOWN"
+	endusing
+	if idev.eq.dc$_tape
+	using itype select
+	(DT$_TU45,DT$_TU77,DT$_TU78,DT$_TU80,DT$_TU81,DT$_MW_TSU05,DT$_MR_TU70,DT$_MR_TU72,DT$_GENERIC_TU),
+		type="TUSRS"
+	(DT$_TA81,DT$_TA78,DT$_TA90E,DT$_TA79,DT$_TA90,DT$_TA91,DT$_TA85),
+		type="TASRS"
+	(DT$_TS11,DT$_MW_TSV05,DT$_TSZ05,DT$_TSZ07,DT$_TSZ08),
+		type="TSSRS"
+	(DT$_TK50,DT$_TK70,DT$_TK60,DT$_TK50S,DT$_TK70L),
+		type="TKSRS"
+	(DT$_TF30,DT$_TF85,DT$_TF70),
+		type="TFSRS"
+	(DT$_RV60),
+		type="RVSRS"
+	(DT$_TZ30,DT$_TZX0,DT$_GENERIC_MK,DT$_TZ30S,DT$_TZK11,DT$_TZ85,DT$_TZ86,DT$_TZ87,DT$_TZ857,DT$_TZK10),
+		type="TZSRS"
+	(DT$_TLZ04,DT$_TLZ06),
+		type="DAT"
+	(DT$_EXABYTE),
+		type="8MM"
+	(),
+		type="OTHER"
+	endusing
+.else
+	using itype select
+	(DT$_RL02),
+		type="RL02"
+	(DT$_RA80,DT$_RA81,DT$_RA60,DT$_RA70,DT$_RA90,DT$_RA82,DT$_RA72,DT$_RA71,DT$_RAH72,DT$_RA92,DT$_RA73,DT$_GENERIC_DU),
+		type="RASRS"
+	(DT$_RZ01,DT$_RZF01,DT$_RZ22,DT$_RZ23,DT$_RZ24,DT$_RZ55,DT$_RZ25,DT$_RZ56,DT$_RZ57,DT$_RZ28,DT$_RZ29,DT$_RZ26L,DT$_RZ23L,DT$_RZ57I,DT$_RZ31,DT$_RZ58,DT$_RZ72,DT$_RZ73,DT$_RZ35,DT$_RZ24L,DT$_RZ25L,DT$_RZ55L,DT$_RZ56L,DT$_RZ57L,DT$_RZ27,DT$_RZ37,DT$_RZ34L,DT$_RZ35L,DT$_RZ36L,DT$_RZ38,DT$_RZ75,DT$_RZ59,DT$_RZ13,DT$_RZ14,DT$_RZ15,DT$_RZ16,DT$_RZ17,DT$_RZ18,DT$_RZ26,DT$_RZ36,DT$_RZ74,DT$_GENERIC_DK,DT$_SCSI_MO),	
+		type="RZSRS"
+	(DT$_RD53,DT$_RD31,DT$_RD32,DT$_RD33,DT$_RD54),
+		type="RD series"
+	(DT$_RX33,DT$_RX23,DT$_RX23S,DT$_RX26,DT$_RX33S),
+		type="RXSRS"
+	(DT$_RF30,DT$_RF70,DT$_RF71,DT$_RF31,DT$_RF72,DT$_RFH31,DT$_RFH72,DT$_RF73,DT$_RFH73,DT$_RF32,DT$_RF35,DT$_RFH32,DT$_RFH35,DT$_RFF31,DT$_RF31F,DT$_RF37,DT$_RF74,DT$_RF75,DT$_RF36),
+		type="RFSRS"
+	(DT$_ESE20,DT$_ESE52,DT$_ESE56,DT$_ESE58,DT$_ESE25,DT$_RAM_DISK),
+		type="ESE series"
+	(DT$_RRD40S,DT$_RRD40,DT$_RRD42,DT$_RRD43,DT$_RRD44,DT$_CD_LOADER_1,DT$_RWZ01,DT$_RRD50),
+		type="CD ROM"
+	(DT$_SSTRIPE),
+		type="Stripe set"
+	(),
+		type="UNKNOWN"
+	endusing
+
+	if idev.eq.dc$_tape
+	using itype select
+	(DT$_TU45,DT$_TU77,DT$_TU78,DT$_TU80,DT$_TU81,DT$_MW_TSU05,DT$_MR_TU70,DT$_MR_TU72,DT$_GENERIC_TU),
+		type="TUSRS"
+	(DT$_TA81,DT$_TA78,DT$_TA90E,DT$_TA79,DT$_TA90,DT$_TA91,DT$_TA85,DT$_TA86,DT$_TA87),
+		type="TASRS"
+	(DT$_TS11,DT$_MW_TSV05,DT$_TSZ05,DT$_TSZ07,DT$_TSZ08),
+		type="TSSRS"
+	(DT$_TK50,DT$_TK70,DT$_TK60,DT$_TK50S,DT$_TK70L,DT$_TKZ60,DT$_TKZ09),
+		type="TKSRS"
+	(DT$_TF30,DT$_TF85,DT$_TF70,DT$_TF86),
+		type="TFSRS"
+	(DT$_RV60),
+		type="RVSRS"
+	(DT$_TZ30,DT$_TZX0,DT$_GENERIC_MK,DT$_TZ30S,DT$_TZK11,DT$_TZ85,DT$_TZ86,DT$_TZ87,DT$_TZ857,DT$_TZK10,DT$_TZ867,DT$_TZ877),
+		type="TZSRS"
+	(DT$_TLZ04,DT$_TLZ06,DT$_TLZ6),
+		type="DAT"
+	(DT$_EXABYTE),
+		type="8MM"
+	(),
+		type="OTHER"
+	endusing
+.endc
+	if idev.eq.dc$_term
+	using itype select
+	(DT$_TTYUNKN),
+		type="Unknown"
+	(DT$_LA36,DT$_LA120,DT$_LA34,DT$_LA38,DT$_LA12,DT$_LA24,DT$_LA100),
+		type="LASRS"
+	(DT$_VT100,DT$_VT101,DT$_VT102,DT$_VT105,DT$_VT125,DT$_VT131,DT$_VT132,DT$_VT173),
+		type = "VT100SRS"
+	(110),
+        type = "VT200SRS"
+	(111),
+       	type = "PRO"
+	(112),
+       	type = "VT300SRS"
+	(113),
+       	type = "VT400SRS"
+	(),
+		type = "UNKNOWN"
+	endusing
+
+	if idev.eq.dc$_mailbox
+		type = "MBX"
+
+	return
+
+endsubroutine

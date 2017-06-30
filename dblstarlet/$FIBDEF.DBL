@@ -1,0 +1,346 @@
+;;*****************************************************************************
+;;
+;; Title:       $FIBDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	FIB$M_NOWRITE,				i,	%x("1")
+	FIB$M_DLOCK,				i,	%x("2")
+	FIB$M_BLK_LOCK,				i,	%x("4")
+	FIB$M_FASTRDSQNOS,			i,	%x("8")
+	FIB$M_SPOOL,				i,	%x("10")
+	FIB$M_WRITECK,				i,	%x("20")
+	FIB$M_SEQONLY,				i,	%x("40")
+	FIB$M_SEQNO,				i,	%x("80")
+	FIB$M_WRITE,				i,	%x("100")
+	FIB$M_READCK,				i,	%x("200")
+	FIB$M_NOREAD,				i,	%x("400")
+	FIB$M_NOTRUNC,				i,	%x("800")
+	FIB$M_CONTROL,				i,	%x("1000")
+	FIB$M_NO_READ_DATA,			i,	%x("2000")
+	FIB$M_SSIO,					i,	%x("4000")
+	FIB$M_EXECUTE,				i,	%x("10000")
+	FIB$M_PRSRV_ATR,			i,	%x("20000")
+	FIB$M_RMSLOCK,				i,	%x("40000")
+	FIB$M_WRITETHRU,			i,	%x("80000")
+	FIB$M_NOLOCK,				i,	%x("100000")
+	FIB$M_NORECORD,				i,	%x("200000")
+	FIB$M_NOVERIFY,				i,	%x("400000")
+	FIB$M_CHANGE_VOL,			i,	%x("800000")
+	FIB$M_REWIND,				i,	%x("8")
+	FIB$M_CURPOS,				i,	%x("10")
+	FIB$M_UPDATE,				i,	%x("40")
+	FIB$K_ACCDATA,				i,	10
+	FIB$C_ACCDATA,				i,	10
+	FIB$K_DIRDATA,				i,	22
+	FIB$C_DIRDATA,				i,	22
+	FIB$M_NAMES_8BIT,			i,	%x("1")
+	FIB$M_NAMES_16BIT,			i,	%x("2")
+	FIB$M_PERCENT_LITERAL,		i,	%x("4")
+	FIB$M_ALLVER,				i,	%x("8")
+	FIB$M_ALLTYP,				i,	%x("10")
+	FIB$M_ALLNAM,				i,	%x("20")
+	FIB$M_CASE_SENSITIVE,		i,	%x("40")
+	FIB$M_SEARCH,				i,	%x("80")
+	FIB$M_WILD,					i,	%x("100")
+	FIB$M_NEWVER,				i,	%x("200")
+	FIB$M_SUPERSEDE,			i,	%x("400")
+	FIB$M_FINDFID,				i,	%x("800")
+	FIB$M_FINDDIR,				i,	%x("1000")
+	FIB$M_CASE_VARIANT,			i,	%x("2000")
+	FIB$M_LOWVER,				i,	%x("4000")
+	FIB$M_HIGHVER,				i,	%x("8000")
+	FIB$M_ALCON,				i,	%x("1")
+	FIB$M_ALCONB,				i,	%x("2")
+	FIB$M_FILCON,				i,	%x("4")
+	FIB$M_ALDEF,				i,	%x("8")
+	FIB$M_ALLOCATR,				i,	%x("10")
+	FIB$M_EXTEND,				i,	%x("80")
+	FIB$M_TRUNC,				i,	%x("100")
+	FIB$M_NOHDREXT,				i,	%x("200")
+	FIB$M_MARKBAD,				i,	%x("400")
+	FIB$M_NOPLACE,				i,	%x("4000")
+	FIB$M_NOCHARGE,				i,	%x("8000")
+	FIB$K_EXTDATA,				i,	32
+	FIB$C_EXTDATA,				i,	32
+	FIB$M_EXACT,				i,	%x("1")
+	FIB$M_ONCYL,				i,	%x("2")
+	FIB$C_CYL,					i,	1
+	FIB$C_LBN,					i,	2
+	FIB$C_VBN,					i,	3
+	FIB$C_RFI,					i,	4
+	FIB$K_ALCDATA,				i,	44
+	FIB$C_ALCDATA,				i,	44
+	FIB$M_ALT_REQ,				i,	%x("1")
+	FIB$M_ALT_GRANTED,			i,	%x("2")
+	FIB$M_DIRACL,				i,	%x("4")
+	FIB$M_PROPAGATE,			i,	%x("8")
+	FIB$M_NOCOPYACL,			i,	%x("10")
+	FIB$M_NOCOPYOWNER,			i,	%x("20")
+	FIB$M_NOCOPYPROT,			i,	%x("40")
+	FIB$M_EXCLPREVIOUS,			i,	%x("80")
+	FIB$M_ALIAS_ENTRY,			i,	%x("100")
+	FIB$M_WILDFID_FLAG,			i,	%x("200")
+	FIB$M_DID_FILESPEC,			i,	%x("400")
+	FIB$M_IS_SPECIAL,			i,	%x("800")
+	FIB$M_CHECK_SPECIAL,		i,	%x("1000")
+	FIB$K_MOVEFILE,				i,	72
+	FIB$C_MOVEFILE,				i,	72
+	FIB$M_FILE_ATTRIBUTES,		i,	%x("F")
+	FIB$M_FILE_CONTENTS,		i,	%x("F0")
+	FIB$C_DEFAULT,				i,	0
+	FIB$C_WRITETHROUGH,			i,	1
+	FIB$C_WRITEBEHIND,			i,	2
+	FIB$C_NOCACHING,			i,	3
+	FIB$M_FLUSH_ON_CLOSE,		i,	%x("F00")
+	FIB$C_FLUSH,				i,	1
+	FIB$C_NOFLUSH,				i,	2
+	FIB$M_CACHING_OPTIONS_MBZ,	i,	%x("FFFFF000")
+	FIB$C_ODS2,					i,	0
+	FIB$C_ISL1,					i,	1
+	FIB$C_ISO_LATIN,			i,	1
+	FIB$C_UCS2,					i,	3
+	FIB$C_NAMETYPE_LEN,			i,	96
+	FIB$K_LENGTH,				i,	96
+	FIB$C_LENGTH,				i,	96
+	FIB$K_F64LEN,				i,	96
+	FIB$C_F64LEN,				i,	96
+	FIB$S_FIBDEF,				i,	96
+	FIB$L_ACCTL,				i,	0
+	FIB$V_NOWRITE,				i,	0
+	FIB$V_DLOCK,				i,	1
+	FIB$V_BLK_LOCK,				i,	2
+	FIB$V_FASTRDSQNOS,			i,	3
+	FIB$V_SPOOL,				i,	4
+	FIB$V_WRITECK,				i,	5
+	FIB$V_SEQONLY,				i,	6
+	FIB$V_SEQNO,				i,	7
+	FIB$V_WRITE,				i,	8
+	FIB$V_READCK,				i,	9
+	FIB$V_NOREAD,				i,	10
+	FIB$V_NOTRUNC,				i,	11
+	FIB$V_CONTROL,				i,	12
+	FIB$V_NO_READ_DATA,			i,	13
+	FIB$V_SSIO,					i,	14
+	FIB$V_EXECUTE,				i,	16
+	FIB$V_PRSRV_ATR,			i,	17
+	FIB$V_RMSLOCK,				i,	18
+	FIB$V_WRITETHRU,			i,	19
+	FIB$V_NOLOCK,				i,	20
+	FIB$V_NORECORD,				i,	21
+	FIB$V_NOVERIFY,				i,	22
+	FIB$V_CHANGE_VOL,			i,	23
+	FIB$V_REWIND,				i,	3
+	FIB$V_CURPOS,				i,	4
+	FIB$V_UPDATE,				i,	6
+	FIB$B_WSIZE,				i,	3
+	FIB$S_FID,					i,	6
+	FIB$W_FID,					i,	4
+	FIB$W_FID_NUM,				i,	4
+	FIB$W_FID_SEQ,				i,	6
+	FIB$W_FID_RVN,				i,	8
+	FIB$B_FID_RVN,				i,	8
+	FIB$B_FID_NMX,				i,	9
+	FIB$W_FID_DIRNUM,			i,	4
+	FIB$L_FID_RECNUM,			i,	6
+	FIB$S_DID,					i,	6
+	FIB$W_DID,					i,	10
+	FIB$W_DID_NUM,				i,	10
+	FIB$W_DID_SEQ,				i,	12
+	FIB$W_DID_RVN,				i,	14
+	FIB$B_DID_RVN,				i,	14
+	FIB$B_DID_NMX,				i,	15
+	FIB$W_DID_DIRNUM,			i,	10
+	FIB$L_DID_RECNUM,			i,	12
+	FIB$L_WCC,					i,	16
+	FIB$W_NMCTL,				i,	20
+	FIB$V_NAMES_8BIT,			i,	0
+	FIB$V_NAMES_16BIT,			i,	1
+	FIB$V_PERCENT_LITERAL,		i,	2
+	FIB$V_ALLVER,				i,	3
+	FIB$V_ALLTYP,				i,	4
+	FIB$V_ALLNAM,				i,	5
+	FIB$V_CASE_SENSITIVE,		i,	6
+	FIB$V_SEARCH,				i,	7
+	FIB$V_WILD,					i,	8
+	FIB$V_NEWVER,				i,	9
+	FIB$V_SUPERSEDE,			i,	10
+	FIB$V_FINDFID,				i,	11
+	FIB$V_FINDDIR,				i,	12
+	FIB$V_CASE_VARIANT,			i,	13
+	FIB$V_LOWVER,				i,	14
+	FIB$V_HIGHVER,				i,	15
+	FIB$W_EXCTL,				i,	22
+	FIB$V_ALCON,				i,	0
+	FIB$V_ALCONB,				i,	1
+	FIB$V_FILCON,				i,	2
+	FIB$V_ALDEF,				i,	3
+	FIB$V_ALLOCATR,				i,	4
+	FIB$V_EXTEND,				i,	7
+	FIB$V_TRUNC,				i,	8
+	FIB$V_NOHDREXT,				i,	9
+	FIB$V_MARKBAD,				i,	10
+	FIB$V_NOPLACE,				i,	14
+	FIB$V_NOCHARGE,				i,	15
+	FIB$L_EXSZ,					i,	24
+	FIB$L_EXVBN,				i,	28
+	FIB$B_ALOPTS,				i,	32
+	FIB$V_EXACT,				i,	0
+	FIB$V_ONCYL,				i,	1
+	FIB$B_ALALIGN,				i,	33
+	FIB$S_ALLOC,				i,	10
+	FIB$W_ALLOC,				i,	34
+	FIB$S_LOC_FID,				i,	6
+	FIB$W_LOC_FID,				i,	34
+	FIB$W_LOC_NUM,				i,	34
+	FIB$W_LOC_SEQ,				i,	36
+	FIB$W_LOC_RVN,				i,	38
+	FIB$B_LOC_RVN,				i,	38
+	FIB$B_LOC_NMX,				i,	39
+	FIB$L_LOC_ADDR,				i,	40
+	FIB$W_VERLIMIT,				i,	44
+	FIB$B_AGENT_MODE,			i,	46
+	FIB$B_RU_FACILITY,			i,	47
+	FIB$L_ACLCTX,				i,	48
+	FIB$L_ACL_STATUS,			i,	52
+	FIB$L_STATUS,				i,	56
+	FIB$V_ALT_REQ,				i,	0
+	FIB$V_ALT_GRANTED,			i,	1
+	FIB$V_DIRACL,				i,	2
+	FIB$V_PROPAGATE,			i,	3
+	FIB$V_NOCOPYACL,			i,	4
+	FIB$V_NOCOPYOWNER,			i,	5
+	FIB$V_NOCOPYPROT,			i,	6
+	FIB$V_EXCLPREVIOUS,			i,	7
+	FIB$V_ALIAS_ENTRY,			i,	8
+	FIB$V_WILDFID_FLAG,			i,	9
+	FIB$V_DID_FILESPEC,			i,	10
+	FIB$V_IS_SPECIAL,			i,	11
+	FIB$V_CHECK_SPECIAL,		i,	12
+	FIB$L_ALT_ACCESS,			i,	60
+	FIB$L_MOV_SVBN,				i,	64
+	FIB$L_MOV_VBNCNT,			i,	68
+	FIB$W_FILE_HDRSEQ_INCR,		i,	72
+	FIB$W_DIR_HDRSEQ_INCR,		i,	74
+	FIB$W_FILE_DATASEQ_INCR,	i,	76
+	FIB$W_DIR_DATASEQ_INCR,		i,	78
+	FIB$L_CACHING_OPTIONS,		i,	80
+	FIB$S_FILE_ATTRIBUTES,		i,	4
+	FIB$V_FILE_ATTRIBUTES,		i,	0
+	FIB$S_FILE_CONTENTS,		i,	4
+	FIB$V_FILE_CONTENTS,		i,	4
+	FIB$S_FLUSH_ON_CLOSE,		i,	4
+	FIB$V_FLUSH_ON_CLOSE,		i,	8
+	FIB$S_CACHING_OPTIONS_MBZ,	i,	20
+	FIB$V_CACHING_OPTIONS_MBZ,	i,	12
+	FIB$S_SD_FID,				i,	6
+	FIB$W_SD_FID,				i,	84
+	FIB$W_SD_FID_NUM,			i,	84
+	FIB$W_SD_FID_SEQ,			i,	86
+	FIB$W_SD_FID_RVN,			i,	88
+	FIB$B_SD_FID_RVN,			i,	88
+	FIB$B_SD_FID_NMX,			i,	89
+	FIB$B_NAME_FORMAT_IN,		i,	92
+	FIB$B_NAME_FORMAT_OUT,		i,	93
+	FIB$B_ASCNAME_FORMAT,		i,	94
+	FIB$B_RESERVED_2,			i,	95
+	FIB$C_REWINDVOL,			i,	1
+	FIB$C_POSEND,				i,	2
+	FIB$C_NEXTVOL,				i,	3
+	FIB$C_SPACE,				i,	4
+	FIB$C_ILLEGAL,				i,	5
+	FIB$C_REWINDFIL,			i,	6
+	FIB$C_LOCK_VOL,				i,	7
+	FIB$C_UNLK_VOL,				i,	8
+	FIB$C_ENA_QUOTA,			i,	9
+	FIB$C_DSA_QUOTA,			i,	10
+	FIB$C_ADD_QUOTA,			i,	11
+	FIB$C_EXA_QUOTA,			i,	12
+	FIB$C_MOD_QUOTA,			i,	13
+	FIB$C_REM_QUOTA,			i,	14
+	FIB$C_USEREOT,				i,	15
+	FIB$C_REMAP,				i,	16
+	FIB$C_CLSEREXCP,			i,	17
+	FIB$C_FLUSH_CACHE,			i,	18
+	FIB$C_FORCE_MV,				i,	19
+	FIB$C_VALIDATE_VOLUME,		i,	20
+	FIB$C_VALIDATE_FILE,		i,	21
+	FIB$C_UPDATE_VOL_PROFILE,	i,	22
+	FIB$C_UPDATE_FIL_PROFILE,	i,	23
+	FIB$C_CHECK_PROTECTION,		i,	24
+	FIB$C_ADD_THREAD,			i,	25
+	FIB$C_REM_THREAD,			i,	26
+	FIB$C_EXA_THREAD,			i,	27
+	FIB$C_CHECK_PATH,			i,	28
+	FIB$C_ENA_DW,				i,	29
+	FIB$C_DSA_DW,				i,	30
+	FIB$C_WRITEBACK_CACHE,		i,	31
+	FIB$C_WRITETHRU_CACHE,		i,	32
+	FIB$C_FILE_SYNCH,			i,	33
+	FIB$C_CACHING_OPTIONS,		i,	34
+	FIB$C_WRITE_BARRIER,		i,	35
+	FIB$C_VOL_FLUSH,			i,	36
+	FIB$C_VOL_FLUSH_ALL,		i,	37
+	FIB$C_CLONE_FIL_PROFILE,	i,	38
+	FIB$C_STRUC_LEVEL2,			i,	39
+	FIB$C_STRUC_LEVEL5,			i,	40
+	FIB$C_EXPAND_VOLUME,		i,	41
+	FIB$C_EXPAND_BITMAP,		i,	42
+	FIB$K_MTALEN,				i,	28
+	FIB$C_MTALEN,				i,	28
+	FIB$C_FID_CACHE,			i,	1
+	FIB$C_EXTENT_CACHE,			i,	2
+	FIB$C_QUOTA_CACHE,			i,	3
+	FIB$C_BFRD_CACHE,			i,	4
+	FIB$C_VBN_CACHE,			i,	5
+	FIB$C_FLUSH_FILE_ATTRIBUTES,i,	1
+	FIB$C_FLUSH_FILE_CONTENTS,	i,	2
+	FIB$C_FLUSH_FILE,			i,	3
+	FIB$M_ALL_MEM,				i,	%x("1")
+	FIB$M_ALL_GRP,				i,	%x("2")
+	FIB$M_MOD_USE,				i,	%x("4")
+	FIB$M_MOD_PERM,				i,	%x("8")
+	FIB$M_MOD_OVER,				i,	%x("10")
+	FIB$S_FIBDEF1,				i,	28
+	FIB$W_CNTRLFUNC,			i,	22
+	FIB$L_CNTRLVAL,				i,	24
+	FIB$V_ALL_MEM,				i,	0
+	FIB$V_ALL_GRP,				i,	1
+	FIB$V_MOD_USE,				i,	2
+	FIB$V_MOD_PERM,				i,	3
+	FIB$V_MOD_OVER,				i,	4
+	FIB$C_FILE_FLUSH,			i,	33
+.list

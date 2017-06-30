@@ -1,0 +1,185 @@
+;;*****************************************************************************
+;;
+;; Title:       $UAIDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	UAI$_RTYPE,					i,	1
+	UAI$_VERSION,				i,	2
+	UAI$_USRDATOFF,				i,	3
+	UAI$_USERNAME,				i,	4
+	UAI$_USERNAME_TAG,			i,	5
+	UAI$_UIC,					i,	6
+	UAI$_MEM,					i,	7
+	UAI$_GRP,					i,	8
+	UAI$_SUB_ID,				i,	9
+	UAI$_PARENT_ID,				i,	10
+	UAI$_ACCOUNT,				i,	11
+	UAI$_OWNER,					i,	12
+	UAI$_DEFDEV,				i,	13
+	UAI$_DEFDIR,				i,	14
+	UAI$_LGICMD,				i,	15
+	UAI$_DEFCLI,				i,	16
+	UAI$_CLITABLES,				i,	17
+	UAI$_PWD,					i,	18
+	UAI$_PWD2,					i,	19
+	UAI$_LOGFAILS,				i,	20
+	UAI$_SALT,					i,	21
+	UAI$_ENCRYPT,				i,	22
+	UAI$_ENCRYPT2,				i,	23
+	UAI$_PWD_LENGTH,			i,	24
+	UAI$_EXPIRATION,			i,	25
+	UAI$_PWD_LIFETIME,			i,	26
+	UAI$_PWD_DATE,				i,	27
+	UAI$_PWD2_DATE,				i,	28
+	UAI$_LASTLOGIN_I,			i,	29
+	UAI$_LASTLOGIN_N,			i,	30
+	UAI$_PRIV,					i,	31
+	UAI$_DEF_PRIV,				i,	32
+	UAI$_MIN_CLASS,				i,	33
+	UAI$_MAX_CLASS,				i,	34
+	UAI$_FLAGS,					i,	35
+	UAI$_NETWORK_ACCESS_P,		i,	36
+	UAI$_NETWORK_ACCESS_S,		i,	37
+	UAI$_BATCH_ACCESS_P,		i,	38
+	UAI$_BATCH_ACCESS_S,		i,	39
+	UAI$_LOCAL_ACCESS_P,		i,	40
+	UAI$_LOCAL_ACCESS_S,		i,	41
+	UAI$_DIALUP_ACCESS_P,		i,	42
+	UAI$_DIALUP_ACCESS_S,		i,	43
+	UAI$_REMOTE_ACCESS_P,		i,	44
+	UAI$_REMOTE_ACCESS_S,		i,	45
+	UAI$_PRIMEDAYS,				i,	46
+	UAI$_PRI,					i,	47
+	UAI$_QUEPRI,				i,	48
+	UAI$_MAXJOBS,				i,	49
+	UAI$_MAXACCTJOBS,			i,	50
+	UAI$_MAXDETACH,				i,	51
+	UAI$_PRCCNT,				i,	52
+	UAI$_BIOLM,					i,	53
+	UAI$_DIOLM,					i,	54
+	UAI$_TQCNT,					i,	55
+	UAI$_ASTLM,					i,	56
+	UAI$_ENQLM,					i,	57
+	UAI$_FILLM,					i,	58
+	UAI$_SHRFILLM,				i,	59
+	UAI$_WSQUOTA,				i,	60
+	UAI$_DFWSCNT,				i,	61
+	UAI$_WSEXTENT,				i,	62
+	UAI$_PGFLQUOTA,				i,	63
+	UAI$_CPUTIM,				i,	64
+	UAI$_BYTLM,					i,	65
+	UAI$_PBYTLM,				i,	66
+	UAI$_JTQUOTA,				i,	67
+	UAI$_PROXY_LIM,				i,	68
+	UAI$_PROXIES,				i,	69
+	UAI$_ACCOUNT_LIM,			i,	70
+	UAI$_ACCOUNTS,				i,	71
+	UAI$_USER_DATA,				i,	72
+	UAI$_PASSWORD,				i,	73
+	UAI$_PASSWORD2,				i,	74
+	UAI$_DEF_CLASS,				i,	75
+	UAI$_AUDIT_FLAGS,			i,	76
+	UAI$_MAX_ITEM_CODE,			i,	77
+	UAI$_DEFCHARGE_CODE,		i,	11
+	UAI$C_AD_II,				i,	0
+	UAI$C_PURDY,				i,	1
+	UAI$C_PURDY_V,				i,	2
+	UAI$C_PURDY_S,				i,	3
+	UAI$C_PREFERED_ALGORITHM,	i,	127
+	UAI$C_PREFERRED_ALGORITHM,	i,	127
+	UAI$C_CUST_ALGORITHM,		i,	128
+	UAI$C_MAX_PWD_LENGTH,		i,	32
+	UAI$M_DISCTLY,				i,	%x("1")
+	UAI$M_DEFCLI,				i,	%x("2")
+	UAI$M_LOCKPWD,				i,	%x("4")
+	UAI$M_RESTRICTED,			i,	%x("8")
+	UAI$M_DISACNT,				i,	%x("10")
+	UAI$M_DISWELCOM,			i,	%x("20")
+	UAI$M_DISMAIL,				i,	%x("40")
+	UAI$M_NOMAIL,				i,	%x("80")
+	UAI$M_GENPWD,				i,	%x("100")
+	UAI$M_PWD_EXPIRED,			i,	%x("200")
+	UAI$M_PWD2_EXPIRED,			i,	%x("400")
+	UAI$M_AUDIT,				i,	%x("800")
+	UAI$M_DISREPORT,			i,	%x("1000")
+	UAI$M_DISRECONNECT,			i,	%x("2000")
+	UAI$M_AUTOLOGIN,			i,	%x("4000")
+	UAI$M_DISFORCE_PWD_CHANGE,	i,	%x("8000")
+	UAI$M_CAPTIVE,				i,	%x("10000")
+	UAI$M_DISIMAGE,				i,	%x("20000")
+	UAI$M_DISPWDDIC,			i,	%x("40000")
+	UAI$M_DISPWDHIS,			i,	%x("80000")
+	UAI$M_DEFCLSVAL,			i,	%x("100000")
+	UAI$M_EXTAUTH,				i,	%x("200000")
+	UAI$M_MIGRATEPWD,			i,	%x("400000")
+	UAI$M_VMSAUTH,				i,	%x("800000")
+	UAI$M_DISPWDSYNCH,			i,	%x("1000000")
+	UAI$M_PWDMIX,				i,	%x("2000000")
+	UAI$V_DISCTLY,				i,	0
+	UAI$V_DEFCLI,				i,	1
+	UAI$V_LOCKPWD,				i,	2
+	UAI$V_RESTRICTED,			i,	3
+	UAI$V_DISACNT,				i,	4
+	UAI$V_DISWELCOM,			i,	5
+	UAI$V_DISMAIL,				i,	6
+	UAI$V_NOMAIL,				i,	7
+	UAI$V_GENPWD,				i,	8
+	UAI$V_PWD_EXPIRED,			i,	9
+	UAI$V_PWD2_EXPIRED,			i,	10
+	UAI$V_AUDIT,				i,	11
+	UAI$V_DISREPORT,			i,	12
+	UAI$V_DISRECONNECT,			i,	13
+	UAI$V_AUTOLOGIN,			i,	14
+	UAI$V_DISFORCE_PWD_CHANGE,	i,	15
+	UAI$V_CAPTIVE,				i,	16
+	UAI$V_DISIMAGE,				i,	17
+	UAI$V_DISPWDDIC,			i,	18
+	UAI$V_DISPWDHIS,			i,	19
+	UAI$V_DEFCLSVAL,			i,	20
+	UAI$V_EXTAUTH,				i,	21
+	UAI$V_MIGRATEPWD,			i,	22
+	UAI$V_VMSAUTH,				i,	23
+	UAI$V_DISPWDSYNCH,			i,	24
+	UAI$V_PWDMIX,				i,	25
+	UAI$V_MONDAY,				i,	0
+	UAI$V_TUESDAY,				i,	1
+	UAI$V_WEDNESDAY,			i,	2
+	UAI$V_THURSDAY,				i,	3
+	UAI$V_FRIDAY,				i,	4
+	UAI$V_SATURDAY,				i,	5
+	UAI$V_SUNDAY,				i,	6
+.list

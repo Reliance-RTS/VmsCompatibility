@@ -1,0 +1,241 @@
+;;*****************************************************************************
+;;
+;; Title:       $ATRDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	ATR$C_UCHAR,					i,	3
+	ATR$C_RECATTR,					i,	4
+	ATR$C_FILNAM,					i,	5
+	ATR$C_FILTYP,					i,	6
+	ATR$C_FILVER,					i,	7
+	ATR$C_EXPDAT,					i,	8
+	ATR$C_STATBLK,					i,	9
+	ATR$C_HEADER,					i,	10
+	ATR$C_BLOCKSIZE,				i,	11
+	ATR$C_USERLABEL,				i,	12
+	ATR$C_ASCDATES,					i,	13
+	ATR$C_ALCONTROL,				i,	14
+	ATR$C_ENDLBLAST,				i,	15
+	ATR$C_ASCNAME,					i,	16
+	ATR$C_CREDATE,					i,	17
+	ATR$C_REVDATE,					i,	18
+	ATR$C_EXPDATE,					i,	19
+	ATR$C_BAKDATE,					i,	20
+	ATR$C_UIC,						i,	21
+	ATR$C_FPRO,						i,	22
+	ATR$C_RPRO,						i,	23
+	ATR$C_ACLEVEL,					i,	24
+	ATR$C_SEMASK,					i,	25
+	ATR$C_UIC_RO,					i,	26
+	ATR$C_DIRSEQ,					i,	27
+	ATR$C_BACKLINK,					i,	28
+	ATR$C_JOURNAL,					i,	29
+	ATR$C_HDR1_ACC,					i,	30
+	ATR$C_ADDACLENT,				i,	31
+	ATR$C_DELACLENT,				i,	32
+	ATR$C_MODACLENT,				i,	33
+	ATR$C_FNDACLENT,				i,	34
+	ATR$C_FNDACLTYP,				i,	35
+	ATR$C_DELETEACL,				i,	36
+	ATR$C_READACL,					i,	37
+	ATR$C_ACLLENGTH,				i,	38
+	ATR$C_READACE,					i,	39
+	ATR$C_RESERVED,					i,	40
+	ATR$C_HIGHWATER,				i,	41
+	ATR$C_DUMMY_0,					i,	42
+	ATR$C_PRIVS_USED,				i,	43
+	ATR$C_MATCHING_ACE,				i,	44
+	ATR$C_ACCESS_MODE,				i,	45
+	ATR$C_FILE_SPEC,				i,	46
+	ATR$C_CLASS_MASK,				i,	47
+	ATR$C_BUFFER_OFFSET,			i,	48
+	ATR$C_RU_ACTIVE,				i,	49
+	ATR$C_GRANT_ACE,				i,	50
+	ATR$C_NEXT_ACE,					i,	51
+	ATR$C_DELETE_ALL,				i,	52
+	ATR$C_BACKUP_DONE,				i,	53
+	ATR$C_EFFDATE,					i,	54
+	ATR$C_RCDDATE,					i,	55
+	ATR$C_VD,						i,	56
+	ATR$C_PVD,						i,	57
+	ATR$C_SVD,						i,	58
+	ATR$C_VPD,						i,	59
+	ATR$C_VDST,						i,	60
+	ATR$C_BOOT,						i,	61
+	ATR$C_PTR,						i,	62
+	ATR$C_DIR,						i,	63
+	ATR$C_XAR,						i,	64
+	ATR$C_VOLUME_ID,				i,	65
+	ATR$C_VOLUME_FLAGS,				i,	66
+	ATR$C_ESCAPE_SEQUENCES,			i,	67
+	ATR$C_VOLUME_SET_ID,			i,	68
+	ATR$C_COPYRIGHT_FID,			i,	69
+	ATR$C_ABSTRACT_FID,				i,	70
+	ATR$C_BIBLIOGRAPHIC_FID,		i,	71
+	ATR$C_CACHE_SEQ,				i,	72
+	ATR$C_FILE_SYSTEM_INFO,			i,	73
+	ATR$C_FILE_ATTR_CACHING_POLICY,	i,	74
+	ATR$C_FILE_DATA_CACHING_POLICY,	i,	75
+	ATR$C_CACHING_OPTIONS,			i,	76
+	ATR$C_POSIX_DATA,				i,	77
+	ATR$C_ACCDATE,					i,	78
+	ATR$C_ATTDATE,					i,	79
+	ATR$C_LENGTH_HINT,				i,	80
+	ATR$C_EX_RECATTR,				i,	81
+	ATR$C_EXTFLAGS,					i,	82
+	ATR$C_MODDATE,					i,	83
+	ATR$C_LINKCOUNT,				i,	84
+	ATR$C_SYMLINK,					i,	85
+	ATR$C_MAX_PLUS1,				i,	86
+	ATR$C_MAX_CODE,					i,	85
+	ATR$C_FNDACETYP,				i,	35
+	ATR$C_CACHE_POLICY_WRITETHRU,	i,	1
+	ATR$C_CACHE_POLICY_WRITEBACK,	i,	2
+	ATR$C_CACHE_POLICY_DEFAULT,		i,	3
+	ATR$S_UCHAR,					i,	4
+	ATR$S_RECATTR,					i,	32
+	ATR$S_FILNAM,					i,	6
+	ATR$S_FILTYP,					i,	2
+	ATR$S_FILVER,					i,	2
+	ATR$S_EXPDAT,					i,	7
+	ATR$S_STATBLK,					i,	32
+	ATR$S_HEADER,					i,	512
+	ATR$S_BLOCKSIZE,				i,	2
+	ATR$S_USERLABEL,				i,	80
+	ATR$S_ASCDATES,					i,	35
+	ATR$S_ALCONTROL,				i,	14
+	ATR$S_ENDLBLAST,				i,	4
+	ATR$S_ASCNAME,					i,	252
+	ATR$S_CREDATE,					i,	8
+	ATR$S_REVDATE,					i,	8
+	ATR$S_EXPDATE,					i,	8
+	ATR$S_BAKDATE,					i,	8
+	ATR$S_UIC,						i,	4
+	ATR$S_FPRO,						i,	2
+	ATR$S_RPRO,						i,	2
+	ATR$S_ACLEVEL,					i,	1
+	ATR$S_SEMASK,					i,	8
+	ATR$S_UIC_RO,					i,	4
+	ATR$S_DIRSEQ,					i,	2
+	ATR$S_BACKLINK,					i,	6
+	ATR$S_JOURNAL,					i,	1
+	ATR$S_HDR1_ACC,					i,	1
+	ATR$S_ADDACLENT,				i,	255
+	ATR$S_DELACLENT,				i,	255
+	ATR$S_MODACLENT,				i,	255
+	ATR$S_FNDACLENT,				i,	255
+	ATR$S_FNDACLTYP,				i,	255
+	ATR$S_FNDACETYP,				i,	255
+	ATR$S_DELETEACL,				i,	255
+	ATR$S_READACL,					i,	512
+	ATR$S_ACLLENGTH,				i,	4
+	ATR$S_READACE,					i,	255
+	ATR$S_RESERVED,					i,	380
+	ATR$S_HIGHWATER,				i,	4
+	ATR$S_DUMMY_0,					i,	4
+	ATR$S_PRIVS_USED,				i,	4
+	ATR$S_MATCHING_ACE,				i,	255
+	ATR$S_ACCESS_MODE,				i,	1
+	ATR$S_FILE_SPEC,				i,	4098
+	ATR$S_CLASS_MASK,				i,	20
+	ATR$S_BUFFER_OFFSET,			i,	2
+	ATR$S_RU_ACTIVE,				i,	1
+	ATR$S_GRANT_ACE,				i,	255
+	ATR$S_NEXT_ACE,					i,	4
+	ATR$S_DELETE_ALL,				i,	255
+	ATR$S_BACKUP_DONE,				i,	1
+	ATR$S_EFFDATE,					i,	8
+	ATR$S_RCDDATE,					i,	8
+	ATR$S_VD,						i,	7
+	ATR$S_PVD,						i,	1395
+	ATR$S_SVD,						i,	1395
+	ATR$S_VPD,						i,	88
+	ATR$S_VDST,						i,	7
+	ATR$S_BOOT,						i,	71
+	ATR$S_PTR,						i,	45
+	ATR$S_DIR,						i,	512
+	ATR$S_XAR,						i,	512
+	ATR$S_VOLUME_ID,				i,	32
+	ATR$S_VOLUME_FLAGS,				i,	1
+	ATR$S_ESCAPE_SEQUENCES,			i,	32
+	ATR$S_VOLUME_SET_ID,			i,	128
+	ATR$S_COPYRIGHT_FID,			i,	37
+	ATR$S_ABSTRACT_FID,				i,	37
+	ATR$S_BIBLIOGRAPHIC_FID,		i,	37
+	ATR$S_CACHE_SEQ,				i,	8
+	ATR$S_FILE_SYSTEM_INFO,			i,	2
+	ATR$S_FILE_ATTR_CACHING_POLICY,	i,	1
+	ATR$S_FILE_DATA_CACHING_POLICY,	i,	1
+	ATR$S_POSIX_DATA,				i,	64
+	ATR$S_CACHING_OPTIONS,			i,	4
+	ATR$S_ACCDATE,					i,	8
+	ATR$S_ATTDATE,					i,	8
+	ATR$S_LENGTH_HINT,				i,	16
+	ATR$S_EX_RECATTR,				i,	8
+	ATR$S_EXTFLAGS,					i,	2
+	ATR$S_LINKCOUNT,				i,	2
+	ATR$S_MODDATE,					i,	8
+	ATR$S_SYMLINK,					i,	1024
+	ATR$S_ATRDEF,					i,	8
+	ATR$W_SIZE,						i,	0
+	ATR$W_TYPE,						i,	2
+	ATR$L_ADDR,						i,	4
+	ATR$M_FILE_ATTRIBUTES,			i,	%x("F")
+	ATR$M_FILE_CONTENTS,			i,	%x("F0")
+	ATR$C_DEFAULT,					i,	0
+	ATR$C_WRITETHROUGH,				i,	1
+	ATR$C_WRITEBEHIND,				i,	2
+	ATR$C_NOCACHING,				i,	3
+	ATR$M_FLUSH_ON_CLOSE,			i,	%x("F00")
+	ATR$C_FLUSH,					i,	1
+	ATR$C_NOFLUSH,					i,	2
+	ATR$M_CACHING_OPTIONS_MBZ,		i,	%x("FFFFF000")
+	ATR$S_ATR_CACHING_OPTIONS_FLAGS,i,	4
+	ATR$S_FILE_ATTRIBUTES,			i,	4
+	ATR$V_FILE_ATTRIBUTES,			i,	0
+	ATR$S_FILE_CONTENTS,			i,	4
+	ATR$V_FILE_CONTENTS,			i,	4
+	ATR$S_FLUSH_ON_CLOSE,			i,	4
+	ATR$V_FLUSH_ON_CLOSE,			i,	8
+	ATR$S_CACHING_OPTIONS_MBZ,		i,	20
+	ATR$V_CACHING_OPTIONS_MBZ,		i,	12
+	ATR$C_ODS1,						i,	1
+	ATR$C_ODS2,						i,	2
+	ATR$C_ODS64,					i,	64
+	ATR$B_STRUCVER,					i,	0
+	ATR$B_STRUCLEV,					i,	1
+.list

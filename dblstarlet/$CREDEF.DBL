@@ -1,0 +1,68 @@
+;;*****************************************************************************
+;;
+;; Title:       $CREDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	CRE$C_VMSV2,			i,	2
+	CRE$C_VMSV3,			i,	3
+	CRE$C_VMSV4,			i,	4
+	CRE$C_VMSV5,			i,	5
+	CRE$C_VMSV6,			i,	6
+	CRE$M_NOCASECMP,		i,	%x("1")
+	CRE$M_NOCASENTR,		i,	%x("2")
+	CRE$M_UPCASNTRY,		i,	%x("4")
+	CRE$C_HLPCASING,		i,	6
+	CRE$C_OBJCASING,		i,	3
+	CRE$C_MACTXTCAS,		i,	0
+	CRE$K_LENGTH,			i,	80
+	CRE$C_LENGTH,			i,	80
+	CRE$S_CREDEF,			i,	80
+	CRE$L_TYPE,				i,	0
+	CRE$L_KEYLEN,			i,	4
+	CRE$L_ALLOC,			i,	8
+	CRE$L_IDXMAX,			i,	12
+	CRE$L_UHDMAX,			i,	16
+	CRE$L_ENTALL,			i,	20
+	CRE$L_LUHMAX,			i,	24
+	CRE$L_VERTYP,			i,	28
+	CRE$R_IDXOPT_OVERLAY,	i,	32
+	CRE$L_IDXOPT,			i,	32
+	CRE$R_IDXOPT_BITS,		i,	32
+	CRE$V_NOCASECMP,		i,	0
+	CRE$V_NOCASENTR,		i,	1
+	CRE$V_UPCASNTRY,		i,	2
+.list

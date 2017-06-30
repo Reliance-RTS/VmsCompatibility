@@ -38,17 +38,22 @@
 ;;
 ;;*****************************************************************************
 
-subroutine STR$CONCAT
-	retbuf,		a
-	record 
-		ix,		i4
-		result,	string
-	endrecord
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="retbuf"></param>
+;;; <returns></returns>
+subroutine STR$CONCAT, varargs
+    required out retbuf, a
+    record 
+		ix		,i4
+		result	,string
+    endrecord
 proc
-	result = ""
-	for ix from 2 thru %numargs
+    result = ""
+    for ix from 2 thru %numargs
 		result = result + ^arga(ix)
-	retbuf = result
-	xreturn
+    retbuf = result
+    xreturn
 endsubroutine
 

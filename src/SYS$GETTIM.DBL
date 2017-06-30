@@ -38,14 +38,21 @@
 ;;
 ;;*****************************************************************************
 
-function SYS$GETTIM,	^val
-	%ref(i8DateTime),	i8
-	endparams
-	record 
-		stringDate,		a23
-	endrecord
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="i8DateTime"></param>
+;;; <param name="mask"></param>
+;;; <returns></returns>
+function SYS$GETTIM, ^val
+    %ref(i8DateTime),i8
+    optional ^val(mask), i
+    endparams
+    record 
+	stringDate		,a23
+    endrecord
 proc
-	xcall lib$date_time(stringDate)
-	xcall sys$bintim(stringDate,i8DateTime)
-	freturn 1
+    xcall lib$date_time(stringDate)
+    xcall sys$bintim(stringDate,i8DateTime)
+    freturn 1
 endfunction

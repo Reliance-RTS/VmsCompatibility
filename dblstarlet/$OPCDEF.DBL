@@ -1,0 +1,342 @@
+;;*****************************************************************************
+;;
+;; Title:       $OPCDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	OPC$_RQ_TERME,					i,	1
+	OPC$_RQ_LOGI,					i,	2
+	OPC$_RQ_RQST,					i,	3
+	OPC$_RQ_REPLY,					i,	4
+	OPC$_RQ_CANCEL,					i,	5
+	OPC$_RQ_STATUS,					i,	6
+	OPC$_RQ_SECURITY,				i,	7
+	OPC$_RQ_LICENSE,				i,	8
+	OPC$M_RQ_NOOCS,					i,	128
+	OPC$M_NM_CENTRL,				i,	%x("1")
+	OPC$M_NM_PRINT,					i,	%x("2")
+	OPC$M_NM_TAPES,					i,	%x("4")
+	OPC$M_NM_DISKS,					i,	%x("8")
+	OPC$M_NM_DEVICE,				i,	%x("10")
+	OPC$M_NM_CARDS,					i,	%x("20")
+	OPC$M_NM_NTWORK,				i,	%x("40")
+	OPC$M_NM_CLUSTER,				i,	%x("80")
+	OPC$M_NM_SECURITY,				i,	%x("100")
+	OPC$M_NM_REPLY,					i,	%x("200")
+	OPC$M_NM_SOFTWARE,				i,	%x("400")
+	OPC$M_NM_LICENSE,				i,	%x("800")
+	OPC$M_NM_OPER1,					i,	%x("1000")
+	OPC$M_NM_OPER2,					i,	%x("2000")
+	OPC$M_NM_OPER3,					i,	%x("4000")
+	OPC$M_NM_OPER4,					i,	%x("8000")
+	OPC$M_NM_OPER5,					i,	%x("10000")
+	OPC$M_NM_OPER6,					i,	%x("20000")
+	OPC$M_NM_OPER7,					i,	%x("40000")
+	OPC$M_NM_OPER8,					i,	%x("80000")
+	OPC$M_NM_OPER9,					i,	%x("100000")
+	OPC$M_NM_OPER10,				i,	%x("200000")
+	OPC$M_NM_OPER11,				i,	%x("400000")
+	OPC$M_NM_OPER12,				i,	%x("800000")
+	OPC$S_OPCDEF,					i,	158
+	OPC$B_MS_TYPE,					i,	0
+	OPC$R_MS_C_T_S_OVERLAY,			i,	1
+	OPC$R_MS_TARG_STAT_OVERLAY,		i,	1
+	OPC$R_MS_TARGET_OVERLAY,		i,	1
+	OPC$B_MS_TARGET,				i,	1
+	OPC$B_MS_ENAB,					i,	1
+	OPC$W_MS_STATUS,				i,	2
+	OPC$S_MS_TARGET_CLASSES,		i,	3
+	OPC$Z_MS_TARGET_CLASSES,		i,	1
+	OPC$S_MS_ENAB_TERMINALS,		i,	3
+	OPC$Z_MS_ENAB_TERMINALS,		i,	1
+	OPC$R_MS_RPLYID_OVERLAY,		i,	4
+	OPC$L_MS_RPLYID,				i,	4
+	OPC$R_MS_MASK_OVERLAY,			i,	4
+	OPC$L_MS_MASK,					i,	4
+	OPC$L_MS_RQSTID,				i,	4
+	OPC$R_MS_TEXT_OVERLAY,			i,	8
+	OPC$L_MS_TEXT,					i,	8
+	OPC$R_MS_TEXT_FIELDS,			i,	8
+	OPC$W_MS_OUNIT,					i,	8
+	OPC$T_MS_ONAME,					i,	10
+	OPC$S_MS_OTEXT,					i,	128
+	OPC$L_MS_OTEXT,					i,	26
+	OPC$R_MS_MAXSZ_OVERLAY,			i,	154
+	OPC$L_MS_MAXSZ,					i,	154
+	OPC$R_MS_MAXSZ_BITS,			i,	154
+	OPC$V_NM_CENTRL,				i,	0
+	OPC$V_NM_PRINT,					i,	1
+	OPC$V_NM_TAPES,					i,	2
+	OPC$V_NM_DISKS,					i,	3
+	OPC$V_NM_DEVICE,				i,	4
+	OPC$V_NM_CARDS,					i,	5
+	OPC$V_NM_NTWORK,				i,	6
+	OPC$V_NM_CLUSTER,				i,	7
+	OPC$V_NM_SECURITY,				i,	8
+	OPC$V_NM_REPLY,					i,	9
+	OPC$V_NM_SOFTWARE,				i,	10
+	OPC$V_NM_LICENSE,				i,	11
+	OPC$V_NM_OPER1,					i,	12
+	OPC$V_NM_OPER2,					i,	13
+	OPC$V_NM_OPER3,					i,	14
+	OPC$V_NM_OPER4,					i,	15
+	OPC$V_NM_OPER5,					i,	16
+	OPC$V_NM_OPER6,					i,	17
+	OPC$V_NM_OPER7,					i,	18
+	OPC$V_NM_OPER8,					i,	19
+	OPC$V_NM_OPER9,					i,	20
+	OPC$V_NM_OPER10,				i,	21
+	OPC$V_NM_OPER11,				i,	22
+	OPC$V_NM_OPER12,				i,	23
+	OPC$M_OPR_CENTRAL,				i,	%x("1")
+	OPC$M_OPR_PRINTER,				i,	%x("2")
+	OPC$M_OPR_TAPES,				i,	%x("4")
+	OPC$M_OPR_DISKS,				i,	%x("8")
+	OPC$M_OPR_DEVICES,				i,	%x("10")
+	OPC$M_OPR_CARDS,				i,	%x("20")
+	OPC$M_OPR_NETWORK,				i,	%x("40")
+	OPC$M_OPR_CLUSTER,				i,	%x("80")
+	OPC$M_OPR_SECURITY,				i,	%x("100")
+	OPC$M_OPR_REPLY,				i,	%x("200")
+	OPC$M_OPR_SOFTWARE,				i,	%x("400")
+	OPC$M_OPR_LICENSE,				i,	%x("800")
+	OPC$M_OPR_USER1,				i,	%x("1000")
+	OPC$M_OPR_USER2,				i,	%x("2000")
+	OPC$M_OPR_USER3,				i,	%x("4000")
+	OPC$M_OPR_USER4,				i,	%x("8000")
+	OPC$M_OPR_USER5,				i,	%x("10000")
+	OPC$M_OPR_USER6,				i,	%x("20000")
+	OPC$M_OPR_USER7,				i,	%x("40000")
+	OPC$M_OPR_USER8,				i,	%x("80000")
+	OPC$M_OPR_USER9,				i,	%x("100000")
+	OPC$M_OPR_USER10,				i,	%x("200000")
+	OPC$M_OPR_USER11,				i,	%x("400000")
+	OPC$M_OPR_USER12,				i,	%x("800000")
+	OPC$S_OPC_OPRDEF,				i,	3
+	OPC$V_OPR_CENTRAL,				i,	0
+	OPC$V_OPR_PRINTER,				i,	1
+	OPC$V_OPR_TAPES,				i,	2
+	OPC$V_OPR_DISKS,				i,	3
+	OPC$V_OPR_DEVICES,				i,	4
+	OPC$V_OPR_CARDS,				i,	5
+	OPC$V_OPR_NETWORK,				i,	6
+	OPC$V_OPR_CLUSTER,				i,	7
+	OPC$V_OPR_SECURITY,				i,	8
+	OPC$V_OPR_REPLY,				i,	9
+	OPC$V_OPR_SOFTWARE,				i,	10
+	OPC$V_OPR_LICENSE,				i,	11
+	OPC$V_OPR_USER1,				i,	12
+	OPC$V_OPR_USER2,				i,	13
+	OPC$V_OPR_USER3,				i,	14
+	OPC$V_OPR_USER4,				i,	15
+	OPC$V_OPR_USER5,				i,	16
+	OPC$V_OPR_USER6,				i,	17
+	OPC$V_OPR_USER7,				i,	18
+	OPC$V_OPR_USER8,				i,	19
+	OPC$V_OPR_USER9,				i,	20
+	OPC$V_OPR_USER10,				i,	21
+	OPC$V_OPR_USER11,				i,	22
+	OPC$V_OPR_USER12,				i,	23
+	OPC$K_SYSTEM,					i,	1
+	OPC$K_GROUP,					i,	2
+	OPC$K_USER,						i,	3
+	OPC$K_UNSPEC,					i,	4
+	OPC$C_SYSTEM,					i,	1
+	OPC$C_GROUP,					i,	2
+	OPC$C_USER,						i,	3
+	OPC$C_UNSPEC,					i,	4
+	OPC$K_SW_VERSION,				i,	9
+	OPC$K_MAXREAD,					i,	2560
+	OPC$K_MAXMESSAGE,				i,	2048
+	OPC$K_COMHDRSIZ,				i,	38
+	OPC$_OPCOMERROR,				i,	99999
+	OPC$_X_OPRENABLE,				i,	10
+	OPC$_X_LOGFILE,					i,	11
+	OPC$_X_REQUEST,					i,	12
+	OPC$_X_REPLY,					i,	13
+	OPC$_X_CANCEL,					i,	14
+	OPC$_X_STATUS,					i,	15
+	OPC$_X_SHUTDOWN,				i,	16
+	OPC$_X_TIMESTAMP,				i,	17
+	OPC$_X_SECURITY,				i,	18
+	OPC$_X_CLUSMSG,					i,	19
+	OPC$_X_DEBUG,					i,	20
+	OPC$_X_CNXMAN,					i,	21
+	OPC$_X_REQUEST_END_MARK,		i,	22
+	OPC$K_CLM__ACKNOWLEDGEMENT,		i,	1
+	OPC$K_CLM__ACKNOWLEDGE_PLEASE,	i,	2
+	OPC$K_CLM__CANCEL,				i,	3
+	OPC$K_CLM__CHECK_OPERATOR,		i,	4
+	OPC$K_CLM__CHECK_REQUEST,		i,	5
+	OPC$K_CLM__CLUMBX,				i,	6
+	OPC$K_CLM__CLUSTER,				i,	7
+	OPC$K_CLM__DEVICE,				i,	8
+	OPC$K_CLM__IMP_CANCEL,			i,	9
+	OPC$K_CLM__IMP_DISABLE,			i,	10
+	OPC$K_CLM__OPRENABLE,			i,	11
+	OPC$K_CLM__REPLY,				i,	12
+	OPC$K_CLM__REPLY_COMPLETE,		i,	13
+	OPC$K_CLM__REQUEST,				i,	14
+	OPC$K_CLM__RPYBRD,				i,	15
+	OPC$K_CLM__RPYBRD_LOCAL,		i,	16
+	OPC$K_CLM__RPYNOT,				i,	17
+	OPC$K_CLM__SECURITY,			i,	18
+	OPC$K_CLM__SHUTDOWN,			i,	19
+	OPC$K_CLM__LOGFILE,				i,	20
+	OPC$K_CLM__REQUEST_END_MARK,	i,	21
+	OPC$K_HDR_SIZE,					i,	26
+	OPC$B_RQSTCODE,					i,	0
+	OPC$B_SCOPE,					i,	1
+	OPC$L_OPTIONS,					i,	2
+	OPC$L_RQ_OPTIONS,				i,	6
+	OPC$B_RQOPT_CODE,				i,	6
+	OPC$L_ATTNMASK1,				i,	10
+	OPC$L_ATTNMASK2,				i,	14
+	OPC$L_RQSTID,					i,	18
+	OPC$L_UIC,						i,	22
+	OPC$M_NOLOG,					i,	%x("1")
+	OPC$M_NOBRD,					i,	%x("2")
+	OPC$M_NOCLUSTER,				i,	%x("4")
+	OPC$V_NOLOG,					i,	0
+	OPC$V_NOBRD,					i,	1
+	OPC$V_NOCLUSTER,				i,	2
+	OPC$K_OPRENABLE_MIN_SIZE,		i,	30
+	OPC$T_OPRENABLE_OPR,			i,	26
+	OPC$M_DISABLE,					i,	%x("1")
+	OPC$M_PERMOPER,					i,	%x("2")
+	OPC$M_NOREMIND,					i,	%x("4")
+	OPC$V_DISABLE,					i,	0
+	OPC$V_PERMOPER,					i,	1
+	OPC$V_NOREMIND,					i,	2
+	OPC$K_LOGFILE_MIN_SIZE,			i,	30
+	OPC$K_INITLOG,					i,	0
+	OPC$K_CLOSELOG,					i,	1
+	OPC$K_ENABLELOG,				i,	2
+	OPC$K_DISABLELOG,				i,	3
+	OPC$K_MAX_LOGOPT,				i,	4
+	OPC$T_LOGFILE_OPR,				i,	26
+	OPC$K_REQUEST_MIN_SIZE,			i,	28
+	OPC$W_REQUEST_LENGTH,			i,	26
+	OPC$T_REQUEST_TEXT,				i,	28
+	OPC$K_SECURITY_MIN_SIZE,		i,	28
+	OPC$W_SECURITY_LENGTH,			i,	26
+	OPC$T_SECURITY_TEXT,			i,	28
+	OPC$K_REPLY_MIN_SIZE,			i,	32
+	OPC$T_REPLY_OPR,				i,	26
+	OPC$K_STATUS_MIN_SIZE,			i,	30
+	OPC$T_STATUS_OPR,				i,	26
+	OPC$K_TIMESTAMP_MIN_SIZE,		i,	26
+	OPC$K_SHUTDOWN_MIN_SIZE,		i,	26
+	OPC$M_CLUSTER,					i,	%x("1")
+	OPC$V_CLUSTER,					i,	0
+	OPC$K_CANCEL_MIN_SIZE,			i,	26
+	OPC$M_RQSTDONE,					i,	%x("1")
+	OPC$V_RQSTDONE,					i,	0
+	OPCF_ARG$S_OPCF_ARG,			i,	4
+	OPCF_ARG$l_arg_data,			i,	0
+	OPCF_ARG$S_arg_desc,			i,	4
+	OPCF_ARG$r_arg_desc,			i,	0
+	OPCF_ARG$w_arg_offset,			i,	0
+	OPCF_ARG$w_arg_cntrl,			i,	2
+	OPCF$S_OPCFAO,					i,	256
+	OPCF$w_msgtype,					i,	0
+	OPCF$w_spare_1,					i,	2
+	OPCF$l_opc_msg,					i,	4
+	OPCF$l_opc_class_msk,			i,	8
+	OPCF$l_arg_count,				i,	12
+	OPCF$S_variable_data,			i,	240
+	OPCF$r_variable_data,			i,	16
+	OPCF$r_item_arg,				i,	16
+	OPCF$S_item_cd,					i,	240
+	OPCF$t_item_cd,					i,	16
+	OPCF$S_item_ld,					i,	240
+	OPCF$l_item_ld,					i,	16
+	OPCF$K_AC,						i,	1
+	OPCF$K_AD,						i,	2
+	OPCF$K_AF,						i,	3
+	OPCF$K_AS,						i,	4
+	OPCF$K_AS_DEVICE_NAME,			i,	5
+	OPCF$K_AZ,						i,	6
+	OPCF$K_D,						i,	7
+	OPCF$K_I,						i,	8
+	OPCF$K_OA,						i,	9
+	OPCF$K_OB,						i,	10
+	OPCF$K_OH,						i,	11
+	OPCF$K_OI,						i,	12
+	OPCF$K_OJ,						i,	13
+	OPCF$K_OL,						i,	14
+	OPCF$K_OQ,						i,	15
+	OPCF$K_OW,						i,	16
+	OPCF$K_SA,						i,	17
+	OPCF$K_SB,						i,	18
+	OPCF$K_SH,						i,	19
+	OPCF$K_SI,						i,	20
+	OPCF$K_SJ,						i,	21
+	OPCF$K_SL,						i,	22
+	OPCF$K_SQ,						i,	23
+	OPCF$K_SW,						i,	24
+	OPCF$K_T,						i,	25
+	OPCF$K_U,						i,	26
+	OPCF$K_UA,						i,	27
+	OPCF$K_UB,						i,	28
+	OPCF$K_UH,						i,	29
+	OPCF$K_UI,						i,	30
+	OPCF$K_UJ,						i,	31
+	OPCF$K_UL,						i,	32
+	OPCF$K_UQ,						i,	33
+	OPCF$K_UW,						i,	34
+	OPCF$K_XA,						i,	35
+	OPCF$K_XB,						i,	36
+	OPCF$K_XH,						i,	37
+	OPCF$K_XI,						i,	38
+	OPCF$K_XJ,						i,	39
+	OPCF$K_XL,						i,	40
+	OPCF$K_XQ,						i,	41
+	OPCF$K_XW,						i,	42
+	OPCF$K_ZA,						i,	43
+	OPCF$K_ZB,						i,	44
+	OPCF$K_ZH,						i,	45
+	OPCF$K_ZI,						i,	46
+	OPCF$K_ZJ,						i,	47
+	OPCF$K_ZL,						i,	48
+	OPCF$K_ZQ,						i,	49
+	OPCF$K_ZW,						i,	50
+	OPCF$K_MIN_OPCFAO_CNTRL,		i,	1
+	OPCF$K_MAX_OPCFAO_CNTRL,		i,	50
+	OPCF$K_BY_REF,					i,	1
+	OPCF$K_BY_VAL,					i,	2
+	OPCF$K_BY_DESC,					i,	3
+.list

@@ -1,0 +1,99 @@
+;;*****************************************************************************
+;;
+;; Title:       $ACLDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	ACL$K_LENGTH,					i,	12
+	ACL$C_LENGTH,					i,	12
+	ACL$C_FILE,						i,	1
+	ACL$C_DEVICE,					i,	2
+	ACL$C_JOBCTL_QUEUE,				i,	3
+	ACL$C_COMMON_EF_CLUSTER,		i,	4
+	ACL$C_LOGICAL_NAME_TABLE,		i,	5
+	ACL$C_PROCESS,					i,	6
+	ACL$C_GROUP_GLOBAL_SECTION,		i,	7
+	ACL$C_SYSTEM_GLOBAL_SECTION,	i,	8
+	ACL$C_CAPABILITY,				i,	9
+	ACL$C_EVENT_FACILITY,			i,	10
+	ACL$C_LOCK,						i,	11
+	ACL$C_VOLUME,					i,	12
+	ACL$C_MAX_OBJECT,				i,	13
+	ACL$C_NUM_OBJECTS,				i,	12
+	ACL$K_NUM_OBJECTS,				i,	12
+	ACL$C_ADDACLENT,				i,	1
+	ACL$C_DELACLENT,				i,	2
+	ACL$C_MODACLENT,				i,	3
+	ACL$C_FNDACLENT,				i,	4
+	ACL$C_FNDACETYP,				i,	5
+	ACL$C_DELETEACL,				i,	6
+	ACL$C_READACL,					i,	7
+	ACL$C_ACLLENGTH,				i,	8
+	ACL$C_READACE,					i,	9
+	ACL$C_RLOCK_ACL,				i,	10
+	ACL$C_WLOCK_ACL,				i,	11
+	ACL$C_UNLOCK_ACL,				i,	12
+	ACL$C_GRANT_ACE,				i,	13
+	ACL$C_NEXT_ACE,					i,	14
+	ACL$C_DELETE_ALL,				i,	15
+	ACL$C_RESERVED_ITEM_2,			i,	16
+	ACL$C_RESERVED_ITEM_3,			i,	17
+	ACL$S_ADDACLENT,				i,	255
+	ACL$S_DELACLENT,				i,	255
+	ACL$S_MODACLENT,				i,	255
+	ACL$S_FNDACLENT,				i,	255
+	ACL$S_FNDACETYP,				i,	255
+	ACL$S_DELETEACL,				i,	255
+	ACL$S_READACL,					i,	512
+	ACL$S_ACLLENGTH,				i,	4
+	ACL$S_READACE,					i,	255
+	ACL$S_RLOCK_ACL,				i,	4
+	ACL$S_WLOCK_ACL,				i,	4
+	ACL$S_UNLOCK_ACL,				i,	4
+	ACL$S_GRANT_ACE,				i,	255
+	ACL$S_NEXT_ACE,					i,	4
+	ACL$S_DELETE_ALL,				i,	255
+	ACL$S_RESERVED_ITEM_2,			i,	255
+	ACL$S_RESERVED_ITEM_3,			i,	255
+	ACL$C_MAX_SEGMENT_SIZE,			i,	512
+	ACL$K_MAX_SEGMENT_SIZE,			i,	512
+	ACL$S_ACLDEF,					i,	16
+	ACL$L_FLINK,					i,	0
+	ACL$L_BLINK,					i,	4
+	ACL$W_SIZE,						i,	8
+	ACL$B_TYPE,						i,	10
+	ACL$L_LIST,						i,	12
+.list

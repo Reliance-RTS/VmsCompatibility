@@ -1,0 +1,137 @@
+;;*****************************************************************************
+;;
+;; Title:       $PRVDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	PRV$M_CMKRNL,			i,	%x("1")
+	PRV$M_CMEXEC,			i,	%x("2")
+	PRV$M_SYSNAM,			i,	%x("4")
+	PRV$M_GRPNAM,			i,	%x("8")
+	PRV$M_ALLSPOOL,			i,	%x("10")
+	PRV$M_IMPERSONATE,		i,	%x("20")
+	PRV$M_DIAGNOSE,			i,	%x("40")
+	PRV$M_LOG_IO,			i,	%x("80")
+	PRV$M_GROUP,			i,	%x("100")
+	PRV$M_NOACNT,			i,	%x("200")
+	PRV$M_PRMCEB,			i,	%x("400")
+	PRV$M_PRMMBX,			i,	%x("800")
+	PRV$M_PSWAPM,			i,	%x("1000")
+	PRV$M_SETPRI,			i,	%x("2000")
+	PRV$M_SETPRV,			i,	%x("4000")
+	PRV$M_TMPMBX,			i,	%x("8000")
+	PRV$M_WORLD,			i,	%x("10000")
+	PRV$M_MOUNT,			i,	%x("20000")
+	PRV$M_OPER,				i,	%x("40000")
+	PRV$M_EXQUOTA,			i,	%x("80000")
+	PRV$M_NETMBX,			i,	%x("100000")
+	PRV$M_VOLPRO,			i,	%x("200000")
+	PRV$M_PHY_IO,			i,	%x("400000")
+	PRV$M_BUGCHK,			i,	%x("800000")
+	PRV$M_PRMGBL,			i,	%x("1000000")
+	PRV$M_SYSGBL,			i,	%x("2000000")
+	PRV$M_PFNMAP,			i,	%x("4000000")
+	PRV$M_SHMEM,			i,	%x("8000000")
+	PRV$M_SYSPRV,			i,	%x("10000000")
+	PRV$M_BYPASS,			i,	%x("20000000")
+	PRV$M_SYSLCK,			i,	%x("40000000")
+	PRV$M_SHARE,			i,	%x("80000000")
+	PRV$M_UPGRADE,			i8,	%x("100000000")
+	PRV$M_DOWNGRADE,		i8,	%x("200000000")
+	PRV$M_GRPPRV,			i8,	%x("400000000")
+	PRV$M_READALL,			i8,	%x("800000000")
+	PRV$M_IMPORT,			i8,	%x("1000000000")
+	PRV$M_AUDIT,			i8,	%x("2000000000")
+	PRV$M_SECURITY,			i8,	%x("4000000000")
+	PRV$K_NUMBER_OF_PRIVS,	i,	39
+	PRV$M_ACNT,				i,	%x("200")
+	PRV$M_ALTPRI,			i,	%x("2000")
+	PRV$M_DETACH,			i,	%x("20")
+	PRV$S_PRVDEF,			i,	8
+	PRV$V_CMKRNL,			i,	0
+	PRV$V_CMEXEC,			i,	1
+	PRV$V_SYSNAM,			i,	2
+	PRV$V_GRPNAM,			i,	3
+	PRV$V_ALLSPOOL,			i,	4
+	PRV$V_IMPERSONATE,		i,	5
+	PRV$V_DIAGNOSE,			i,	6
+	PRV$V_LOG_IO,			i,	7
+	PRV$V_GROUP,			i,	8
+	PRV$V_NOACNT,			i,	9
+	PRV$V_PRMCEB,			i,	10
+	PRV$V_PRMMBX,			i,	11
+	PRV$V_PSWAPM,			i,	12
+	PRV$V_SETPRI,			i,	13
+	PRV$V_SETPRV,			i,	14
+	PRV$V_TMPMBX,			i,	15
+	PRV$V_WORLD,			i,	16
+	PRV$V_MOUNT,			i,	17
+	PRV$V_OPER,				i,	18
+	PRV$V_EXQUOTA,			i,	19
+	PRV$V_NETMBX,			i,	20
+	PRV$V_VOLPRO,			i,	21
+	PRV$V_PHY_IO,			i,	22
+	PRV$V_BUGCHK,			i,	23
+	PRV$V_PRMGBL,			i,	24
+	PRV$V_SYSGBL,			i,	25
+	PRV$V_PFNMAP,			i,	26
+	PRV$V_SHMEM,			i,	27
+	PRV$V_SYSPRV,			i,	28
+	PRV$V_BYPASS,			i,	29
+	PRV$V_SYSLCK,			i,	30
+	PRV$V_SHARE,			i,	31
+	PRV$V_UPGRADE,			i,	32
+	PRV$V_DOWNGRADE,		i,	33
+	PRV$V_GRPPRV,			i,	34
+	PRV$V_READALL,			i,	35
+	PRV$V_IMPORT,			i,	36
+	PRV$V_AUDIT,			i,	37
+	PRV$V_SECURITY,			i,	38
+	PRV$V_ACNT,				i,	9
+	PRV$V_ALTPRI,			i,	13
+	PRV$L_L1_BITS,			i,	0
+	PRV$L_L2_BITS,			i,	4
+	PRV$V_DETACH,			i,	5
+	PRV$M_SORTED,			i,	%x("1")
+	PRV$M_BRIEF,			i,	%x("2")
+	PRV$M_FILLED,			i,	%x("4")
+	PRV$V_SORTED,			i,	0
+	PRV$V_BRIEF,			i,	1
+	PRV$V_FILLED,			i,	2
+	PRV$K_PRVMASK_WORKING,	i,	0
+	PRV$K_PRVMASK_PERMANENT,i,	1
+	PRV$K_PRVMASK_IMAGE,	i,	2
+.list

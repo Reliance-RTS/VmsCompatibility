@@ -1,0 +1,273 @@
+;;*****************************************************************************
+;;
+;; Title:       $FABDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	FAB$C_BID,				i,	3
+	FAB$M_PPF_RAT,			i,	%x("3FC0")
+	FAB$M_PPF_IND,			i,	%x("4000")
+	FAB$M_PPIFI,			i,	%x("8000")
+	FAB$M_ASY,				i,	%x("1")
+	FAB$M_MXV,				i,	%x("2")
+	FAB$M_SUP,				i,	%x("4")
+	FAB$M_TMP,				i,	%x("8")
+	FAB$M_TMD,				i,	%x("10")
+	FAB$M_DFW,				i,	%x("20")
+	FAB$M_SQO,				i,	%x("40")
+	FAB$M_RWO,				i,	%x("80")
+	FAB$M_POS,				i,	%x("100")
+	FAB$M_WCK,				i,	%x("200")
+	FAB$M_NEF,				i,	%x("400")
+	FAB$M_RWC,				i,	%x("800")
+	FAB$M_DMO,				i,	%x("1000")
+	FAB$M_SPL,				i,	%x("2000")
+	FAB$M_SCF,				i,	%x("4000")
+	FAB$M_DLT,				i,	%x("8000")
+	FAB$M_NFS,				i,	%x("10000")
+	FAB$M_UFO,				i,	%x("20000")
+	FAB$M_PPF,				i,	%x("40000")
+	FAB$M_INP,				i,	%x("80000")
+	FAB$M_CTG,				i,	%x("100000")
+	FAB$M_CBT,				i,	%x("200000")
+	FAB$M_SYNCSTS,			i,	%x("400000")
+	FAB$M_RCK,				i,	%x("800000")
+	FAB$M_NAM,				i,	%x("1000000")
+	FAB$M_CIF,				i,	%x("2000000")
+	FAB$M_ESC,				i,	%x("8000000")
+	FAB$M_TEF,				i,	%x("10000000")
+	FAB$M_OFP,				i,	%x("20000000")
+	FAB$M_KFO,				i,	%x("40000000")
+	FAB$M_EXTEND_FOP,		i,	%x("80000000")
+	FAB$M_ERL,				i,	%x("8000")
+	FAB$M_PUT,				i,	%x("1")
+	FAB$M_GET,				i,	%x("2")
+	FAB$M_DEL,				i,	%x("4")
+	FAB$M_UPD,				i,	%x("8")
+	FAB$M_TRN,				i,	%x("10")
+	FAB$M_BIO,				i,	%x("20")
+	FAB$M_BRO,				i,	%x("40")
+	FAB$M_EXE,				i,	%x("80")
+	FAB$M_SHRPUT,			i,	%x("1")
+	FAB$M_SHRGET,			i,	%x("2")
+	FAB$M_SHRDEL,			i,	%x("4")
+	FAB$M_SHRUPD,			i,	%x("8")
+	FAB$M_MSE,				i,	%x("10")
+	FAB$M_NIL,				i,	%x("20")
+	FAB$M_UPI,				i,	%x("40")
+	FAB$M_NQL,				i,	%x("80")
+	FAB$M_ORG,				i,	%x("F0")
+	FAB$C_SEQ,				i,	0
+	FAB$C_REL,				i,	16
+	FAB$C_IDX,				i,	32
+	FAB$C_HSH,				i,	48
+	FAB$C_SPECIAL,			i,	64
+	FAB$M_FTN,				i,	%x("1")
+	FAB$M_CR,				i,	%x("2")
+	FAB$M_PRN,				i,	%x("4")
+	FAB$M_BLK,				i,	%x("8")
+	FAB$M_MSB,				i,	%x("10")
+	FAB$C_FIFO,				i,	1
+	FAB$C_CHAR_SPECIAL,		i,	2
+	FAB$C_BLOCK_SPECIAL,	i,	3
+	FAB$C_SYMLINK,			i,	4
+	FAB$C_SYMBOLIC_LINK,	i,	5
+	FAB$C_RFM_DFLT,			i,	2
+	FAB$C_UDF,				i,	0
+	FAB$C_FIX,				i,	1
+	FAB$C_VAR,				i,	2
+	FAB$C_VFC,				i,	3
+	FAB$C_STM,				i,	4
+	FAB$C_STMLF,			i,	5
+	FAB$C_STMCR,			i,	6
+	FAB$C_MAXRFM,			i,	6
+	FAB$M_ONLY_RU,			i,	%x("1")
+	FAB$M_RU,				i,	%x("2")
+	FAB$M_BI,				i,	%x("4")
+	FAB$M_AI,				i,	%x("8")
+	FAB$M_AT,				i,	%x("10")
+	FAB$M_NEVER_RU,			i,	%x("20")
+	FAB$M_JOURNAL_FILE,		i,	%x("40")
+	FAB$M_SSIO_RQST,		i,	%x("1")
+	FAB$M_SSIO_GRANTED,		i,	%x("2")
+	FAB$M_SSIO_FOC,			i,	%x("4")
+	FAB$M_RCF_RU,			i,	%x("1")
+	FAB$M_RCF_AI,			i,	%x("2")
+	FAB$M_RCF_BI,			i,	%x("4")
+	FAB$S_FABDEF,			i,	80
+	FAB$B_BID,				i,	0
+	FAB$B_BLN,				i,	1
+	FAB$R_IFI_OVERLAY,		i,	2
+	FAB$W_IFI,				i,	2
+	FAB$R_IFI_BITS,			i,	2
+	FAB$S_PPF_RAT,			i,	8
+	FAB$V_PPF_RAT,			i,	6
+	FAB$V_PPF_IND,			i,	14
+	FAB$V_PPIFI,			i,	15
+	FAB$R_FOP_OVERLAY,		i,	4
+	FAB$L_FOP,				i,	4
+	FAB$R_FOP_BITS,			i,	4
+	FAB$V_ASY,				i,	0
+	FAB$V_MXV,				i,	1
+	FAB$V_SUP,				i,	2
+	FAB$V_TMP,				i,	3
+	FAB$V_TMD,				i,	4
+	FAB$V_DFW,				i,	5
+	FAB$V_SQO,				i,	6
+	FAB$V_RWO,				i,	7
+	FAB$V_POS,				i,	8
+	FAB$V_WCK,				i,	9
+	FAB$V_NEF,				i,	10
+	FAB$V_RWC,				i,	11
+	FAB$V_DMO,				i,	12
+	FAB$V_SPL,				i,	13
+	FAB$V_SCF,				i,	14
+	FAB$V_DLT,				i,	15
+	FAB$V_NFS,				i,	16
+	FAB$V_UFO,				i,	17
+	FAB$V_PPF,				i,	18
+	FAB$V_INP,				i,	19
+	FAB$V_CTG,				i,	20
+	FAB$V_CBT,				i,	21
+	FAB$V_SYNCSTS,			i,	22
+	FAB$V_RCK,				i,	23
+	FAB$V_NAM,				i,	24
+	FAB$V_CIF,				i,	25
+	FAB$V_ESC,				i,	27
+	FAB$V_TEF,				i,	28
+	FAB$V_OFP,				i,	29
+	FAB$V_KFO,				i,	30
+	FAB$V_EXTEND_FOP,		i,	31
+	FAB$R_FOP_BITS_OVERLAY,	i,	4
+	FAB$V_ERL,				i,	15
+	FAB$L_STS,				i,	8
+	FAB$L_STV,				i,	12
+	FAB$L_ALQ,				i,	16
+	FAB$W_DEQ,				i,	20
+	FAB$R_FAC_OVERLAY,		i,	22
+	FAB$B_FAC,				i,	22
+	FAB$R_FAC_BITS,			i,	22
+	FAB$V_PUT,				i,	0
+	FAB$V_GET,				i,	1
+	FAB$V_DEL,				i,	2
+	FAB$V_UPD,				i,	3
+	FAB$V_TRN,				i,	4
+	FAB$V_BIO,				i,	5
+	FAB$V_BRO,				i,	6
+	FAB$V_EXE,				i,	7
+	FAB$R_SHR_OVERLAY,		i,	23
+	FAB$B_SHR,				i,	23
+	FAB$R_SHR_BITS,			i,	23
+	FAB$V_SHRPUT,			i,	0
+	FAB$V_SHRGET,			i,	1
+	FAB$V_SHRDEL,			i,	2
+	FAB$V_SHRUPD,			i,	3
+	FAB$V_MSE,				i,	4
+	FAB$V_NIL,				i,	5
+	FAB$V_UPI,				i,	6
+	FAB$V_NQL,				i,	7
+	FAB$L_CTX,				i,	24
+	FAB$B_RTV,				i,	28
+	FAB$R_ORG_OVERLAY,		i,	29
+	FAB$B_ORG,				i,	29
+	FAB$R_ORG_BITS,			i,	29
+	FAB$S_ORG,				i,	4
+	FAB$V_ORG,				i,	4
+	FAB$R_RAT_OVERLAY,		i,	30
+	FAB$B_RAT,				i,	30
+	FAB$R_RAT_BITS,			i,	30
+	FAB$V_FTN,				i,	0
+	FAB$V_CR,				i,	1
+	FAB$V_PRN,				i,	2
+	FAB$V_BLK,				i,	3
+	FAB$V_MSB,				i,	4
+	FAB$B_SPECIAL_TYPE,		i,	30
+	FAB$B_RFM,				i,	31
+	FAB$R_JOURNAL_OVERLAY,	i,	32
+	FAB$B_JOURNAL,			i,	32
+	FAB$R_JOURNAL_BITS,		i,	32
+	FAB$V_ONLY_RU,			i,	0
+	FAB$V_RU,				i,	1
+	FAB$V_BI,				i,	2
+	FAB$V_AI,				i,	3
+	FAB$V_AT,				i,	4
+	FAB$V_NEVER_RU,			i,	5
+	FAB$V_JOURNAL_FILE,		i,	6
+	FAB$B_RU_FACILITY,		i,	33
+	FAB$R_FOPEXT_OVERLAY,	i,	34
+	FAB$W_FOPEXT,			i,	34
+	FAB$R_FOPEXT_BITS,		i,	34
+	FAB$V_SSIO_RQST,		i,	0
+	FAB$V_SSIO_GRANTED,		i,	1
+	FAB$V_SSIO_FOC,			i,	2
+	FAB$L_XAB,				i,	36
+	FAB$R_NAM_OVERLAY,		i,	40
+	FAB$L_NAM,				i,	40
+	FAB$L_NAML,				i,	40
+	FAB$L_FNA,				i,	44
+	FAB$L_DNA,				i,	48
+	FAB$B_FNS,				i,	52
+	FAB$B_DNS,				i,	53
+	FAB$W_MRS,				i,	54
+	FAB$L_MRN,				i,	56
+	FAB$W_BLS,				i,	60
+	FAB$B_BKS,				i,	62
+	FAB$B_FSZ,				i,	63
+	FAB$L_DEV,				i,	64
+	FAB$L_SDC,				i,	68
+	FAB$W_GBC,				i,	72
+	FAB$R_ACMODES_OVERLAY,	i,	74
+	FAB$B_ACMODES,			i,	74
+	FAB$R_ACMODES_BITS,		i,	74
+	FAB$S_LNM_MODE,			i,	2
+	FAB$V_LNM_MODE,			i,	0
+	FAB$S_CHAN_MODE,		i,	2
+	FAB$V_CHAN_MODE,		i,	2
+	FAB$S_FILE_MODE,		i,	2
+	FAB$V_FILE_MODE,		i,	4
+	FAB$S_CALLERS_MODE,		i,	2
+	FAB$V_CALLERS_MODE,		i,	6
+	FAB$R_RCF_OVERLAY,		i,	75
+	FAB$B_RCF,				i,	75
+	FAB$R_RCF_BITS,			i,	75
+	FAB$V_RCF_RU,			i,	0
+	FAB$V_RCF_AI,			i,	1
+	FAB$V_RCF_BI,			i,	2
+	FAB$W_GBC_INITIAL,		i,	76
+	FAB$W_RESERVED_MBZ,		i,	78
+	FAB$K_BLN,				i,	80
+	FAB$C_BLN,				i,	80
+.list

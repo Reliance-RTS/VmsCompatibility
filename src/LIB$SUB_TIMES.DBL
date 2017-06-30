@@ -38,13 +38,20 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="laterTime"></param>
+;;; <param name="earlierTime"></param>
+;;; <param name="deltaTime"></param>
+;;; <returns></returns>
 function LIB$SUB_TIMES,	^val
-	%ref(laterTime)		,i8
-	%ref(earlierTime)	,i8
-	%ref(deltaTime)		,i8
-	endparams
+    required in  %ref(laterTime),		i8
+    required in  %ref(earlierTime),		i8
+    required out  %ref(deltaTime),		i8
+    endparams
 proc
-	deltaTime = laterTime - earlierTime
-	freturn 1
+    deltaTime = laterTime - earlierTime
+    freturn 1
 endfunction
 

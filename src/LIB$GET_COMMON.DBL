@@ -38,6 +38,11 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="valuetoGet"></param>
+;;; <returns></returns>
 subroutine LIB$GET_COMMON
 	valuetoGet,	a
 	record

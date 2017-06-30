@@ -1,4 +1,3 @@
-
 ;;*****************************************************************************
 ;;
 ;; Title:       MonthShortNameToNumber.dbl
@@ -39,8 +38,13 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="monthName"></param>
+;;; <returns></returns>
 function MonthShortNameToNumber,	^val
-	required in monthName,			a
+	required in  monthName,			a
 	endparams
 	record 
 		name	,a3

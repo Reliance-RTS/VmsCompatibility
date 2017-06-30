@@ -1,0 +1,83 @@
+;;*****************************************************************************
+;;
+;; Title:       $LNMDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	LNM$M_NO_ALIAS,			i,	%x("1")
+	LNM$M_CONFINE,			i,	%x("2")
+	LNM$M_CRELOG,			i,	%x("4")
+	LNM$M_TABLE,			i,	%x("8")
+	LNM$M_CONCEALED,		i,	%x("100")
+	LNM$M_TERMINAL,			i,	%x("200")
+	LNM$M_EXISTS,			i,	%x("400")
+	LNM$M_SHAREABLE,		i,	%x("10000")
+	LNM$M_CLUSTERWIDE,		i,	%x("20000")
+	LNM$M_DCL_REQUEST,		i,	%x("40000")
+	LNM$M_CREATE_IF,		i,	%x("1000000")
+	LNM$M_CASE_BLIND,		i,	%x("2000000")
+	LNM$M_INTERLOCKED,		i,	%x("4000000")
+	LNM$M_LOCAL_ACTION,		i,	%x("8000000")
+	LNM$S_LNMDEF,			i,	4
+	LNM$V_NO_ALIAS,			i,	0
+	LNM$V_CONFINE,			i,	1
+	LNM$V_CRELOG,			i,	2
+	LNM$V_TABLE,			i,	3
+	LNM$V_CONCEALED,		i,	8
+	LNM$V_TERMINAL,			i,	9
+	LNM$V_EXISTS,			i,	10
+	LNM$V_SHAREABLE,		i,	16
+	LNM$V_CLUSTERWIDE,		i,	17
+	LNM$V_DCL_REQUEST,		i,	18
+	LNM$V_CREATE_IF,		i,	24
+	LNM$V_CASE_BLIND,		i,	25
+	LNM$V_INTERLOCKED,		i,	26
+	LNM$V_LOCAL_ACTION,		i,	27
+	LNM$C_TABNAMLEN,		i,	31
+	LNM$C_NAMLENGTH,		i,	255
+	LNM$C_MAXDEPTH,			i,	10
+	LNM$_INDEX,				i,	1
+	LNM$_STRING,			i,	2
+	LNM$_ATTRIBUTES,		i,	3
+	LNM$_TABLE,				i,	4
+	LNM$_LENGTH,			i,	5
+	LNM$_ACMODE,			i,	6
+	LNM$_MAX_INDEX,			i,	7
+	LNM$_PARENT,			i,	8
+	LNM$_LNMB_ADDR,			i,	9
+	LNM$_AGENT_ACMODE,		i,	10
+	LNM$_CHAIN,				i,	-1
+.list

@@ -3,7 +3,7 @@
   <Import Project="$(SolutionDir)Common.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Configuration)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Configuration)' == '' ">VMS</Platform>
     <Name>VMSLib</Name>
     <StartupObject>
     </StartupObject>
@@ -17,47 +17,25 @@
     <CommonPropertiesFileLocation>$(SolutionDir)Common.props</CommonPropertiesFileLocation>
     <RootNamespace>VMSLib</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|VMS' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
     <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
     <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>VMS</PlatformTarget>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DebugOptimize>Debug</DebugOptimize>
-    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <TargetRuntimeLevel>10030300</TargetRuntimeLevel>
-    <LanguageCompatibilityLevel>10030300</LanguageCompatibilityLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <IncludeDebugInformation>true</IncludeDebugInformation>
-    <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
-    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
-    <PlatformTarget>x64</PlatformTarget>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DebugOptimize>Debug</DebugOptimize>
-    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <TargetRuntimeLevel>10030300</TargetRuntimeLevel>
-    <LanguageCompatibilityLevel>10030300</LanguageCompatibilityLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <IncludeDebugInformation>true</IncludeDebugInformation>
-    <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
-    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
-    <PlatformTarget>x86</PlatformTarget>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DebugOptimize>Optimize</DebugOptimize>
+    <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|VMS' ">
     <IncludeDebugInformation>False</IncludeDebugInformation>
     <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
     <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>VMS</PlatformTarget>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DebugOptimize>Optimize</DebugOptimize>
+    <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <TargetRuntimeLevel>10030300</TargetRuntimeLevel>
-    <LanguageCompatibilityLevel>10030300</LanguageCompatibilityLevel>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Synergex\dbl\Synergex.SynergyDE.Traditional.targets" />
   <PropertyGroup>
@@ -67,28 +45,116 @@
     </PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\src\DBL%24SETKRF.DBL" />
-    <Compile Include="..\src\LIB%24ADD_TIMES.DBL" />
-    <Compile Include="..\src\LIB%24DATE_TIME.DBL" />
-    <Compile Include="..\src\LIB%24DAY_OF_WEEK.DBL" />
-    <Compile Include="..\src\LIB%24GET_COMMON.DBL" />
-    <Compile Include="..\src\LIB%24GET_FOREIGN.DBL" />
-    <Compile Include="..\src\LIB%24GET_SYMBOL.DBL" />
-    <Compile Include="..\src\LIB%24PUT_COMMON.DBL" />
-    <Compile Include="..\src\LIB%24SET_LOGICAL.DBL" />
-    <Compile Include="..\src\LIB%24SET_SYMBOL.DBL" />
-    <Compile Include="..\src\LIB%24STOP.DBL" />
-    <Compile Include="..\src\LIB%24SUB_TIMES.DBL" />
-    <Compile Include="..\src\MonthNumberToShortName.dbl" />
-    <Compile Include="..\src\MonthShortNameToNumber.dbl" />
-    <Compile Include="..\src\STR%24CONCAT.DBL" />
-    <Compile Include="..\src\STR%24TRIM.DBL" />
-    <Compile Include="..\src\SUCCESS.DBL" />
-    <Compile Include="..\src\SYS%24ASCTIM.DBL" />
-    <Compile Include="..\src\SYS%24BINTIM.DBL" />
-    <Compile Include="..\src\SYS%24GETTIM.DBL" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src" />
+    <Compile Include="..\src\CHAIN.DBL">
+      <Link>CHAIN.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\DBL%24DEVCLT.DBL">
+      <Link>DBL$DEVCLT.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\DBL%24IXREAD.DBL">
+      <Link>DBL$IXREAD.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\DBL%24SETKRF.DBL">
+      <Link>DBL$SETKRF.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\DBL%24SNDOPR.DBL">
+      <Link>DBL$SNDOPR.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\EDT%24EDIT.DBL">
+      <Link>EDT$EDIT.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\EMPBUF.DBL">
+      <Link>EMPBUF.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\GETCM.DBL">
+      <Link>GETCM.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\GTENT.DBL">
+      <Link>GTENT.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24ADD_TIMES.DBL">
+      <Link>LIB$ADD_TIMES.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24CURRENCY.DBL">
+      <Link>LIB$CURRENCY.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24CVT_DX_DX.DBL">
+      <Link>LIB$CVT_DX_DX.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24DATE_TIME.DBL">
+      <Link>LIB$DATE_TIME.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24DAY_OF_WEEK.DBL">
+      <Link>LIB$DAY_OF_WEEK.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24DELETE_SYMBOL.DBL">
+      <Link>LIB$DELETE_SYMBOL.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24DO_COMMAND.DBL">
+      <Link>LIB$DO_COMMAND.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24GET_COMMON.DBL">
+      <Link>LIB$GET_COMMON.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24GET_FOREIGN.DBL">
+      <Link>LIB$GET_FOREIGN.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24GET_SYMBOL.DBL">
+      <Link>LIB$GET_SYMBOL.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24PUT_COMMON.DBL">
+      <Link>LIB$PUT_COMMON.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24PUT_OUTPUT.DBL">
+      <Link>LIB$PUT_OUTPUT.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24SET_LOGICAL.DBL">
+      <Link>LIB$SET_LOGICAL.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24SET_SYMBOL.DBL">
+      <Link>LIB$SET_SYMBOL.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24STOP.DBL">
+      <Link>LIB$STOP.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24SUB_TIMES.DBL">
+      <Link>LIB$SUB_TIMES.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\MonthNumberToShortName.dbl">
+      <Link>MonthNumberToShortName.dbl</Link>
+    </Compile>
+    <Compile Include="..\src\MonthShortNameToNumber.dbl">
+      <Link>MonthShortNameToNumber.dbl</Link>
+    </Compile>
+    <Compile Include="..\src\PUTCM.DBL">
+      <Link>PUTCM.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\STR%24CONCAT.DBL">
+      <Link>STR$CONCAT.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\STR%24DUPL_CHAR.DBL">
+      <Link>STR$DUPL_CHAR.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\STR%24TRIM.DBL">
+      <Link>STR$TRIM.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\STR%24UPCASE.DBL">
+      <Link>STR$UPCASE.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\SUCCESS.DBL">
+      <Link>SUCCESS.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\SYS%24ASCTIM.DBL">
+      <Link>SYS$ASCTIM.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\SYS%24BINTIM.DBL">
+      <Link>SYS$BINTIM.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\SYS%24GETTIM.DBL">
+      <Link>SYS$GETTIM.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\VMSSYSTEM.DBL">
+      <Link>VMSSYSTEM.DBL</Link>
+    </Compile>
   </ItemGroup>
 </Project>

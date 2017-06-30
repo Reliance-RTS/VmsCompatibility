@@ -1,0 +1,273 @@
+;;*****************************************************************************
+;;
+;; Title:       $JPIDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	JPI$K_DEFAULT_POLICY,			i,	0
+	JPI$K_PSX_FIFO_POLICY,			i,	1
+	JPI$K_PSX_RR_POLICY,			i,	2
+	JPI$K_ALL_THREADS,				i,	-2147483648
+	JPI$C_ADRTYPE,					i,	1
+	JPI$C_CTLTYPE,					i,	2
+	JPI$C_PCBTYPE,					i,	3
+	JPI$C_PHDTYPE,					i,	4
+	JPI$C_PCBFLDTYPE,				i,	5
+	JPI$C_PHDFLDTYPE,				i,	6
+	JPI$C_JIBTYPE,					i,	7
+	JPI$C_PSBTYPE,					i,	8
+	JPI$C_KTBTYPE,					i,	9
+	JPI$C_MAXSTRUC,					i,	6
+	JPI$C_LISTEND,					i,	0
+	JPI$_CHAIN,						i,	-1
+	JPI$_GETJPI_CONTROL_FLAGS,		i,	-2
+	JPI$M_NO_TARGET_INSWAP,			i,	%x("1")
+	JPI$M_NO_TARGET_AST,			i,	%x("2")
+	JPI$M_IGNORE_TARGET_STATUS,		i,	%x("4")
+	JPI$M_THREAD,					i,	%x("8")
+	JPI$M_NATURAL_PERSONA,			i,	%x("10")
+	JPI$M_FILL1,					i,	%x("7FE0")
+	JPI$M_NEED_THREAD_CAP,			i,	%x("8000")
+	JPI$S_JPICTLDEF,				i,	4
+	JPI$V_NO_TARGET_INSWAP,			i,	0
+	JPI$V_NO_TARGET_AST,			i,	1
+	JPI$V_IGNORE_TARGET_STATUS,		i,	2
+	JPI$V_THREAD,					i,	3
+	JPI$V_NATURAL_PERSONA,			i,	4
+	JPI$S_FILL1,					i,	10
+	JPI$V_FILL1,					i,	5
+	JPI$V_NEED_THREAD_CAP,			i,	15
+	JPI$K_OTHER,					i,	0
+	JPI$K_NETWORK,					i,	1
+	JPI$K_BATCH,					i,	2
+	JPI$K_INTERACTIVE,				i,	3
+	JPI$K_DETACHED,					i,	0
+	JPI$K_LOCAL,					i,	3
+	JPI$K_DIALUP,					i,	4
+	JPI$K_REMOTE,					i,	5
+	JPI$M_NEW_MAIL_AT_LOGIN,		i,	%x("1")
+	JPI$M_PASSWORD_CHANGED,			i,	%x("2")
+	JPI$M_PASSWORD_EXPIRED,			i,	%x("4")
+	JPI$M_PASSWORD_WARNING,			i,	%x("8")
+	JPI$M_PASSWORD2_CHANGED,		i,	%x("10")
+	JPI$M_PASSWORD2_EXPIRED,		i,	%x("20")
+	JPI$M_PASSWORD2_WARNING,		i,	%x("40")
+	JPI$S_JPILGIDEF,				i,	4
+	JPI$V_NEW_MAIL_AT_LOGIN,		i,	0
+	JPI$V_PASSWORD_CHANGED,			i,	1
+	JPI$V_PASSWORD_EXPIRED,			i,	2
+	JPI$V_PASSWORD_WARNING,			i,	3
+	JPI$V_PASSWORD2_CHANGED,		i,	4
+	JPI$V_PASSWORD2_EXPIRED,		i,	5
+	JPI$V_PASSWORD2_WARNING,		i,	6
+	JPI$K_SEARCH_SYMLINK_NONE,		i,	1
+	JPI$K_SEARCH_SYMLINK_ALL,		i,	2
+	JPI$K_SEARCH_SYMLINK_NOELLIPS,	i,	3
+	JPI$_ASTACT,					i,	768
+	JPI$_ASTEN,						i,	769
+	JPI$_PRI,						i,	770
+	JPI$_OWNER,						i,	771
+	JPI$_UIC,						i,	772
+	JPI$_STS,						i,	773
+	JPI$_STATE,						i,	774
+	JPI$_MEM,						i,	775
+	JPI$_GRP,						i,	776
+	JPI$_PRIB,						i,	777
+	JPI$_APTCNT,					i,	778
+	JPI$_TMBU,						i,	779
+	JPI$_GPGCNT,					i,	780
+	JPI$_PPGCNT,					i,	781
+	JPI$_ASTCNT,					i,	782
+	JPI$_BIOCNT,					i,	783
+	JPI$_BIOLM,						i,	784
+	JPI$_BYTCNT,					i,	785
+	JPI$_DIOCNT,					i,	786
+	JPI$_DIOLM,						i,	787
+	JPI$_FILCNT,					i,	788
+	JPI$_TQCNT,						i,	789
+	JPI$_EFWM,						i,	790
+	JPI$_EFCS,						i,	791
+	JPI$_EFCU,						i,	792
+	JPI$_PID,						i,	793
+	JPI$_BYTLM,						i,	794
+	JPI$_PRCCNT,					i,	795
+	JPI$_PRCNAM,					i,	796
+	JPI$_TERMINAL,					i,	797
+	JPI$_JOBPRCCNT,					i,	798
+	JPI$_ENQCNT,					i,	799
+	JPI$_ENQLM,						i,	800
+	JPI$_SWPFILLOC,					i,	801
+	JPI$_MODE,						i,	802
+	JPI$_JOBTYPE,					i,	803
+	JPI$_PROC_INDEX,				i,	804
+	JPI$_MASTER_PID,				i,	805
+	JPI$_RIGHTSLIST,				i,	806
+	JPI$_CPU_ID,					i,	807
+	JPI$_STS2,						i,	808
+	JPI$_NODENAME,					i,	809
+	JPI$_NODE_CSID,					i,	810
+	JPI$_NODE_VERSION,				i,	811
+	JPI$_TT_PHYDEVNAM,				i,	812
+	JPI$_TT_ACCPORNAM,				i,	813
+	JPI$_PROCESS_RIGHTS,			i,	814
+	JPI$_SYSTEM_RIGHTS,				i,	815
+	JPI$_IMAGE_RIGHTS,				i,	816
+	JPI$_RIGHTS_SIZE,				i,	817
+	JPI$_CLASSIFICATION,			i,	818
+	JPI$_SCHED_POLICY,				i,	819
+	JPI$_RMS_FILEPROT,				i,	820
+	JPI$_MULTITHREAD,				i,	821
+	JPI$_KT_COUNT,					i,	822
+	JPI$_INITIAL_THREAD_PID,		i,	823
+	JPI$_THREAD_INDEX,				i,	824
+	JPI$_CURRENT_USERCAP_MASK,		i,	825
+	JPI$_PERMANENT_USERCAP_MASK,	i,	826
+	JPI$_CURRENT_AFFINITY_MASK,		i,	827
+	JPI$_PERMANENT_AFFINITY_MASK,	i,	828
+	JPI$_PERSONA_ID,				i,	829
+	JPI$_PERSONA_AUTHPRIV,			i,	830
+	JPI$_PERSONA_PERMPRIV,			i,	831
+	JPI$_PERSONA_WORKPRIV,			i,	832
+	JPI$_IMAGE_WORKPRIV,			i,	833
+	JPI$_PERSONA_RIGHTS_SIZE,		i,	834
+	JPI$_PERSONA_RIGHTS,			i,	835
+	JPI$_SUBSYSTEM_RIGHTS_SIZE,		i,	836
+	JPI$_SUBSYSTEM_RIGHTS,			i,	837
+	JPI$_INSTALL_RIGHTS_SIZE,		i,	838
+	JPI$_INSTALL_RIGHTS,			i,	839
+	JPI$_SYSTEM_RIGHTS_SIZE,		i,	840
+	JPI$_CURRENT_CAP_MASK,			i,	841
+	JPI$_PERMANENT_CAP_MASK,		i,	842
+	JPI$_SCHED_CLASS_NAME,			i,	843
+	JPI$_HOME_RAD,					i,	844
+	JPI$_POSIX_SID,					i,	845
+	JPI$_POSIX_PGID,				i,	846
+	JPI$_CREATOR,					i,	847
+	JPI$_KRNLTIM,					i,	848
+	JPI$_EXECTIM,					i,	849
+	JPI$_SUPRTIM,					i,	850
+	JPI$_USERTIM,					i,	851
+	JPI$_ORG_BYTLM,					i,	852
+	JPI$_DEADLOCK_WAIT,				i,	853
+	JPI$_KT_LIMIT,					i,	854
+	JPI$_LASTPCB,					i,	855
+	JPI$_CURPRIV,					i,	1024
+	JPI$_WSAUTH,					i,	1025
+	JPI$_WSQUOTA,					i,	1026
+	JPI$_DFWSCNT,					i,	1027
+	JPI$_FREP0VA,					i,	1028
+	JPI$_FREP1VA,					i,	1029
+	JPI$_DFPFC,						i,	1030
+	JPI$_CPUTIM,					i,	1031
+	JPI$_PRCLM,						i,	1032
+	JPI$_ASTLM,						i,	1033
+	JPI$_PAGEFLTS,					i,	1034
+	JPI$_DIRIO,						i,	1035
+	JPI$_BUFIO,						i,	1036
+	JPI$_CPULIM,					i,	1037
+	JPI$_PGFLQUOTA,					i,	1038
+	JPI$_FILLM,						i,	1039
+	JPI$_TQLM,						i,	1040
+	JPI$_WSSIZE,					i,	1041
+	JPI$_AUTHPRIV,					i,	1042
+	JPI$_IMAGPRIV,					i,	1043
+	JPI$_PAGFILCNT,					i,	1044
+	JPI$_FREPTECNT,					i,	1045
+	JPI$_WSEXTENT,					i,	1046
+	JPI$_WSAUTHEXT,					i,	1047
+	JPI$_AUTHPRI,					i,	1048
+	JPI$_PAGFILLOC,					i,	1049
+	JPI$_IMAGECOUNT,				i,	1050
+	JPI$_PHDFLAGS,					i,	1051
+	JPI$_VP_CPUTIM,					i,	1052
+	JPI$_VP_CONSUMER,				i,	1053
+	JPI$_P0_FIRST_FREE_VA_64,		i,	1054
+	JPI$_P1_FIRST_FREE_VA_64,		i,	1055
+	JPI$_P2_FIRST_FREE_VA_64,		i,	1056
+	JPI$_IMAGE_AUTHPRIV,			i,	1057
+	JPI$_IMAGE_PERMPRIV,			i,	1058
+	JPI$_LASTPHD,					i,	1059
+	JPI$_VIRTPEAK,					i,	512
+	JPI$_WSPEAK,					i,	513
+	JPI$_USERNAME,					i,	514
+	JPI$_ACCOUNT,					i,	515
+	JPI$_PROCPRIV,					i,	516
+	JPI$_VOLUMES,					i,	517
+	JPI$_LOGINTIM,					i,	518
+	JPI$_IMAGNAME,					i,	519
+	JPI$_SITESPEC,					i,	520
+	JPI$_MSGMASK,					i,	521
+	JPI$_CLINAME,					i,	522
+	JPI$_TABLENAME,					i,	523
+	JPI$_CREPRC_FLAGS,				i,	524
+	JPI$_UAF_FLAGS,					i,	525
+	JPI$_MAXDETACH,					i,	526
+	JPI$_MAXJOBS,					i,	527
+	JPI$_SHRFILLM,					i,	528
+	JPI$_FAST_VP_SWITCH,			i,	529
+	JPI$_SLOW_VP_SWITCH,			i,	530
+	JPI$_LAST_LOGIN_I,				i,	531
+	JPI$_LAST_LOGIN_N,				i,	532
+	JPI$_LOGIN_FAILURES,			i,	533
+	JPI$_LOGIN_FLAGS,				i,	534
+	JPI$_RMS_DFMBC,					i,	535
+	JPI$_RMS_DFMBFSDK,				i,	536
+	JPI$_RMS_DFMBFSMT,				i,	537
+	JPI$_RMS_DFMBFSUR,				i,	538
+	JPI$_RMS_DFMBFREL,				i,	539
+	JPI$_RMS_DFMBFIDX,				i,	540
+	JPI$_RMS_PROLOGUE,				i,	541
+	JPI$_RMS_EXTEND_SIZE,			i,	542
+	JPI$_RMS_DFNBC,					i,	543
+	JPI$_RMS_DFLRL,					i,	544
+	JPI$_RMS_HEURISTIC,				i,	545
+	JPI$_PARSE_STYLE_PERM,			i,	546
+	JPI$_PARSE_STYLE_IMAGE,			i,	547
+	JPI$_RMSD6,						i,	548
+	JPI$_RMS_QUERY_LOCK,			i,	549
+	JPI$_CASE_LOOKUP_PERM,			i,	550
+	JPI$_CASE_LOOKUP_IMAGE,			i,	551
+	JPI$_UNITS,						i,	552
+	JPI$_TOKEN,						i,	553
+	JPI$_SEARCH_SYMLINK_PERM,		i,	554
+	JPI$_SEARCH_SYMLINK_TEMP,		i,	555
+	JPI$_LASTCTL,					i,	556
+	JPI$_EXCVEC,					i,	256
+	JPI$_FINALEXC,					i,	257
+	JPI$_LASTADR,					i,	258
+	JPI$_LASTPCBFLD,				i,	1280
+	JPI$_LASTPHDFLD,				i,	1536
+.list

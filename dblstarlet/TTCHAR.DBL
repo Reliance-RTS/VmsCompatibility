@@ -1,0 +1,93 @@
+;;*****************************************************************************
+;;
+;; Title:       TTCHAR.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: Terminal attributes definitions
+;;              These fields define the positions within the attributes field
+;;              for the characteristics returned by subroutine DBL$TTCHAR.
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+literal
+	TT_SCOPE,		I1,	1
+	TT_ANSICRT,		I1,	2
+	TT_DECCRT,		I1,	3
+	TT_AVO,			I1,	4
+	TT_BLOCK,		I1,	5
+	TT_EDIT,		I1,	6
+	TT_REGIS,		I1,	7
+	TT_LOWER,		I1,	8
+	TT_WRAP,		I1,	9
+	TT_MECHFORM,	I1,	10
+	TT_MECHTAB,		I1,	11
+	TT_PASSALL,		I1,	12
+	TT_EIGHTBIT,	I1,	13
+	TT_DMA,			I1,	14
+	TT_NOECHO,		I1,	15
+	TT_LOCALECHO,	I1,	16
+	TT_ESCAPE,		I1,	17
+	TT_REMOTE,		I1,	18
+	TT_MODEM,		I1,	19
+	TT_AUTOBAUD,	I1,	20
+	TT_HANGUP,		I1,	21
+	TT_MODHANGUP,	I1,	22
+	TT_CRFILL,		I1,	23
+	TT_LFFILL,		I1,	24
+	TT_HOSTSYNC,	I1,	25
+	TT_READSYNC,	I1,	26
+	TT_TTSYNC,		I1,	27
+	TT_HALFDUP,		I1,	28
+	TT_XON,			I1,	29
+	TT_HOLDSCREEN,	I1,	30
+	TT_NOBRDCST,	I1,	31
+	TT_BRDCSTMBX,	I1,	32
+	TT_MBXDSABL,	I1,	33
+	TT_NOTYPEAHD,	I1,	34
+	TT_ALTYPEAHD,	I1,	35
+	TT_SETSPEED,	I1,	36
+	TT_EDITING,		I1,	37
+	TT_INSERT,		I1,	38
+	TT_FALLBACK,	I1,	39
+	TT_DIALUP,		I1,	40
+	TT_SECURE,		I1,	41
+	TT_DISCONNECT,	I1,	42
+	TT_PASTHRU,		I1,	43
+	TT_SIXEL,		I1,	44
+	TT_DRCS,		I1,	45
+	TT_PRINTER,		I1,	46
+	TT_APP_KEYPAD,	I1,	47
+	TT_SYSPWD,		I1,	48
+	TT_SCRIPT,		I1,	49
+	TT_DECCRT2,		I1,	50
+	TT_DECCRT3,		I1,	51
+	TT_DECCRT4,		I1,	52
+endliteral

@@ -1,0 +1,73 @@
+;;*****************************************************************************
+;;
+;; Title:       $XABALLDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	XAB$C_ALL,			i,	20
+	XAB$M_HRD,			i,	%x("1")
+	XAB$M_ONC,			i,	%x("2")
+	XAB$M_CBT,			i,	%x("20")
+	XAB$M_CTG,			i,	%x("80")
+	XAB$C_ANY,			i,	0
+	XAB$C_CYL,			i,	1
+	XAB$C_LBN,			i,	2
+	XAB$C_VBN,			i,	3
+	XAB$C_RFI,			i,	4
+	XAB$S_XABALLDEF,	i,	32
+	XAB$R_AOP_OVERLAY,	i,	8
+	XAB$B_AOP,			i,	8
+	XAB$R_AOP_BITS,		i,	8
+	XAB$V_HRD,			i,	0
+	XAB$V_ONC,			i,	1
+	XAB$V_CBT,			i,	5
+	XAB$V_CTG,			i,	7
+	XAB$B_ALN,			i,	9
+	XAB$W_VOL,			i,	10
+	XAB$L_LOC,			i,	12
+	XAB$L_ALQ,			i,	16
+	XAB$W_DEQ,			i,	20
+	XAB$B_AID,			i,	23
+	XAB$R_RFI_OVERLAY,	i,	24
+	XAB$S_RFI,			i,	6
+	XAB$W_RFI,			i,	24
+	XAB$R_RFI_FIELDS,	i,	24
+	XAB$W_RFI0,			i,	24
+	XAB$W_RFI2,			i,	26
+	XAB$W_RFI4,			i,	28
+	XAB$K_ALLLEN,		i,	32
+	XAB$C_ALLLEN,		i,	32
+.list

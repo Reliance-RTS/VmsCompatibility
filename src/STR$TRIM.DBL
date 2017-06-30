@@ -38,30 +38,43 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="destination"></param>
+;;; <param name="source"></param>
+;;; <param name="len"></param>
+;;; <returns></returns>
 subroutine STR$TRIM
-	destination,		a
-	source,				a
-	%ref(length),		i
-	endparams
+    required out destination	,a
+    required in  source			,a
+    optional out %ref(len)		,i2
+    endparams
+    record 
+		length	,i4
 proc
-	clear destination,	length
+    clear destination,	length
 
-	if (source)
-	begin
+    if (source)
+    begin
 		data ix, i4
 		for ix from %trim(source) thru 1 by -1
 		begin
-			if (source(ix:1)&&(source(ix:1)!=%char(9)))
-			begin
+		    if (source(ix:1)&&(source(ix:1)!=%char(9)))
+		    begin
 				length = ix
 				exitloop
 			end
 		end
+
 		if (length)
 			destination = source(1:length)
-	end
+
+		if (^passed(len))
+			len = length
+    end
 	
-	xreturn
+    xreturn
 	
 endsubroutine
 

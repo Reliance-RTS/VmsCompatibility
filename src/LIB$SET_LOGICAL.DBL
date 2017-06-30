@@ -38,9 +38,15 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="logicalName"></param>
+;;; <param name="valueToSet"></param>
+;;; <returns></returns>
 subroutine LIB$SET_LOGICAL
-	required in logicalName,	a
-	required in valueToSet,		a
+	required in  logicalName,	a
+	required in  valueToSet,		a
 	endparams
 	stack record
 		status,					i4

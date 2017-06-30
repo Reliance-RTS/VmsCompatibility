@@ -1,0 +1,357 @@
+;;*****************************************************************************
+;;
+;; Title:       $DVIDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	DVI$_DEVCHAR,					i,	2
+	DVI$_DEVCLASS,					i,	4
+	DVI$_DEVTYPE,					i,	6
+	DVI$_DEVBUFSIZ,					i,	8
+	DVI$_DEVDEPEND,					i,	10
+	DVI$_UNIT,						i,	12
+	DVI$_PID,						i,	14
+	DVI$_OWNUIC,					i,	16
+	DVI$_VPROT,						i,	18
+	DVI$_ERRCNT,					i,	20
+	DVI$_OPCNT,						i,	22
+	DVI$_RECSIZ,					i,	24
+	DVI$_MAXBLOCK,					i,	26
+	DVI$_DEVDEPEND2,				i,	28
+	DVI$_REFCNT,					i,	30
+	DVI$_DEVNAM,					i,	32
+	DVI$_VOLNAM,					i,	34
+	DVI$_SECTORS,					i,	36
+	DVI$_TRACKS,					i,	38
+	DVI$_CYLINDERS,					i,	40
+	DVI$_FREEBLOCKS,				i,	42
+	DVI$_LOGVOLNAM,					i,	44
+	DVI$_VOLNUMBER,					i,	46
+	DVI$_VOLCOUNT,					i,	48
+	DVI$_ROOTDEVNAM,				i,	50
+	DVI$_NEXTDEVNAM,				i,	52
+	DVI$_TRANSCNT,					i,	54
+	DVI$_MOUNTCNT,					i,	56
+	DVI$_CLUSTER,					i,	58
+	DVI$_MAXFILES,					i,	60
+	DVI$_SERIALNUM,					i,	62
+	DVI$_ACPPID,					i,	64
+	DVI$_ACPTYPE,					i,	66
+	DVI$_CONCEALED,					i,	68
+	DVI$_REC,						i,	70
+	DVI$_CCL,						i,	72
+	DVI$_TRM,						i,	74
+	DVI$_DIR,						i,	76
+	DVI$_SDI,						i,	78
+	DVI$_SQD,						i,	80
+	DVI$_SPL,						i,	82
+	DVI$_OPR,						i,	84
+	DVI$_RCT,						i,	86
+	DVI$_NET,						i,	88
+	DVI$_FOD,						i,	90
+	DVI$_DUA,						i,	92
+	DVI$_SHR,						i,	94
+	DVI$_GEN,						i,	96
+	DVI$_AVL,						i,	98
+	DVI$_MNT,						i,	100
+	DVI$_MBX,						i,	102
+	DVI$_DMT,						i,	104
+	DVI$_ELG,						i,	106
+	DVI$_ALL,						i,	108
+	DVI$_FOR,						i,	110
+	DVI$_SWL,						i,	112
+	DVI$_IDV,						i,	114
+	DVI$_ODV,						i,	116
+	DVI$_RND,						i,	118
+	DVI$_RTM,						i,	120
+	DVI$_RCK,						i,	122
+	DVI$_WCK,						i,	124
+	DVI$_TT_PASSALL,				i,	126
+	DVI$_TT_NOECHO,					i,	128
+	DVI$_TT_NOTYPEAHD,				i,	130
+	DVI$_TT_ESCAPE,					i,	132
+	DVI$_TT_HOSTSYNC,				i,	134
+	DVI$_TT_TTSYNC,					i,	136
+	DVI$_TT_SCRIPT,					i,	138
+	DVI$_TT_LOWER,					i,	140
+	DVI$_TT_MECHTAB,				i,	142
+	DVI$_TT_WRAP,					i,	144
+	DVI$_TT_CRFILL,					i,	146
+	DVI$_TT_LFFILL,					i,	148
+	DVI$_TT_SCOPE,					i,	150
+	DVI$_TT_REMOTE,					i,	152
+	DVI$_TT_EIGHTBIT,				i,	154
+	DVI$_TT_MBXDSABL,				i,	156
+	DVI$_TT_NOBRDCST,				i,	158
+	DVI$_TT_READSYNC,				i,	160
+	DVI$_TT_MECHFORM,				i,	162
+	DVI$_TT_HALFDUP,				i,	164
+	DVI$_TT_MODEM,					i,	166
+	DVI$_TT_OPER,					i,	168
+	DVI$_TT_PAGE,					i,	170
+	DVI$_TT_LOCALECHO,				i,	172
+	DVI$_TT_AUTOBAUD,				i,	174
+	DVI$_TT_HANGUP,					i,	176
+	DVI$_TT_MODHANGUP,				i,	178
+	DVI$_TT_BRDCSTMBX,				i,	180
+	DVI$_TT_DMA,					i,	182
+	DVI$_TT_ALTYPEAHD,				i,	184
+	DVI$_TT_SETSPEED,				i,	186
+	DVI$_TT_DCL_MAILBX,				i,	188
+	DVI$_TT_EDITING,				i,	190
+	DVI$_TT_INSERT,					i,	192
+	DVI$_TT_FALLBACK,				i,	194
+	DVI$_TT_DIALUP,					i,	196
+	DVI$_TT_SECURE,					i,	198
+	DVI$_TT_DISCONNECT,				i,	200
+	DVI$_TT_PASTHRU,				i,	202
+	DVI$_TT_SIXEL,					i,	204
+	DVI$_TT_DRCS,					i,	206
+	DVI$_TT_PRINTER,				i,	208
+	DVI$_TT_APP_KEYPAD,				i,	210
+	DVI$_TT_SYSPWD,					i,	212
+	DVI$_TT_ANSICRT,				i,	214
+	DVI$_TT_REGIS,					i,	216
+	DVI$_TT_BLOCK,					i,	218
+	DVI$_TT_AVO,					i,	220
+	DVI$_TT_EDIT,					i,	222
+	DVI$_TT_DECCRT,					i,	224
+	DVI$_STS,						i,	226
+	DVI$_DEVSTS,					i,	228
+	DVI$_DEVCHAR2,					i,	230
+	DVI$_FULLDEVNAM,				i,	232
+	DVI$_LOCKID,					i,	234
+	DVI$_ALLDEVNAM,					i,	236
+	DVI$_VOLSETMEM,					i,	238
+	DVI$_DEVLOCKNAM,				i,	240
+	DVI$_ALLOCLASS,					i,	242
+	DVI$_ALT_HOST_AVAIL,			i,	244
+	DVI$_ALT_HOST_NAME,				i,	246
+	DVI$_ALT_HOST_TYPE,				i,	248
+	DVI$_HOST_AVAIL,				i,	250
+	DVI$_HOST_COUNT,				i,	252
+	DVI$_HOST_NAME,					i,	254
+	DVI$_HOST_TYPE,					i,	256
+	DVI$_REMOTE_DEVICE,				i,	258
+	DVI$_SERVED_DEVICE,				i,	260
+	DVI$_SHDW_CATCHUP_COPYING,		i,	262
+	DVI$_SHDW_MASTER,				i,	264
+	DVI$_SHDW_MASTER_NAME,			i,	266
+	DVI$_SHDW_MEMBER,				i,	268
+	DVI$_SHDW_MERGE_COPYING,		i,	270
+	DVI$_SHDW_NEXT_MBR_NAME,		i,	272
+	DVI$_TT_PHYDEVNAM,				i,	274
+	DVI$_TT_DECCRT2,				i,	276
+	DVI$_MEDIA_NAME,				i,	278
+	DVI$_MEDIA_TYPE,				i,	280
+	DVI$_MEDIA_ID,					i,	282
+	DVI$_SHDW_FAILED_MEMBER,		i,	284
+	DVI$_MSCP_UNIT_NUMBER,			i,	286
+	DVI$_DISPLAY_DEVNAM,			i,	288
+	DVI$_TT_ACCPORNAM,				i,	290
+	DVI$_DEVDEPEND3,				i,	292
+	DVI$_TT_MULTISESSION,			i,	294
+	DVI$_TT_DECCRT3,				i,	296
+	DVI$_SET_HOST_TERMINAL,			i,	298
+	DVI$_DFS_ACCESS,				i,	300
+	DVI$_DAPDEVNAM,					i,	302
+	DVI$_TT_DECCRT4,				i,	304
+	DVI$_TT_CHARSET,				i,	306
+	DVI$_TT_CS_KANA,				i,	308
+	DVI$_TT_CS_KANJI,				i,	310
+	DVI$_TT_CS_HANZI,				i,	312
+	DVI$_TT_CS_HANGUL,				i,	314
+	DVI$_TT_CS_HANYU,				i,	316
+	DVI$_TT_CS_THAI,				i,	318
+	DVI$_DEVDEPEND4,				i,	320
+	DVI$_DEVICE_TYPE_NAME,			i,	322
+	DVI$_TT_ASIAN_MODE,				i,	324
+	DVI$_PREFERRED_CPU,				i,	326
+	DVI$_TT_DECCRT5,				i,	328
+	DVI$_TT_ANSI_COLOR,				i,	330
+	DVI$_MT3_SUPPORTED,				i,	332
+	DVI$_MT3_DENSITY,				i,	334
+	DVI$_DRIVER_IMAGE_NAME,			i,	336
+	DVI$_CLIENT_DEVICE,				i,	338
+	DVI$_FC_PORT_NAME,				i,	340
+	DVI$_FC_NODE_NAME,				i,	342
+	DVI$_WWID,						i,	344
+	DVI$_VOLCHAR,					i,	346
+	DVI$_HBVS_MASTER_MEMBER,		i,	348
+	DVI$_MULTIPATH,					i,	350
+	DVI$_MPDEV_CURRENT_PATH,		i,	352
+	DVI$_VOLSIZE,					i,	354
+	DVI$_EXPSIZE,					i,	356
+	DVI$_QLEN,						i,	358
+	DVI$_SHDW_SITE,					i,	360
+	DVI$_SHDW_MBR_COUNT,			i,	362
+	DVI$_SHDW_DEVICE_COUNT,			i,	364
+	DVI$_SHDW_MBR_READ_COST,		i,	366
+	DVI$_SHDW_READ_SOURCE,			i,	368
+	DVI$_SHDW_TIMEOUT,				i,	370
+	DVI$_DVI_UNUSED_1,				i,	372
+	DVI$_SHDW_GENERATION,			i,	374
+	DVI$_SHDW_STATUS,				i,	376
+	DVI$_SHDW_MBR_COPY_DONE,		i,	378
+	DVI$_SHDW_MBR_MERGE_DONE,		i,	380
+	DVI$_SHDW_MINIMERGE_ENABLE,		i,	382
+	DVI$_DVI_UNUSED_2,				i,	384
+	DVI$_SHDW_COPIER_NODE,			i,	386
+	DVI$_SHDW_MASTER_MBR,			i,	388
+	DVI$_MPDEV_AUTO_PATH_SW_CNT,	i,	390
+	DVI$_MPDEV_MAN_PATH_SW_CNT,		i,	392
+	DVI$_WRITETHRU_CACHE_ENABLED,	i,	394
+	DVI$_NOCACHE_ON_VOLUME,			i,	396
+	DVI$_MOUNTVER_ELIGIBLE,			i,	398
+	DVI$_ERASE_ON_DELETE,			i,	400
+	DVI$_NOHIGHWATER,				i,	402
+	DVI$_NOSHARE_MOUNTED,			i,	404
+	DVI$_CLUSLOCK,					i,	406
+	DVI$_ODS2_SUBSET0,				i,	408
+	DVI$_PROT_SUBSYSTEM_ENABLED,	i,	410
+	DVI$_ODS5,						i,	412
+	DVI$_ACCESSTIMES_RECORDED,		i,	414
+	DVI$_HARDLINKS_SUPPORTED,		i,	416
+	DVI$_SCSI_DEVICE_FIRMWARE_REV,	i,	418
+	DVI$_TOTAL_PATH_COUNT,			i,	420
+	DVI$_AVAILABLE_PATH_COUNT,		i,	422
+	DVI$_VOLUME_EXTEND_QUANTITY,	i,	424
+	DVI$_MOUNT_TIME,				i,	426
+	DVI$_VOLUME_MOUNT_SYS,			i,	428
+	DVI$_VOLUME_MOUNT_GROUP,		i,	430
+	DVI$_PATH_AVAILABLE,			i,	432
+	DVI$_PATH_USER_DISABLED,		i,	434
+	DVI$_PATH_NOT_RESPONDING,		i,	436
+	DVI$_PATH_POLL_ENABLED,			i,	438
+	DVI$_MVSUPMSG,					i,	440
+	DVI$_PATH_SWITCH_TO_TIME,		i,	442
+	DVI$_PATH_SWITCH_FROM_TIME,		i,	444
+	DVI$_ERROR_RESET_TIME,			i,	446
+	DVI$_DEVICE_MAX_IO_SIZE,		i,	448
+	DVI$_VOLUME_RETAIN_MAX,			i,	450
+	DVI$_VOLUME_RETAIN_MIN,			i,	452
+	DVI$_PREFERRED_CPU_BITMAP,		i,	454
+	DVI$_MAILBOX_INITIAL_QUOTA,		i,	456
+	DVI$_MAILBOX_BUFFER_QUOTA,		i,	458
+	DVI$_VOLUME_WINDOW,				i,	460
+	DVI$_VOLUME_SPOOLED_DEV_CNT,	i,	462
+	DVI$_VOLUME_PENDING_WRITE_ERR,	i,	464
+	DVI$_LAN_SPEED,					i,	466
+	DVI$_LAN_LINK_UP,				i,	468
+	DVI$_LAN_DEFAULT_MAC_ADDRESS,	i,	470
+	DVI$_LAN_MAC_ADDRESS,			i,	472
+	DVI$_LAN_FULL_DUPLEX,			i,	474
+	DVI$_LAN_ALL_MULTICAST_MODE,	i,	476
+	DVI$_LAN_PROMISCUOUS_MODE,		i,	478
+	DVI$_LAN_JUMBO_FRAMES_ENABLED,	i,	480
+	DVI$_LAN_AUTONEG_ENABLED,		i,	482
+	DVI$_LAN_PROTOCOL_TYPE,			i,	484
+	DVI$_LAN_PROTOCOL_NAME,			i,	486
+	DVI$_LAN_LINK_STATE_VALID,		i,	488
+	DVI$_FC_HBA_FIRMWARE_REV,		i,	490
+	DVI$_ADAPTER_IDENT,				i,	492
+	DVI$_MOUNTCNT_CLUSTER,			i,	494
+	DVI$_SHDW_HBMM_RESET_COUNT,		i,	496
+	DVI$_SHDW_HBMM_RESET_TIME,		i,	498
+	DVI$_SPECIAL_FILES,				i,	500
+	DVI$_NOXFCCACHE_ON_VOLUME,		i,	502
+	DVI$_XFC_DEPOSING,				i,	504
+	DVI$_SSD_USAGE_REMAINING,		i,	506
+	DVI$_SSD_LIFE_REMAINING,		i,	508
+	DVI$M_SECONDARY,				i,	%x("1")
+	DVI$M_NOREDIRECT,				i,	%x("8000")
+	DVI$S_DVIDEF,					i,	2
+	DVI$V_SECONDARY,				i,	0
+	DVI$S_ITEM_CODE,				i,	14
+	DVI$V_ITEM_CODE,				i,	1
+	DVI$V_NOREDIRECT,				i,	15
+	DVI$M_VOL_READDIR,				i,	%x("F")
+	DVI$C_READDIR_NONE,				i,	0
+	DVI$C_READDIR_VIO,				i,	1
+	DVI$C_READDIR_IO,				i,	2
+	DVI$C_READDIR_ACP,				i,	3
+	DVI$M_VOL_LENGTH_HINT,			i,	%x("10")
+	DVI$M_VOL_CACHING_ATTR,			i,	%x("20")
+	DVI$M_VOL_ACCESS_DATE,			i,	%x("40")
+	DVI$M_VOL_HARDLINK,				i,	%x("80")
+	DVI$M_VOL_SET_SECURITY,			i,	%x("100")
+	DVI$M_VOL_FID_TO_NAME,			i,	%x("200")
+	DVI$M_VOL_ODS1_STYLE_PURGE,		i,	%x("400")
+	DVI$M_VOL_SHARED_TRUNCATE,		i,	%x("800")
+	DVI$M_VOL_WRITE_BARRIER,		i,	%x("1000")
+	DVI$M_VOL_DIRSEQ_QIO,			i,	%x("2000")
+	DVI$M_VOL_EFS,					i,	%x("4000")
+	DVI$M_VOL_UCS2,					i,	%x("8000")
+	DVI$M_VOL_CASE_VARIANT,			i,	%x("10000")
+	DVI$M_VOL_MODDATE,				i,	%x("20000")
+	DVI$M_VOL_SPECIAL_FILE,			i,	%x("40000")
+	DVI$M_VOL_SSIO,					i,	%x("80000")
+	DVI$M_VOL_LOOKUP_SPECIAL,		i,	%x("100000")
+	DVI$S_DVIVOLDEF,				i,	16
+	DVI$S_VOL_READDIR,				i,	4
+	DVI$V_VOL_READDIR,				i,	0
+	DVI$V_VOL_LENGTH_HINT,			i,	4
+	DVI$V_VOL_CACHING_ATTR,			i,	5
+	DVI$V_VOL_ACCESS_DATE,			i,	6
+	DVI$V_VOL_HARDLINK,				i,	7
+	DVI$V_VOL_SET_SECURITY,			i,	8
+	DVI$V_VOL_FID_TO_NAME,			i,	9
+	DVI$V_VOL_ODS1_STYLE_PURGE,		i,	10
+	DVI$V_VOL_SHARED_TRUNCATE,		i,	11
+	DVI$V_VOL_WRITE_BARRIER,		i,	12
+	DVI$V_VOL_DIRSEQ_QIO,			i,	13
+	DVI$V_VOL_EFS,					i,	14
+	DVI$V_VOL_UCS2,					i,	15
+	DVI$V_VOL_CASE_VARIANT,			i,	16
+	DVI$V_VOL_MODDATE,				i,	17
+	DVI$V_VOL_SPECIAL_FILE,			i,	18
+	DVI$V_VOL_SSIO,					i,	19
+	DVI$V_VOL_LOOKUP_SPECIAL,		i,	20
+	DVI$C_SECONDARY,				i,	1
+	DVI$C_ACP_F11V1,				i,	1
+	DVI$C_ACP_F11V2,				i,	2
+	DVI$C_ACP_MTA,					i,	3
+	DVI$C_ACP_NET,					i,	4
+	DVI$C_ACP_REM,					i,	5
+	DVI$C_ACP_HBS,					i,	6
+	DVI$C_ACP_F11V3,				i,	7
+	DVI$C_ACP_F11V4,				i,	8
+	DVI$C_ACP_F64,					i,	9
+	DVI$C_ACP_UCX,					i,	10
+	DVI$C_ACP_F11V5,				i,	11
+	DVI$C_ACP_F11V6,				i,	12
+	DVI$C_ACP_HBVS,					i,	13
+.list

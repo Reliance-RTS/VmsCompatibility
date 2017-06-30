@@ -38,22 +38,21 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="aChannel"></param>
+;;; <param name="aKeyOfRef"></param>
+;;; <returns></returns>
 subroutine DBL$SETKRF
-	required in aChannel,	n
-	required in aKeyOfRef,	n
+	required in  aChannel,	n
+	required in  aKeyOfRef,	n
 	endparams
 proc
-	try 
-	begin
-		find(aChannel,KEYNUM:aKeyOfRef,POSITION:Q_BOF)
-	end
-	catch (ex, @Synergex.synergyde.SynException)
-	begin
-		xcall exite(ex.Errno)
-	end
-	endtry
-
+	onerror erret
+	find(aChannel,KEYNUM:aKeyOfRef,POSITION:Q_BOF)
 	xreturn
-	
+erret,
+	xcall exite(%ernum)
 endsubroutine
 

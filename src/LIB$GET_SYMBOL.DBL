@@ -38,17 +38,33 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="symbol"></param>
+;;; <param name="value"></param>
+;;; <param name="return_length"></param>
+;;; <param name="return_table"></param>
+;;; <returns></returns>
 subroutine LIB$GET_SYMBOL
-	required in symbol,	a
-	required out value,	a
-	endparams
-	stack record
-		len,			i4
-	endrecord
+    required in  symbol,				a
+    required out value,					a
+    optional out ^ref(return_length),	i2
+    optional out ^ref(return_table),	i4
+    endparams
+    stack record
+		len,	i4
+    endrecord
 proc
-	xcall getlog(symbol,value,len)
-	if (!len)
+    xcall getlog(symbol,value,len)
+
+    if (!len)
 		clear value
-	xreturn
+
+    if ^passed(return_length)
+		return_length = len
+
+    xreturn
+
 endsubroutine
 

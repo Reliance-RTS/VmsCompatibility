@@ -1,0 +1,130 @@
+;;*****************************************************************************
+;;
+;; Title:       KEYDEFS.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: KEY DEFINITIONS
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+LITERAL
+; Control characters
+	K_NULL,			I1,	000
+	K_CTLA,			I1,	001
+	K_CTLB,			I1,	002
+	K_CTLC,			I1,	003
+	K_CTLD,			I1,	004
+	K_CTLE,			I1,	005
+	K_CTLF,			I1,	006
+	K_CTLG,			I1,	007
+	K_CTLH,			I1,	008
+	K_BS,			I1,	008	; synonym for CTLH
+	K_CTLI,			I1,	009
+	K_HT,			I1,	009	; synonym for CTLI
+	K_CTLJ,			I1,	010
+	K_LF,			I1,	010	; synonym for CTLJ
+	K_CTLK,			I1,	011
+	K_VT,			I1,	011	; synonym for CTLK
+	K_CTLL,			I1,	012
+	K_FF,			I1,	012	; synonym for CTLL
+	K_CTLM,			I1,	013
+	K_CR,			I1,	013	; synonym for CTLM
+	K_RETURN,		I1,	013	; synonym for CTLM
+	K_CTLN,			I1,	014
+	K_CTLO,			I1,	015
+	K_CTLP,			I1,	016
+	K_CTLQ,			I1,	017
+	K_CTLR,			I1,	018
+	K_CTLS,			I1,	019
+	K_CTLT,			I1,	020
+	K_CTLU,			I1,	021
+	K_CTLV,			I1,	022
+	K_CTLW,			I1,	023
+	K_CTLX,			I1,	024
+	K_CTLY,			I1,	025
+	K_CTLZ,			I1,	026
+	K_ESCAPE,		I1,	027
+	K_DELETE,		I1,	127
+; Keypad keys
+	K_PF1,			I2,	256
+	K_PF2,			I2,	257
+	K_PF3,			I2,	258
+	K_PF4,			I2,	259
+	K_KP0,			I2,	260
+	K_KP1,			I2,	261
+	K_KP2,			I2,	262
+	K_KP3,			I2,	263
+	K_KP4,			I2,	264
+	K_KP5,			I2,	265
+	K_KP6,			I2,	266
+	K_KP7,			I2,	267
+	K_KP8,			I2,	268
+	K_KP9,			I2,	269
+	K_ENTER,		I2,	270
+	K_MINUS,		I2,	271
+	K_COMMA,		I2,	272
+	K_PERIOD,		I2,	273
+; Cursor positioning keys
+	K_UP,			I2,	274
+	K_DOWN,			I2,	275
+	K_LEFT,			I2,	276
+	K_RIGHT,		I2,	277
+; Function keys
+	K_F6,			I2,	286
+	K_F7,			I2,	287
+	K_F8,			I2,	288
+	K_F9,			I2,	289
+	K_F10,			I2,	290
+	K_F11,			I2,	291
+	K_F12,			I2,	292
+	K_F13,			I2,	293
+	K_F14,			I2,	294
+	K_HELP,			I2,	295
+	K_DO,			I2,	296
+	K_F17,			I2,	297
+	K_F18,			I2,	298
+	K_F19,			I2,	299
+	K_F20,			I2,	300
+; Editing keys
+	K_FIND,			I2,	311
+	K_INSERT_HERE,	I2,	312
+	K_REMOVE,		I2,	313
+	K_SELECT,		I2,	314
+	K_PREV_SCREEN,	I2,	315
+	K_NEXT_SCREEN,	I2,	316
+; Conditions
+;;	K_CANCELLED,	I2,	508		; not implemented
+;;	K_TIMEOUT,		I2,	509		; not implemented
+;;	K_BUFFER_FULL,	I2,	510		; not implemented
+	K_UNKNOWN,		I2,	511
+;
+; End of key definitions
+;-

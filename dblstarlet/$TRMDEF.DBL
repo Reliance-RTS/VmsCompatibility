@@ -1,0 +1,129 @@
+;;*****************************************************************************
+;;
+;; Title:       $TRMDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	TRM$_MODIFIERS,			i,	0
+	TRM$_EDITMODE,			i,	1
+	TRM$_TIMEOUT,			i,	2
+	TRM$_TERM,				i,	3
+	TRM$_PROMPT,			i,	4
+	TRM$_INISTRNG,			i,	5
+	TRM$_PICSTRNG,			i,	6
+	TRM$_FILLCHR,			i,	7
+	TRM$_INIOFFSET,			i,	8
+	TRM$_ALTECHSTR,			i,	9
+	TRM$_ESCTRMOVR,			i,	10
+	TRM$_LASTITM,			i,	11
+	TRM$_RESERVE12,			i,	12
+	TRM$_RESERVE13,			i,	13
+	TRM$_RESERVE14,			i,	14
+	TRM$_RESERVE15,			i,	15
+	TRM$_RESERVE16,			i,	16
+	TRM$_RESERVE17,			i,	17
+	TRM$_RESERVE18,			i,	18
+	TRM$_RESERVE19,			i,	19
+	TRM$_RESERVE20,			i,	20
+	TRM$_RESERVE21,			i,	21
+	TRM$_RESERVE22,			i,	22
+	TRM$_RESERVE23,			i,	23
+	TRM$_RESERVE24,			i,	24
+	TRM$_RESERVE25,			i,	25
+	TRM$_RESERVE26,			i,	26
+	TRM$_RESERVE27,			i,	27
+	TRM$_RESERVE28,			i,	28
+	TRM$_RESERVE29,			i,	29
+	TRM$_RESERVE30,			i,	30
+	TRM$_RECLINE,			i,	31
+	TRM$K_EM_DEFAULT,		i,	0
+	TRM$K_EM_RDVERIFY,		i,	1
+	TRM$M_TM_NOECHO,		i,	%x("40")
+	TRM$M_TM_TIMED,			i,	%x("80")
+	TRM$M_TM_CVTLOW,		i,	%x("100")
+	TRM$M_TM_NOFILTR,		i,	%x("200")
+	TRM$M_TM_DSABLMBX,		i,	%x("400")
+	TRM$M_TM_PURGE,			i,	%x("800")
+	TRM$M_TM_TRMNOECHO,		i,	%x("1000")
+	TRM$M_TM_REFRESH,		i,	%x("2000")
+	TRM$M_TM_ESCAPE,		i,	%x("4000")
+	TRM$M_TM_NOEDIT,		i,	%x("8000")
+	TRM$M_TM_NORECALL,		i,	%x("10000")
+	TRM$M_TM_R_JUST,		i,	%x("20000")
+	TRM$M_TM_AUTO_TAB,		i,	%x("40000")
+	TRM$M_TM_ARROWS,		i,	%x("80000")
+	TRM$M_TM_TERM_ARROW,	i,	%x("100000")
+	TRM$M_TM_TERM_DEL,		i,	%x("200000")
+	TRM$M_TM_TOGGLE,		i,	%x("400000")
+	TRM$M_TM_OTHERWAY,		i,	%x("800000")
+	TRM$M_TM_NOCLEAR,		i,	%x("1000000")
+	TRM$M_CV_UPPER,			i,	%x("1")
+	TRM$M_CV_LOWER,			i,	%x("2")
+	TRM$M_CV_NUMERIC,		i,	%x("4")
+	TRM$M_CV_NUMPUNC,		i,	%x("8")
+	TRM$M_CV_PRINTABLE,		i,	%x("10")
+	TRM$M_CV_ANY,			i,	%x("20")
+	TRM$M_ST_FIELD_FULL,	i,	%x("1")
+	TRM$M_ST_OTHERWAY,		i,	%x("2")
+	TRM$S_TRMDEF,			i,	4
+	TRM$V_TM_NOECHO,		i,	6
+	TRM$V_TM_TIMED,			i,	7
+	TRM$V_TM_CVTLOW,		i,	8
+	TRM$V_TM_NOFILTR,		i,	9
+	TRM$V_TM_DSABLMBX,		i,	10
+	TRM$V_TM_PURGE,			i,	11
+	TRM$V_TM_TRMNOECHO,		i,	12
+	TRM$V_TM_REFRESH,		i,	13
+	TRM$V_TM_ESCAPE,		i,	14
+	TRM$V_TM_NOEDIT,		i,	15
+	TRM$V_TM_NORECALL,		i,	16
+	TRM$V_TM_R_JUST,		i,	17
+	TRM$V_TM_AUTO_TAB,		i,	18
+	TRM$V_TM_ARROWS,		i,	19
+	TRM$V_TM_TERM_ARROW,	i,	20
+	TRM$V_TM_TERM_DEL,		i,	21
+	TRM$V_TM_TOGGLE,		i,	22
+	TRM$V_TM_OTHERWAY,		i,	23
+	TRM$V_TM_NOCLEAR,		i,	24
+	TRM$V_CV_UPPER,			i,	0
+	TRM$V_CV_LOWER,			i,	1
+	TRM$V_CV_NUMERIC,		i,	2
+	TRM$V_CV_NUMPUNC,		i,	3
+	TRM$V_CV_PRINTABLE,		i,	4
+	TRM$V_CV_ANY,			i,	5
+	TRM$V_ST_FIELD_FULL,	i,	0
+	TRM$V_ST_OTHERWAY,		i,	1
+.list

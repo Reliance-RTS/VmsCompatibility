@@ -38,13 +38,21 @@
 ;;
 ;;*****************************************************************************
 
-function SYS$BINTIM,			^val
-	aDateString,				a
-	%ref(vms_bintim),			i
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="aDateString"></param>
+;;; <param name="vms_bintim"></param>
+;;; <returns></returns>
+function SYS$BINTIM, ^val
+	required in  aDateString, a
+	required out %ref(vms_bintim), i8
 	endparams
+
 	external function 
 		MonthShortNameToNumber,	^val
 	endexternal
+
 	stack record localData
 		status,					i4
 		group vmsString,		a

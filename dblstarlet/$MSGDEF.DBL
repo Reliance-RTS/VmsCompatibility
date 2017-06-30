@@ -1,0 +1,144 @@
+;;*****************************************************************************
+;;
+;; Title:       $MSGDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	MSG$_TRMUNSOLIC,		i,	1
+	MSG$_CRUNSOLIC,			i,	2
+	MSG$_DELPROC,			i,	3
+	MSG$_SNDSMB,			i,	4
+	MSG$_DEVOFFLIN,			i,	5
+	MSG$_TRMHANGUP,			i,	6
+	MSG$_DEVONLIN,			i,	7
+	MSG$_OPRQST,			i,	8
+	MSG$_OPREPLY,			i,	9
+	MSG$_SMBINI,			i,	8
+	MSG$_SMBDON,			i,	9
+	MSG$_SNDACC,			i,	10
+	MSG$_PURPROC,			i,	11
+	MSG$_DELIMAG,			i,	12
+	MSG$_PURIMAG,			i,	13
+	MSG$_SYSFUNC,			i,	14
+	MSG$_SNDJBC,			i,	15
+	MSG$_GETQUI,			i,	16
+	MSG$_XM_DATAVL,			i,	11
+	MSG$_XM_SHUTDN,			i,	12
+	MSG$_XM_ATTN,			i,	13
+	MSG$_INIOPR,			i,	16
+	MSG$_ABOOPR,			i,	17
+	MSG$_SUSOPR,			i,	18
+	MSG$_RESOPR,			i,	19
+	MSG$_DELSMB,			i,	20
+	MSG$_REQUE,				i,	21
+	MSG$_SMBRSP,			i,	32
+	MSG$_ACCRSP,			i,	33
+	MSG$_SCANBAD,			i,	40
+	MSG$_SCANRSP,			i,	41
+	MSG$_ABORT,				i,	48
+	MSG$_CONFIRM,			i,	49
+	MSG$_CONNECT,			i,	50
+	MSG$_DISCON,			i,	51
+	MSG$_EXIT,				i,	52
+	MSG$_INTMSG,			i,	53
+	MSG$_PATHLOST,			i,	54
+	MSG$_PROTOCOL,			i,	55
+	MSG$_REJECT,			i,	56
+	MSG$_THIRDPARTY,		i,	57
+	MSG$_TIMEOUT,			i,	58
+	MSG$_NETSHUT,			i,	59
+	MSG$_NODEACC,			i,	60
+	MSG$_NODEINACC,			i,	61
+	MSG$_EVTAVL,			i,	62
+	MSG$_EVTRCVCHG,			i,	63
+	MSG$_INCDAT,			i,	64
+	MSG$_RESET,				i,	65
+	MSG$_LINUP,				i,	66
+	MSG$_LINDWN,			i,	67
+	MSG$_EVTXMTCHG,			i,	68
+	MSG$_DEVOFFLINX,		i,	80
+	MSG$_WRONGVOL,			i,	81
+	MSG$_DEVWRTLCK,			i,	82
+	MSG$_TRMBRDCST,			i,	83
+	MSG$_MVCOMPLETE,		i,	84
+	MSG$_MVABORTED,			i,	85
+	MSG$_DISMOUNTED,		i,	86
+	MSG$_UDA50MVER,			i,	87
+	MSG$_DUPUNITNO,			i,	88
+	MSG$_CLUMBX,			i,	89
+	MSG$_TM78MVER,			i,	90
+	MSG$_SHAMEMFAL,			i,	91
+	MSG$_SHARDUCED,			i,	92
+	MSG$_RC25MVER,			i,	93
+	MSG$_RDRXMVER,			i,	94
+	MSG$_TU81MVER,			i,	95
+	MSG$_MAYAMVER,			i,	96
+	MSG$_SHACHASTA,			i,	97
+	MSG$_SHACOPCOM,			i,	98
+	MSG$_SHAREDZER,			i,	99
+	MSG$_SHAPOSMEM,			i,	100
+	MSG$_SHAALLCOM,			i,	101
+	MSG$_SHACOPBEG,			i,	102
+	MSG$_SHAWROMEM,			i,	103
+	MSG$_SHAORGMEM,			i,	104
+	MSG$_TRMLOSE_KB,		i,	105
+	MSG$_TRMGAIN_KB,		i,	106
+	MSG$_TRMSHRINK,			i,	107
+	MSG$_TRMEXPAND,			i,	108
+	MSG$_TRMRESIZE,			i,	109
+	MSG$_TRMMOVE,			i,	110
+	MSG$_SNDMME,			i,	111
+	MSG$_RETMME,			i,	112
+	MSG$_SHAADPBAD,			i,	113
+	MSG$_SHAEMUPTH,			i,	114
+	MSG$_SHABENODMP,		i,	115
+	MSG$_SHABNODMP,			i,	116
+	MSG$_SHALOCDEV,			i,	117
+	MSG$_SHANOBPOK,			i,	118
+	MSG$_SHABDMPOK,			i,	119
+	MSG$_BOOTDMPOK,			i,	120
+	MSG$_SHABDBCK,			i,	121
+	MSG$_SHANODMP,			i,	122
+	MSG$_SHADMPOK,			i,	123
+	MSG$_OPCFAO,			i,	124
+	MSG$_INSAMCVP,			i,	125
+	MSG$_HBMMRESET,			i,	126
+	MSG$_SHADISSOLVED,		i,	127
+	MSG$_SHAMEMEXPEL,		i,	128
+	MSG$_SHAMEMDMT,			i,	129
+	MSG$_QMAN_INTERNAL,		i,	200
+	MSG$_PEMBX,				i,	220
+.list

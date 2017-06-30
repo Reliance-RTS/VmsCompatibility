@@ -1,0 +1,72 @@
+;;*****************************************************************************
+;;
+;; Title:       $STSDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	STS$M_SEVERITY,			i,	%x("7")
+	STS$M_COND_ID,			i,	%x("FFFFFF8")
+	STS$M_CONTROL,			i,	%x("F0000000")
+	STS$M_SUCCESS,			i,	%x("1")
+	STS$M_MSG_NO,			i,	%x("FFF8")
+	STS$M_CODE,				i,	%x("7FF8")
+	STS$M_FAC_SP,			i,	%x("8000")
+	STS$M_CUST_DEF,			i,	%x("8000000")
+	STS$M_INHIB_MSG,		i,	%x("10000000")
+	STS$M_FAC_NO,			i,	%x("FFF0000")
+	STS$K_WARNING,			i,	0
+	STS$K_SUCCESS,			i,	1
+	STS$K_ERROR,			i,	2
+	STS$K_INFO,				i,	3
+	STS$K_SEVERE,			i,	4
+	STS$S_STSDEF,			i,	4
+	STS$S_SEVERITY,			i,	3
+	STS$V_SEVERITY,			i,	0
+	STS$S_COND_ID,			i,	25
+	STS$V_COND_ID,			i,	3
+	STS$S_CONTROL,			i,	4
+	STS$V_CONTROL,			i,	28
+	STS$V_SUCCESS,			i,	0
+	STS$S_MSG_NO,			i,	13
+	STS$V_MSG_NO,			i,	3
+	STS$S_CODE,				i,	12
+	STS$V_CODE,				i,	3
+	STS$V_FAC_SP,			i,	15
+	STS$V_CUST_DEF,			i,	27
+	STS$V_INHIB_MSG,		i,	28
+	STS$S_FAC_NO,			i,	12
+	STS$V_FAC_NO,			i,	16
+.list

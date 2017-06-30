@@ -1,0 +1,58 @@
+;;*****************************************************************************
+;;
+;; Title:       $STRDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	STR$_FACILITY,			i,	36
+	STR$_FATINTERR,			i,	2392132
+	STR$_DIVBY_ZER,			i,	2392140
+	STR$_ILLSTRCLA,			i,	2392148
+	STR$_STRIS_INT,			i,	2392156
+	STR$_WRONUMARG,			i,	2392164
+	STR$_INSVIRMEM,			i,	2392172
+	STR$_STRTOOLON,			i,	2392180
+	STR$_ERRFREDYN,			i,	2392188
+	STR$_TRU,				i,	2392576
+	STR$_NOMATCH,			i,	2392584
+	STR$_INVDELIM,			i,	2392592
+	STR$_NOELEM,			i,	2392600
+	STR$_NEGSTRLEN,			i,	2393089
+	STR$_ILLSTRPOS,			i,	2393097
+	STR$_ILLSTRSPE,			i,	2393105
+	STR$_MATCH,				i,	2393113
+	STR$_NORMAL,			i,	1
+.list

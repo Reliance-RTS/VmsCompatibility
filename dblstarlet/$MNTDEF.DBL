@@ -1,0 +1,244 @@
+;;*****************************************************************************
+;;
+;; Title:       $MNTDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	MNT$M_FOREIGN,				i,	%x("1")
+	MNT$M_GROUP,				i,	%x("2")
+	MNT$M_NOASSIST,				i,	%x("4")
+	MNT$M_NODISKQ,				i,	%x("8")
+	MNT$M_NOHDR3,				i,	%x("10")
+	MNT$M_NOLABEL,				i,	%x("20")
+	MNT$M_NOWRITE,				i,	%x("40")
+	MNT$M_OVR_ACCESS,			i,	%x("80")
+	MNT$M_OVR_EXP,				i,	%x("100")
+	MNT$M_OVR_IDENT,			i,	%x("200")
+	MNT$M_OVR_SETID,			i,	%x("400")
+	MNT$M_READCHECK,			i,	%x("800")
+	MNT$M_SHARE,				i,	%x("1000")
+	MNT$M_MESSAGE,				i,	%x("2000")
+	MNT$M_SYSTEM,				i,	%x("4000")
+	MNT$M_WRITECHECK,			i,	%x("8000")
+	MNT$M_WRITETHRU,			i,	%x("10000")
+	MNT$M_NOCACHE,				i,	%x("20000")
+	MNT$M_OVR_LOCK,				i,	%x("40000")
+	MNT$M_NOMNTVER,				i,	%x("80000")
+	MNT$M_NOUNLOAD,				i,	%x("100000")
+	MNT$M_TAPE_DATA_WRITE,		i,	%x("200000")
+	MNT$M_NOCOPY,				i,	%x("400000")
+	MNT$M_NOAUTO,				i,	%x("800000")
+	MNT$M_INIT_ALL,				i,	%x("1000000")
+	MNT$M_INIT_CONT,			i,	%x("2000000")
+	MNT$M_OVR_VOLO,				i,	%x("4000000")
+	MNT$M_INTERCHG,				i,	%x("8000000")
+	MNT$M_CLUSTER,				i,	%x("10000000")
+	MNT$M_NOREBUILD,			i,	%x("20000000")
+	MNT$M_OVR_SHAMEM,			i,	%x("40000000")
+	MNT$M_MULTI_VOL,			i,	%x("80000000")
+	MNT2$M_DISKQ,				i,	%x("1")
+	MNT2$M_COMPACTION,			i,	%x("2")
+	MNT2$M_INCLUDE,				i,	%x("4")
+	MNT2$M_PASS2,				i,	%x("8")
+	MNT2$M_OVR_NOFE,			i,	%x("10")
+	MNT2$M_SCRATCH,				i,	%x("20")
+	MNT2$M_CDROM,				i,	%x("40")
+	MNT2$M_XAR,					i,	%x("80")
+	MNT2$M_DSI,					i,	%x("100")
+	MNT2$M_SUBSYSTEM,			i,	%x("200")
+	MNT2$M_NOCOMPACTION,		i,	%x("400")
+	MNT2$M_OVR_SECURITY,		i,	%x("800")
+	MNT2$M_OVR_LIMITED_SEARCH,	i,	%x("1000")
+	MNT2$M_POOL,				i,	%x("2000")
+	MNT2$M_WLG_ENABLE,			i,	%x("4000")
+	MNT2$M_WLG_DISABLE,			i,	%x("8000")
+	MNT2$M_REQUIRE_MEMBERS,		i,	%x("10000")
+	MNT2$M_VERIFY_LABEL,		i,	%x("20000")
+	MNT2$M_FULL_MERGE,			i,	%x("40000")
+	MNT2$M_WRITE_FIRST,			i,	%x("80000")
+	MNT2$M_DCD,					i,	%x("100000")
+	MNT2$M_NODCD,				i,	%x("200000")
+	MNT2$M_LOCAL_HOST,			i,	%x("400000")
+	MNT2$M_FACTOR,				i,	%x("800000")
+	MNT2$M_PRIORITY,			i,	%x("1000000")
+	MNT$_DEVNAM,				i,	1
+	MNT$_VOLNAM,				i,	2
+	MNT$_LOGNAM,				i,	3
+	MNT$_FLAGS,					i,	4
+	MNT$_ACCESSED,				i,	5
+	MNT$_PROCESSOR,				i,	6
+	MNT$_VOLSET,				i,	7
+	MNT$_BLOCKSIZE,				i,	8
+	MNT$_DENSITY,				i,	9
+	MNT$_EXTENT,				i,	10
+	MNT$_FILEID,				i,	11
+	MNT$_LIMIT,					i,	12
+	MNT$_OWNER,					i,	13
+	MNT$_VPROT,					i,	14
+	MNT$_QUOTA,					i,	15
+	MNT$_RECORDSIZ,				i,	16
+	MNT$_WINDOW,				i,	17
+	MNT$_EXTENSION,				i,	18
+	MNT$_VISUAL_ID,				i,	19
+	MNT$_COMMENT,				i,	20
+	MNT$_CLASS,					i,	21
+	MNT$_UNUSED2,				i,	22
+	MNT$_ACCPTNAM,				i,	23
+	MNT$_SHACOPY_BUF,			i,	24
+	MNT$_SHANAM,				i,	25
+	MNT$_SHAMEM,				i,	26
+	MNT$_SHAMEM_MGCOPY,			i,	27
+	MNT$_SHAMEM_COPY,			i,	28
+	MNT$_PRFD_PATH,				i,	29
+	MNT$_ASSIGNMENT_UNIT,		i,	30
+	MNT$_CART_MEDIA_NAME,		i,	31
+	MNT$_CARTRIDGE_NAME,		i,	32
+	MNT$_CARTRIDGE_SIDE,		i,	33
+	MNT$_COLLECTION,			i,	34
+	MNT$_DEVICE_TYPE,			i,	35
+	MNT$_DISPOSITION,			i,	36
+	MNT$_LOCATION,				i,	37
+	MNT$_MEDIA_NAME,			i,	38
+	MNT$_UNUSED4,				i,	39
+	MNT$_UNDEFINED_FAT,			i,	40
+	MNT$_UCS,					i,	41
+	MNT$_TAPE_EXPIRATION,		i,	42
+	MNT$_PRIORITY,				i,	43
+	MNT$_FACTOR,				i,	44
+	MNT$_WBM_SIZE,				i,	45
+	MNT$_DATA,					i,	46
+	MNT$_NODATA,				i,	47
+	MNT$_LAST_ITEM_CODE,		i,	48
+	MNT$C_BASE_CARTRIDGE,		i,	1
+	MNT$C_COMPOUND_CARTRIDGE,	i,	2
+	MNT$C_PREASSIGNED_SIDE,		i,	3
+	MNT$C_SIDE,					i,	4
+	MNT$C_KEEP,					i,	1
+	MNT$C_RELEASE,				i,	2
+	MNT$S_MNTDEF,				i,	8
+	MNT$V_FOREIGN,				i,	0
+	MNT$V_GROUP,				i,	1
+	MNT$V_NOASSIST,				i,	2
+	MNT$V_NODISKQ,				i,	3
+	MNT$V_NOHDR3,				i,	4
+	MNT$V_NOLABEL,				i,	5
+	MNT$V_NOWRITE,				i,	6
+	MNT$V_OVR_ACCESS,			i,	7
+	MNT$V_OVR_EXP,				i,	8
+	MNT$V_OVR_IDENT,			i,	9
+	MNT$V_OVR_SETID,			i,	10
+	MNT$V_READCHECK,			i,	11
+	MNT$V_SHARE,				i,	12
+	MNT$V_MESSAGE,				i,	13
+	MNT$V_SYSTEM,				i,	14
+	MNT$V_WRITECHECK,			i,	15
+	MNT$V_WRITETHRU,			i,	16
+	MNT$V_NOCACHE,				i,	17
+	MNT$V_OVR_LOCK,				i,	18
+	MNT$V_NOMNTVER,				i,	19
+	MNT$V_NOUNLOAD,				i,	20
+	MNT$V_TAPE_DATA_WRITE,		i,	21
+	MNT$V_NOCOPY,				i,	22
+	MNT$V_NOAUTO,				i,	23
+	MNT$V_INIT_ALL,				i,	24
+	MNT$V_INIT_CONT,			i,	25
+	MNT$V_OVR_VOLO,				i,	26
+	MNT$V_INTERCHG,				i,	27
+	MNT$V_CLUSTER,				i,	28
+	MNT$V_NOREBUILD,			i,	29
+	MNT$V_OVR_SHAMEM,			i,	30
+	MNT$V_MULTI_VOL,			i,	31
+	MNT$V_DISKQ,				i,	32
+	MNT$V_COMPACTION,			i,	33
+	MNT$V_INCLUDE,				i,	34
+	MNT$V_PASS2,				i,	35
+	MNT$V_OVR_NOFE,				i,	36
+	MNT$V_SCRATCH,				i,	37
+	MNT$V_CDROM,				i,	38
+	MNT$V_XAR,					i,	39
+	MNT$V_DSI,					i,	40
+	MNT$V_SUBSYSTEM,			i,	41
+	MNT$V_NOCOMPACTION,			i,	42
+	MNT$V_OVR_SECURITY,			i,	43
+	MNT$V_OVR_LIMITED_SEARCH,	i,	44
+	MNT$V_POOL,					i,	45
+	MNT$V_WLG_ENABLE,			i,	46
+	MNT$V_WLG_DISABLE,			i,	47
+	MNT$V_REQUIRE_MEMBERS,		i,	48
+	MNT$V_VERIFY_LABEL,			i,	49
+	MNT$V_FULL_MERGE,			i,	50
+	MNT$V_WRITE_FIRST,			i,	51
+	MNT$V_DCD,					i,	52
+	MNT$V_NODCD,				i,	53
+	MNT$V_LOCAL_HOST,			i,	54
+	MNT$V_FACTOR,				i,	55
+	MNT$V_PRIORITY,				i,	56
+	MNT$V_MINICOPY_REQUIRED,	i,	57
+	MNT$V_MINICOPY_OPTIONAL,	i,	58
+	MNT$V_NOMINICOPY,			i,	59
+	MNT2$V_DISKQ,				i,	0
+	MNT2$V_COMPACTION,			i,	1
+	MNT2$V_INCLUDE,				i,	2
+	MNT2$V_PASS2,				i,	3
+	MNT2$V_OVR_NOFE,			i,	4
+	MNT2$V_SCRATCH,				i,	5
+	MNT2$V_CDROM,				i,	6
+	MNT2$V_XAR,					i,	7
+	MNT2$V_DSI,					i,	8
+	MNT2$V_SUBSYSTEM,			i,	9
+	MNT2$V_NOCOMPACTION,		i,	10
+	MNT2$V_OVR_SECURITY,		i,	11
+	MNT2$V_OVR_LIMITED_SEARCH,	i,	12
+	MNT2$V_POOL,				i,	13
+	MNT2$V_WLG_ENABLE,			i,	14
+	MNT2$V_WLG_DISABLE,			i,	15
+	MNT2$V_REQUIRE_MEMBERS,		i,	16
+	MNT2$V_VERIFY_LABEL,		i,	17
+	MNT2$V_FULL_MERGE,			i,	18
+	MNT2$V_WRITE_FIRST,			i,	19
+	MNT2$V_DCD,					i,	20
+	MNT2$V_NODCD,				i,	21
+	MNT2$V_LOCAL_HOST,			i,	22
+	MNT2$V_FACTOR,				i,	23
+	MNT2$V_PRIORITY,			i,	24
+	MNT2$V_MINICOPY,			i,	25
+	MNT2$V_MINICOPY_OPTIONAL,	i,	26
+	MNT2$V_NOMINICOPY,			i,	27
+	UNFAT$S_UNDEFINED_FAT,		i,	4
+	UNFAT$W_MRS,				i,	0
+	UNFAT$B_RAT,				i,	2
+	UNFAT$B_RFM,				i,	3
+.list

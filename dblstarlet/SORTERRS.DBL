@@ -1,0 +1,102 @@
+;;*****************************************************************************
+;;
+;; Title:       SORTERRS.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: Sort errors
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+LITERAL
+	SYNTAX,	I,01			; Syntax error
+	UNREC,	I,02			; Unrecognized directive or statement
+	FLNMER,	I,03			; File name error
+	RECMIS,	I,04			; RECORD statement missing
+	COMMIS,	I,05			; Comma missing
+	FILMIS,	I,06			; File name missing
+	CKMER,	I,07			; Control key match error
+	TYPER,	I,08			; Data type error
+	SIZER,	I,09			; Size definition error
+	TMKEYS,	I,10			; Too many sort keys
+	KEYMIS,	I,11			; Sort keys statement missing
+	TMFILE,	I,12			; Too many merge files
+	EXER,	I,13			; Execute/chain error
+	INPMIS,	I,14			; INPUT statement missing
+	OUTMIS,	I,15			; OUTPUT statement missing
+	ERRORS,	I,16			; Command file or message contains errors
+	NODATA,	I,17			; No data item
+	MSGO40,	I,18			; Message exceeds 40 characters
+	RCLNMS,	I,19			; RECLEN statement missing
+	DEVER,	I,20			; Device label error
+	TAGER,	I,21			; TAGSORT type invalid
+	MFTM,	I,22			; Merge files type mixed
+	TMWORK,	I,23			; Work device list too long
+	RCNTER,	I,24			; Invalid input record count
+	SPACER,	I,25			; Invalid space allocation
+	SMFNTC,	I,26			; SORT mode file name/type conflict
+	TMFLDS,	I,27			; DIBOL record description line count exceeded
+	NOPACK,	I,28			; Packed decimal keys option unimplemented
+	NOMEM,	I,29			; Not enough memory allocated
+	FILER,	I,30			; Bad file specification
+	SCER,	I,31			; Sort count error
+	BADSIZ,	I,32			; Wrong record size
+	NORENM,	I,33			; Unable to rename temp file to input file
+	CROUT,	I,34			; Unable to create output file
+	ININUS,	I,35			; Input file in use
+	BADWRK,	I,36			; Invalid number of work files
+	UNKNWN,	I,37			; Unknown sort error
+	RMSWPS,	I,38			; Unknown RMS error
+	CHRMIS,	I,39			; Expected character missing
+	BADDIR,	I,40			; Invalid sort direction
+	ENDMIS,	I,41			; END statement missing
+	EXTRA,	I,42			; Extra characters at end of statement
+	BADTT,	I,43			; Invalid terminal identification
+	F2BIG,	I,44			; Input file is too large
+	VAXSRT,	I,45			; Error returned from SORT-32
+;+
+;Common error definitions
+;-
+LITERAL						; Severity levels
+	WARNIN,	I, 0			;   warning
+	SUCCSS,	I, 1			;   success
+	ERR,	I, 2			;   error
+	INFO,	I, 3			;   informational
+	FATAL,	I, 4			;   fatal
+	DBLCD,	I, 42			; DBL facility code
+	DBLFAC, I, 2785280		; DBL facility number
+	UTLFAC, I, 14454688		; DBLUTL facility number
+	INHIB,	I, 268435456	; Inhibit $EXIT print (Hex 10000000)
+	SSNRML,	I, 1			; SS$_NORMAL
+	SSEOF,	I, 2160			; SS$_ENDOFFILE
+ 
+;
+; End of include
+;

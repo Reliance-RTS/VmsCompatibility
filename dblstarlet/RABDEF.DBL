@@ -1,0 +1,147 @@
+;;*****************************************************************************
+;;
+;; Title:       RABDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: Record access block (RAB) definitions
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.ifndef RABDEF_LOADED
+.define RABDEF_LOADED %x("0")
+
+;                                                         
+;  there is one rab per connected stream                  
+;  it is used for all communications between the user     
+;  and rms concerning operations on the stream            
+;                                                         
+;  the fields thru ctx cannot be changed due to commonality
+;  with the fab                                           
+;                                                         
+.define RAB$C_BID 1                     ; code for rab    
+.define RAB$M_PPF_RAT %x("3FC0")
+.define RAB$M_PPF_IND %x("4000")
+.define RAB$M_PPISI %x("8000")
+.define RAB$M_ASY %x("1")
+.define RAB$M_TPT %x("2")
+.define RAB$M_REA %x("4")
+.define RAB$M_RRL %x("8")
+.define RAB$M_UIF %x("10")
+.define RAB$M_MAS %x("20")
+.define RAB$M_FDL %x("40")
+.define RAB$M_REV %x("80")
+.define RAB$M_EOF %x("100")
+.define RAB$M_RAH %x("200")
+.define RAB$M_WBH %x("400")
+.define RAB$M_BIO %x("800")
+.define RAB$M_CDK %x("1000")
+.define RAB$M_LOA %x("2000")
+.define RAB$M_LIM %x("4000")
+.define RAB$M_SYNCSTS %x("8000")
+.define RAB$M_LOC %x("10000")
+.define RAB$M_WAT %x("20000")
+.define RAB$M_ULK %x("40000")
+.define RAB$M_RLK %x("80000")
+.define RAB$M_NLK %x("100000")
+.define RAB$M_KGE %x("200000")
+.define RAB$M_KGT %x("400000")
+.define RAB$M_NXR %x("800000")
+.define RAB$M_RNE %x("1000000")
+.define RAB$M_TMO %x("2000000")
+.define RAB$M_CVT %x("4000000")
+.define RAB$M_RNF %x("8000000")
+.define RAB$M_ETO %x("10000000")
+.define RAB$M_PTA %x("20000000")
+.define RAB$M_PMT %x("40000000")
+.define RAB$M_CCO %x("80000000")
+.define RAB$M_EQNXT %x("200000")
+.define RAB$M_NXT %x("400000")
+.define RAB$C_SEQ 0                     ; sequential access                ;
+.define RAB$C_KEY 1                     ; keyed access                     ;
+.define RAB$C_RFA 2                     ; rfa access                       ;
+.define RAB$C_STM 3                     ; stream access (valid only for sequential org) ;
+.define RAB$C_MAXRAC 2                  ; Maximum RAC value currently supported by RMS ;
+.define RAB$K_BLN 68                    ; length of rab                    ;
+.define RAB$C_BLN 68                    ; length of rab                    ;
+record rabdef
+    rab$b_bid				,i1			; block id                         ;
+    rab$b_bln				,i1			; block length                     ;
+    rab$w_isi				,i2			; internal stream index            ;
+    rab$l_rop				,i4			; record options                   ;
+    group rab$r_rop_fields, X
+	rabdef$$_fill_3			,i1
+	rab$b_rop1				,i1			; various options                  ;
+	rab$b_rop2				,i1			; get/find options (use of this field discouraged ;
+	rab$b_rop3				,i1			; terminal read options            ;
+    endgroup
+    rab$l_sts				,i4			; status                           ;
+    rab$l_stv				,i4			; status value                     ;
+    group rab$r_stv_fields, X
+	rab$w_stv0				,i2			; low word of stv				   ;
+	rab$w_stv2				,i2			; high word of stv                 ;
+    endgroup
+    rab$w_rfa				,[3]i2		; record's file address            ;
+    group rab$r_rfa_fields, X
+	rab$l_rfa0				,i4
+	rab$w_rfa4				,i2
+    endgroup
+    rabdef$$_fill_4			,i2			; (reserved - rms release 1 optimizes stores ;
+    rab$l_ctx				,i4			; user context                     ;
+    rabdef$$_fill_5			,i2			; (spare)                          ;
+    rab$b_rac				,i1			; record access                    ;
+    rab$b_tmo				,i1			; time-out period                  ;
+    rab$w_usz				,i2			; user buffer size                 ;
+    rab$w_rsz				,i2			; record buffer size               ;
+    rab$l_ubf_ptr			,d_addr		; user buffer address              ;
+    rab$l_rbf_ptr			,d_addr		; record buffer address            ;
+    rab$l_rhb_ptr			,d_addr		; record header buffer addr        ;
+    rab$l_kbf_ptr			,d_addr		; key buffer address               ;
+    rab$l_pbf_ptr			,d_addr @rab$l_kbf_ptr	
+										; prompt buffer addr               ;
+    rab$b_ksz				,i1			; key buffer size                  ;
+    rab$b_psz				,i1 @rab$b_ksz	
+										; prompt buffer size               ;
+    rab$b_krf				,i1			; key of reference                 ;
+    rab$b_mbf				,i1			; multi-buffer count               ;
+    rab$b_mbc				,i1			; multi-block count                ;
+    rab$l_bkt				,i4			; bucket hash code, vbn, or rrn    ;
+    rab$l_dct				,i4 @rab$l_bkt	
+										; duplicates count on key accessed on alternate key ;
+    rab$l_fab_ptr			,d_addr
+    rab$l_xab_ptr			,d_addr		; XAB address                      ;
+ 
+; These are traditional macros that should be hand-maintained for compatibility ;
+.define RAB$S_PPF_RAT	8
+.define RAB rabdef
+record
+	cc$rms_rab	,d_addr, ^xtrnl(decc$ga_rms_rab)
+ 
+.endc ; RABDEF_LOADED ;

@@ -1,0 +1,77 @@
+;;*****************************************************************************
+;;
+;; Title:       $FSCNDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	FSCN$M_NODE,			i,	%x("1")
+	FSCN$M_DEVICE,			i,	%x("2")
+	FSCN$M_ROOT,			i,	%x("4")
+	FSCN$M_DIRECTORY,		i,	%x("8")
+	FSCN$M_NAME,			i,	%x("10")
+	FSCN$M_TYPE,			i,	%x("20")
+	FSCN$M_VERSION,			i,	%x("40")
+	FSCN$M_NODE_PRIMARY,	i,	%x("80")
+	FSCN$M_NODE_ACS,		i,	%x("100")
+	FSCN$M_NODE_SECONDARY,	i,	%x("200")
+	FSCN$S_FLDFLAGS,		i,	4
+	FSCN$V_NODE,			i,	0
+	FSCN$V_DEVICE,			i,	1
+	FSCN$V_ROOT,			i,	2
+	FSCN$V_DIRECTORY,		i,	3
+	FSCN$V_NAME,			i,	4
+	FSCN$V_TYPE,			i,	5
+	FSCN$V_VERSION,			i,	6
+	FSCN$V_NODE_PRIMARY,	i,	7
+	FSCN$V_NODE_ACS,		i,	8
+	FSCN$V_NODE_SECONDARY,	i,	9
+	FSCN$_FILESPEC,			i,	1
+	FSCN$_NODE,				i,	2
+	FSCN$_DEVICE,			i,	3
+	FSCN$_ROOT,				i,	4
+	FSCN$_DIRECTORY,		i,	5
+	FSCN$_NAME,				i,	6
+	FSCN$_TYPE,				i,	7
+	FSCN$_VERSION,			i,	8
+	FSCN$_NODE_PRIMARY,		i,	9
+	FSCN$_NODE_ACS,			i,	10
+	FSCN$_NODE_SECONDARY,	i,	11
+	FSCN$S_ITEM_LEN,		i,	8
+	FSCN$S_FSCNDEF,			i,	8
+	FSCN$W_LENGTH,			i,	0
+	FSCN$W_ITEM_CODE,		i,	2
+	FSCN$L_ADDR,			i,	4
+.list

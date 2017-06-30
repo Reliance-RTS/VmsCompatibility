@@ -1,0 +1,105 @@
+;;*****************************************************************************
+;;
+;; Title:       $TT2DEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	TT2$M_LOCALECHO,		i,	%x("1")
+	TT2$M_AUTOBAUD,			i,	%x("2")
+	TT2$M_HANGUP,			i,	%x("4")
+	TT2$M_MODHANGUP,		i,	%x("8")
+	TT2$M_BRDCSTMBX,		i,	%x("10")
+	TT2$M_XON,				i,	%x("20")
+	TT2$M_DMA,				i,	%x("40")
+	TT2$M_ALTYPEAHD,		i,	%x("80")
+	TT2$M_SETSPEED,			i,	%x("100")
+	TT2$M_DCL_MAILBX,		i,	%x("200")
+	TT2$M_DECCRT4,			i,	%x("400")
+	TT2$M_COMMSYNC,			i,	%x("800")
+	TT2$M_EDITING,			i,	%x("1000")
+	TT2$M_INSERT,			i,	%x("2000")
+	TT2$M_FALLBACK,			i,	%x("4000")
+	TT2$M_DIALUP,			i,	%x("8000")
+	TT2$M_SECURE,			i,	%x("10000")
+	TT2$M_DISCONNECT,		i,	%x("20000")
+	TT2$M_PASTHRU,			i,	%x("40000")
+	TT2$M_SYSPWD,			i,	%x("80000")
+	TT2$M_SIXEL,			i,	%x("100000")
+	TT2$M_DRCS,				i,	%x("200000")
+	TT2$M_PRINTER,			i,	%x("400000")
+	TT2$M_APP_KEYPAD,		i,	%x("800000")
+	TT2$M_ANSICRT,			i,	%x("1000000")
+	TT2$M_REGIS,			i,	%x("2000000")
+	TT2$M_BLOCK,			i,	%x("4000000")
+	TT2$M_AVO,				i,	%x("8000000")
+	TT2$M_EDIT,				i,	%x("10000000")
+	TT2$M_DECCRT,			i,	%x("20000000")
+	TT2$M_DECCRT2,			i,	%x("40000000")
+	TT2$M_DECCRT3,			i,	%x("80000000")
+	TT2$S_TT2DEF,			i,	4
+	TT2$V_LOCALECHO,		i,	0
+	TT2$V_AUTOBAUD,			i,	1
+	TT2$V_HANGUP,			i,	2
+	TT2$V_MODHANGUP,		i,	3
+	TT2$V_BRDCSTMBX,		i,	4
+	TT2$V_XON,				i,	5
+	TT2$V_DMA,				i,	6
+	TT2$V_ALTYPEAHD,		i,	7
+	TT2$V_SETSPEED,			i,	8
+	TT2$V_DCL_MAILBX,		i,	9
+	TT2$V_DECCRT4,			i,	10
+	TT2$V_COMMSYNC,			i,	11
+	TT2$V_EDITING,			i,	12
+	TT2$V_INSERT,			i,	13
+	TT2$V_FALLBACK,			i,	14
+	TT2$V_DIALUP,			i,	15
+	TT2$V_SECURE,			i,	16
+	TT2$V_DISCONNECT,		i,	17
+	TT2$V_PASTHRU,			i,	18
+	TT2$V_SYSPWD,			i,	19
+	TT2$V_SIXEL,			i,	20
+	TT2$V_DRCS,				i,	21
+	TT2$V_PRINTER,			i,	22
+	TT2$V_APP_KEYPAD,		i,	23
+	TT2$V_ANSICRT,			i,	24
+	TT2$V_REGIS,			i,	25
+	TT2$V_BLOCK,			i,	26
+	TT2$V_AVO,				i,	27
+	TT2$V_EDIT,				i,	28
+	TT2$V_DECCRT,			i,	29
+	TT2$V_DECCRT2,			i,	30
+	TT2$V_DECCRT3,			i,	31
+.list

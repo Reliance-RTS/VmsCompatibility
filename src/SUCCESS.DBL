@@ -38,8 +38,13 @@
 ;;
 ;;*****************************************************************************
 
-function SUCCESS,			i
-	required in expression,	n
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="expression"></param>
+;;; <returns></returns>
+function SUCCESS, i
+	required in  expression, n
 	endparams
 proc
 	freturn (expression.band.1)

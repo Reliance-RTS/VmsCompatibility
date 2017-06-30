@@ -1,0 +1,240 @@
+;;*****************************************************************************
+;;
+;; Title:       $CLIDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	CLI$M_DEBUG,			i,	%x("1")
+	CLI$M_DBGTRU,			i,	%x("2")
+	CLI$M_VERIFY,			i,	%x("4")
+	CLI$M_BATCH,			i,	%x("8")
+	CLI$M_INDIRECT,			i,	%x("10")
+	CLI$M_VFYINP,			i,	%x("20")
+	CLI$M_TRMVRBLV,			i,	%x("300")
+	CLI$M_DBGEXCP,			i,	%x("10000")
+	CLI$S_CLIDEF,			i,	32
+	CLI$L_INIARGCNT,		i,	0
+	CLI$A_PROGXFER,			i,	4
+	CLI$A_UTILSERV,			i,	8
+	CLI$A_IMGHDADR,			i,	12
+	CLI$A_IMGFILED,			i,	16
+	CLI$L_LINKFLAG,			i,	20
+	CLI$L_CLIFLAG,			i,	24
+	CLI$V_DEBUG,			i,	0
+	CLI$V_DBGTRU,			i,	1
+	CLI$V_VERIFY,			i,	2
+	CLI$V_BATCH,			i,	3
+	CLI$V_INDIRECT,			i,	4
+	CLI$V_VFYINP,			i,	5
+	CLI$S_TRMVRBLV,			i,	2
+	CLI$V_TRMVRBLV,			i,	8
+	CLI$V_DBGEXCP,			i,	16
+	CLI$L_ARGLIST,			i,	28
+	CLI$M_PARMREQ,			i,	%x("1")
+	CLI$M_ABSADR,			i,	%x("2")
+	CLI$M_EXPNAM,			i,	%x("4")
+	CLI$M_LASTVAL,			i,	%x("1")
+	CLI$M_DUMMY,			i,	%x("2")
+	CLI$M_PARMPRS,			i,	%x("1")
+	CLI$M_CONCATINP,		i,	%x("2")
+	CLI$M_MOREINP,			i,	%x("4")
+	CLI$M_PARMDEF,			i,	%x("8")
+	CLI$M_MOREVALS,			i,	%x("1")
+	CLI$M_KEYVALU,			i,	%x("2")
+	CLI$K_REQDESC,			i,	28
+	CLI$C_REQDESC,			i,	28
+	CLI$S_CLIDEF1,			i,	28
+	CLI$B_RQTYPE,			i,	0
+	CLI$S_SUBTYP,			i,	4
+	CLI$V_SUBTYP,			i,	0
+	CLI$S_PRITYP,			i,	4
+	CLI$V_PRITYP,			i,	4
+	CLI$W_SERVCOD,			i,	1
+	CLI$B_RQINDX,			i,	1
+	CLI$B_BITNUM,			i,	1
+	CLI$B_RQFLGS,			i,	2
+	CLI$V_PARMREQ,			i,	0
+	CLI$V_ABSADR,			i,	1
+	CLI$V_EXPNAM,			i,	2
+	CLI$V_LASTVAL,			i,	0
+	CLI$V_DUMMY,			i,	1
+	CLI$B_RQSTAT,			i,	3
+	CLI$V_PARMPRS,			i,	0
+	CLI$V_CONCATINP,		i,	1
+	CLI$V_MOREINP,			i,	2
+	CLI$V_PARMDEF,			i,	3
+	CLI$V_MOREVALS,			i,	0
+	CLI$V_KEYVALU,			i,	1
+	CLI$A_ERRACT,			i,	4
+	CLI$S_RQDESC,			i,	8
+	CLI$Q_RQDESC,			i,	8
+	CLI$W_RQSIZE,			i,	8
+	CLI$L_RQVALU,			i,	12
+	CLI$A_RQADDR,			i,	12
+	CLI$A_PRSACT,			i,	16
+	CLI$A_ABSACT,			i,	20
+	CLI$A_QUALST,			i,	24
+	CLI$S_CLIDEF2,			i,	36
+	CLI$S_NAMDESC,			i,	8
+	CLI$Q_NAMDESC,			i,	4
+	CLI$S_VALDESC,			i,	8
+	CLI$Q_VALDESC,			i,	12
+	CLI$S_TABDESC,			i,	8
+	CLI$Q_TABDESC,			i,	20
+	CLI$L_ITMLST,			i,	28
+	CLI$L_ATTR,				i,	32
+	CLI$S_CLIDEF3,			i,	12
+	CLI$L_NEW_MASK,			i,	4
+	CLI$L_OLD_MASK,			i,	8
+	CLI$S_CLIDEF4,			i,	8
+	CLI$L_PID,				i,	4
+	CLI$M_NOWAIT,			i,	%x("1")
+	CLI$M_NOCLISYM,			i,	%x("2")
+	CLI$M_NOLOGNAM,			i,	%x("4")
+	CLI$M_NOKEYPAD,			i,	%x("8")
+	CLI$M_NOTIFY,			i,	%x("10")
+	CLI$M_NOCONTROL,		i,	%x("20")
+	CLI$M_TRUSTED,			i,	%x("40")
+	CLI$M_AUTHPRIV,			i,	%x("80")
+	CLI$M_SUBSYSTEM,		i,	%x("100")
+	CLI$M_DETACHED,			i,	%x("200")
+	CLI$K_SPAWN_VERSION,	i,	1
+	CLI$C_SPAWN_VERSION,	i,	1
+	CLI$K_SRVDESC,			i,	88
+	CLI$C_SRVDESC,			i,	88
+	CLI$S_CLIDEF5,			i,	88
+	CLI$B_FLAGS,			i,	4
+	CLI$W_FLAGS,			i,	4
+	CLI$V_NOWAIT,			i,	0
+	CLI$V_NOCLISYM,			i,	1
+	CLI$V_NOLOGNAM,			i,	2
+	CLI$V_NOKEYPAD,			i,	3
+	CLI$V_NOTIFY,			i,	4
+	CLI$V_NOCONTROL,		i,	5
+	CLI$V_TRUSTED,			i,	6
+	CLI$V_AUTHPRIV,			i,	7
+	CLI$V_SUBSYSTEM,		i,	8
+	CLI$V_DETACHED,			i,	9
+	CLI$L_OUTPID,			i,	8
+	CLI$L_LSTSTATUS,		i,	12
+	CLI$S_CMDSTR,			i,	8
+	CLI$Q_CMDSTR,			i,	16
+	CLI$S_INPUT,			i,	8
+	CLI$Q_INPUT,			i,	24
+	CLI$S_OUTPUT,			i,	8
+	CLI$Q_OUTPUT,			i,	32
+	CLI$S_PRCNAM,			i,	8
+	CLI$Q_PRCNAM,			i,	40
+	CLI$L_ASTADR,			i,	48
+	CLI$L_ASTPRM,			i,	52
+	CLI$B_EFN,				i,	56
+	CLI$B_VERSION,			i,	57
+	CLI$S_PROMPT,			i,	8
+	CLI$Q_PROMPT,			i,	60
+	CLI$S_CLI,				i,	8
+	CLI$Q_CLI,				i,	68
+	CLI$S_TABLE,			i,	8
+	CLI$Q_TABLE,			i,	76
+	CLI$L_KT_LIMIT,			i,	84
+	CLI$M_ALLOCCUR,			i,	%x("1")
+	CLI$M_QDUSRV,			i,	%x("2")
+	CLI$M_QDEXPA,			i,	%x("4")
+	CLI$M_QUALTRU,			i,	%x("1")
+	CLI$M_QUALEXP,			i,	%x("2")
+	CLI$K_QUALDEF,			i,	20
+	CLI$C_QUALDEF,			i,	20
+	CLI$K_QDBITS,			i,	20
+	CLI$C_QDBITS,			i,	20
+	CLI$S_CLIDEF6,			i,	24
+	CLI$B_QDBLKSIZ,			i,	0
+	CLI$B_QDCODE,			i,	1
+	CLI$B_QDFLGS,			i,	2
+	CLI$V_ALLOCCUR,			i,	0
+	CLI$V_QDUSRV,			i,	1
+	CLI$V_QDEXPA,			i,	2
+	CLI$B_QDSTAT,			i,	3
+	CLI$V_QUALTRU,			i,	0
+	CLI$V_QUALEXP,			i,	1
+	CLI$S_QDVALDESC,		i,	8
+	CLI$Q_QDVALDESC,		i,	4
+	CLI$W_QDVALSIZ,			i,	4
+	CLI$A_QDVALADR,			i,	8
+	CLI$A_TRUACT,			i,	12
+	CLI$A_FLSACT,			i,	16
+	CLI$L_USRVAL,			i,	20
+	CLI$K_WORKAREA,			i,	128
+	CLI$C_WORKAREA,			i,	128
+	CLI$K_UTILOPR,			i,	0
+	CLI$K_INPSPEC,			i,	1
+	CLI$K_OUTSPEC,			i,	2
+	CLI$K_PARDONE,			i,	3
+	CLI$K_VALCONV,			i,	4
+	CLI$K_CLINT,			i,	5
+	CLI$K_INITPRS,			i,	0
+	CLI$K_GETCMD,			i,	1
+	CLI$K_GETQUAL,			i,	2
+	CLI$K_GETOPT,			i,	3
+	CLI$K_GETLINE,			i,	4
+	CLI$K_CLISERV,			i,	5
+	CLI$K_INPUT1,			i,	16
+	CLI$K_INPUT2,			i,	17
+	CLI$K_INPUT3,			i,	18
+	CLI$K_INPUT4,			i,	19
+	CLI$K_OUTPUT1,			i,	32
+	CLI$K_OUTPUT2,			i,	33
+	CLI$K_OUTPUT3,			i,	34
+	CLI$K_OUTPUT4,			i,	35
+	CLI$K_ENDPRM1,			i,	48
+	CLI$K_ENDPRM2,			i,	49
+	CLI$K_ENDPRM3,			i,	50
+	CLI$K_ENDPRM4,			i,	51
+	CLI$K_NUMERVAL,			i,	64
+	CLI$K_ASCIIVAL,			i,	65
+	CLI$K_KEYWORD,			i,	66
+	CLI$K_KEYVAL,			i,	67
+	CLI$K_FILSPEC,			i,	68
+	CLI$K_PRESENT,			i,	80
+	CLI$K_GETVALUE,			i,	81
+	CLI$K_ENDPARSE,			i,	82
+	CLI$K_DCLPARSE,			i,	83
+	CLI$K_DISPATCH,			i,	84
+	CLI$K_NEXTQUAL,			i,	85
+	CLI$S_CLIDEF7,			i,	128
+	CLI$S_WORKAREA,			i,	128
+	CLI$L_WORKAREA,			i,	0
+	CLI$S_CLIDEF8,			i,	8
+	CLI$L_CODESET,			i,	4
+.list

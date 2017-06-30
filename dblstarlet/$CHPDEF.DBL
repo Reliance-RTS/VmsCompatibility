@@ -1,0 +1,141 @@
+;;*****************************************************************************
+;;
+;; Title:       $CHPDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	CHP$_END,					i,	0
+	CHP$_ACCESS,				i,	1
+	CHP$_FLAGS,					i,	2
+	CHP$_PRIV,					i,	3
+	CHP$_ACMODE,				i,	4
+	CHP$_ACCLASS,				i,	5
+	CHP$_RIGHTS,				i,	6
+	CHP$_ADD_RIGHTS,			i,	7
+	CHP$_MODE,					i,	8
+	CHP$_MODES,					i,	9
+	CHP$_MIN_CLASS,				i,	10
+	CHP$_MAX_CLASS,				i,	11
+	CHP$_OWNER,					i,	12
+	CHP$_PROT,					i,	13
+	CHP$_ACL,					i,	14
+	CHP$_AUDIT_NAME,			i,	15
+	CHP$_ALARM_NAME,			i,	16
+	CHP$_MATCHED_ACE,			i,	17
+	CHP$_PRIVUSED,				i,	18
+	CHP$_AUDIT_LIST,			i,	19
+	CHP$_OBJECT_NAME,			i,	20
+	CHP$_OBJECT_CLASS,			i,	21
+	CHP$_UIC,					i,	22
+	CHP$_OBJECT_SPECIFIC,		i,	23
+	CHP$_MAX_CODE,				i,	24
+	CHP$_ADDRIGHTS,				i,	7
+	CHP$_MINCLASS,				i,	10
+	CHP$_MAXCLASS,				i,	11
+	CHP$_AUDITNAME,				i,	15
+	CHP$_ALARMNAME,				i,	16
+	CHP$_MATCHEDACE,			i,	17
+	CHP$_CLASS,					i,	5
+	CHP$K_MATCHED_ACE_LENGTH,	i,	255
+	CHP$K_ALARM_LENGTH,			i,	768
+	CHP$K_AUDIT_LENGTH,			i,	1560
+	CHP$M_SYSPRV,				i,	%x("1")
+	CHP$M_BYPASS,				i,	%x("2")
+	CHP$M_UPGRADE,				i,	%x("4")
+	CHP$M_DOWNGRADE,			i,	%x("8")
+	CHP$M_GRPPRV,				i,	%x("10")
+	CHP$M_READALL,				i,	%x("20")
+	CHP$M_OPER,					i,	%x("40")
+	CHP$M_GRPNAM,				i,	%x("80")
+	CHP$M_SYSNAM,				i,	%x("100")
+	CHP$M_GROUP,				i,	%x("200")
+	CHP$M_WORLD,				i,	%x("400")
+	CHP$M_PRMCEB,				i,	%x("800")
+	CHP$K_NUMBER_OF_PRIVS,		i,	12
+	CHP$V_SYSPRV,				i,	0
+	CHP$V_BYPASS,				i,	1
+	CHP$V_UPGRADE,				i,	2
+	CHP$V_DOWNGRADE,			i,	3
+	CHP$V_GRPPRV,				i,	4
+	CHP$V_READALL,				i,	5
+	CHP$V_OPER,					i,	6
+	CHP$V_GRPNAM,				i,	7
+	CHP$V_SYSNAM,				i,	8
+	CHP$V_GROUP,				i,	9
+	CHP$V_WORLD,				i,	10
+	CHP$V_PRMCEB,				i,	11
+	CHP$M_OBSERVE,				i,	%x("1")
+	CHP$M_ALTER,				i,	%x("2")
+	CHP$M_READ,					i,	%x("1")
+	CHP$M_WRITE,				i,	%x("2")
+	CHP$M_USEREADALL,			i,	%x("4")
+	CHP$M_AUDIT,				i,	%x("8")
+	CHP$M_NOFAILAUD,			i,	%x("10")
+	CHP$M_NOSUCCAUD,			i,	%x("20")
+	CHP$M_DELETE,				i,	%x("40")
+	CHP$M_MANDATORY,			i,	%x("80")
+	CHP$M_FLUSH,				i,	%x("100")
+	CHP$M_CREATE,				i,	%x("200")
+	CHP$M_INTERNAL,				i,	%x("400")
+	CHP$M_SERVER,				i,	%x("800")
+	CHP$V_OBSERVE,				i,	0
+	CHP$V_ALTER,				i,	1
+	CHP$V_READ,					i,	0
+	CHP$V_WRITE,				i,	1
+	CHP$V_USEREADALL,			i,	2
+	CHP$V_AUDIT,				i,	3
+	CHP$V_NOFAILAUD,			i,	4
+	CHP$V_NOSUCCAUD,			i,	5
+	CHP$V_DELETE,				i,	6
+	CHP$V_MANDATORY,			i,	7
+	CHP$V_FLUSH,				i,	8
+	CHP$V_CREATE,				i,	9
+	CHP$V_INTERNAL,				i,	10
+	CHP$V_SERVER,				i,	11
+	CHP$M_NOACCESS,				i,	%x("1")
+	CHP$M_REMDUPID,				i,	%x("2")
+	CHP$M_INCSYSID,				i,	%x("4")
+	CHP$M_INCIMGID,				i,	%x("8")
+	CHP$M_DEFPRIV,				i,	%x("10")
+	CHP$M_DEFCLASS,				i,	%x("20")
+	CHP$S_PROFILE_FLAGS,		i,	1
+	CHP$V_NOACCESS,				i,	0
+	CHP$V_REMDUPID,				i,	1
+	CHP$V_INCSYSID,				i,	2
+	CHP$V_INCIMGID,				i,	3
+	CHP$V_DEFPRIV,				i,	4
+	CHP$V_DEFCLASS,				i,	5
+.list

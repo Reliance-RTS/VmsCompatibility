@@ -1,0 +1,108 @@
+;;*****************************************************************************
+;;
+;; Title:       $PRCDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	PRC$M_SSRWAIT,			i,	%x("1")
+	PRC$M_SSFEXCU,			i,	%x("2")
+	PRC$M_PSWAPM,			i,	%x("4")
+	PRC$M_NOACNT,			i,	%x("8")
+	PRC$M_BATCH,			i,	%x("10")
+	PRC$M_HIBER,			i,	%x("20")
+	PRC$M_NOUAF,			i,	%x("40")
+	PRC$M_NETWRK,			i,	%x("80")
+	PRC$M_DISAWS,			i,	%x("100")
+	PRC$M_DETACH,			i,	%x("200")
+	PRC$M_INTER,			i,	%x("400")
+	PRC$M_IMGDMP,			i,	%x("800")
+	PRC$M_CLISPEC,			i,	%x("1000")
+	PRC$M_NOPASSWORD,		i,	%x("2000")
+	PRC$M_DEBUG,			i,	%x("4000")
+	PRC$M_DBGTRU,			i,	%x("8000")
+	PRC$M_SUBSYSTEM,		i,	%x("10000")
+	PRC$M_TCB,				i,	%x("20000")
+	PRC$M_NO_IMAGE_PRIVS,	i,	%x("40000")
+	PRC$M_PERM_SUBSYSTEM,	i,	%x("80000")
+	PRC$M_PARSE_EXTENDED,	i,	%x("100000")
+	PRC$M_INHERIT_PERSONA,	i,	%x("200000")
+	PRC$M_HOME_RAD,			i,	%x("400000")
+	PRC$M_CASE_SENSITIVE,	i,	%x("800000")
+	PRC$M_SPAWN_DETACHED,	i,	%x("1000000")
+	PRC$M_SSLOG_ENABLE,		i,	%x("2000000")
+	PRC$M_KT_LIMIT,			i,	%x("4000000")
+	PRC$M_LOGIN,			i,	%x("40")
+	PRC$S_PRCDEF,			i,	4
+	PRC$V_SSRWAIT,			i,	0
+	PRC$V_SSFEXCU,			i,	1
+	PRC$V_PSWAPM,			i,	2
+	PRC$V_NOACNT,			i,	3
+	PRC$V_BATCH,			i,	4
+	PRC$V_HIBER,			i,	5
+	PRC$V_NOUAF,			i,	6
+	PRC$V_NETWRK,			i,	7
+	PRC$V_DISAWS,			i,	8
+	PRC$V_DETACH,			i,	9
+	PRC$V_INTER,			i,	10
+	PRC$V_IMGDMP,			i,	11
+	PRC$V_CLISPEC,			i,	12
+	PRC$V_NOPASSWORD,		i,	13
+	PRC$V_DEBUG,			i,	14
+	PRC$V_DBGTRU,			i,	15
+	PRC$V_SUBSYSTEM,		i,	16
+	PRC$V_TCB,				i,	17
+	PRC$V_NO_IMAGE_PRIVS,	i,	18
+	PRC$V_PERM_SUBSYSTEM,	i,	19
+	PRC$V_PARSE_EXTENDED,	i,	20
+	PRC$V_INHERIT_PERSONA,	i,	21
+	PRC$V_HOME_RAD,			i,	22
+	PRC$V_CASE_SENSITIVE,	i,	23
+	PRC$V_SPAWN_DETACHED,	i,	24
+	PRC$V_SSLOG_ENABLE,		i,	25
+	PRC$V_KT_LIMIT,			i,	26
+	PRC$V_LOGIN,			i,	6
+	PRC$M_IMPERSONATE,		i,	512
+	PRC$_LISTEND,			i,	0
+	PRC$_PGFLCHAR,			i,	1
+	PRC$_PGFLINDEX,			i,	2
+	PRC$_INPUT_ATT,			i,	3
+	PRC$_OUTPUT_ATT,		i,	4
+	PRC$_ERROR_ATT,			i,	5
+	PRC$_CLASS,				i,	6
+	PRC$_SSLOG_FLAGS,		i,	7
+	PRC$_SSLOG_BUFSIZE,		i,	8
+	PRC$_SSLOG_BUFCNT,		i,	9
+.list

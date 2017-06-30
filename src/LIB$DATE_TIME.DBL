@@ -38,8 +38,13 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="retDate"></param>
+;;; <returns></returns>
 subroutine LIB$DATE_TIME
-	required out retDate,		a
+	required out   retDate,		a
 	endparams
 
 	external function 

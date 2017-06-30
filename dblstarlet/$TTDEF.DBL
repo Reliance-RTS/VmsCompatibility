@@ -1,0 +1,186 @@
+;;*****************************************************************************
+;;
+;; Title:       $TTDEF.DBL
+;;
+;; Type:        Include file
+;;
+;; Description: 
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2017, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+.Nolist
+literal
+	TT$C_BAUD_50,			i,	1
+	TT$C_BAUD_75,			i,	2
+	TT$C_BAUD_110,			i,	3
+	TT$C_BAUD_134,			i,	4
+	TT$C_BAUD_150,			i,	5
+	TT$C_BAUD_300,			i,	6
+	TT$C_BAUD_600,			i,	7
+	TT$C_BAUD_1200,			i,	8
+	TT$C_BAUD_1800,			i,	9
+	TT$C_BAUD_2000,			i,	10
+	TT$C_BAUD_2400,			i,	11
+	TT$C_BAUD_3600,			i,	12
+	TT$C_BAUD_4800,			i,	13
+	TT$C_BAUD_7200,			i,	14
+	TT$C_BAUD_9600,			i,	15
+	TT$C_BAUD_19200,		i,	16
+	TT$C_BAUD_38400,		i,	17
+	TT$C_BAUD_57600,		i,	18
+	TT$C_BAUD_76800,		i,	19
+	TT$C_BAUD_115200,		i,	20
+	TT$_UNKNOWN,			i,	0
+	TT$_VT05,				i,	1
+	TT$_VK100,				i,	2
+	TT$_VT173,				i,	3
+	TT$_TQ_BTS,				i,	4
+	TT$_TEK401X,			i,	10
+	TT$_FT1,				i,	16
+	TT$_FT2,				i,	17
+	TT$_FT3,				i,	18
+	TT$_FT4,				i,	19
+	TT$_FT5,				i,	20
+	TT$_FT6,				i,	21
+	TT$_FT7,				i,	22
+	TT$_FT8,				i,	23
+	TT$_LAX,				i,	32
+	TT$_LA36,				i,	32
+	TT$_LA120,				i,	33
+	TT$_LA34,				i,	34
+	TT$_LA38,				i,	35
+	TT$_LA12,				i,	36
+	TT$_LA100,				i,	37
+	TT$_LA24,				i,	37
+	TT$_LQP02,				i,	38
+	TT$_LA84,				i,	39
+	TT$_LA210,				i,	40
+	TT$_LN03,				i,	41
+	TT$_LN01K,				i,	42
+	TT$_LA80,				i,	43
+	TT$_VT5X,				i,	64
+	TT$_VT52,				i,	64
+	TT$_VT55,				i,	65
+	TT$_VT100,				i,	96
+	TT$_VT101,				i,	97
+	TT$_VT102,				i,	98
+	TT$_VT105,				i,	99
+	TT$_VT125,				i,	100
+	TT$_VT131,				i,	101
+	TT$_VT132,				i,	102
+	TT$_VT80,				i,	103
+	TT$_VT200_Series,		i,	110
+	TT$_Pro_Series,			i,	111
+	TT$_VT300_Series,		i,	112
+	TT$_VT400_Series,		i,	113
+	TT$_VT500_Series,		i,	114
+	TT$M_PASSALL,			i,	%x("1")
+	TT$M_NOECHO,			i,	%x("2")
+	TT$M_NOTYPEAHD,			i,	%x("4")
+	TT$M_ESCAPE,			i,	%x("8")
+	TT$M_HOSTSYNC,			i,	%x("10")
+	TT$M_TTSYNC,			i,	%x("20")
+	TT$M_SCRIPT,			i,	%x("40")
+	TT$M_LOWER,				i,	%x("80")
+	TT$M_MECHTAB,			i,	%x("100")
+	TT$M_WRAP,				i,	%x("200")
+	TT$M_CRFILL,			i,	%x("400")
+	TT$M_LFFILL,			i,	%x("800")
+	TT$M_SCOPE,				i,	%x("1000")
+	TT$M_REMOTE,			i,	%x("2000")
+	TT$M_RESERVED,			i,	%x("4000")
+	TT$M_EIGHTBIT,			i,	%x("8000")
+	TT$M_MBXDSABL,			i,	%x("10000")
+	TT$M_NOBRDCST,			i,	%x("20000")
+	TT$M_READSYNC,			i,	%x("40000")
+	TT$M_MECHFORM,			i,	%x("80000")
+	TT$M_HALFDUP,			i,	%x("100000")
+	TT$M_MODEM,				i,	%x("200000")
+	TT$M_OPER,				i,	%x("400000")
+	TT$M_PAGE,				i,	%x("FF000000")
+	TT$M_ALTFRAME,			i,	%x("10")
+	TT$M_ALTRPAR,			i,	%x("20")
+	TT$M_PARITY,			i,	%x("40")
+	TT$M_ODD,				i,	%x("80")
+	TT$M_TWOSTOP,			i,	%x("100")
+	TT$M_DISPARERR,			i,	%x("200")
+	TT$M_ALTDISPAR,			i,	%x("400")
+	TT$M_BREAK,				i,	%x("800")
+	TT$M_DS_DTR,			i,	%x("2")
+	TT$M_DS_SECTX,			i,	%x("8")
+	TT$M_DS_RTS,			i,	%x("10")
+	TT$M_DS_SECREC,			i,	%x("8")
+	TT$M_DS_CTS,			i,	%x("10")
+	TT$M_DS_CARRIER,		i,	%x("20")
+	TT$M_DS_RING,			i,	%x("40")
+	TT$M_DS_DSR,			i,	%x("80")
+	TT$S_TTDEF,				i,	4
+	TT$V_PASSALL,			i,	0
+	TT$V_NOECHO,			i,	1
+	TT$V_NOTYPEAHD,			i,	2
+	TT$V_ESCAPE,			i,	3
+	TT$V_HOSTSYNC,			i,	4
+	TT$V_TTSYNC,			i,	5
+	TT$V_SCRIPT,			i,	6
+	TT$V_LOWER,				i,	7
+	TT$V_MECHTAB,			i,	8
+	TT$V_WRAP,				i,	9
+	TT$V_CRFILL,			i,	10
+	TT$V_LFFILL,			i,	11
+	TT$V_SCOPE,				i,	12
+	TT$V_REMOTE,			i,	13
+	TT$V_RESERVED,			i,	14
+	TT$V_EIGHTBIT,			i,	15
+	TT$V_MBXDSABL,			i,	16
+	TT$V_NOBRDCST,			i,	17
+	TT$V_READSYNC,			i,	18
+	TT$V_MECHFORM,			i,	19
+	TT$V_HALFDUP,			i,	20
+	TT$V_MODEM,				i,	21
+	TT$V_OPER,				i,	22
+	TT$S_PAGE,				i,	8
+	TT$V_PAGE,				i,	24
+	TT$V_ALTFRAME,			i,	4
+	TT$V_ALTRPAR,			i,	5
+	TT$V_PARITY,			i,	6
+	TT$V_ODD,				i,	7
+	TT$V_TWOSTOP,			i,	8
+	TT$V_DISPARERR,			i,	9
+	TT$V_ALTDISPAR,			i,	10
+	TT$V_BREAK,				i,	11
+	TT$V_DS_DTR,			i,	1
+	TT$V_DS_SECTX,			i,	3
+	TT$V_DS_RTS,			i,	4
+	TT$V_DS_SECREC,			i,	3
+	TT$V_DS_CTS,			i,	4
+	TT$V_DS_CARRIER,		i,	5
+	TT$V_DS_RING,			i,	6
+	TT$V_DS_DSR,			i,	7
+.list

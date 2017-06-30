@@ -129,26 +129,43 @@
         <Folder
             Name="Source Files"
             Filters="*.dbl;*.tpl;*.dbc;*.UT;*.SUB;*.FNC">
+            <F N="../src/CHAIN.DBL"/>
+            <F N="../src/DBL$DEVCLT.DBL"/>
+            <F N="../src/DBL$IXREAD.DBL"/>
             <F N="../src/DBL$SETKRF.DBL"/>
+            <F N="../src/DBL$SNDOPR.DBL"/>
+            <F N="../src/EDT$EDIT.DBL"/>
+            <F N="../src/EMPBUF.DBL"/>
+            <F N="../src/GETCM.DBL"/>
+            <F N="../src/GTENT.DBL"/>
             <F N="../src/LIB$ADD_TIMES.DBL"/>
+            <F N="../src/LIB$CURRENCY.DBL"/>
+            <F N="../src/LIB$CVT_DX_DX.DBL"/>
             <F N="../src/LIB$DATE_TIME.DBL"/>
             <F N="../src/LIB$DAY_OF_WEEK.DBL"/>
+            <F N="../src/LIB$DELETE_SYMBOL.DBL"/>
+            <F N="../src/LIB$DO_COMMAND.DBL"/>
             <F N="../src/LIB$GET_COMMON.DBL"/>
             <F N="../src/LIB$GET_FOREIGN.DBL"/>
             <F N="../src/LIB$GET_SYMBOL.DBL"/>
             <F N="../src/LIB$PUT_COMMON.DBL"/>
+            <F N="../src/LIB$PUT_OUTPUT.DBL"/>
             <F N="../src/LIB$SET_LOGICAL.DBL"/>
             <F N="../src/LIB$SET_SYMBOL.DBL"/>
             <F N="../src/LIB$STOP.DBL"/>
             <F N="../src/LIB$SUB_TIMES.DBL"/>
             <F N="../src/MonthNumberToShortName.dbl"/>
             <F N="../src/MonthShortNameToNumber.dbl"/>
+            <F N="../src/PUTCM.DBL"/>
             <F N="../src/STR$CONCAT.DBL"/>
+            <F N="../src/STR$DUPL_CHARACTER.DBL"/>
             <F N="../src/STR$TRIM.DBL"/>
+            <F N="../src/STR$UPCASE.DBL"/>
             <F N="../src/SUCCESS.DBL"/>
             <F N="../src/SYS$ASCTIM.DBL"/>
             <F N="../src/SYS$BINTIM.DBL"/>
             <F N="../src/SYS$GETTIM.DBL"/>
+            <F N="../src/VMSSYSTEM.DBL"/>
         </Folder>
         <Folder
             Name="Header Files"
@@ -522,5 +539,6 @@
     </Config>
     <Macro>
         <ExecMacro CmdLine="syn_set ROOT=%wp"/>
+        <ExecMacro CmdLine="syn_set DBLSTARLET=%(ROOT)dblstarlet"/>
     </Macro>
 </Project>

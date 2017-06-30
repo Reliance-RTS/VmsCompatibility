@@ -38,13 +38,18 @@
 ;;
 ;;*****************************************************************************
 
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="valuetoPut"></param>
+;;; <returns></returns>
 subroutine LIB$PUT_COMMON
-	valuetoPut,	a
-	record
+    required in  valuetoPut, a
+    record
 		status,	i4
-	endrecord
+    endrecord
 proc
-	xcall setlog("COMMON_DATA_STORE",%atrim(valueToPut),status)
-	xreturn
+    xcall setlog("COMMON_DATA_STORE",%atrim(valueToPut),status)
+    xreturn
 endsubroutine
 
