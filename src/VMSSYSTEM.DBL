@@ -404,7 +404,7 @@ endfunction
 ;;; <param name="efkey_method"></param>
 ;;; <returns></returns>
 function LIB$FREE_EF                    ,^val
-    in ^val(efkey_method)               ,i
+    required in ^ref(efn)               ,i4
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -468,7 +468,7 @@ endfunction
 ;;; <param name="resultlen"></param>
 ;;; <returns></returns>
 function LIB$GETJPI                     ,^val
-    in             ^val(itemcode)       ,i
+    in             ^ref(itemcode)       ,i4
     optional inout ^ref(process_id)     ,i4
     optional in    process_name         ,a
     optional out   ^ref(intvalue)       ,i4
@@ -491,6 +491,7 @@ endfunction
 ;;;
 ;;; </summary>
 function LIB$GET_EF                     ,^val
+    required out ^ref(efn),  i4
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -1454,10 +1455,10 @@ endfunction
 ;;; <returns></returns>
 function SYS$CREPRC                     ,^val
     optional out ^ref(pidaddr)          ,i4
-    required in  imagename              ,a
-    required in  sysinput               ,a
-    required in  sysoutput              ,a
-    required in  syserror               ,a
+    optional in  imagename              ,a
+    optional in  sysinput               ,a
+    optional in  sysoutput              ,a
+    optional in  syserror               ,a
     optional in  ^ref(privs)            ,i4
     optional in  ^ref(quota)            ,i4
     optional in  processname            ,a
