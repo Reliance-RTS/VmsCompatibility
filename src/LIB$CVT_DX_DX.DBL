@@ -52,29 +52,10 @@
 function lib$cvt_dx_dx,^val
     required in  mismatch source		,n
     required out  mismatch destination	,n
-    required out  ^ref(outlen)			,i2
-    record
-	    srctyp, i4
-	    dsttyp, i4
+    opt out  ^ref(outlen)			,i2
 proc
-    if (srctyp = ^datatype(1)) == (dsttyp = ^datatype(2)) then
-    begin
-		if srctyp == D_TYPE_A then
-			^a(destination) = ^a(source)
-		else
-			destination = source
-    end
-    else
-    begin
-		if srctyp == D_TYPE_A then
-			destination = ^a(source)
-		else
-			^a(destination) = source 
-    end
-    if ^passed(outlen)
-		outlen = ^size(destination)
-    
-	freturn SS$_NORMAL
+    throw new ApplicationException("Not implemented!")
+    freturn 0
     
 endfunction
 
