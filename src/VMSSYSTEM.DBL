@@ -2143,7 +2143,7 @@ endfunction
 ;;; <param name="prevpriority"></param>
 ;;; <param name="basepriority"></param>
 ;;; <returns></returns>
-function SYS$SETPRN                     ,^val
+function SYS$SETPRI                     ,^val
     optional inout ^ref(processid)      ,i4
     optional in    processname          ,a
     required in    ^val(priority)       ,i
