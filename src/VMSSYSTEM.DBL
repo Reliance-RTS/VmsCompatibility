@@ -1071,7 +1071,24 @@ endfunction
 ;STR$COPY_R
 ;STR$COPY_R_64
 ;STR$DIVIDE
-;STR$ELEMENT
+
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="deststring"></param>
+;;; <param name="elemnumber"></param>
+;;; <param name="delimchar"></param>
+;;; <param name="sourcestring"></param>
+;;; <returns></returns>
+function STR$ELEMENT			,^val
+	required out deststring		,a
+	required in ^ref(elemnumber)	,i4
+	required in delimchar		,a1
+	required in sourcestring	,a
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
 
 ;;; <summary>
 ;;;
@@ -1621,9 +1638,39 @@ proc
 endfunction
 
 ;SYS$FIND
-;SYS$FIND_HELD
+
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="holder"></param>
+;;; <param name="rightsid"></param>
+;;; <param name="attrib"></param>
+;;; <param name="context"></param>
+;;; <returns></returns>
+function SYS$FIND_HELD                  ,^val
+	required in ^ref(holder)	,i8
+	optional out ^ref(rightsid)	,i4
+	optional out ^ref(attrib)	,i4
+	optional inout ^ref(context)	,i4
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
+
 ;SYS$FIND_HOLDER
-;SYS$FINISH_RDB
+
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="context"></param>
+;;; <returns></returns>
+function SYS$FINISH_RDB			,^val
+	required inout ^ref(context)	,i4
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
+
 ;SYS$FLUSH
 
 ;;; <summary>
@@ -1885,8 +1932,47 @@ endfunction
 ;SYS$GET_USER_CAPABILITY
 ;SYS$GOTO_UNWIND
 ;SYS$GOTO_UNWIND_64
-;SYS$GRANTID
-;SYS$HASH_PASSWORD
+
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="pidaddr"></param>
+;;; <param name="processname"></param>
+;;; <param name="rightsid"></param>
+;;; <param name="name"></param>
+;;; <param name="prevattrib"></param>
+;;; <returns></returns>
+function SYS$GRANTID			,^val
+	optional inout ^ref(pidaddr)	,i4
+	optional in processname         ,a
+	optional inout ^ref(rightsid)	,i8
+	optional in name		,a
+	optional out ^ref(prevattrib)	,i4
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
+
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="pwd"></param>
+;;; <param name="algorithm"></param>
+;;; <param name="salt"></param>
+;;; <param name="usrnam"></param>
+;;; <param name="hash"></param>
+;;; <returns></returns>
+function SYS$HASH_PASSWORD		,^val
+	required in pwd			,a
+	required in algorithm		,i1
+	optional in salt		,i2
+	required in usrnam		,a
+	required out ^ref(hash)		,i8
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
+
 ;SYS$HIBER
 ;SYS$ICC_ACCEPT
 ;SYS$ICC_CLOSE_ASSOC
@@ -2078,7 +2164,27 @@ endfunction
 ;SYS$RENAME
 ;SYS$RESCHED
 ;SYS$RESUME
-;SYS$REVOKID
+
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="pidaddr"></param>
+;;; <param name="processname"></param>
+;;; <param name="rightsid"></param>
+;;; <param name="name"></param>
+;;; <param name="attrib"></param>
+;;; <returns></returns>
+function SYS$REVOKID			,^val
+	optional inout ^ref(pidaddr)	,i4
+	optional in processname         ,a
+	optional inout ^ref(rightsid)	,i8
+	optional in name		,a
+	optional out ^ref(attrib)	,i4
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
+
 ;SYS$REWIND
 ;SYS$RMSRUNDWN.
 ;SYS$RPCC_64
