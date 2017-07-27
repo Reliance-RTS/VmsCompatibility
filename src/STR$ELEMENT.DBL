@@ -80,7 +80,7 @@ proc
 	begin
 		ptrcurdelim = %instr(ptrprevdelim+1, sourcestring, delimchar)
 		;Point to the final element (no trailing delimchar) by simulating the final delimchar
-		if (ptrcurdelim .eq. 0) .and. (ptrprevdelim .gt. 1)
+		if (ptrcurdelim .eq. 0)
 		begin
 			ptrcurdelim = ^size(sourcestring) + 1
 		end

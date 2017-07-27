@@ -135,6 +135,9 @@
     <Compile Include="..\src\STR%24DUPL_CHAR.DBL">
       <Link>STR$DUPL_CHAR.DBL</Link>
     </Compile>
+    <Compile Include="..\src\STR%24ELEMENT.DBL">
+      <Link>STR$ELEMENT.DBL</Link>
+    </Compile>
     <Compile Include="..\src\STR%24TRIM.DBL">
       <Link>STR$TRIM.DBL</Link>
     </Compile>
@@ -156,6 +159,5 @@
     <Compile Include="..\src\VMSSYSTEM.DBL">
       <Link>VMSSYSTEM.DBL</Link>
     </Compile>
-    <Compile Include="STR%24ELEMENT.DBL" />
   </ItemGroup>
 </Project>
