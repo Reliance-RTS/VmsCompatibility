@@ -156,5 +156,6 @@
     <Compile Include="..\src\VMSSYSTEM.DBL">
       <Link>VMSSYSTEM.DBL</Link>
     </Compile>
+    <Compile Include="STR%24ELEMENT.DBL" />
   </ItemGroup>
 </Project>

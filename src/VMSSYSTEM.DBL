@@ -1073,24 +1073,6 @@ endfunction
 ;STR$DIVIDE
 
 ;;; <summary>
-;;; 
-;;; </summary>
-;;; <param name="deststring"></param>
-;;; <param name="elemnumber"></param>
-;;; <param name="delimchar"></param>
-;;; <param name="sourcestring"></param>
-;;; <returns></returns>
-function STR$ELEMENT			,^val
-	required out deststring		,a
-	required in ^ref(elemnumber)	,i4
-	required in delimchar		,a1
-	required in sourcestring	,a
-proc
-	throw new ApplicationException("Not implemented!")
-	freturn 0
-endfunction
-
-;;; <summary>
 ;;;
 ;;; </summary>
 ;;; <param name="source"></param>

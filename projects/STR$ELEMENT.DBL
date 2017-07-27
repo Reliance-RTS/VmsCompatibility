@@ -1,0 +1,108 @@
+;;*****************************************************************************
+;;
+;; Title:       STR$ELEMENT
+;;
+;; Type:        Function
+;;
+;; Description: Emulates the functionality of the OpemVMS routine STR$ELEMENT
+;;
+;; Author:      Kish Baley, Synergex Professional Services Group
+;;              http://www.synergex.com
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2014, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+;;; <summary>
+;;;	Extract element value of elemnumber from sourcestring
+;;; </summary>
+;;; <param name="element">Returned element value</param>
+;;; <param name="elemnumber">Zero based element number to retrieve</param>
+;;; <param name="delimchar">The delimiter character, cannot be more than one character</param>
+;;; <param name="sourcestring">The string to parse, the string is delimited by delimchar</param>
+;;; <returns>
+;;;	SS$_NORMAL
+;;;	STR$_INVDELIM - Delimiter character is not exactly one character
+;;;	STR$_NOELEM - No matching element found
+;;;	STR$_TRU - The returned element has been truncated (size of element argument is smaller than the extracted element value)
+;;; </returns>
+function STR$ELEMENT, ^val
+	required out element		,a
+	required in ^ref(elemnumber)	,i4	;Zero-based
+	required in delimchar		,a
+	required in sourcestring	,a
+	endparams
+
+	.include "DBLSTARLET:$SSDEF.DBL"
+	.include "DBLSTARLET:$STRDEF.DBL"
+
+	record
+		curelem			,i4		;Current element #
+		ptrprevdelim		,i4		;Pointer to previously found delimchar
+		ptrcurdelim		,i4		;Pointer to current delimchar
+		substr			,a1024		;The substring to extract and return to the caller
+	endrecord
+proc
+	;Confirmed that OpenVMS returns variable 'element' empty if the variable 'delimchar' is more than one char (vs. signaling STR$_INVDELIM and returning the matching element)
+	if (^size(delimchar) .eq. 0) .or. (^size(delimchar) .gt. 1)
+		freturn STR$_INVDELIM
+
+	;Return the desired element in 
+	clear curelem
+	ptrprevdelim = 0
+	clear substr
+	while (ptrprevdelim .lt. ^size(sourcestring))
+	begin
+		ptrcurdelim = %instr(ptrprevdelim+1, sourcestring, delimchar)
+		;Point to the final element (no trailing delimchar) by simulating the final delimchar
+		if (ptrcurdelim .eq. 0) .and. (ptrprevdelim .gt. 1)
+		begin
+			ptrcurdelim = ^size(sourcestring) + 1
+		end
+		if (ptrcurdelim .ne. 0) .and. (curelem .eq. elemnumber)
+		begin
+			if (ptrcurdelim-1 .ge. ptrprevdelim+1)
+			begin
+				substr = sourcestring(ptrprevdelim+1, ptrcurdelim-1)
+			end
+			exitloop
+		end
+
+		incr curelem
+		ptrprevdelim = ptrcurdelim
+	end
+	element = %atrim(substr)
+	if (%trimz(element) .eq. 0)
+		freturn STR$_NOELEM
+	if (^size(%atrim(substr)) .gt. ^size(element))
+		freturn STR$_TRU
+	
+	;If we got here, all is well
+	freturn SS$_NORMAL
+endfunction
+
