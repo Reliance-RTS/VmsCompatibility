@@ -72,7 +72,7 @@ proc
 	if (^size(delimchar) .eq. 0) .or. (^size(delimchar) .gt. 1)
 		freturn STR$_INVDELIM
 
-	;Return the desired element in 
+	;Return the desired element value in substr
 	clear curelem
 	ptrprevdelim = 0
 	clear substr
@@ -96,6 +96,8 @@ proc
 		incr curelem
 		ptrprevdelim = ptrcurdelim
 	end
+
+	;Return the element found, return the apprropriate function return values
 	element = %atrim(substr)
 	if (%trimz(element) .eq. 0)
 		freturn STR$_NOELEM
