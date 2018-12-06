@@ -1,12 +1,12 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$ADD_TIMES.DBL
+;; Title:       STR$FIND_FIRST_NOT_IN_SET
 ;;
 ;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine %LIB$ADD_TIMES
+;; Description: Emulates the functionality of the OpemVMS routine STR$FIND_FIRST_NOT_IN_SET
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,55 +39,50 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;;	Searches a string, comparing each character to the characters in a specified set of characters lloking for a non-match
 ;;; </summary>
-function LIB$ADD_TIMES,		^val
-	required in  %ref(firstTime),		i8
-	required in  %ref(secondTime),		i8
-	required out %ref(resultingTime),	i8
+;;; <param name="sourceString">String to be tested for given characters</param>
+;;; <param name="charactersString">String containg the set of characters</param>
+;;; <returns>
+;;;	0 - Either all characters in sourceString match some characters in charactersString, or charactersString is empty
+;;;	1 - Either the first nonmatching character in sourceString was found in position 1, or  sourceString is empty
+;;; n - The first nonmatching character was found in position n within sourceString
+;;; </returns>
+function STR$FIND_FIRST_NOT_IN_SET, ^val
+	required in  sourceString		,a
+	required in  charactersString	,a
 	endparams
-
-	.include "DBLSTARLET:$LIBDEF.DBL"
-
-	record localData
-		returnDelta	,boolean
-		time1		,i8
-		time2		,i8
+		
+	.align
+	record lVars
+		i			,i4
+		sourceLen	,i4
 	endrecord
 
 proc
-	init localData
-	clear resultingTime
+	;there are no characters in the set of characters 
+	if (^size(charactersString) .eq. 0)
+		freturn 0
 
-	;One of firstTime or secondTime MUST be a delta time
-	if (firstTime .gt. 0 .and. secondTime .gt. 0)
-		freturn LIB$_ONEDELTIM
+	;initialize
+	init lVars
 
-	;populate local variables
-	time1 = firstTime
-	time2 = secondTime
+	;get length of source string
+	sourceLen = ^size(sourceString)
 
-	; if any of the incoming values are delta time - convert to positive for calculation
-	if(time1 .lt. 0) then
+	;the source string is of zero length, so none of the set of characters elements (particularly the first element) can be found
+	if (sourceLen .eq. 0)
+		freturn 1
+
+	;loop through the source string looking for a match of each character in characters string
+	for i from 1 thru sourceLen by 1
 	begin
-		time1 = time1*-1
-
-		if (time2 .lt. 0)
-		begin
-			time2 = time2*-1
-			returnDelta = true		;both times were delta - set flag
-		end
+		if (%instr(1, charactersString, sourceString(i:1)) .eq. 0)	;no match - return position of the source string character
+			freturn i
 	end
-	else
-		if(time2 .lt. 0) 
-			time2 = time2*-1
 
-	; if delta value - set to negative, else return absolute time
-	if (returnDelta) then
-			resultingTime = (time1 + time2)*-1
-	else
-			resultingTime = time1 + time2
-
-	freturn LIB$_NORMAL
+	;if we got here, all characters in source string match some characters in set of characters
+	freturn 0
 endfunction
 
+					

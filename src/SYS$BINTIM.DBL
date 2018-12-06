@@ -51,10 +51,12 @@ function SYS$BINTIM, ^val
 
 	external function 
 		MonthShortNameToNumber,	^val
+		MonthNumbertoShortName,	a
 	endexternal
 
 	stack record localData
 		status,					i4
+		deltaConvert,			boolean
 		group vmsString,		a
 			vsDD,				d2
 			,					a1
@@ -78,6 +80,34 @@ function SYS$BINTIM, ^val
 		wholeDays,				i4
 		bintim,					i8
 		idSeconds,				d4.2
+
+		group workDateTime,		a	
+			wYear,				a4
+			wMonth,				a2
+			wDay,				a2
+			wHour,				a2
+			wMinute,			a2
+			wSecond,			a2
+			wMsecond,			a6
+		endgroup
+		lBuffer,				a100
+		group aString,			a
+			aDD,				a2
+			,					a1
+			aMMM,				a3
+			,					a1
+			aYYYY,				a4
+			,					a1
+			aHH,				a2
+			,					a1
+			aMM,				a2
+			,					a1
+			aSS,				a2
+			,					a1
+			aXX,				a2
+		endgroup  
+		pos1,					int
+		pos2,					int
 	endrecord
 
 	;1 sec = 1000000000 nanoseconds
@@ -92,11 +122,43 @@ proc
 	;;intervals since 17th November 1858 00:00
 	
 	init localData
-	
-	if (^size(aDateString)==23) then 
-	begin
-		vmsString = aDateString
 
+	lBuffer = aDateString
+	while (lBuffer .and. lBuffer(1:1) .eq. " ")
+		lbuffer-=" "
+
+	workDateTime = %datetime()
+	
+	;Absolute string  DD-MMM-YYYY[ hh:mm:ss.xx]
+	;if (^size(aDateString)==23) then
+	pos1 = %instr(1, lBuffer, "-")
+	if (pos1 .gt. 0) then
+	begin
+		;Absolute string  DD-MMM-YYYY[ hh:mm:ss.xx]
+		; any missing values default to current date\time components
+
+		aString   = lBuffer
+		vmsString = aString
+		if (aHH .eq. "  ") then
+			vsHH = %integer(wHour)
+		else
+			vsHH = %integer(aHH) 
+		
+		if (aMM .eq. "  ") then
+			vsMM = %integer(wMinute)
+		else
+			vsMM = %integer(aMM) 
+
+		if (aSS .eq. "  ") then
+			vsSS = %integer(wSecond)
+		else
+			vsSS = %integer(aSS) 
+
+		if (aXX .eq. "  ") then
+			vsXX = %integer(wMsecond)#4
+		else
+			vsXX = %integer(aSS) 
+		
 		;;Get a YYYYMMDD date from the VMS data
 		dateString.dtYYYY = vmsString.vsYYYY
 		dateString.dtMM	  = %MonthShortNameToNumber(vmsString.vsMMM)
@@ -108,23 +170,69 @@ proc
 	else
 	begin
 		;It's a DELTA string d[ddd] hh:mm:ss.xx
-		data lPos, i4,   %instr(1,aDateString," ")
-		wholeDays      = %integer(aDateString(1,lPos-1))
-		vmsString.vsHH = %integer(aDateString(lPos+1:2))
-		vmsString.vsMM = %integer(aDateString(lPos+4:2))
-		vmsString.vsSS = %integer(aDateString(lPos+7:2))
-		vmsString.vsXX = %integer(aDateString(lPos+10:2))
+		; any missing values default to 0
+		pos1 = (%instr(1,lBuffer," "))
+		wholeDays = %integer(lBuffer(1,pos1-1))
+		
+		lBuffer = lBuffer(pos1+1, ^size(lBuffer))
+		pos1 = (%instr(1,lBuffer,":"))
+		using pos1 select
+		(0),
+		begin
+			pos1 = (%instr(1,lBuffer," "))
+			if (pos1 .gt. 1)
+				vsHH = %integer(lBuffer(1,pos1-1))
+		end
+		(1),nop	
+		()  ,vsHH = %integer(lBuffer(1,pos1-1))
+		endusing
+		
+		lBuffer = lBuffer(pos1+1, ^size(lBuffer))
+		pos1 = (%instr(1,lBuffer,":"))
+		using pos1 select
+		(0),
+		begin
+			pos1 = (%instr(1,lBuffer," "))
+			if (pos1 .gt. 1)
+				vsMM = %integer(lBuffer(1,pos1-1))
+		end
+		(1),nop	
+		()	,vsMM = %integer(lBuffer(1,pos1-1))
+		endusing
+		
+		lBuffer = lBuffer(pos1+1, ^size(lBuffer))
+		pos1 = (%instr(1,lBuffer,"."))
+		using pos1 select
+		(0),
+		begin
+			pos1 = (%instr(1,lBuffer," "))
+			if (pos1 .gt. 1)
+				vsSS = %integer(lBuffer(1,pos1-1))
+		end
+		(1),nop	
+		()	,vsSS = %integer(lBuffer(1,pos1-1))
+		endusing
+		
+		lBuffer = lBuffer(pos1+1, ^size(lBuffer))
+		pos1 = (%trimz(lBuffer))
+		if (pos1 .gt. 0)
+			vsXX = %integer(lBuffer(1:pos1))
+
+		deltaConvert = true
 	end
 
 	;;How many 100 microsecond intervals in the number of whole days
 	bintim = wholeDays * INTERVALS_IN_DAY
 	
 	;;Now add the partial day
-	
 	bintim = bintim + (vmsString.vsHH * INTERVALS_IN_HOUR)
 	bintim = bintim + (vmsString.vsMM * INTERVALS_IN_MINUTE)
 	bintim = bintim + (vmsString.vsSS * INTERVALS_IN_SECOND)
 	bintim = bintim + ((vmsString.vsXX / 100.0) * INTERVALS_IN_SECOND)
+
+	;delta conversion has to be a negative value
+	if (deltaConvert)
+		bintim = bintim *-1
 	
 	;;Return the result
 	vms_bintim = bintim

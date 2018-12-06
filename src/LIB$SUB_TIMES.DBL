@@ -49,9 +49,44 @@ function LIB$SUB_TIMES,	^val
     required in  %ref(laterTime),		i8
     required in  %ref(earlierTime),		i8
     required out  %ref(deltaTime),		i8
-    endparams
+	endparams
+
+	.include "DBLSTARLET:$LIBDEF.DBL"
+	
+	record localData
+		returnDelta	,boolean
+		time1		,i8
+		time2		,i8
+	endrecord
+
 proc
-    deltaTime = laterTime - earlierTime
-    freturn 1
+	init localData
+
+	if (%ABS(earlierTime) .gt. %abs(laterTime))
+		freturn LIB$_INVARGORD
+
+	time1 = laterTime
+	time2 = earlierTime
+
+	if(time1 .lt. 0 .and. time2 .lt. 0) then
+	begin
+		returnDelta = true
+
+		time1 = time1*-1
+		time2 = time2*-1
+	end
+	else
+		if(time1 .gt. 0 .and. time2 .gt. 0) then
+			returnDelta = true
+		else
+			if(time1 .gt. 0 .and. time2 .lt. 0) 
+				time2 = time2*-1
+
+	if (returnDelta) then
+		deltaTime = (time1 - time2)*-1
+	else
+		deltaTime = time1 - time2
+
+	freturn LIB$_NORMAL
 endfunction
 

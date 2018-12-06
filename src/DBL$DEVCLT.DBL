@@ -41,7 +41,7 @@
 .title	'dx_devclt'
 
 ;;; <summary>
-;;; 
+;;; 	CAUTION: This calls SYS$GETDVIW which is just a stub routine that throws an exception when called
 ;;; </summary>
 ;;; <param name="chan"></param>
 ;;; <param name="devspc"></param>

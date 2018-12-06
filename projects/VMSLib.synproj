@@ -48,11 +48,29 @@
     <Compile Include="..\src\CHAIN.DBL">
       <Link>CHAIN.DBL</Link>
     </Compile>
+    <Compile Include="..\src\DBL%24ASTRST.dbl">
+      <Link>DBL$ASTRST.dbl</Link>
+    </Compile>
+    <Compile Include="..\src\DBL%24ASTSAV.dbl">
+      <Link>DBL$ASTSAV.dbl</Link>
+    </Compile>
     <Compile Include="..\src\DBL%24DEVCLT.DBL">
       <Link>DBL$DEVCLT.DBL</Link>
     </Compile>
+    <Compile Include="..\src\DBL%24ERRTXT.DBL">
+      <Link>DBL$ERRTXT.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\DBL%24GETFNM.DBL">
+      <Link>DBL$GETFNM.DBL</Link>
+    </Compile>
     <Compile Include="..\src\DBL%24IXREAD.DBL">
       <Link>DBL$IXREAD.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\DBL%24PARSE.DBL">
+      <Link>DBL$PARSE.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\DBL%24SETDFN.DBL">
+      <Link>DBL$SETDFN.DBL</Link>
     </Compile>
     <Compile Include="..\src\DBL%24SETKRF.DBL">
       <Link>DBL$SETKRF.DBL</Link>
@@ -60,11 +78,26 @@
     <Compile Include="..\src\DBL%24SNDOPR.DBL">
       <Link>DBL$SNDOPR.DBL</Link>
     </Compile>
+    <Compile Include="..\src\DBL%24TT_NAME_TO_NUMBER.DBL">
+      <Link>DBL$TT_NAME_TO_NUMBER.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\DBL%24TT_NUMBER_TO_NAME.DBL">
+      <Link>DBL$TT_NUMBER_TO_NAME.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\DBL%24XSTAT.DBL">
+      <Link>DBL$XSTAT.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\Editor.dbl">
+      <Link>Editor.dbl</Link>
+    </Compile>
     <Compile Include="..\src\EDT%24EDIT.DBL">
       <Link>EDT$EDIT.DBL</Link>
     </Compile>
     <Compile Include="..\src\EMPBUF.DBL">
       <Link>EMPBUF.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\FindFileList.dbl">
+      <Link>FindFileList.dbl</Link>
     </Compile>
     <Compile Include="..\src\GETCM.DBL">
       <Link>GETCM.DBL</Link>
@@ -74,6 +107,9 @@
     </Compile>
     <Compile Include="..\src\LIB%24ADD_TIMES.DBL">
       <Link>LIB$ADD_TIMES.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24CONVERT_DATE_STRING.DBL">
+      <Link>LIB$CONVERT_DATE_STRING.DBL</Link>
     </Compile>
     <Compile Include="..\src\LIB%24CURRENCY.DBL">
       <Link>LIB$CURRENCY.DBL</Link>
@@ -87,6 +123,9 @@
     <Compile Include="..\src\LIB%24DAY_OF_WEEK.DBL">
       <Link>LIB$DAY_OF_WEEK.DBL</Link>
     </Compile>
+    <Compile Include="..\src\LIB%24DELETE_LOGICAL.DBL">
+      <Link>LIB$DELETE_LOGICAL.DBL</Link>
+    </Compile>
     <Compile Include="..\src\LIB%24DELETE_SYMBOL.DBL">
       <Link>LIB$DELETE_SYMBOL.DBL</Link>
     </Compile>
@@ -99,8 +138,17 @@
     <Compile Include="..\src\LIB%24GET_FOREIGN.DBL">
       <Link>LIB$GET_FOREIGN.DBL</Link>
     </Compile>
+    <Compile Include="..\src\LIB%24GET_LOGICAL.DBL">
+      <Link>LIB$GET_LOGICAL.DBL</Link>
+    </Compile>
     <Compile Include="..\src\LIB%24GET_SYMBOL.DBL">
       <Link>LIB$GET_SYMBOL.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24MOVC3.DBL">
+      <Link>LIB$MOVC3.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24MOVTC.DBL">
+      <Link>LIB$MOVTC.DBL</Link>
     </Compile>
     <Compile Include="..\src\LIB%24PUT_COMMON.DBL">
       <Link>LIB$PUT_COMMON.DBL</Link>
@@ -108,11 +156,17 @@
     <Compile Include="..\src\LIB%24PUT_OUTPUT.DBL">
       <Link>LIB$PUT_OUTPUT.DBL</Link>
     </Compile>
+    <Compile Include="..\src\LIB%24RENAME_FILE.DBL">
+      <Link>LIB$RENAME_FILE.DBL</Link>
+    </Compile>
     <Compile Include="..\src\LIB%24SET_LOGICAL.DBL">
       <Link>LIB$SET_LOGICAL.DBL</Link>
     </Compile>
     <Compile Include="..\src\LIB%24SET_SYMBOL.DBL">
       <Link>LIB$SET_SYMBOL.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24SPAWN.DBL">
+      <Link>LIB$SPAWN.DBL</Link>
     </Compile>
     <Compile Include="..\src\LIB%24STOP.DBL">
       <Link>LIB$STOP.DBL</Link>
@@ -138,6 +192,15 @@
     <Compile Include="..\src\STR%24ELEMENT.DBL">
       <Link>STR$ELEMENT.DBL</Link>
     </Compile>
+    <Compile Include="..\src\STR%24FIND_FIRST_NOT_IN_SET.DBL">
+      <Link>STR$FIND_FIRST_NOT_IN_SET.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\STR%24MATCH_WILD.DBL">
+      <Link>STR$MATCH_WILD.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\STR%24TRANSLATE.DBL">
+      <Link>STR$TRANSLATE.DBL</Link>
+    </Compile>
     <Compile Include="..\src\STR%24TRIM.DBL">
       <Link>STR$TRIM.DBL</Link>
     </Compile>
@@ -149,6 +212,9 @@
     </Compile>
     <Compile Include="..\src\SYS%24ASCTIM.DBL">
       <Link>SYS$ASCTIM.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\SYS%24ASSIGN.DBL">
+      <Link>SYS$ASSIGN.DBL</Link>
     </Compile>
     <Compile Include="..\src\SYS%24BINTIM.DBL">
       <Link>SYS$BINTIM.DBL</Link>

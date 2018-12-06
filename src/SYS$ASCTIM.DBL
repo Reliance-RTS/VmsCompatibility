@@ -56,9 +56,11 @@ function SYS$ASCTIM, ^val
 		MonthNumbertoShortName,		a
     endexternal
 	
-    record 
+	record localData
 		fullDays,			i4
 		remainingIntervals,	i8
+		lBinTime,			i8	,0
+		deltaConvert,		boolean
 		group theDate,		d
 			year,			d4
 			month,			d2
@@ -70,15 +72,19 @@ function SYS$ASCTIM, ^val
 			month,			a3
 			,				a1,		"-"
 			year,			d4
-			,				a1,		" "
-			hour,			d2
-			,				a1,		":"
-			min,			d2
-			,				a1,		":"
-			sec,			d2
-			,				a1,		"."
-			xx,				d2
+			group vmsTime,	a
+				,			a1,		" "
+				hour,		d2
+				,			a1,		":"
+				min,		d2
+				,			a1,		":"
+				sec,		d2
+				,			a1,		"."
+				xx,			d2
+			endgroup
 		endgroup
+
+		deltaDate,	a20	
     endrecord
 
     ;1 sec = 1000000000 nanoseconds
@@ -89,12 +95,40 @@ function SYS$ASCTIM, ^val
 	.define INTERVALS_IN_DAY	864000000000
 
 proc
+	init localData
+
+	; if time is not passed or passed as 0 - return current absolute date\time DD-MMM-YYYY[ hh:mm:ss.xx]
+	if (.not. ^passed(i8BinTime) .or. i8BinTime .eq. 0) then
+		xcall LIB$DATE_TIME(vmsDate)
+	else
+		call doConversion
+
+	;;Return the data
+	if (deltaConvert) then
+		stringDate = %string(fullDays) + vmsTime
+	else
+		stringDate = vmsDate
 	
-    ;;Do we have more than one day here?
-    if (i8BinTime>INTERVALS_IN_DAY) then
-    begin
+	;;Return the length if passed
+	if (^passed(length))
+		length = %trimz(stringDate)
+	
+	freturn 1
+
+;;===============================================
+doConversion,
+	lBinTime = i8BinTime
+	if (lBinTime .lt. 0)		;convert to delta time string d[ddd] hh:mm:ss.xx 
+	begin
+		deltaConvert = true
+		lBinTime = lBinTime*-1
+	end							;else convert to absolutetime string DD-MMM-YYYY[ hh:mm:ss.xx]
+
+	;;Do we have more than one day here?
+	if (lBinTime .ge. INTERVALS_IN_DAY) then
+	begin
 		;;Deal with the full days
-		fullDays = (i8BinTime/INTERVALS_IN_DAY)
+		fullDays = (lBinTime/INTERVALS_IN_DAY)
 		
 		;;Figure out the date from the number of full days
 		theDate = %ndate(%jperiod(18581117)+fullDays)
@@ -103,34 +137,27 @@ proc
 		vmsDate.year = theDate.year
 		
 		;;Remove the full days from the binary time
-		remainingIntervals = i8BinTime - (fullDays*INTERVALS_IN_DAY)		
-    end
-    else
-		remainingIntervals = i8BinTime		
+		remainingIntervals = lBinTime - (fullDays*INTERVALS_IN_DAY)		
+	end
+	else
+		remainingIntervals = lBinTime		
 		
-    ;;How many hours?
-    vmsDate.hour = (remainingIntervals/INTERVALS_IN_HOUR)
-    remainingIntervals = remainingIntervals - (vmsDate.hour*INTERVALS_IN_HOUR)
+	;;How many hours?
+	vmsDate.hour = (remainingIntervals/INTERVALS_IN_HOUR)
+	remainingIntervals = remainingIntervals - (vmsDate.hour*INTERVALS_IN_HOUR)
 	
-    ;;How many minutes?
-    vmsDate.min = (remainingIntervals/INTERVALS_IN_MINUTE)
-    remainingIntervals = remainingIntervals - (vmsDate.min*INTERVALS_IN_MINUTE)
+	;;How many minutes?
+	vmsDate.min = (remainingIntervals/INTERVALS_IN_MINUTE)
+	remainingIntervals = remainingIntervals - (vmsDate.min*INTERVALS_IN_MINUTE)
 	
-    ;;How many seconds?
-    vmsDate.sec = (remainingIntervals/INTERVALS_IN_SECOND)
-    remainingIntervals = remainingIntervals - (vmsDate.sec*INTERVALS_IN_SECOND)
+	;;How many seconds?
+	vmsDate.sec = (remainingIntervals/INTERVALS_IN_SECOND)
+	remainingIntervals = remainingIntervals - (vmsDate.sec*INTERVALS_IN_SECOND)
 	
-    ;;How many partial seconds?
-    vmsDate.xx = (remainingIntervals*100)/INTERVALS_IN_SECOND
-    ;bintim = bintim + ((vmsString.vsXX / 100.0) * INTERVALS_IN_SECOND)
-	
-    ;;Return the data
-    stringDate = vmsDate
-	
-    ;;Return the length if passed
-    if (^passed(length))
-		length = ^size(vmsDate)
-	
-    freturn 1
+	;;How many partial seconds?
+	vmsDate.xx = (remainingIntervals*100)/INTERVALS_IN_SECOND
+	;bintim = bintim + ((vmsString.vsXX / 100.0) * INTERVALS_IN_SECOND)
 
+	return
+	
 endfunction

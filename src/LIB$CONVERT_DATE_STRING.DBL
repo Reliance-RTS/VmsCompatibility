@@ -1,0 +1,161 @@
+;;*****************************************************************************
+;;
+;; Title:       LIB$CONVERT_DATE_STRING
+;;
+;; Type:        Function
+;;
+;; Description: Emulates the functionality of the OpemVMS routine LIB$CONVERT_DATE_STRING
+;;
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
+;;              http://www.synergex.com
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2014, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+;;; <summary>
+;;;	Converts an absolute date string into an OpenVMS internal format date-time 
+;;; </summary>
+;;; <param name="dateString"></param>
+;;; <param name="resDateTime"></param>
+;;; <param name="userContext"></param>
+;;; <param name="flags"></param>
+;;; <param name="defaults"></param>
+;;; <param name="defaultedFields"></param>
+;;; <returns>
+;;;	SS$_NORMAL
+;;; LIB$_IVTIME 
+;;; </returns>
+function LIB$CONVERT_DATE_STRING, ^val
+	required in  dateString			,a
+	required out ^ref(resDateTime)	,i8
+	optional inout userContext		,n			;NOT APPLICABLE
+	optional in flags				,n			;NOT APPLICABLE
+	optional in defaults			,(*)n		;NOT APPLICABLE
+	optional out defaultedFields	,n			;NOT APPLICABLE
+	endparams
+
+	.include "DBLSTARLET:$SSDEF.DBL"
+	.include "DBLSTARLET:$LIBDEF.DBL"
+
+	literal
+		EPOCHDATE			,d ,18581117		;VMS date used for starting calculations (Nov. 17, 1858)
+		;1 tick = 100 nanoseconds
+		;1 sec = 1000000000 nanoseconds OR 10000000 ticks
+		TICKS_IN_SECOND		,d ,10000000
+		TICKS_IN_MINUTE		,d ,600000000
+		TICKS_IN_HOUR		,d ,36000000000
+		TICKS_IN_DAY		,d ,864000000000
+	endliteral
+
+	record vmsDate	
+		group DDMMMYYYY
+			day		,d2
+			,a1	,"-"
+			month	,a3
+			,a1	,"-"
+			year	,d4
+		endgroup
+		,a1	," "
+		hour	,d2
+		,a1	,":"
+		min		,d2
+		,a1	,":"
+		sec		,d2
+		,a1	,"."
+		xx		,d2
+	endrecord
+
+.align
+	record lVars
+		jper		,i8
+		lDays		,i8
+		lHours		,i8
+		lMinutes	,i8
+		lSeconds	,i8
+	endrecord
+
+proc
+	;initialize
+	init lVars
+	clear resDateTime
+	
+	;move incoming value into local variable
+	clear hour, min, sec, xx
+	using dateString select
+	("TODAY"),
+	begin
+		DDMMMYYYY = %date()
+	end
+	("TOMORROW"),
+	begin
+		DDMMMYYYY = %date(%jperiod("+1"))
+	end
+	("YESTERDAY"),
+	begin
+		DDMMMYYYY = %date(%jperiod("-1"))
+	end
+	(),
+		vmsDate = dateString
+	endusing
+
+	;validate incoming date while performing %jperiod
+	try
+	begin
+		jper = %jperiod(DDMMMYYYY)
+	end
+	catch (e, @Synergex.SynergyDE.SynException)
+	begin
+		if (e.Errno .eq. $ERR_INVDATE) then
+			jper = 0
+		else
+			throw
+	end
+	endtry
+	if (jper .eq. 0)			;invalid
+		freturn LIB$_IVTIME
+
+	;calculate number of nanosecond intervals in days
+	lDays = (jper - %jperiod(EPOCHDATE)) * TICKS_IN_DAY
+
+	;calculate number of nanosecond intervals in hours
+	lHours = hour * TICKS_IN_HOUR
+
+	;calculate number of nanosecond intervals in minutes
+	lMinutes = min * TICKS_IN_MINUTE
+
+	;calculate number of nanosecond intervals in seconds
+	lSeconds = sec * TICKS_IN_SECOND
+
+	;add all values together and pass to calling program
+	resDateTime = lDays + lHours + lMinutes + lSeconds
+
+	freturn SS$_NORMAL
+endfunction
+
+					

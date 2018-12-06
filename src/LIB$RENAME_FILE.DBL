@@ -1,12 +1,12 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$ADD_TIMES.DBL
+;; Title:       LIB$RENAME_FILE  
 ;;
 ;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine %LIB$ADD_TIMES
+;; Description: Emulates the functionality of the OpemVMS routine LIB$RENAME_FILE  
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,55 +39,39 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;;	 Rename a file 
 ;;; </summary>
-function LIB$ADD_TIMES,		^val
-	required in  %ref(firstTime),		i8
-	required in  %ref(secondTime),		i8
-	required out %ref(resultingTime),	i8
+;;; <returns>
+;;;	SS$_NORMAL
+;;; </returns>
+function LIB$RENAME_FILE  ,^val 
+	required in oldFileName		,a
+	required in newFileName		,a
+	optional in defFileSpec		,a			;NOT APPLICABLE
+	optional in relFileSpec		,a			;NOT APPLICABLE
+	optional in flags			,n			;NOT APPLICABLE
+	optional in userSuccessProc ,a			;NOT APPLICABLE		;; procedure?
+	optional in userErrorProc	,a			;NOT APPLICABLE		;; procedure?
+	optional in userConfirmProc	,a			;NOT APPLICABLE		;; procedure?
+	optional in userSpecArg		,n			;NOT APPLICABLE
+	optional out oldResName		,a			;NOT APPLICABLE
+	optional out newResName		,a			;NOT APPLICABLE
+	optional inout fileScanContext	,n		;NOT APPLICABLE
 	endparams
 
-	.include "DBLSTARLET:$LIBDEF.DBL"
-
-	record localData
-		returnDelta	,boolean
-		time1		,i8
-		time2		,i8
-	endrecord
-
+	.include "DBLSTARLET:$SSDEF.DBL"
+	
 proc
-	init localData
-	clear resultingTime
+	onerror badRename
+	xcall renam(newFileName, oldFileName)
+	offerror
 
-	;One of firstTime or secondTime MUST be a delta time
-	if (firstTime .gt. 0 .and. secondTime .gt. 0)
-		freturn LIB$_ONEDELTIM
+	;If we got here, all is well
+	freturn SS$_NORMAL
 
-	;populate local variables
-	time1 = firstTime
-	time2 = secondTime
-
-	; if any of the incoming values are delta time - convert to positive for calculation
-	if(time1 .lt. 0) then
-	begin
-		time1 = time1*-1
-
-		if (time2 .lt. 0)
-		begin
-			time2 = time2*-1
-			returnDelta = true		;both times were delta - set flag
-		end
-	end
-	else
-		if(time2 .lt. 0) 
-			time2 = time2*-1
-
-	; if delta value - set to negative, else return absolute time
-	if (returnDelta) then
-			resultingTime = (time1 + time2)*-1
-	else
-			resultingTime = time1 + time2
-
-	freturn LIB$_NORMAL
+badRename,
+	offerror
+	freturn 0
 endfunction
 
+					

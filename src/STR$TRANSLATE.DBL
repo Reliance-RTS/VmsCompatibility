@@ -1,12 +1,12 @@
 ;;*****************************************************************************
 ;;
-;; Title:       STR$TRIM
+;; Title:       STR$TRANSLATE
 ;;
-;; Type:        Subroutine
+;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine STR$TRIM
+;; Description: Emulates the functionality of the OpemVMS routine STR$TRANSLATE
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,63 +39,63 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;;	Translate matched characters from source string
 ;;; </summary>
-;;; <param name="destination"></param>
-;;; <param name="source"></param>
-;;; <param name="len"></param>
-;;; <returns></returns>
-function STR$TRIM , ^val
-    required out destination	,a
-    required in  source			,a
-    optional out %ref(len)		,i2
+;;; <param name="destinationString">Returned translated value</param>
+;;; <param name="sourceString">String to be translated</param>
+;;; <param name="translationString">String containg the values to translate to</param>
+;;; <param name="matchString">Match string for the incoming characters</param>
+;;; <returns>
+;;;	SS$_NORMAL
+;;;	STR$_TRU - The returned translation has been truncated (size of destination argument is smaller than the source string)
+;;; </returns>
+function STR$TRANSLATE, ^val
+	required out destinationString	,a
+	required in  sourceString		,a
+	required in  translationString	,a
+	required in  matchString		,a
 	endparams
 
 	.include "DBLSTARLET:$SSDEF.DBL"
 	.include "DBLSTARLET:$STRDEF.DBL"
 
-    record localData 
-		length		,i4
-		destLength	,i4
-		lSource		,a512
+	.align
+	record lVars
+		i			,i4
+		i2			,i4
+		destSize	,i4
+		sourceLen	,i4
+		transLen	,i4
 	endrecord
+
 proc
-	init localData
-	lSource = source
-	clear destination   
+	;initialize
+	clear destinationString
+	init lVars
 
-	destLength = ^size(destination)
+	;get lengths of all strings
+	destSize	= ^size(destinationString)
+	sourceLen	= ^size(sourceString)
+	transLen	= ^size(translationString)
 
-    if (lSource)
-    begin
-		data ix, i4
-		for ix from %trim(lSource) thru 1 by -1
-		begin
-			if (lSource(ix:1)&&(lSource(ix:1)!=%char(9)))
-		    begin
-				length = ix
-				exitloop
-			end
-		end
-
-		if (length)
-			destination = lSource(1:length)
-    end
-	
-	;destination string is truncating returned result
-	if (destLength .lt. length)
+	;loop through the source string looking for a match of each character in match string
+	for i from 1 thru sourceLen by 1
 	begin
-		if (^passed(len))		; if length is passed - set to the size of destination string
-			len = destLength
+		;if source string is larger than destination string - return translated value obtained thus far and signal Truncation Warning
+		if (i .gt. destSize)
+			freturn STR$_TRU
 		
-		freturn STR$_TRU
+		i2 = %instr(1, matchString, sourceString(i:1))
+
+		using i2 select
+		(0)					,destinationString(i:1) = sourceString(i:1)			;match not found - use character from source string
+		(.le. transLen)		,destinationString(i:1) = translationString(i2:1)	;use translate string character
+		()					,destinationString(i:1) = " "						;matching character is outside translate string - use space
+		endusing
 	end
-	
-	if (^passed(len))
-		len = length
 
 	;If we got here, all is well
 	freturn SS$_NORMAL
-	
 endfunction
 
+					

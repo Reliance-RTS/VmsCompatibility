@@ -1,12 +1,12 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$ADD_TIMES.DBL
+;; Title:       DBL$GETFNM 
 ;;
-;; Type:        Function
+;; Type:        Subroutine
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine %LIB$ADD_TIMES
+;; Description: Emulates the functionality of the OpemVMS routine DBL$GETFNM 
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,55 +39,22 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;;	 Return the file specification of the open channel  
 ;;; </summary>
-function LIB$ADD_TIMES,		^val
-	required in  %ref(firstTime),		i8
-	required in  %ref(secondTime),		i8
-	required out %ref(resultingTime),	i8
+subroutine DBL$GETFNM
+	required in  fileChan		,n
+	required out fileSpec		,a 
+	optional out len			,n 
 	endparams
 
-	.include "DBLSTARLET:$LIBDEF.DBL"
-
-	record localData
-		returnDelta	,boolean
-		time1		,i8
-		time2		,i8
-	endrecord
-
 proc
-	init localData
-	clear resultingTime
-
-	;One of firstTime or secondTime MUST be a delta time
-	if (firstTime .gt. 0 .and. secondTime .gt. 0)
-		freturn LIB$_ONEDELTIM
-
-	;populate local variables
-	time1 = firstTime
-	time2 = secondTime
-
-	; if any of the incoming values are delta time - convert to positive for calculation
-	if(time1 .lt. 0) then
-	begin
-		time1 = time1*-1
-
-		if (time2 .lt. 0)
-		begin
-			time2 = time2*-1
-			returnDelta = true		;both times were delta - set flag
-		end
-	end
+	if (^passed(len)) then
+		xcall getfnm(fileChan, fileSpec, len)
 	else
-		if(time2 .lt. 0) 
-			time2 = time2*-1
+		xcall getfnm(fileChan, fileSpec)
 
-	; if delta value - set to negative, else return absolute time
-	if (returnDelta) then
-			resultingTime = (time1 + time2)*-1
-	else
-			resultingTime = time1 + time2
+	xreturn
+	
+endsubroutine
 
-	freturn LIB$_NORMAL
-endfunction
-
+					

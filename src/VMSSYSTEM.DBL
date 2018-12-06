@@ -179,7 +179,6 @@ endfunction
 ;LIB$CHAR
 ;LIB$COMPARE_NODENAME
 ;LIB$COMPRESS_NODENAME
-;LIB$CONVERT_DATE_STRING
 ;LIB$CRC
 ;LIB$CRC_TABLE
 
@@ -202,28 +201,6 @@ function LIB$CREATE_DIR                 ,^val
     optional in  ^ref(maxversions)      ,i2
     optional in  ^ref(volume_numner)    ,i2
     optional in  ^ref(initialsize)      ,i4
-proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
-endfunction
-
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="date_string"></param>
-;;; <param name="datetime"></param>
-;;; <param name="conext"></param>
-;;; <param name="flags"></param>
-;;; <param name="defaults"></param>
-;;; <param name="defaulted"></param>
-;;; <returns></returns>
-function LIB$CONVERT_DATE_STRING        ,^val
-    required in    date_string          ,a
-    required out   ^ref(datetime)       ,i8
-    optional inout ^ref(conext)         ,i4
-    optional in    ^ref(flags)          ,i4
-    optional in    ^ref(defaults)       ,(*)i2
-    optional out   ^ref(defaulted)      ,i4
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -279,7 +256,6 @@ endfunction
 ;LIB$DECODE_FAULT
 ;LIB$DEC_OVER
 ;LIB$DELETE_FILE
-;LIB$DELETE_LOGICAL
 ;LIB$DELETE_VM_ZONE
 ;LIB$DELETE_VM_ZONE_64
 ;LIB$DIGIT_SEP
@@ -479,7 +455,33 @@ proc
     freturn 0
 endfunction
 
-;LIB$GETQUI
+;;; <summary>
+;;; 
+;;; </summary>
+;;; <param name="function_code"></param>
+;;; <param name="item_code"></param>
+;;; <param name="search_number"></param>
+;;; <param name="search_name"></param>
+;;; <param name="search_flags"></param>
+;;; <param name="result_value"></param>
+;;; <param name="result_string"></param>
+;;; <param name="result_length"></param>
+;;; <returns></returns>
+function LIB$GETQUI                     ,^val
+	required in  ^ref(function_code),	i4
+	optional in  ^ref(item_code),		i4
+	optional in  ^ref(search_number),	i4
+	optional in  search_name,			a
+	optional in  ^ref(search_flags),	i4
+	optional out ^ref(result_value),	D_ADDR
+	optional out result_string,			a
+	optional out ^ref(result_length),	i2
+	endparams
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
+
 ;LIB$GETSYI
 ;LIB$GET_ACCNAM
 ;LIB$GET_ACCNAM_BY_CONTEXT
@@ -607,22 +609,6 @@ endfunction
 ;;; </summary>
 ;;; <param name="srclen"></param>
 ;;; <param name="srcaddr"></param>
-;;; <param name="dstaddr"></param>
-;;; <returns></returns>
-subroutine LIB$MOVC3
-    required in  ^ref(srclen)           ,i2
-    required in  ^val(srcaddr)          ,i      ;an address
-    required ^val(dstaddr)              ,i      ;an address
-proc
-    throw new ApplicationException("Not implemented!")
-    xreturn
-endsubroutine
-
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="srclen"></param>
-;;; <param name="srcaddr"></param>
 ;;; <param name="fillchar"></param>
 ;;; <param name="dstlen"></param>
 ;;; <param name="dstaddr"></param>
@@ -638,7 +624,6 @@ proc
     xreturn
 endsubroutine
 
-;LIB$MOVTC
 ;LIB$MOVTUC
 ;LIB$MULT_DELTA_TIME
 ;LIB$MULTF_DELTA_TIME
@@ -658,7 +643,6 @@ endsubroutine
 ;LIB$REMQHIQ
 ;LIB$REMQTI
 ;LIB$REMQTIQ
-;LIB$RENAME_FILE
 ;LIB$RESERVE_EF
 ;LIB$RESET_VM_ZONE
 ;LIB$RESET_VM_ZONE_64
@@ -683,41 +667,6 @@ endsubroutine
 ;LIB$SIM_TRAP
 ;LIB$SKPC
 ;LIB$SPANC
-
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="command_string"></param>
-;;; <param name="command_file"></param>
-;;; <param name="flags"></param>
-;;; <param name="processname"></param>
-;;; <param name="processid"></param>
-;;; <param name="l_status"></param>
-;;; <param name="flag"></param>
-;;; <param name="astadr"></param>
-;;; <param name="astparm"></param>
-;;; <param name="prompt"></param>
-;;; <param name="cli"></param>
-;;; <param name="table"></param>
-;;; <returns></returns>
-function LIB$SPAWN                      ,^val
-    optional in  command_string         ,a
-    optional in  command_file           ,a
-    optional in  ^ref(flags)            ,i4
-    optional in  processname            ,a
-    optional out ^ref(processid)        ,i4
-    optional out ^ref(l_status)         ,i4
-    optional in  ^ref(flag)             ,i1
-    optional     ^val(astadr)           ,i
-    optional     ^val(astparm)          ,i
-    optional in  prompt                 ,a
-    optional in  cli                    ,a
-    optional in  table                  ,a
-proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
-endfunction
-
 ;LIB$STAT_TIMER
 ;LIB$STAT_VM
 ;LIB$STAT_VM_64
@@ -1086,41 +1035,12 @@ proc
     freturn 0
 endfunction
 
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="source"></param>
-;;; <param name="setofchars"></param>
-;;; <returns></returns>
-function STR$FIND_FIRST_NOT_IN_SET      ,^val
-    required in source                  ,a
-    required in setofchars              ,a
-proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
-endfunction
-
 ;STR$FIND_FIRST_SUBSTRING
 ;STR$FREE1_DX
 ;STR$GET1_DX
 ;STR$GET1_DX_64
 ;STR$LEFT
 ;STR$LEN_EXTR
-
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="canidate_string"></param>
-;;; <param name="pattern_string"></param>
-;;; <returns></returns>
-function STR$MATCH_WILD                 ,^val
-    required in canidate_string         ,a
-    required in pattern_string          ,a
-proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
-endfunction
-
 ;STR$MUL
 ;STR$POSITION
 ;STR$POS_EXTR
@@ -1129,24 +1049,6 @@ endfunction
 ;STR$REPLACE
 ;STR$RIGHT
 ;STR$ROUND
-
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="destrination"></param>
-;;; <param name="source"></param>
-;;; <param name="translation"></param>
-;;; <param name="match"></param>
-;;; <returns></returns>
-function STR$TRANSLATE                  ,^val
-    required out destrination           ,a
-    required in  source                 ,a
-    required in  translation            ,a
-    required in  match                  ,a
-proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
-endfunction
 
 ;;-----------------------------------------------------------------------------
 ;; SYS$ routines
@@ -1201,27 +1103,6 @@ endfunction
 ;SYS$ASCEFC
 ;SYS$ASCTOID
 ;SYS$ASCUTC
-
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="name"></param>
-;;; <param name="chan"></param>
-;;; <param name="accmode"></param>
-;;; <param name="mbxname"></param>
-;;; <param name="flags"></param>
-;;; <returns></returns>
-function SYS$ASSIGN                     ,^val
-    required in  name                   ,a
-    required out ^ref(chan)             ,i2
-    optional in  ^val(accmode)          ,i
-    optional in  mbxname                ,a
-    optional in  ^val(flags)            ,i
-proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
-endfunction
-
 ;SYS$AUDIT_EVENT
 ;SYS$AUDIT_EVENTW
 ;SYS$AVOID_PREEMPT
@@ -2435,8 +2316,20 @@ endfunction
 ;TPU$PARSEINFO
 ;TPU$SIGNAL
 ;TPU$SPECIFY_ASYNC_ACTION
-;TPU$TPU
 ;TPU$TRIGGER_ASYNC_ACTION
+
+;;; <summary>
+;;;
+;;; </summary>
+;;; <param name="efn"></param>
+;;; <returns></returns>
+function TPU$TPU                     ,^val
+	required in TpuCmd		    ,a
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
+
 ;FILEIO
 ;FILE_PARSE
 ;FILE_SEARCH

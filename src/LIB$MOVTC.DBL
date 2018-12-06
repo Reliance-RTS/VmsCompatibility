@@ -1,0 +1,103 @@
+;;*****************************************************************************
+;;
+;; Title:       LIB$MOVTC 
+;;
+;; Type:        Function
+;;
+;; Description: Emulates the functionality of the OpemVMS routine LIB$MOVTC 
+;;
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
+;;              http://www.synergex.com
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2014, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+;;; <summary>
+;;;	 Use the ASCII value of each source string character as an index into the translation table and write that character to the destination string
+;;; </summary>
+;;; <param name="sourceString">String to be translated</param>
+;;; <param name="fillCharacter">Character used to pad source string to the length of destination string</param>
+;;; <param name="translationTable">Specified table used for translation</param>
+;;; <param name="destinationString">Returned translated value</param>
+;;; <returns>
+;;;	SS$_NORMAL
+;;;	LIB$_STRTRU - The returned translation has been truncated (size of destination argument is smaller than the source string)
+;;; </returns>
+function LIB$MOVTC , ^val
+	required in  sourceString		,a
+	required in  fillCharacter		,a
+	required in  translationTable	,a
+	required out destinationString	,a
+	endparams
+
+	.include "DBLSTARLET:$SSDEF.DBL"
+	.include "DBLSTARLET:$LIBDEF.DBL"
+
+	.align
+	record lVars
+		i			,i4
+		i2			,i4
+		destSize	,i4
+		sourceSize	,i4
+	endrecord
+
+proc
+	;initialize
+	clear destinationString
+	init lVars
+
+	;get lengths of all strings
+	destSize	= ^size(destinationString)
+	sourceSize	= ^size(sourceString)
+
+	;loop through the source string looking for a match of each character in match string
+	for i from 1 thru sourceSize by 1
+	begin
+		;if source string is larger than destination string - return translated value obtained thus far and signal Truncation Warning
+		if (i .gt. destSize)
+			freturn LIB$_STRTRU   
+
+		;obtain ASCII value of the character
+		i2 = %decml(sourceString(i:1))
+
+		;populate destination string using ASCII value above as index,
+		; note that the translationTable defines the 1st character as the translation for ASCII 0 (NUL)
+		; so we have to add 1 to the ASCII value to get the proper translation character
+		destinationString(i:1) = translationTable(i2+1:1)
+	end
+
+	;if the destination string is longer than the source string, pad the remainder of destination string with 1st character of fillCharacter
+	if (destSize .gt. sourceSize)
+		xcall fill(fillCharacter(1:1), destinationString(sourceSize+1,destSize))
+
+	;If we got here, all is well
+	freturn SS$_NORMAL
+endfunction
+
+					

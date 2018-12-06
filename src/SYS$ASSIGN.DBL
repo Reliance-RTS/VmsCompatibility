@@ -1,12 +1,12 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$ADD_TIMES.DBL
+;; Title:       SYS$ASSIGN
 ;;
 ;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine %LIB$ADD_TIMES
+;; Description: Emulates the functionality of the OpemVMS routine SYS$ASSIGN
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,55 +39,37 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;;
 ;;; </summary>
-function LIB$ADD_TIMES,		^val
-	required in  %ref(firstTime),		i8
-	required in  %ref(secondTime),		i8
-	required out %ref(resultingTime),	i8
+;;; <param name="name"></param>
+;;; <param name="chan"></param>
+;;; <param name="accmode"></param>
+;;; <param name="mbxname"></param>
+;;; <param name="flags"></param>
+;;; <returns></returns>
+function SYS$ASSIGN         ,^val
+	required in  name			,a			;NOT APPLICABLE
+	required out chan           ,n
+	optional in  accmode        ,i
+	optional in  mbxname        ,a
+	optional in  flags		    ,i			;NOT APPLICABLE
 	endparams
 
-	.include "DBLSTARLET:$LIBDEF.DBL"
-
-	record localData
-		returnDelta	,boolean
-		time1		,i8
-		time2		,i8
-	endrecord
+	.include "DBLSTARLET:$SSDEF.DBL"
+			
 
 proc
-	init localData
-	clear resultingTime
+	;initialize
+	clear chan
+	 
+	;assign free available channel
+	chan = %syn_freechn()
 
-	;One of firstTime or secondTime MUST be a delta time
-	if (firstTime .gt. 0 .and. secondTime .gt. 0)
-		freturn LIB$_ONEDELTIM
-
-	;populate local variables
-	time1 = firstTime
-	time2 = secondTime
-
-	; if any of the incoming values are delta time - convert to positive for calculation
-	if(time1 .lt. 0) then
-	begin
-		time1 = time1*-1
-
-		if (time2 .lt. 0)
-		begin
-			time2 = time2*-1
-			returnDelta = true		;both times were delta - set flag
-		end
-	end
-	else
-		if(time2 .lt. 0) 
-			time2 = time2*-1
-
-	; if delta value - set to negative, else return absolute time
-	if (returnDelta) then
-			resultingTime = (time1 + time2)*-1
-	else
-			resultingTime = time1 + time2
-
-	freturn LIB$_NORMAL
+	;associate mailbox with the channel if applicable
+	if ^passed(mbxname)
+		xcall crembx(chan, mbxname,,,,,accmode)
+	
+	freturn SS$_NORMAL
 endfunction
 
+					

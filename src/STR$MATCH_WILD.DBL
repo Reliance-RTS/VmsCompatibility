@@ -1,12 +1,12 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$ADD_TIMES.DBL
+;; Title:       STR$MATCH_WILD 
 ;;
 ;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine %LIB$ADD_TIMES
+;; Description: Emulates the functionality of the OpemVMS routine STR$MATCH_WILD 
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,55 +39,36 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;; Compares a pattern string that includes wildcard characters with a candidate string  
 ;;; </summary>
-function LIB$ADD_TIMES,		^val
-	required in  %ref(firstTime),		i8
-	required in  %ref(secondTime),		i8
-	required out %ref(resultingTime),	i8
+;;; <param name="candidateString">String that is compared to the pattern string</param>
+;;; <param name="patternString">String containing wildcard characters</param>
+;;; <returns>
+;;;	STR$_MATCH - The candidate string and the pattern string match
+;;;	STR$_NOMATCH - The candidate string and the pattern string do not match
+;;; </returns>
+function STR$MATCH_WILD	,^val
+	required in candidateString	,a
+	required in patternString   ,a
 	endparams
 
-	.include "DBLSTARLET:$LIBDEF.DBL"
+	.include "DBLSTARLET:$STRDEF.DBL"
 
-	record localData
-		returnDelta	,boolean
-		time1		,i8
-		time2		,i8
+	.align
+	record lVars
+		lStatus	,i1		
 	endrecord
 
 proc
-	init localData
-	clear resultingTime
+	init lVars													;initialize
 
-	;One of firstTime or secondTime MUST be a delta time
-	if (firstTime .gt. 0 .and. secondTime .gt. 0)
-		freturn LIB$_ONEDELTIM
+	xcall S_MATCH(patternString, candidateString, lStatus)		;match a string
 
-	;populate local variables
-	time1 = firstTime
-	time2 = secondTime
+	if (lStatus .eq. 1) then									;strings match	
+		freturn STR$_MATCH
+	else														;strings do not match
+		freturn STR$_NOMATCH
 
-	; if any of the incoming values are delta time - convert to positive for calculation
-	if(time1 .lt. 0) then
-	begin
-		time1 = time1*-1
-
-		if (time2 .lt. 0)
-		begin
-			time2 = time2*-1
-			returnDelta = true		;both times were delta - set flag
-		end
-	end
-	else
-		if(time2 .lt. 0) 
-			time2 = time2*-1
-
-	; if delta value - set to negative, else return absolute time
-	if (returnDelta) then
-			resultingTime = (time1 + time2)*-1
-	else
-			resultingTime = time1 + time2
-
-	freturn LIB$_NORMAL
 endfunction
 
+					

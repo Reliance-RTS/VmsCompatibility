@@ -1,12 +1,12 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$ADD_TIMES.DBL
+;; Title:       LIB$DELETE_LOGICAL 
 ;;
 ;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine %LIB$ADD_TIMES
+;; Description: Emulates the functionality of the OpemVMS routine LIB$DELETE_LOGICAL 
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,55 +39,47 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;;	 Delete specified logical name  
 ;;; </summary>
-function LIB$ADD_TIMES,		^val
-	required in  %ref(firstTime),		i8
-	required in  %ref(secondTime),		i8
-	required out %ref(resultingTime),	i8
+;;; <param name="logicalName">Logical name to delete</param>
+;;; <param name="tableName">Name of the table from which the logical name is to be deleted</param>
+;;; <returns>
+;;;	SS$_NORMAL
+;;;	SS$_IVLOGNAM - Invalid logical name. The logical name or its value contained more than 255 characters.
+;;; SS$_NOLOGNAM - The logical name was not found in the specified table. 
+;;; </returns>
+function LIB$DELETE_LOGICAL, ^val
+	required in  logicalName,	a
+	optional in  tableName,		a			;NOT APPLICABLE
 	endparams
 
-	.include "DBLSTARLET:$LIBDEF.DBL"
+	.include "DBLSTARLET:$SSDEF.DBL"
 
-	record localData
-		returnDelta	,boolean
-		time1		,i8
-		time2		,i8
+.align
+	record lVars
+		status,					i4
+	endrecord
+
+	record
+		len,					i2
+		logValue,				a255
 	endrecord
 
 proc
-	init localData
-	clear resultingTime
+	;invalid logical name. The logical name or its value contained more than 255 characters.
+	if (^size(logicalName) .gt. 255)
+		freturn SS$_IVLOGNAM
 
-	;One of firstTime or secondTime MUST be a delta time
-	if (firstTime .gt. 0 .and. secondTime .gt. 0)
-		freturn LIB$_ONEDELTIM
+	;logical name does not exist
+	xcall getlog(logicalName, logValue, len)
+	if (len .eq. 0)
+		freturn SS$_NOLOGNAM
+	
+	init lVars								;initialize
+	
+	xcall setlog(logicalName, ,status)		;delete logical
 
-	;populate local variables
-	time1 = firstTime
-	time2 = secondTime
-
-	; if any of the incoming values are delta time - convert to positive for calculation
-	if(time1 .lt. 0) then
-	begin
-		time1 = time1*-1
-
-		if (time2 .lt. 0)
-		begin
-			time2 = time2*-1
-			returnDelta = true		;both times were delta - set flag
-		end
-	end
-	else
-		if(time2 .lt. 0) 
-			time2 = time2*-1
-
-	; if delta value - set to negative, else return absolute time
-	if (returnDelta) then
-			resultingTime = (time1 + time2)*-1
-	else
-			resultingTime = time1 + time2
-
-	freturn LIB$_NORMAL
+	freturn SS$_NORMAL
 endfunction
 
+					

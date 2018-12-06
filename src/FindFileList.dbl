@@ -1,0 +1,269 @@
+import System.Collections
+
+public enum FindFileListFunctions
+	FindFile_Start
+	FindFile_Continue
+	FindFile_End
+endenum
+
+;;; <summary>
+;;; Determine if a file or group of files exist for a given inbound filespec.  This routine will optionally return the name of the
+;;; found file as well
+;;; </summary>
+;;; <param name="aFunctionToPerform">Function to perform based on enumeration</param>
+;;; <param name="aFileToFind">Filename Spec to find</param>
+;;; <param name="aReturnedFilename">Optional returned filename</param>
+;;; <returns>True if file found, false if not</returns>
+;;; <remarks>
+;;;		This can be used in place of LIB$FIND_FILE and LIB$FIND_FILE_END in a Windows environment
+;;;		It is not a direct replacement to the VMS routines, for one the function signatures are
+;;;		 different, but it can perform similar functions which is to gather a list of files matching
+;;;		 the aFileToFind and returning one filename per invocation. Note that there is no separate
+;;;		 routine to end the find file (VMS hs a LIB$FIND_FILE_END to close the find context), instead
+;;;		 FindFileList must be called with the aFunctionToPerform = FidnFileListFunctions.FindFile_End.
+;;; </remarks>
+;;;
+function FindFileList, ^val
+	req in aFunctionToPerform, FindFileListFunctions
+	opt in aFileToFind, a		;; note this is required for a "start" operation
+	opt out aReturnedFilename, a
+	opt in aOverrideCommand, a	;; executes this rather than a dir command
+	endparams
+
+static record
+	pipeChannel			,i4
+	translatedFileSpec	,a1024
+	translatedLogical	,a1024
+	nonLogicalAttempted	,boolean
+	lastUsedIndex		,i4
+	translations		,@ArrayList
+	currentFolder		,a1024
+
+record
+	pipeOpen			,boolean
+	statusOfRead		,boolean
+	valueRead			,a1024
+
+proc
+	if (^passed(aReturnedFilename))
+		clear aReturnedFilename
+
+	using aFunctionToPerform select
+	(FindFileListFunctions.FindFile_Start),
+	begin
+		if (pipeChannel)
+		begin
+			throw new Exception("FindFileList started while another is in use")
+		end
+
+		clear lastUsedIndex, translations, nonLogicalAttempted
+
+		;;see if the filename has a logical...
+		if (%instr(1,aFileToFind,':') != 0) then
+		begin
+			data logicalPos, i4
+			data logicalLen, i4
+
+			logicalPos = %instr(1,aFileToFind,':')
+			translatedFileSpec = aFileToFind(logicalPos+1,%trim(aFileToFind))
+
+			xcall getlog(aFileToFind(1:logicalPos-1),translatedLogical,logicalLen)
+			if (logicalLen)
+			begin
+				;; test the translation for a comma - if one exists, we need to split this 
+				;; return value on the comma and store the values in the array list that we
+				;; will use to check for each filename.  If the translation doesn't end in
+				;; a backslash, we will add one
+				data startPos, i4
+				data transPos, i4
+
+				startPos = 1
+				transPos = %instr(startPos,translatedLogical,',')
+				if (!transPos)
+				begin
+					;; there's only one translation, so we don't need to build an array list, but
+					;; we need to track the definition anyway
+					currentFolder = translatedLogical
+					if (currentFolder(logicalLen:1) != '\')
+					begin
+						currentFolder(logicalLen+1:1) = '\'
+					end
+				end
+
+				while (transPos)
+				begin
+					data oneTranslation, a1024
+					data finalLen, i4
+
+					if (translations==^null)
+					begin
+						translations = new ArrayList()
+					end
+
+					oneTranslation = translatedLogical(startPos,transPos-1)
+					finalLen = transPos-startPos
+					if (oneTranslation(finalLen:1) != '\')
+					begin
+						oneTranslation(finalLen+1:1) = '\'
+						finalLen += 1
+					end
+					translations.Add((@a)oneTranslation(1:finalLen))
+					startPos = transPos+1
+					transPos = %instr(startPos,translatedLogical,',')
+					if (!transPos)
+					begin
+						if (startPos<logicalLen)
+						begin
+							oneTranslation = translatedLogical(startPos,logicalLen)
+							finalLen = logicalLen-startPos+1
+							if (oneTranslation(finalLen:1) != '\')
+							begin
+								oneTranslation(finalLen+1:1) = '\'
+								finalLen += 1
+							end
+							translations.Add((@a)oneTranslation(1,finalLen))
+						end
+					end
+				end
+			end
+		end
+		else
+		begin
+			data lastSlash, i4
+
+			clear translations, lastUsedIndex, translatedLogical
+			translatedFileSpec = aFileToFind
+			;; now we have to determine if there is a folder passed in...
+			lastSlash = %rvstr(1,aFileToFind,'\')
+			if (lastSlash) then
+				currentFolder = aFileToFind(1,lastSlash)
+			else
+				clear currentFolder
+		end
+
+		;; open a pipe to handle the dir command
+		;; if we have multiple translations, we need to keep track of which we are on and get a filespec for that
+		call openAPipe
+		if (pipeOpen) then
+		begin
+			call readPipe
+			if (^passed(aReturnedFilename))
+				aReturnedFilename = valueRead
+		end
+		else
+			statusOfRead = false
+	end
+	(FindFileListFunctions.FindFile_Continue),
+	begin
+		if (pipeOpen) then
+		begin
+			call readPipe
+			if (^passed(aReturnedFilename))
+				aReturnedFilename = valueRead
+		end
+		else
+			statusOfRead = false
+	end
+	(FindFileListFunctions.FindFile_End),
+	begin
+		call closePipe
+	end
+	endusing
+
+	freturn statusOfRead
+
+;----------------------------------------------
+
+;;; <summary>
+;;;	open a pipe based on the next translation if one exists
+;;; </summary>
+openAPipe,
+	begin
+		data fullFileSpec, a1024
+		data useList, boolean, false 
+		data command, string, '|cmd /c dir /b '
+
+		pipeOpen = false
+		clear fullFileSpec
+
+		if (lastUsedIndex==0) then
+		begin
+			if (translations != ^null)
+				useList = true
+		end
+		else
+		begin
+			useList = true
+		end
+
+		if (useList) then
+		begin
+			lastUsedIndex += 1
+			if (lastUsedIndex <= translations.Count)
+			begin
+				currentFolder = (a)translations[lastUsedIndex-1]
+				fullFileSpec = %atrim(currentFolder) + translatedFileSpec
+			end
+		end
+		else
+		begin
+			if (!nonLogicalAttempted) 
+			begin
+				nonLogicalAttempted = true
+				fullFileSpec = translatedFileSpec
+			end
+		end
+		if (^passed(aOverrideCommand)) then
+		begin
+			command = aOverrideCommand
+			fullFileSpec = "a"
+		end
+		else
+			command = command + %atrim(fullFileSpec)
+
+		if (fullFileSpec) 
+		begin
+			open(pipeChannel=0,i,command) [err=nopipe]
+			pipeOpen = true
+		end
+nopipe,
+		return
+	end
+
+
+;;; <summary>
+;;;	reads the pipe - add in the folder name to the result if the result is not EOF
+;;; </summary>
+readPipe,
+	clear valueRead
+	reads(pipeChannel,valueRead,pipeeof)
+	statusOfRead = true
+	valueRead = %atrim(currentFolder) + valueRead
+	return
+pipeeof,
+	;; if we are at the EOF, if we have a search-listed logical we are dealing with
+	;; we may have more on the next translation, so try that
+	if (lastUsedIndex != 0) 
+	begin
+		close pipeChannel
+		call openAPipe
+		if (pipeOpen) goto readPipe
+	end
+
+	statusOfRead = false
+	clear valueRead
+	return
+
+
+
+;;; <summary>
+;;;	closes the pipe and resets everything
+;;; </summary>
+closePipe,
+	if (pipeChannel && %chopen(pipeChannel))
+		close pipeChannel
+	clear pipeChannel
+	clear translatedFileSpec, translatedLogical, nonLogicalAttempted, lastUsedIndex, translations, currentFolder
+	statusOfRead = true
+	return
+

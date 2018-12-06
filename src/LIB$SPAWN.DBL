@@ -1,12 +1,12 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$ADD_TIMES.DBL
+;; Title:       LIB$SPAWN
 ;;
 ;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine %LIB$ADD_TIMES
+;; Description: Emulates the functionality of the OpemVMS routine LIB$SPAWN
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,55 +39,52 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;; Requests the command language interpreter (CLI) of the calling process to spawn a subprocess  
 ;;; </summary>
-function LIB$ADD_TIMES,		^val
-	required in  %ref(firstTime),		i8
-	required in  %ref(secondTime),		i8
-	required out %ref(resultingTime),	i8
+;;; <param name="commandString"></param>
+;;; <param name="inputFile"></param>
+;;; <param name="outputFile"></param>
+;;; <param name="flags"></param>
+;;; <param name="processName"></param>
+;;; <param name="processID"></param>
+;;; <param name="lStatus"></param>
+;;; <param name="flagNum"></param>
+;;; <param name="astadr"></param>
+;;; <param name="astparm"></param>
+;;; <param name="promptString"></param>
+;;; <param name="cliSpec"></param>
+;;; <param name="tableSpec"></param>
+;;; <returns></returns>
+function LIB$SPAWN		    ,^val
+	optional in  commandString	,a
+	optional in  inputFile      ,a			;NOT APPLICABLE
+	optional in  outputFile     ,a			;NOT APPLICABLE
+	optional in  flags          ,n			;NOT APPLICABLE
+	optional in  processName    ,a			;NOT APPLICABLE
+	optional out processID      ,n			;NOT APPLICABLE
+	optional out lStatus        ,n			;NOT APPLICABLE
+	optional in  flagNum        ,n			;NOT APPLICABLE
+	optional in  astadr			,n			;NOT APPLICABLE		;procedure value? } this was declared as i in the VMSSystem stub
+	optional in  astparm		,n			;NOT APPLICABLE
+	optional in  promptString   ,a			;NOT APPLICABLE
+	optional in  cliSpec		,a			;NOT APPLICABLE
+	optional in  tableSpec      ,a			;NOT APPLICABLE
 	endparams
 
-	.include "DBLSTARLET:$LIBDEF.DBL"
-
-	record localData
-		returnDelta	,boolean
-		time1		,i8
-		time2		,i8
-	endrecord
+	.include "DBLSTARLET:$SSDEF.DBL"
+			
 
 proc
-	init localData
-	clear resultingTime
+	;initialize
+	if ^passed(processID)
+		clear processID
+	if ^passed(lStatus)
+		clear lStatus
+	
+	if ^passed(commandString)
+		xcall spawn(commandString)
 
-	;One of firstTime or secondTime MUST be a delta time
-	if (firstTime .gt. 0 .and. secondTime .gt. 0)
-		freturn LIB$_ONEDELTIM
-
-	;populate local variables
-	time1 = firstTime
-	time2 = secondTime
-
-	; if any of the incoming values are delta time - convert to positive for calculation
-	if(time1 .lt. 0) then
-	begin
-		time1 = time1*-1
-
-		if (time2 .lt. 0)
-		begin
-			time2 = time2*-1
-			returnDelta = true		;both times were delta - set flag
-		end
-	end
-	else
-		if(time2 .lt. 0) 
-			time2 = time2*-1
-
-	; if delta value - set to negative, else return absolute time
-	if (returnDelta) then
-			resultingTime = (time1 + time2)*-1
-	else
-			resultingTime = time1 + time2
-
-	freturn LIB$_NORMAL
+	freturn SS$_NORMAL
 endfunction
 
+					

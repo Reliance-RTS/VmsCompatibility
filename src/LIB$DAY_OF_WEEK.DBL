@@ -62,8 +62,9 @@ function LIB$DAY_OF_WEEK, ^val
 		endgroup
 	endrecord
 proc
+	clear dayNumber
 
-	xcall sys$asctim(,vmsDate,i8Date)
+	xcall sys$asctim(,vmsDate,%ref(i8Date))
 	
 	year = vmsDate(8,11)
 	month = %MonthShortNameToNumber(vmsDate(4,6))

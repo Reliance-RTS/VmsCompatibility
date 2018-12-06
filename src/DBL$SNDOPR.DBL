@@ -39,7 +39,7 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;; 	CAUTION: This calls SYS$SNDOPR which is just a stub routine that throws an exception when called
 ;;; </summary>
 ;;; <param name="text"></param>
 ;;; <returns></returns>

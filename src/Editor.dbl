@@ -1,12 +1,13 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$ADD_TIMES.DBL
+;; Title:       editor.sub
 ;;
-;; Type:        Function
+;; Type:        Subroutine
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine %LIB$ADD_TIMES
+;; Description: opens the file in notepad
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;;
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,55 +40,44 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;;	Opens the file in notepad
 ;;; </summary>
-function LIB$ADD_TIMES,		^val
-	required in  %ref(firstTime),		i8
-	required in  %ref(secondTime),		i8
-	required out %ref(resultingTime),	i8
+;;; <param name="fileName"></param>
+;;; <param name="readOnly"></param>
+;;; <remarks>
+;;;		This can be used in place of EDT$EDIT and TPU$TPU in a Windows environment
+;;;		It is not as flexible as the VMS routines, for one the readOnly attribute may
+;;;		 not be supported by the editor being called (for example, we call Notepad).
+;;;		 However, by replacing Notepad with a different editor, it may be possible
+;;;		 to gain read-only capabilities.
+;;; </remarks>
+subroutine editor
+	required in fileName	,a
+	optional in readOnly	,boolean	
 	endparams
 
-	.include "DBLSTARLET:$LIBDEF.DBL"
-
-	record localData
-		returnDelta	,boolean
-		time1		,i8
-		time2		,i8
+	record lVars
+		pos			,i4
+		lReadOnly	,boolean
+		cmdLine		,a255
 	endrecord
 
 proc
-	init localData
-	clear resultingTime
+	init lVars						;initialize
 
-	;One of firstTime or secondTime MUST be a delta time
-	if (firstTime .gt. 0 .and. secondTime .gt. 0)
-		freturn LIB$_ONEDELTIM
-
-	;populate local variables
-	time1 = firstTime
-	time2 = secondTime
-
-	; if any of the incoming values are delta time - convert to positive for calculation
-	if(time1 .lt. 0) then
-	begin
-		time1 = time1*-1
-
-		if (time2 .lt. 0)
-		begin
-			time2 = time2*-1
-			returnDelta = true		;both times were delta - set flag
-		end
-	end
+	if (^passed(readOnly)) then	
+		lReadOnly =  readOnly
 	else
-		if(time2 .lt. 0) 
-			time2 = time2*-1
+		lReadOnly = false			;assume read\write
 
-	; if delta value - set to negative, else return absolute time
-	if (returnDelta) then
-			resultingTime = (time1 + time2)*-1
-	else
-			resultingTime = time1 + time2
+	;construct command line
+	cmdLine = 'notepad ' + %atrim(fileName) 
 
-	freturn LIB$_NORMAL
-endfunction
+	;execute shell to bring up the file in Notepad
+	if (lReadOnly) then
+		nop							;for future 
+	else	
+		xcall shell(,%atrim(cmdLine), D_GAINFOCUS.bor.D_NOWINDOW)
 
+	xreturn
+endsubroutine

@@ -67,10 +67,10 @@ proc
     if ^passed(outfile) then
     begin
 		xcall copy(infile, outfile)
-		xcall spawn("notepad " + outfile)
+		xcall editor(outfile)
     end
     else
-		xcall spawn("notepad " + infile)
+		xcall editor(infile)
 
     freturn SS$_NORMAL
 

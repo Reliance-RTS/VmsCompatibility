@@ -1,0 +1,114 @@
+;;*****************************************************************************
+;;
+;; Title:       LIB$GET_LOGICAL 
+;;
+;; Type:        Function
+;;
+;; Description: Emulates the functionality of the OpemVMS routine LIB$GET_LOGICAL 
+;;
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
+;;              http://www.synergex.com
+;;
+;;*****************************************************************************
+;;
+;; Copyright (c) 2014, Synergex International, Inc.
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice,
+;;   this list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+;; POSSIBILITY OF SUCH DAMAGE.
+;;
+;;*****************************************************************************
+
+;;; <summary>
+;;;	 Return information about a logical name  
+;;; </summary>
+;;; <param name="logicalName">Logical name for which LIB$GET_LOGICAL searches</param>
+;;; <param name="resultString">Returned logical name equivalent</param>
+;;; <param name="resultLength">Length of resultString</param>
+;;; <param name="tableName">Name of the table in which to search for the logical name</param>
+;;; <param name="maxIndex">Largest equivalence name index</param>
+;;; <param name="index">Equivalence name index value</param>
+;;; <param name="accessMode">Access mode to be used in the translation</param>
+;;; <param name="flags">Flags controlling the search for the logical name</param>
+;;; <returns>
+;;;	SS$_NORMAL
+;;;	LIB$_STRTRU - The returned result string has been truncated (size of resultString argument is smaller than the local equivalent)
+;;;	SS$_IVLOGNAM - Invalid logical name. The logical name or its value contained more than 255 characters.
+;;; SS$_NOLOGNAM - The logical name was not found in the specified table. 
+;;; </returns>
+function LIB$GET_LOGICAL, ^val
+	required in  logicalName			,a
+	optional out resultString			,a     
+	optional out resultLength			,n
+	optional in  tableName				,a			;NOT APPLICABLE
+	optional out ^ref(maxIndex)			,i4			;NOT APPLICABLE
+	optional in ^ref(index)				,i4			;NOT APPLICABLE
+	optional in ^ref(accessMode)		,i1			;NOT APPLICABLE
+	optional in ^ref(flags)				,i4			;NOT APPLICABLE
+	endparams
+
+	.include "DBLSTARLET:$SSDEF.DBL"
+	.include "DBLSTARLET:$LIBDEF.DBL"
+
+	record lVars
+		lString	,a255
+		lLength	,i2
+	endrecord
+
+proc
+	init lVars								;initialize
+	if (^passed(resultString))
+		clear resultString
+	if (^passed(resultLength))
+		clear resultLength
+	if (^passed(maxIndex))
+		clear maxIndex
+	
+	;invalid logical name. The logical name or its value contained more than 255 characters.
+	if (^size(logicalName) .gt. 255)
+		freturn SS$_IVLOGNAM
+
+	;translate an environment variable
+	xcall getlog(logicalName, lString, lLength)
+
+	;logical name was not found
+	if (lLength .eq. 0)
+		freturn  SS$_NOLOGNAM
+
+	if (^passed(resultLength))
+		resultLength = lLength
+
+	if (^passed(resultString))
+	begin
+		resultString = lString
+
+		;returned result string has been truncated
+		if (^size(resultString) .lt. %trimz(lString))
+			freturn LIB$_STRTRU						
+	end
+
+	;If we got here, all is well
+	freturn SS$_NORMAL
+	
+endfunction
+
+					

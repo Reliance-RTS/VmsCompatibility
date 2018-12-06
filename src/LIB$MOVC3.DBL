@@ -1,12 +1,12 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$ADD_TIMES.DBL
+;; Title:       LIB$MOVC3 
 ;;
-;; Type:        Function
+;; Type:        Subroutine
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine %LIB$ADD_TIMES
+;; Description: Emulates the functionality of the OpemVMS routine LIB$MOVC3 
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,55 +39,21 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;;	 Move source to the destination as per indicated number of bytes  
 ;;; </summary>
-function LIB$ADD_TIMES,		^val
-	required in  %ref(firstTime),		i8
-	required in  %ref(secondTime),		i8
-	required out %ref(resultingTime),	i8
-	endparams
-
-	.include "DBLSTARLET:$LIBDEF.DBL"
-
-	record localData
-		returnDelta	,boolean
-		time1		,i8
-		time2		,i8
-	endrecord
-
+;;; <param name="sourceLength">Number of bytes to be moved from source to destination </param>
+;;; <param name="source">Item to be moved</param>
+;;; <param name="destination">Item into which source will be moved</param>
+subroutine LIB$MOVC3
+	required in  ^ref(sourceLength)	,i2
+	required in  ^ref(source)		,D_ADDR	;,a65535	,i
+	required out ^ref(destination)	,D_ADDR	;,a65535	,i
 proc
-	init localData
-	clear resultingTime
+	clear destination								;initialize
+	destination = source(1:sourceLength)			;move source to the destination as per indicated number of bytes
 
-	;One of firstTime or secondTime MUST be a delta time
-	if (firstTime .gt. 0 .and. secondTime .gt. 0)
-		freturn LIB$_ONEDELTIM
+	xreturn
+	
+endsubroutine
 
-	;populate local variables
-	time1 = firstTime
-	time2 = secondTime
-
-	; if any of the incoming values are delta time - convert to positive for calculation
-	if(time1 .lt. 0) then
-	begin
-		time1 = time1*-1
-
-		if (time2 .lt. 0)
-		begin
-			time2 = time2*-1
-			returnDelta = true		;both times were delta - set flag
-		end
-	end
-	else
-		if(time2 .lt. 0) 
-			time2 = time2*-1
-
-	; if delta value - set to negative, else return absolute time
-	if (returnDelta) then
-			resultingTime = (time1 + time2)*-1
-	else
-			resultingTime = time1 + time2
-
-	freturn LIB$_NORMAL
-endfunction
-
+					
