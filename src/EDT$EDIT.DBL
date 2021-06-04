@@ -60,9 +60,9 @@ function edt$edit, ^val
     optional in comfile			,a
     optional in journal			,a
     optional in ^ref(options)	,i4
-    optional in ^val(file_io)	,i
-    optional in ^val(work_io)	,i
-    optional in ^val(xlate)		,i
+    optional in ^ref(file_io)	,i
+    optional in ^ref(work_io)	,i
+    optional in ^ref(xlate)		,i
 proc
     if ^passed(outfile) then
     begin
