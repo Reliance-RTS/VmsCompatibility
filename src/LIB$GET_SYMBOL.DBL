@@ -46,25 +46,35 @@
 ;;; <param name="return_length"></param>
 ;;; <param name="return_table"></param>
 ;;; <returns></returns>
-subroutine LIB$GET_SYMBOL
-    required in  symbol,				a
-    required out value,					a
-    optional out ^ref(return_length),	i2
-    optional out ^ref(return_table),	i4
-    endparams
-    stack record
+function LIB$GET_SYMBOL, ^val
+	required in  symbol,				a
+	required out value,					a
+	optional out ^ref(return_length),	i2
+	optional out ^ref(return_table),	i4
+	endparams
+	stack record
 		len,	i4
-    endrecord
+		status,	i4
+	endrecord
 proc
-    xcall getlog(symbol,value,len)
+	clear status
+.ifdef TODO
+	; how to make symbols work on on vms they are not logicals
+.endc
+	xcall getlog(symbol,value,len)
 
-    if (!len)
+	if (!len)
+	begin
 		clear value
+.ifdef TODO
+		status = lib$_NOSUCHSYM
+.endc
+	end
 
-    if ^passed(return_length)
+	if ^passed(return_length)
 		return_length = len
 
-    xreturn
+	freturn status
 
-endsubroutine
+	endfunction
 

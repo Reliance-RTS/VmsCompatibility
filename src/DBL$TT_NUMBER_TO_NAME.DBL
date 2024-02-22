@@ -48,8 +48,10 @@ subroutine DBL$TT_NUMBER_TO_NAME
 
 proc
 	;Per manual, TT_NUMBER_TO_NAME is VMS-only (throws UNSUP error if called from non-VMS system)
-.ifdef vms	;OS_VMS
+.ifdef D_VMS	;OS_VMS
 	xcall TT_NUMBER_TO_NAME (termNumber, termName)
+	.else
+	termname="TT"+%string(termNumber)
 .endc
 
 	xreturn

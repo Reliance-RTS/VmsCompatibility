@@ -16,26 +16,78 @@
     <EnableCommonProperties>True</EnableCommonProperties>
     <CommonPropertiesFileLocation>$(SolutionDir)Common.props</CommonPropertiesFileLocation>
     <RootNamespace>VMSLib</RootNamespace>
+    <DBL_qWarnLevel>4</DBL_qWarnLevel>
+    <DBL_qRelaxed>True</DBL_qRelaxed>
+    <DBL_qRelaxedOptval>True</DBL_qRelaxedOptval>
+    <DBL_qDefineOptCheck>False</DBL_qDefineOptCheck>
+    <DBL_qDefineOpt>
+    </DBL_qDefineOpt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|VMS' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
     <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
     <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
-    <PlatformTarget>VMS</PlatformTarget>
+    <PlatformTarget>vms</PlatformTarget>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DebugOptimize>Debug</DebugOptimize>
     <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DebugOptimize>Debug</DebugOptimize>
+    <ProcessorArchitecture>x64</ProcessorArchitecture>
+    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DebugOptimize>Debug</DebugOptimize>
+    <ProcessorArchitecture>x64</ProcessorArchitecture>
+    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|VMS' ">
     <IncludeDebugInformation>False</IncludeDebugInformation>
     <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
     <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
-    <PlatformTarget>VMS</PlatformTarget>
+    <PlatformTarget>vms</PlatformTarget>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DebugOptimize>Optimize</DebugOptimize>
     <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <IncludeDebugInformation>False</IncludeDebugInformation>
+    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DebugOptimize>Optimize</DebugOptimize>
+    <ProcessorArchitecture>x64</ProcessorArchitecture>
+    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <IncludeDebugInformation>False</IncludeDebugInformation>
+    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DebugOptimize>Optimize</DebugOptimize>
+    <ProcessorArchitecture>x64</ProcessorArchitecture>
+    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Synergex\dbl\Synergex.SynergyDE.Traditional.targets" />
   <PropertyGroup>
@@ -123,6 +175,9 @@
     <Compile Include="..\src\LIB%24DAY_OF_WEEK.DBL">
       <Link>LIB$DAY_OF_WEEK.DBL</Link>
     </Compile>
+    <Compile Include="..\src\LIB%24DELETE_FILE.dbl">
+      <Link>LIB$DELETE_FILE.dbl</Link>
+    </Compile>
     <Compile Include="..\src\LIB%24DELETE_LOGICAL.DBL">
       <Link>LIB$DELETE_LOGICAL.DBL</Link>
     </Compile>
@@ -131,6 +186,9 @@
     </Compile>
     <Compile Include="..\src\LIB%24DO_COMMAND.DBL">
       <Link>LIB$DO_COMMAND.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24GETJPI.dbl">
+      <Link>LIB$GETJPI.dbl</Link>
     </Compile>
     <Compile Include="..\src\LIB%24GET_COMMON.DBL">
       <Link>LIB$GET_COMMON.DBL</Link>
@@ -146,6 +204,9 @@
     </Compile>
     <Compile Include="..\src\LIB%24MOVC3.DBL">
       <Link>LIB$MOVC3.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\LIB%24MOVC5.DBL">
+      <Link>LIB$MOVC5.DBL</Link>
     </Compile>
     <Compile Include="..\src\LIB%24MOVTC.DBL">
       <Link>LIB$MOVTC.DBL</Link>
@@ -221,6 +282,9 @@
     </Compile>
     <Compile Include="..\src\SYS%24GETTIM.DBL">
       <Link>SYS$GETTIM.DBL</Link>
+    </Compile>
+    <Compile Include="..\src\SYS%24SETPRN.DBL">
+      <Link>SYS$SETPRN.DBL</Link>
     </Compile>
     <Compile Include="..\src\VMSSYSTEM.DBL">
       <Link>VMSSYSTEM.DBL</Link>

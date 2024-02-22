@@ -25,7 +25,7 @@ endenum
 ;;;
 function FindFileList, ^val
 	req in aFunctionToPerform, FindFileListFunctions
-	opt in aFileToFind, a		;; note this is required for a "start" operation
+	req in aFileToFind, a		;; note this is required for a "start" operation
 	opt out aReturnedFilename, a
 	opt in aOverrideCommand, a	;; executes this rather than a dir command
 	endparams

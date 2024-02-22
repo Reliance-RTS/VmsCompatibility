@@ -55,5 +55,6 @@ proc
 	stop D_EXIT_FAILURE
     else
 	stop D_EXIT_SUCCESS
+    xreturn	; stop warning
 endsubroutine
 

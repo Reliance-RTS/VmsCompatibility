@@ -59,12 +59,12 @@ function LIB$SPAWN		    ,^val
 	optional in  commandString	,a
 	optional in  inputFile      ,a			;NOT APPLICABLE
 	optional in  outputFile     ,a			;NOT APPLICABLE
-	optional in  flags          ,n			;NOT APPLICABLE
+	optional in  %ref(flags)    ,i4			;NOT APPLICABLE
 	optional in  processName    ,a			;NOT APPLICABLE
-	optional out processID      ,n			;NOT APPLICABLE
-	optional out lStatus        ,n			;NOT APPLICABLE
-	optional in  flagNum        ,n			;NOT APPLICABLE
-	optional in  astadr			,n			;NOT APPLICABLE		;procedure value? } this was declared as i in the VMSSystem stub
+	optional out %ref(processID) ,i4			;NOT APPLICABLE
+	optional  ^val(lStatus)        ,i			;NOT APPLICABLE
+	optional in  %ref(flagNum)	,i1			;NOT APPLICABLE
+	optional in  ^val(astadr)	,i			;NOT APPLICABLE		;procedure value? } this was declared as i in the VMSSystem stub
 	optional in  astparm		,n			;NOT APPLICABLE
 	optional in  promptString   ,a			;NOT APPLICABLE
 	optional in  cliSpec		,a			;NOT APPLICABLE
@@ -78,9 +78,11 @@ proc
 	;initialize
 	if ^passed(processID)
 		clear processID
+.ifdef TODO
+	; lstatus is the address of a variable of size D_ADDR 
 	if ^passed(lStatus)
 		clear lStatus
-	
+.endc
 	if ^passed(commandString)
 		xcall spawn(commandString)
 

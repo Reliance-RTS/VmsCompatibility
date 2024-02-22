@@ -37,7 +37,7 @@
 ;; POSSIBILITY OF SUCH DAMAGE.
 ;;
 ;;*****************************************************************************
-
+.ifndef DBLV12
 ;;; <summary>
 ;;;	 Set the default file specification   
 ;;; </summary>
@@ -52,5 +52,6 @@ proc
 	xreturn
 	
 endsubroutine
+.endc
 
 					

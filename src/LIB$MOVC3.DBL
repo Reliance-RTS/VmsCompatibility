@@ -46,11 +46,15 @@
 ;;; <param name="destination">Item into which source will be moved</param>
 subroutine LIB$MOVC3
 	required in  ^ref(sourceLength)	,i2
-	required in  ^ref(source)		,D_ADDR	;,a65535	,i
-	required out ^ref(destination)	,D_ADDR	;,a65535	,i
-proc
-	clear destination								;initialize
-	destination = source(1:sourceLength)			;move source to the destination as per indicated number of bytes
+	required in  ^val(source)	,D_ADDR
+	required in ^val(destination)	,D_ADDR
+	record
+		hand1,D_HANDLE
+		hand2,D_HANDLE
+proc		
+	hand2 = %MEM_PROC(DM_REG,sourcelength, source) 
+	hand1 = %MEM_PROC(DM_REG,sourcelength, destination) 
+	^m(hand1) = ^m(hand2)
 
 	xreturn
 	

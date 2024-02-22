@@ -50,24 +50,26 @@
 ;;; <param name="character"></param>
 ;;; <returns></returns>
 function str$dupl_char,	^val
-    required out  destination		,a
-    optional in  ^ref(count)		,i4
-    required in  ^ref(character)	,a1
-    record 
+	required out  destination		,a
+	optional in  ^ref(count)		,i4
+	opt  in  ^ref(character)	,a1
+	record 
 		counter	,i4
 		max		,i4
+		mychar,	a1
 proc
-    if !^passed(count) then
-		xcall fill(character, destination)
-    else
-    begin
+	if !^passed(count) then
+		max = 1
+	else
 		max = count
-		if  max > ^size(destination) 
-			max = ^size(destination)
-		for counter from 1 thru max
-			destination(counter:1) = character 
-    end
+	if ^passed(character) then
+		mychar = character
+	else
+		clear mychar
+	if  max > ^size(destination) 
+		max = ^size(destination)
+	xcall fill(mychar, destination(1:max))
 
-    freturn SS$_NORMAL
+	freturn SS$_NORMAL
 
 end

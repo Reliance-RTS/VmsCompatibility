@@ -97,8 +97,8 @@ subroutine	dbl$devclt
 
 proc
 
-	if .not.%passed(chan).and..not.%passed(devspc) xcall dbl$exiterror(6)
-
+	if .not.%passed(chan).and..not.%passed(devspc) xcall exite(6)
+.ifdef D_VMS
 	; Build the item list for $GETDVI
 
 	Item_List[1].Buff_Length = 4
@@ -128,8 +128,8 @@ proc
 	if %passed(chan) then
 	begin
 		if .not.%chopen(chan)
-			xcall dbl$exiterror(16)	;not open
-		xcall dbl$getfa(chan,'SCH',syschan)
+			xcall exite(16)	;not open
+		xcall getfa(chan,'SCH',syschan)
 		status = %SYS$GETDVIW(,%val(syschan),,%ref(item_list),%ref(iosb),,,)
 	end
 	else
@@ -171,12 +171,12 @@ recheck,
 				if %passed(chan).and..not.lookupflag
 				begin
 					lookupflag = 1
-					xcall dbl$getfnm(chan,device)
+					xcall getfnm(chan,device)
 						
 					status=%SYS$GETDVIW(,,device,%ref(item_List),%ref(iosb),,,)
 					goto recheck
 				end
-				xcall dbl$exiterror(62)
+				xcall exite(62)
 			end
 			ENDUSING
 
@@ -350,7 +350,12 @@ decode_type,
 
 	if idev.eq.dc$_mailbox
 		type = "MBX"
-
 	return
-
+.else
+.ifdef TODO
+	;correct type using getfa if possible
+.endc
+	type = "UNKNOWN"
+	xreturn
+	.endc
 endsubroutine

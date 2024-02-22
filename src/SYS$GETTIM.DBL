@@ -45,7 +45,7 @@
 ;;; <param name="mask"></param>
 ;;; <returns></returns>
 function SYS$GETTIM, ^val
-    %ref(i8DateTime),i8
+    req %ref(i8DateTime),i8
     optional ^val(mask), i
     endparams
     record 

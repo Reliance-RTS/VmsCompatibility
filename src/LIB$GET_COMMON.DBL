@@ -44,7 +44,7 @@
 ;;; <param name="valuetoGet"></param>
 ;;; <returns></returns>
 subroutine LIB$GET_COMMON
-	valuetoGet,	a
+	req valuetoGet,	a
 	record
 		length,	i4
 	endrecord

@@ -37,7 +37,6 @@
 ;; POSSIBILITY OF SUCH DAMAGE.
 ;;
 ;;*****************************************************************************
-
 ;;; <summary>
 ;;;	 Convert a terminal name to its number   
 ;;; </summary>
@@ -48,12 +47,12 @@ subroutine DBL$TT_NAME_TO_NUMBER
 
 proc
 	;Per manual, TT_NAME_TO_NUMBER is VMS-only (throws UNSUP error if called from non-VMS system)
-.ifdef vms	;OS_VMS
+.ifdef D_VMS	;OS_VMS
 	xcall TT_NAME_TO_NUMBER (termName, termNumber)
+.else
+	termnumber = %tnmbr
 .endc
 
 	xreturn
 	
-endsubroutine
-
-					
+endsubroutine			

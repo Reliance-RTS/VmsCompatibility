@@ -37,7 +37,7 @@
 ;; POSSIBILITY OF SUCH DAMAGE.
 ;;
 ;;*****************************************************************************
-
+.ifndef DBLV12
 ;;; <summary>
 ;;;	 Get return value from last routine called  
 ;;; </summary>
@@ -56,5 +56,5 @@ proc
 	xreturn
 	
 endsubroutine
-
+.endc
 					

@@ -50,4 +50,5 @@ subroutine chain
 proc
 	xcall lib$set_symbol("DBL$CHAIN",^a(parm))
 	stop prog
+	xreturn
 endsubroutine

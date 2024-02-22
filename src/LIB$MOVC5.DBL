@@ -1,17 +1,17 @@
 ;;*****************************************************************************
 ;;
-;; Title:       lib$put_output
+;; Title:       LIB$MOVC5 
 ;;
-;; Type:        Function
+;; Type:        Subroutine
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine lib$put_output
+;; Description: Emulates the functionality of the OpemVMS routine LIB$MOVC5 
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Roger Andrews, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
 ;;
-;; Copyright (c) 2017, Synergex International, Inc.
+;; Copyright (c) 2023, Synergex International, Inc.
 ;; All rights reserved.
 ;;
 ;; Redistribution and use in source and binary forms, with or without
@@ -39,26 +39,34 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;;
 ;;; </summary>
-;;; <param name="message"></param>
+;;; <param name="srclen"></param>
+;;; <param name="srcaddr"></param>
+;;; <param name="fillchar"></param>
+;;; <param name="dstlen"></param>
+;;; <param name="dstaddr"></param>
 ;;; <returns></returns>
-function lib$put_output, ^val
-	required in message, a
-	opt in extravalue, a
-endparams
-.ifndef DBLV12
-   record
-		chan,	i4,	0
-.endc
-proc
-.ifdef DBLV12
-    console.writeline(message)
-.else
-	open(chan,O,'tt:')
-    writes(chan,message)
-    close chan
-.endc
-    freturn 0
+subroutine LIB$MOVC5
+	required in ^ref(srclen)            ,i2
+	required in ^val(srcaddr)           ,D_ADDR      ;an address
+	required in ^ref(fillchar)          ,a1
+	required in ^ref(dstlen)            ,i2
+	required    ^val(dstaddr)           ,D_ADDR      ;an addres
+	record
+		hand,	D_HANDLE
+		hand1,	D_HANDLE
+	structure st
+		,a65534
+proc							;initialize
+	hand1 = %mem_proc(DM_REG,srclen,srcaddr)
+	hand = %mem_proc(DM_REG,dstlen,dstaddr)
+	^m(hand)  = ^m(hand1)			;move source to the destination as per indicated number of bytes
+	if (srclen < dstlen)
+		xcall fill(fillchar, ^m(st(srclen+1,dstlen),hand))
 
-end
+	xreturn
+	
+endsubroutine
+
+					

@@ -255,7 +255,6 @@ endfunction
 
 ;LIB$DECODE_FAULT
 ;LIB$DEC_OVER
-;LIB$DELETE_FILE
 ;LIB$DELETE_VM_ZONE
 ;LIB$DELETE_VM_ZONE_64
 ;LIB$DIGIT_SEP
@@ -421,7 +420,7 @@ end
 ;;; <param name="pathname"></param>
 ;;; <returns></returns>
 function LIB$GETDVI                     ,^val
-    in           ^val(itemcode)         ,i
+    in           ^REF(itemcode)         ,i4
     optional in  ^val(channel)          ,i
     optional in  devicename             ,a
     optional out ^ref(intvalue)         ,i4
@@ -433,27 +432,6 @@ proc
     freturn 0
 endfunction
 
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="itemcode"></param>
-;;; <param name="process_id"></param>
-;;; <param name="process_name"></param>
-;;; <param name="intvalue"></param>
-;;; <param name="alpha_value"></param>
-;;; <param name="resultlen"></param>
-;;; <returns></returns>
-function LIB$GETJPI                     ,^val
-    in             ^ref(itemcode)       ,i4
-    optional inout ^ref(process_id)     ,i4
-    optional in    process_name         ,a
-    optional out   ^ref(intvalue)       ,i4
-    optional out   alpha_value          ,a
-    optional out   ^ref(resultlen)      ,i2
-proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
-endfunction
 
 ;;; <summary>
 ;;; 
@@ -501,6 +479,15 @@ endfunction
 
 ;LIB$GET_FULLNAME_OFFSET
 ;LIB$GET_HOSTNAME
+;;; <summary>
+function lib$get_input,^val
+	req out arg,	a
+	req in prompt,	a
+	opt out ^ref(resultlen),i2
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
 ;LIB$GET_INPUT
 ;LIB$GET_INVO_CONTEXT
 ;LIB$GET_INVO_HANDLE
@@ -603,27 +590,6 @@ proc
 endfunction
 
 ;LIB$MATCH_COND
-
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="srclen"></param>
-;;; <param name="srcaddr"></param>
-;;; <param name="fillchar"></param>
-;;; <param name="dstlen"></param>
-;;; <param name="dstaddr"></param>
-;;; <returns></returns>
-subroutine LIB$MOVC5
-    required in ^ref(srclen)            ,i2
-    required in ^val(srcaddr)           ,i      ;an address
-    required in ^ref(fillchar)          ,a1
-    required in ^ref(dstlen)            ,i2
-    required    ^val(dstaddr)           ,i      ;an address
-proc
-    throw new ApplicationException("Not implemented!")
-    xreturn
-endsubroutine
-
 ;LIB$MOVTUC
 ;LIB$MULT_DELTA_TIME
 ;LIB$MULTF_DELTA_TIME
@@ -1112,6 +1078,8 @@ endfunction
 ;;; Not documented in system services reference manual?
 ;;; </summary>
 function SYS$BRDCST                     ,^val
+	arg1,a			;message
+	arg2,a			; operator eg opa0:
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -1133,7 +1101,7 @@ endfunction
 ;;; <param name="astparm"></param>
 ;;; <returns></returns>
 function SYS$BRKTHRU                    ,^val
-    required in  ^val(ef_number)        ,i
+    opt in  ^val(ef_number)        ,i
     required in  messagebuf             ,a
     optional in  sendto                 ,a
     optional     ^val(sendtype)         ,i
@@ -1233,7 +1201,6 @@ proc
     freturn 0
 endfunction
 
-;;; <summary>
 ;;;
 ;;; </summary>
 ;;; <param name="procmask"></param>
@@ -1264,7 +1231,17 @@ endfunction
 ;SYS$CREATE_GPFN
 ;SYS$CREATE_RDB
 ;SYS$CREATE_REGION_64
-;SYS$CREATE_UID
+;;;
+;;; </summary>
+;;; <param name="uid"></param>
+;;; <returns></returns>
+function SYS$CREATE_UID, ^VAL
+	req out ^ref(uid),	[#]i4
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
+
 ;SYS$CREATE_USER_PROFILE
 
 ;;; <summary>

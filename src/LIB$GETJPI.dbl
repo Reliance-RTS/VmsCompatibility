@@ -1,17 +1,17 @@
 ;;*****************************************************************************
 ;;
-;; Title:       lib$put_output
+;; Title:       LIB$GETJPI
 ;;
-;; Type:        Function
+;; Type:        Subroutine
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine lib$put_output
-;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Description: Emulates the functionality of the OpemVMS routine LIB$GETJPI f
+;;		for limited subfunctions
+;; Author:      Roger Andrews, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
 ;;
-;; Copyright (c) 2017, Synergex International, Inc.
+;; Copyright (c) 2023, Synergex International, Inc.
 ;; All rights reserved.
 ;;
 ;; Redistribution and use in source and binary forms, with or without
@@ -39,26 +39,36 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;; 
+;;;
 ;;; </summary>
-;;; <param name="message"></param>
+;;; <param name="itemcode"></param>
+;;; <param name="process_id"></param>
+;;; <param name="proces_name"></param>
+;;; <param name="intvalue"></param>
+;;; <param name="result_string"></param>
+;;; <param name="resultlen"></param>
 ;;; <returns></returns>
-function lib$put_output, ^val
-	required in message, a
-	opt in extravalue, a
-endparams
-.ifndef DBLV12
-   record
-		chan,	i4,	0
-.endc
+function LIB$GETJPI						,^val
+	in             ^ref(itemcode)		,i4
+	optional inout ^ref(process_id)		,i4
+	optional in    process_name			,a
+	optional out   ^ref(intvalue)		,i4
+	optional out	result_string			,a
+	optional out   ^ref(resultlen)		,i2
+	.include "DBLSTARLET:$JPIDEF.DBL"
+	.include "DBLSTARLET:$LIBDEF.DBL"
 proc
-.ifdef DBLV12
-    console.writeline(message)
-.else
-	open(chan,O,'tt:')
-    writes(chan,message)
-    close chan
-.endc
-    freturn 0
-
-end
+	using itemcode select
+	(JPI$_USERNAME),
+	begin
+		if ^passed(result_string)
+		begin
+			result_string = %SYN_UNAME()
+			upcase result_string
+			if ^passed(resultlen)
+				resultlen = %trim(result_string)
+		end
+	end
+	(),	    throw new ApplicationException("lib$getjpi Not implemented!")
+	endusing
+	freturn LIB$_NORMAL

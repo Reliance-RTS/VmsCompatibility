@@ -43,9 +43,13 @@
 ;;; </summary>
 ;;; <param name="parm"></param>
 ;;; <returns></returns>
+.ifdef D_VMS
 subroutine gtent
 	parm,	a
+	external function
+		lib$get_symbol,^val
 proc
-	xcall lib$get_symbol("DBL$CHAIN",^a(parm))
+	(void)lib$get_symbol("DBL$CHAIN",^a(parm),,)
 	xreturn
 endsubroutine
+.endc

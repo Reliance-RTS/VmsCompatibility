@@ -1,17 +1,16 @@
-;;*****************************************************************************
 ;;
-;; Title:       lib$put_output
+;; Title:       LIB$DELETE_FILE.DBL
 ;;
 ;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine lib$put_output
+;; Description: Emulates the functionality of the OpemVMS routine %LIB$DELETE_FILE
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Roger Andrews, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
 ;;
-;; Copyright (c) 2017, Synergex International, Inc.
+;; Copyright (c) 2014, Synergex International, Inc.
 ;; All rights reserved.
 ;;
 ;; Redistribution and use in source and binary forms, with or without
@@ -41,24 +40,20 @@
 ;;; <summary>
 ;;; 
 ;;; </summary>
-;;; <param name="message"></param>
-;;; <returns></returns>
-function lib$put_output, ^val
-	required in message, a
-	opt in extravalue, a
-endparams
-.ifndef DBLV12
-   record
-		chan,	i4,	0
-.endc
-proc
-.ifdef DBLV12
-    console.writeline(message)
-.else
-	open(chan,O,'tt:')
-    writes(chan,message)
-    close chan
-.endc
-    freturn 0
 
-end
+function LIB$DELETE_FILE, ^val
+	required in filename,	a
+	opt in default_filespec,	a
+	opt in related_filespec,	a
+	endparams
+	.include "DBLSTARLET:$LIBDEF.DBL"
+	record
+		ends,int
+proc
+	ends = %instr(1,filename,';')
+	if ends then			;remove any ; for non vms
+		decr ends
+	else ends = ^size(filename)
+	xcall delet(filename(1,ends))
+	freturn LIB$_NORMAL
+endfunction

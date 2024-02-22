@@ -1,0 +1,12 @@
+function SYS$GETJPIW					,^val
+    optional in    ^val(EFN)			,i
+    optional inout ^ref(process_id)		,i4
+    optional in    process_name			,a
+    required in    ^ref(itemlist)		,[*]a12
+    optional out   ^ref(iosb)			,[*]i4
+    optional       ^val(astadr)			,i
+    optional       ^val(astparm)		,i
+proc
+    throw new ApplicationException("Not implemented!")
+    freturn 0
+endfunction

@@ -59,7 +59,7 @@ RECORD	PARMS
 	PAD,	[SRT_NUM_FILES]A1, %CHAR(0),%CHAR(0),%CHAR(0),%CHAR(0),%CHAR(0),%CHAR(0),%CHAR(0)
         
 								; COUNT:value
-	COUNT,	[SRT_NUM_FILES]D1	; Number of records to sort
+	COUNT,	[SRT_NUM_FILES]D10 				; Number of records to sort
 								; 0 means all records in file
 								; KEYS:tdp.l[,tdp.l,...]
 								; or KEYS:field_name[-][,field_name[-],...]
