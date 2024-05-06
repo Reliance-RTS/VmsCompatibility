@@ -14,14 +14,16 @@
     <DBL_qTrim>True</DBL_qTrim>
     <DBL_qAlign>True</DBL_qAlign>
     <EnableCommonProperties>True</EnableCommonProperties>
-    <CommonPropertiesFileLocation>$(SolutionDir)Common.props</CommonPropertiesFileLocation>
     <RootNamespace>VMSLib</RootNamespace>
-    <DBL_qWarnLevel>4</DBL_qWarnLevel>
+    <DBL_qWarnLevel>3</DBL_qWarnLevel>
     <DBL_qRelaxed>True</DBL_qRelaxed>
     <DBL_qRelaxedOptval>True</DBL_qRelaxedOptval>
     <DBL_qDefineOptCheck>False</DBL_qDefineOptCheck>
     <DBL_qDefineOpt>
     </DBL_qDefineOpt>
+    <CommonPropertiesFileLocation>$(SolutionDir)Common.props</CommonPropertiesFileLocation>
+    <ProjEnvVars>
+    </ProjEnvVars>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|VMS' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
