@@ -167,7 +167,7 @@ endfunction
 ;;; <returns></returns>
 function LIB$BBSSI                      ,^val
     required in  ^ref(position)         ,i4
-    required in  ^val(bitaddress)       ,i
+    required in  ^ref(bitaddress)       ,i4	; address of bitaddress
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -641,7 +641,16 @@ endfunction
 ;LIB$SYS_FAO
 ;LIB$SYS_FAOL
 ;LIB$SYS_FAOL_64
-;LIB$SYS_GETMSG
+function LIB$SYS_GETMSG,^val
+	in ^ref(arg1),	i4
+	out ^ref(arg2),	i2
+	out string,	a
+	in ^ref(mask),	i4
+proc
+	throw new ApplicationException("Not implemented!")
+
+	freturn 0
+	end
 ;LIB$TPARSE/LIB$TABLE_PARSE
 ;LIB$TRAVERSE_TREE
 ;LIB$TRAVERSE_TREE_64

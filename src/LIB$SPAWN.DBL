@@ -62,7 +62,7 @@ function LIB$SPAWN		    ,^val
 	optional in  %ref(flags)    ,i4			;NOT APPLICABLE
 	optional in  processName    ,a			;NOT APPLICABLE
 	optional out %ref(processID) ,i4			;NOT APPLICABLE
-	optional  ^val(lStatus)        ,i			;NOT APPLICABLE
+	optional out %ref(lStatus)        ,i4			;NOT APPLICABLE
 	optional in  %ref(flagNum)	,i1			;NOT APPLICABLE
 	optional in  ^val(astadr)	,i			;NOT APPLICABLE		;procedure value? } this was declared as i in the VMSSystem stub
 	optional in  astparm		,n			;NOT APPLICABLE

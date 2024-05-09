@@ -18,9 +18,8 @@
     <DBL_qWarnLevel>3</DBL_qWarnLevel>
     <DBL_qRelaxed>True</DBL_qRelaxed>
     <DBL_qRelaxedOptval>True</DBL_qRelaxedOptval>
-    <DBL_qDefineOptCheck>False</DBL_qDefineOptCheck>
-    <DBL_qDefineOpt>
-    </DBL_qDefineOpt>
+    <DBL_qDefineOptCheck>True</DBL_qDefineOptCheck>
+    <DBL_qDefineOpt>needswork</DBL_qDefineOpt>
     <CommonPropertiesFileLocation>$(SolutionDir)Common.props</CommonPropertiesFileLocation>
     <ProjEnvVars>
     </ProjEnvVars>
@@ -99,6 +98,12 @@
     </PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\RelianceSteelMDS\EMJREL\SRC\VMS\VMSCONVERT.DBL">
+      <Link>VMSCONVERT.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\RelianceSteelMDS\EMJREL\SRC\VMS\VMSHELP.DBL">
+      <Link>VMSHELP.DBL</Link>
+    </Compile>
     <Compile Include="..\src\CHAIN.DBL">
       <Link>CHAIN.DBL</Link>
     </Compile>
