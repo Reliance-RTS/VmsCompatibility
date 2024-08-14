@@ -38,9 +38,6 @@
 ;;
 ;;*****************************************************************************
 
-.ifndef SS$_NORMAL
-.define SS$_NORMAL 1
-.endc
 
 ;;; <summary>
 ;;; 
@@ -51,6 +48,7 @@
 function lib$currency, ^val
     required out currency			,a
     optional out ^ref(resultlen)	,i2
+.include "DBLSTARLET:$SSDEF.DBL"
 proc
     currency = "$"
     if  ^passed(resultlen)

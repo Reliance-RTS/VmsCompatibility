@@ -38,9 +38,6 @@
 ;;
 ;;*****************************************************************************
 
-.ifndef SS$_NORMAL
-.define SS$_NORMAL 1
-.endc
 
 ;;; <summary>
 ;;; 
@@ -50,7 +47,8 @@
 ;;; <returns></returns>
 function str$upcase, ^val
     required out destination	,a
-    required in  source			,a
+    required in  source		,a
+	.include "DBLSTARLET:$SSDEF.DBL"
 proc
     destination = source
     upcase destination

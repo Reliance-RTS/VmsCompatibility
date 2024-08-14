@@ -38,9 +38,6 @@
 ;;
 ;;*****************************************************************************
 
-.ifndef SS$_NORMAL
-.define SS$_NORMAL 1
-.endc
 
 ;;-----------------------------------------------------------------------------
 ;;Access Control List Editor (ACLEDIT$) Routines (See Utility Routines Manual)
@@ -126,6 +123,7 @@ function FDL$CREATE                     ,^val
     optional out ^ref(sts)              ,i4
     optional out ^ref(stv)              ,i4
     optional in  default_fdl            ,a
+.include "DBLSTARLET:$SSDEF.DBL"
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -153,6 +151,8 @@ endfunction
 function LIB$ATTACH                     ,^val
     required in  ^ref(processid)        ,i4
 proc
+	;
+	; not possible off VMS
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
@@ -368,6 +368,7 @@ endfunction
 ;;; <returns></returns>
 function LIB$FREE_DATE_TIME_CONTEXT     ,^val
     required inout ^ref(ContextBoundObject),i4
+.include "DBLSTARLET:$SSDEF.DBL"
 proc
     throw new ApplicationException("Not implemented!")
     freturn SS$_NORMAL
@@ -484,8 +485,26 @@ function lib$get_input,^val
 	req out arg,	a
 	req in prompt,	a
 	opt out ^ref(resultlen),i2
+	record
+	mychan,	int
+	mybuf,	a16384
+	myrdlen,int
 proc
-	throw new ApplicationException("Not implemented!")
+	clear mychan,myrdlen
+	on error passback
+	open(mychan,o,'tt:')
+	display(mychan,prompt)
+	reads(mychan,mybuf)
+	myrdlen = %rdlen(mychan)
+passback,
+	off error
+	if (mychan) close mychan
+	if myrdlen then
+	    arg = prompt(1,myrdlen)
+	else
+	    clear arg
+	if %passed(resultlen)
+		resultlen = myrdlen
 	freturn 0
 endfunction
 ;LIB$GET_INPUT
@@ -1050,8 +1069,9 @@ endfunction
 function SYS$ADJWSL                     ,^val
     optional in  ^val(pagecnt)          ,i
     optional out ^ref(wsl)              ,i4
+	.include "DBLSTARLET:$SSDEF.DBL"
 proc
-    throw new ApplicationException("Not implemented!")
+	; just a NOP outside VMS
     freturn SS$_NORMAL
 endfunction
 
@@ -1090,7 +1110,7 @@ function SYS$BRDCST                     ,^val
 	arg1,a			;message
 	arg2,a			; operator eg opa0:
 proc
-    throw new ApplicationException("Not implemented!")
+    xcall syn_reportevent(D_EVENTLOG_INFORMATION_TYPE,arg1)
     freturn 0
 endfunction
 
@@ -1628,6 +1648,8 @@ function SYS$GETJPI                     ,^val
     optional       ^val(astadr)         ,i
     optional       ^val(astparm)        ,i
 proc
+	;
+	; use lib$getjpi instead
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
@@ -1652,6 +1674,8 @@ function SYS$GETJPIW                    ,^val
     optional       ^val(astadr)         ,i
     optional       ^val(astparm)        ,i
 proc
+	;
+	; use lib$getjpi instead
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction

@@ -38,9 +38,6 @@
 ;;
 ;;*****************************************************************************
 
-.ifndef SS$_NORMAL
-.define SS$_NORMAL 1
-.endc
 
 ;;; <summary>
 ;;; 
@@ -63,6 +60,8 @@ function edt$edit, ^val
     optional in ^ref(file_io)	,i
     optional in ^ref(work_io)	,i
     optional in ^ref(xlate)		,i
+
+.include "DBLSTARLET:$SSDEF.DBL"
 proc
     if ^passed(outfile) then
     begin

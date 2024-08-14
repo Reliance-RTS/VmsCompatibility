@@ -38,9 +38,6 @@
 ;;
 ;;*****************************************************************************
 
-.ifndef SS$_NORMAL
-.define SS$_NORMAL 1
-.endc
 
 ;;; <summary>
 ;;; 
@@ -53,6 +50,7 @@ function lib$cvt_dx_dx,^val
     required in  mismatch source		,n
     required out  mismatch destination	,n
     opt out  ^ref(outlen)			,i2
+.include "DBLSTARLET:$SSDEF.DBL"
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0

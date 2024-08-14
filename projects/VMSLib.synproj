@@ -98,12 +98,6 @@
     </PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\RelianceSteelMDS\EMJREL\SRC\VMS\VMSCONVERT.DBL">
-      <Link>VMSCONVERT.DBL</Link>
-    </Compile>
-    <Compile Include="..\..\RelianceSteelMDS\EMJREL\SRC\VMS\VMSHELP.DBL">
-      <Link>VMSHELP.DBL</Link>
-    </Compile>
     <Compile Include="..\src\CHAIN.DBL">
       <Link>CHAIN.DBL</Link>
     </Compile>

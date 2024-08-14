@@ -46,7 +46,7 @@
 ;;; <returns></returns>
 subroutine LIB$DELETE_SYMBOL
     required in symbol,				a
-    optional in ^ref(return_table),	i4
+    optional in ^ref(return_table),	INT
     endparams
     stack record
 		status,	i4

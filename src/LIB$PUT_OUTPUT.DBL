@@ -44,7 +44,7 @@
 ;;; <param name="message"></param>
 ;;; <returns></returns>
 function lib$put_output, ^val
-	required in message, a
+	MISMATCH required in message, a
 	opt in extravalue, a
 endparams
 .ifndef DBLV12

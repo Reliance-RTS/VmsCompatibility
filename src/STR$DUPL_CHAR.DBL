@@ -38,9 +38,6 @@
 ;;
 ;;*****************************************************************************
 
-.ifndef SS$_NORMAL
-.define SS$_NORMAL 1
-.endc
 
 ;;; <summary>
 ;;; 
@@ -57,6 +54,7 @@ function str$dupl_char,	^val
 		counter	,i4
 		max		,i4
 		mychar,	a1
+.include "DBLSTARLET:$SSDEF.DBL"
 proc
 	if !^passed(count) then
 		max = 1

@@ -48,7 +48,7 @@
 ;;; <param name="flags"></param>
 ;;; <returns></returns>
 function SYS$ASSIGN         ,^val
-	required in  name			,a			;NOT APPLICABLE
+	required in  name			,a		;NOT APPLICABLE
 	required out chan           ,n
 	optional in  accmode        ,i
 	optional in  mbxname        ,a
@@ -64,11 +64,11 @@ proc
 	 
 	;assign free available channel
 	chan = %syn_freechn()
-
+.ifdef D_VMS
 	;associate mailbox with the channel if applicable
 	if ^passed(mbxname)
 		xcall crembx(chan, mbxname,,,,,accmode)
-	
+.endc	
 	freturn SS$_NORMAL
 endfunction
 

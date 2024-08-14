@@ -59,7 +59,7 @@ function LIB$GET_SYMBOL, ^val
 proc
 	clear status
 .ifdef TODO
-	; how to make symbols work on on vms they are not logicals
+	; how to make symbols work as on vms they are not logicals
 .endc
 	xcall getlog(symbol,value,len)
 
