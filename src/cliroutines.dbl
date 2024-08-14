@@ -1,0 +1,85 @@
+; returns Success if item present
+.define limit 100
+.define varsize 32
+.define maxcmdline 1000
+;
+; these routines simulate the dcl command interpreter (CLD) files
+; instead of verb /item=value the syntax -s -"item=value" or -item
+;
+
+
+function cli$present,^val
+	req in symbol,	a
+.include "$CLIMSGDEF" library "DBLSTARLET"
+external common
+vars,	[limit]a varsize
+values,	[limit]a varsize
+items,	int
+record
+cnt,	int
+	proc
+	if .not.vars[1] xcall load_cli_values	;load values from command line
+	for cnt from 1 thru items
+		if symbol.eqs.vars[cnt]
+			freturn CLI$_PRESENT
+	freturn CLI$_ABSENT
+end
+
+; get the value of a -item=blah
+function cli$get_value, ^val
+	req in symbol,	a
+	mismatch opt out value,a
+	opt out ^ref(retlen),i2
+	.include "$CLIMSGDEF" library "DBLSTARLET"
+	.include "$SSDEF" library "DBLSTARLET"
+global common
+vars,	[limit]a varsize
+values,	[limit]a varsize
+items,	int
+	record
+		cnt,	int
+proc
+	if .not.vars[1] xcall load_cli_values	;load values from command line
+	for cnt from 1 thru items
+		if symbol.eqs.vars[cnt]
+		begin
+			value = values[cnt]
+			if %passed(retlen)
+				retlen = %trim(value)
+			freturn SS$_NORMAL
+		end
+	freturn CLI$_ABSENT
+end
+
+subroutine load_cli_values
+external common
+vars,	[limit]a varsize
+values,	[limit]a varsize
+items,	int
+record
+	cmdln,	a maxcmdline
+	argpos,	[limit]i4
+	arglen,	[limit]i4
+	cnt,	int
+	equals,	int
+		command,	A 2*varsize + 2
+	start,int
+proc
+	xcall cmdln(cmdln, items,argpos, arglen)
+	for cnt from 1 thru items
+	begin
+		command = cmdln(argpos[cnt]:arglen[cnt])
+		upcase command ;vms commands and data always upper case
+		start = 1
+		if command.eq. '-'
+			start = 2
+		equals = %instr(start,command,"=")
+		if equals then
+		begin
+			vars[cnt] = command(start,equals-1)
+			values[cnt] = command(equals+1,^size(command))
+		end
+		else
+			vars[cnt] = command(start,^size(command))
+	end
+	xreturn

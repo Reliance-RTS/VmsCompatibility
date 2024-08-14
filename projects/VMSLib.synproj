@@ -101,6 +101,9 @@
     <Compile Include="..\src\CHAIN.DBL">
       <Link>CHAIN.DBL</Link>
     </Compile>
+    <Compile Include="..\src\cliroutines.dbl">
+      <Link>cliroutines.dbl</Link>
+    </Compile>
     <Compile Include="..\src\DBL%24ASTRST.dbl">
       <Link>DBL$ASTRST.dbl</Link>
     </Compile>
