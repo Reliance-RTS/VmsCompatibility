@@ -58,3 +58,4 @@
 
 Documentation/Web Help
 *.timestamp
+.intellisense
