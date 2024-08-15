@@ -54,8 +54,7 @@
 
 ;CLI$DCL_PARSE
 ;CLI$DISPATCH
-;CLI$GET_VALUE
-;CLI$PRESENT
+
 
 ;;-----------------------------------------------------------------------------
 ;;Common File Qualifier (UTIL$CQUAL) Routines (See Utility Routines Manual)

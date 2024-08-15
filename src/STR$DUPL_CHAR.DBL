@@ -49,7 +49,7 @@
 function str$dupl_char,	^val
 	required out  destination		,a
 	optional in  ^ref(count)		,i4
-	opt  in  ^ref(character)	,a1
+	opt  in  ^ref(character)	,i1
 	record 
 		counter	,i4
 		max		,i4
@@ -61,7 +61,7 @@ proc
 	else
 		max = count
 	if ^passed(character) then
-		mychar = character
+		mychar = %char(character)
 	else
 		clear mychar
 	if  max > ^size(destination) 
