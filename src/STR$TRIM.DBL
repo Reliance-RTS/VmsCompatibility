@@ -48,7 +48,11 @@
 function STR$TRIM , ^val
 	required out destination	,a
 	required in  source			,a
-	optional out %ref(len)		,i2
+.ifdef dblnet
+	out %ref(len)		,short
+.else
+	optional out %ref(len)		,short
+.endc
 	endparams
 
 	.include "DBLSTARLET:$SSDEF.DBL"
@@ -92,13 +96,17 @@ proc
 	;destination string is truncating returned result
 	if (destLength .lt. length)
 	begin
+.ifndef dblnet
 		if (^passed(len))		; if length is passed - set to the size of destination string
-			len = destLength
+.endc
+		    len = destLength
 		
 		freturn STR$_TRU
 	end
 	
+.ifndef dblnet
 	if (^passed(len))
+.endc
 		len = length
 
 	;If we got here, all is well

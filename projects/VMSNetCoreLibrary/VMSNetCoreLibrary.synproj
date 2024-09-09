@@ -1,0 +1,212 @@
+<Project Sdk="Microsoft.NET.Sdk" DefaultTargets="restore;Build">
+  <PropertyGroup>
+    <TargetFramework Condition="'$(TargetFrameworkOverride)' == ''">net8.0</TargetFramework>
+    <TargetFramework Condition="'$(TargetFrameworkOverride)' != ''">$(TargetFrameworkOverride)</TargetFramework>
+    <DefaultLanguageSourceExtension>.dbl</DefaultLanguageSourceExtension>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <ProjectGuid>{c78503c8-e2cb-4630-a226-2a6cfc8eeff1}</ProjectGuid>
+    <Name>VMSNetCoreLibrary</Name>
+    <DBL_qWarnLevel>3</DBL_qWarnLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src\CHAIN.DBL">
+      <Link>CHAIN.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\cliroutines.dbl">
+      <Link>cliroutines.dbl</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24ASTRST.dbl">
+      <Link>DBL$ASTRST.dbl</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24ASTSAV.dbl">
+      <Link>DBL$ASTSAV.dbl</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24DEVCLT.DBL">
+      <Link>DBL$DEVCLT.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24ERRTXT.DBL">
+      <Link>DBL$ERRTXT.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24GETFNM.DBL">
+      <Link>DBL$GETFNM.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24IXREAD.DBL">
+      <Link>DBL$IXREAD.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24PARSE.DBL">
+      <Link>DBL$PARSE.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24SETDFN.DBL">
+      <Link>DBL$SETDFN.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24SETKRF.DBL">
+      <Link>DBL$SETKRF.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24SNDOPR.DBL">
+      <Link>DBL$SNDOPR.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24TT_NAME_TO_NUMBER.DBL">
+      <Link>DBL$TT_NAME_TO_NUMBER.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24TT_NUMBER_TO_NAME.DBL">
+      <Link>DBL$TT_NUMBER_TO_NAME.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\DBL%24XSTAT.DBL">
+      <Link>DBL$XSTAT.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\Editor.dbl">
+      <Link>Editor.dbl</Link>
+    </Compile>
+    <Compile Include="..\..\src\EDT%24EDIT.DBL">
+      <Link>EDT$EDIT.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\EMPBUF.DBL">
+      <Link>EMPBUF.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\FindFileList.dbl">
+      <Link>FindFileList.dbl</Link>
+    </Compile>
+    <Compile Include="..\..\src\GETCM.DBL">
+      <Link>GETCM.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\GTENT.DBL">
+      <Link>GTENT.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24ADD_TIMES.DBL">
+      <Link>LIB$ADD_TIMES.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24CONVERT_DATE_STRING.DBL">
+      <Link>LIB$CONVERT_DATE_STRING.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24CURRENCY.DBL">
+      <Link>LIB$CURRENCY.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24CVT_DX_DX.DBL">
+      <Link>LIB$CVT_DX_DX.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24DATE_TIME.DBL">
+      <Link>LIB$DATE_TIME.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24DAY_OF_WEEK.DBL">
+      <Link>LIB$DAY_OF_WEEK.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24DELETE_FILE.dbl">
+      <Link>LIB$DELETE_FILE.dbl</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24DELETE_LOGICAL.DBL">
+      <Link>LIB$DELETE_LOGICAL.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24DELETE_SYMBOL.DBL">
+      <Link>LIB$DELETE_SYMBOL.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24DO_COMMAND.DBL">
+      <Link>LIB$DO_COMMAND.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24GETJPI.dbl">
+      <Link>LIB$GETJPI.dbl</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24GET_COMMON.DBL">
+      <Link>LIB$GET_COMMON.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24GET_FOREIGN.DBL">
+      <Link>LIB$GET_FOREIGN.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24GET_LOGICAL.DBL">
+      <Link>LIB$GET_LOGICAL.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24GET_SYMBOL.DBL">
+      <Link>LIB$GET_SYMBOL.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24MOVC3.DBL">
+      <Link>LIB$MOVC3.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24MOVC5.DBL">
+      <Link>LIB$MOVC5.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24MOVTC.DBL">
+      <Link>LIB$MOVTC.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24PUT_COMMON.DBL">
+      <Link>LIB$PUT_COMMON.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24PUT_OUTPUT.DBL">
+      <Link>LIB$PUT_OUTPUT.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24RENAME_FILE.DBL">
+      <Link>LIB$RENAME_FILE.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24SET_LOGICAL.DBL">
+      <Link>LIB$SET_LOGICAL.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24SET_SYMBOL.DBL">
+      <Link>LIB$SET_SYMBOL.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24SPAWN.DBL">
+      <Link>LIB$SPAWN.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24STOP.DBL">
+      <Link>LIB$STOP.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\LIB%24SUB_TIMES.DBL">
+      <Link>LIB$SUB_TIMES.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\MonthNumberToShortName.dbl">
+      <Link>MonthNumberToShortName.dbl</Link>
+    </Compile>
+    <Compile Include="..\..\src\MonthShortNameToNumber.dbl">
+      <Link>MonthShortNameToNumber.dbl</Link>
+    </Compile>
+    <Compile Include="..\..\src\PUTCM.DBL">
+      <Link>PUTCM.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\STR%24CONCAT.DBL">
+      <Link>STR$CONCAT.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\STR%24DUPL_CHAR.DBL">
+      <Link>STR$DUPL_CHAR.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\STR%24ELEMENT.DBL">
+      <Link>STR$ELEMENT.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\STR%24FIND_FIRST_NOT_IN_SET.DBL">
+      <Link>STR$FIND_FIRST_NOT_IN_SET.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\STR%24MATCH_WILD.DBL">
+      <Link>STR$MATCH_WILD.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\STR%24TRANSLATE.DBL">
+      <Link>STR$TRANSLATE.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\STR%24TRIM.DBL">
+      <Link>STR$TRIM.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\STR%24UPCASE.DBL">
+      <Link>STR$UPCASE.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\SUCCESS.DBL">
+      <Link>SUCCESS.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\SYS%24ASCTIM.DBL">
+      <Link>SYS$ASCTIM.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\SYS%24ASSIGN.DBL">
+      <Link>SYS$ASSIGN.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\SYS%24BINTIM.DBL">
+      <Link>SYS$BINTIM.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\SYS%24GETTIM.DBL">
+      <Link>SYS$GETTIM.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\SYS%24SETPRN.DBL">
+      <Link>SYS$SETPRN.DBL</Link>
+    </Compile>
+    <Compile Include="..\..\src\VMSSYSTEM.DBL">
+      <Link>VMSSYSTEM.DBL</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Synergex.SynergyDE.Build" Version="24.*" />
+    <PackageReference Include="Synergex.SynergyDE.synrnt" Version="12.*" />
+  </ItemGroup>
+</Project>

@@ -47,23 +47,34 @@
 ;;; <param name="character"></param>
 ;;; <returns></returns>
 function str$dupl_char,	^val
-	required out  destination		,a
-	optional in  ^ref(count)		,i4
-	opt  in  ^ref(character)	,i1
+	required out  destination	,a
+.ifdef dblnet
+	in  ^ref(count)			,int	;pass ^szie(1starg)
+	in  ^ref(character)		,byte	;pass space if no argument
+.else
+	optional in  ^ref(count)	,int
+
+	opt  in  ^ref(character)	,byte
+.endc
 	record 
 		counter	,i4
 		max		,i4
 		mychar,	a1
 .include "DBLSTARLET:$SSDEF.DBL"
 proc
+.ifndef dblnet
 	if !^passed(count) then
 		max = 1
 	else
+.endc
 		max = count
-	if ^passed(character) then
-		mychar = %char(character)
-	else
+.ifndef dblnet
+	if !^passed(character) then
 		clear mychar
+	else
+.endc
+	clear mychar
+	mychar = %char(character)
 	if  max > ^size(destination) 
 		max = ^size(destination)
 	xcall fill(mychar, destination(1:max))

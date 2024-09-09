@@ -60,10 +60,12 @@ function LIB$GET_LOGICAL, ^val
 	optional out resultString			,a     
 	optional out resultLength			,n
 	optional in  tableName				,a			;NOT APPLICABLE
-	optional out ^ref(maxIndex)			,i4			;NOT APPLICABLE
-	optional in ^ref(index)				,i4			;NOT APPLICABLE
-	optional in ^ref(accessMode)		,i1			;NOT APPLICABLE
-	optional in ^ref(flags)				,i4			;NOT APPLICABLE
+.ifndef dblnet
+	optional out ^ref(maxIndex)			,int			;NOT APPLICABLE
+	optional in ^ref(index)				,int			;NOT APPLICABLE
+	optional in ^ref(accessMode)		,byte			;NOT APPLICABLE
+	optional in ^ref(flags)				,int			;NOT APPLICABLE
+.endc
 	endparams
 
 	.include "DBLSTARLET:$SSDEF.DBL"
@@ -80,9 +82,10 @@ proc
 		clear resultString
 	if (^passed(resultLength))
 		clear resultLength
+.ifndef dblnet
 	if (^passed(maxIndex))
 		clear maxIndex
-	
+.endc	
 	;invalid logical name. The logical name or its value contained more than 255 characters.
 	if (^size(logicalName) .gt. 255)
 		freturn SS$_IVLOGNAM

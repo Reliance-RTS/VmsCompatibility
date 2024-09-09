@@ -47,32 +47,36 @@
 ;;; <param name="return_table"></param>
 ;;; <returns></returns>
 function LIB$GET_SYMBOL, ^val
-	required in  symbol,				a
-	required out value,					a
-	optional out ^ref(return_length),	i2
-	optional out ^ref(return_table),	i4
+	required in  symbol,		a
+	required out value,		a
+.ifdef dblnet
+	out ^ref(return_length),	short
+.else
+	optional out ^ref(return_length),	short
+	optional out ^ref(return_table),	int
+.endc	
 	endparams
 	stack record
 		len,	i4
 		status,	i4
 	endrecord
+	.include "DBLSTARLET:$LIBDEF.DBL"
 proc
 	clear status
-.ifdef TODO
-	; how to make symbols work as on vms they are not logicals
-.endc
-	xcall getlog(symbol,value,len)
+
+	; Symbols work by using logicals preceded by "DCL"
+
+	xcall getlog(symbol.ne."DBL$"? "DCL"+symbol:symbol,value,len)
 
 	if (!len)
 	begin
 		clear value
-.ifdef TODO
 		status = lib$_NOSUCHSYM
-.endc
 	end
-
+.ifndef dblnet
 	if ^passed(return_length)
-		return_length = len
+.endc
+	    return_length = len
 
 	freturn status
 

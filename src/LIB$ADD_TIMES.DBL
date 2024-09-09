@@ -42,9 +42,9 @@
 ;;; 
 ;;; </summary>
 function LIB$ADD_TIMES,		^val
-	required in  %ref(firstTime),		i8
-	required in  %ref(secondTime),		i8
-	required out %ref(resultingTime),	i8
+	required in  %ref(firstTime),		long
+	required in  %ref(secondTime),		long
+	required out %ref(resultingTime),	long
 	endparams
 
 	.include "DBLSTARLET:$LIBDEF.DBL"

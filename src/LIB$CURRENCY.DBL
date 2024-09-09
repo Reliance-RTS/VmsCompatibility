@@ -47,11 +47,17 @@
 ;;; <returns></returns>
 function lib$currency, ^val
     required out currency			,a
-    optional out ^ref(resultlen)	,i2
-.include "DBLSTARLET:$SSDEF.DBL"
+.ifdef dblnet
+    out ^ref(resultlen)	,short
+.else
+    optional out ^ref(resultlen)	,short
+.endc
+	.include "DBLSTARLET:$SSDEF.DBL"
 proc
     currency = "$"
+.ifndef dblnet
     if  ^passed(resultlen)
-		resultlen = 1
+.endc
+	resultlen = 1
     freturn SS$_NORMAL
 end

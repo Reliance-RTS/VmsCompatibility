@@ -46,7 +46,7 @@
 ;;; <returns></returns>
 function SYS$BINTIM, ^val
 	required in  aDateString, a
-	required out %ref(vms_bintim), i8
+	required out %ref(vms_bintim), long
 	endparams
 
 	external function 

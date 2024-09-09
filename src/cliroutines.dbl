@@ -29,7 +29,11 @@ end
 function cli$get_value, ^val
 	req in symbol,	a
 	mismatch opt out value,a
-	opt out ^ref(retlen),i2
+.ifdef dblnet
+	out ^ref(retlen),short
+.else
+	opt out ^ref(retlen),short
+.endc
 	.include "$CLIMSGDEF" library "DBLSTARLET"
 	.include "$SSDEF" library "DBLSTARLET"
 global common
@@ -44,7 +48,9 @@ proc
 		if symbol.eqs.vars[cnt]
 		begin
 			value = values[cnt]
+.ifndef dblnet
 			if %passed(retlen)
+.endc
 				retlen = %trim(value)
 			freturn SS$_NORMAL
 		end

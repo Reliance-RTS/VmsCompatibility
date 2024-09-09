@@ -1,0 +1,22 @@
+CLS structure item_list
+itemcode,	short
+.if D_ADDRSIZE == 8
+spare,	short
+bufferlength,	int
+.else
+bufferlength,	short		;unsigned i2
+.endc
+bufferaddress,	D_ADDR
+returnaddress,	D_ADDR
+endstructure
+
+CLS structure short_item_list
+itemcode,	short
+.if D_ADDRSIZE == 8
+spare,		short
+bufferlength,	int
+.else
+bufferlength,	short		;unsigned i2
+.endc
+bufferaddress,	D_ADDR
+endstructure

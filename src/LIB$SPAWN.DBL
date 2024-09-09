@@ -59,16 +59,18 @@ function LIB$SPAWN		    ,^val
 	optional in  commandString	,a
 	optional in  inputFile      ,a			;NOT APPLICABLE
 	optional in  outputFile     ,a			;NOT APPLICABLE
-	optional in  %ref(flags)    ,i4			;NOT APPLICABLE
+.ifndef dblnet
+	optional in  %ref(flags)    ,int			;NOT APPLICABLE
 	optional in  processName    ,a			;NOT APPLICABLE
-	optional out %ref(processID) ,i4			;NOT APPLICABLE
-	%val(lStatus)			,i			;NOT APPLICABLE
-	optional in  %ref(flagNum)	,i1			;NOT APPLICABLE
-	optional in  ^val(astadr)	,i			;NOT APPLICABLE		;procedure value? } this was declared as i in the VMSSystem stub
+	optional out %ref(processID) ,int			;NOT APPLICABLE
+	%val(lStatus)			,D_ADDR			;NOT APPLICABLE
+	optional in  %ref(flagNum)	,byte			;NOT APPLICABLE
+	optional in  ^val(astadr)	,D_ADDR			;NOT APPLICABLE		;procedure value? } this was declared as i in the VMSSystem stub
 	optional in  astparm		,n			;NOT APPLICABLE
 	optional in  promptString   ,a			;NOT APPLICABLE
 	optional in  cliSpec		,a			;NOT APPLICABLE
 	optional in  tableSpec      ,a			;NOT APPLICABLE
+.endc
 	endparams
 
 	.include "DBLSTARLET:$SSDEF.DBL"
@@ -76,9 +78,10 @@ function LIB$SPAWN		    ,^val
 
 proc
 	;initialize
+.ifndef dblnet
 	if ^passed(processID)
-		clear processID
-
+	    clear processID
+.endc	
 	if ^passed(commandString)
 		xcall spawn(commandString)
 .ifdef TODO

@@ -47,11 +47,19 @@
 ;;; <param name="cvtflag"></param>
 ;;; <returns></returns>
 function SYS$ASCTIM, ^val
-    optional     ^ref(length),		i2
-    required out stringDate,		a
-    optional in  %ref(i8BinTime),	i8
-    optional in  ^val(cvtflag),		i
+.ifdef dblnet
+	out ^ref(length),		short
 
+.else
+	optional out ^ref(length),	short
+.endc
+	required out stringDate,	a
+.ifdef dblnet
+    in  %ref(i8BinTime),		long
+.else
+    optional in  %ref(i8BinTime),	long
+    optional in  ^val(cvtflag),		i
+.endc
     external function 
 		MonthNumbertoShortName,		a
     endexternal
@@ -98,7 +106,11 @@ proc
 	init localData
 
 	; if time is not passed or passed as 0 - return current absolute date\time DD-MMM-YYYY[ hh:mm:ss.xx]
+.ifdef dblnet
+	if (i8BinTime .eq. 0) then
+.else
 	if (.not. ^passed(i8BinTime) .or. i8BinTime .eq. 0) then
+.endc	
 		xcall LIB$DATE_TIME(vmsDate)
 	else
 		call doConversion
@@ -110,8 +122,10 @@ proc
 		stringDate = vmsDate
 	
 	;;Return the length if passed
+.ifndef dblnet
 	if (^passed(length))
-		length = %trimz(stringDate)
+.endc
+	length = %trimz(stringDate)
 	
 	freturn 1
 

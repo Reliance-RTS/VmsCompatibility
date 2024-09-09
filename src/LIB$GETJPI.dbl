@@ -49,12 +49,20 @@
 ;;; <param name="resultlen"></param>
 ;;; <returns></returns>
 function LIB$GETJPI						,^val
-	in             ^ref(itemcode)		,i4
-	optional inout ^ref(process_id)		,i4
-	optional in    process_name			,a
-	optional out   ^ref(intvalue)		,i4
-	optional out	result_string			,a
-	optional out   ^ref(resultlen)		,i2
+	in		^ref(itemcode)		,int
+.ifdef dblnet
+	inout		^ref(process_id)	,int
+	optional in	process_name		,a
+	out		^ref(intvalue)		,int
+	optional out	result_string		,a
+	out		^ref(resultlen)		,short
+.else
+	optional inout	^ref(process_id)	,int
+	optional in	process_name		,a
+	optional out	^ref(intvalue)		,int
+	optional out	result_string		,a
+	optional out	^ref(resultlen)		,short
+.endc
 	.include "DBLSTARLET:$JPIDEF.DBL"
 	.include "DBLSTARLET:$LIBDEF.DBL"
 proc
@@ -65,8 +73,10 @@ proc
 		begin
 			result_string = %SYN_UNAME()
 			upcase result_string
+.ifndef dblnet
 			if ^passed(resultlen)
-				resultlen = %trim(result_string)
+.endc
+			    resultlen = %trim(result_string)
 		end
 	end
 	(),	    throw new ApplicationException("lib$getjpi Not implemented!")

@@ -53,7 +53,7 @@
 ;;; </returns>
 function STR$ELEMENT, ^val
 	required out element		,a
-	required in ^ref(elemnumber)	,i4	;Zero-based
+	required in ^ref(elemnumber)	,int	;Zero-based
 	required in delimchar		,a
 	required in sourcestring	,a
 	endparams

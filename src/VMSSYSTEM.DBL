@@ -37,8 +37,12 @@
 ;; POSSIBILITY OF SUCH DAMAGE.
 ;;
 ;;*****************************************************************************
-
-
+.include "synergyitemlist" library "dblstarlet"
+.define FABSTRUCT
+.include "FABDEF" library "DBLSTARLET"
+.ifndef dblnet
+.define default optional
+.endc
 ;;-----------------------------------------------------------------------------
 ;;Access Control List Editor (ACLEDIT$) Routines (See Utility Routines Manual)
 
@@ -115,14 +119,16 @@ function FDL$CREATE                     ,^val
     optional in  filename               ,a
     optional in  defaultname            ,a
     optional out resultname             ,a
-    optional out ^ref(fid_block)        ,i4
-    optional in  ^ref(flags)            ,i4
-    optional out ^ref(stmt_num)         ,i4
-    optional out ^ref(retlen)           ,i4
-    optional out ^ref(sts)              ,i4
-    optional out ^ref(stv)              ,i4
+.ifndef dblnet
+    optional out ^ref(fid_block)        ,int
+    optional in  ^ref(flags)            ,int
+    optional out ^ref(stmt_num)         ,int
+    optional out ^ref(retlen)           ,short
+    optional out ^ref(sts)              ,int
+    optional out ^ref(stv)              ,int
     optional in  default_fdl            ,a
-.include "DBLSTARLET:$SSDEF.DBL"
+.endc
+
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -147,6 +153,7 @@ endfunction
 ;;; </summary>
 ;;; <param name="processid"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function LIB$ATTACH                     ,^val
     required in  ^ref(processid)        ,i4
 proc
@@ -155,7 +162,7 @@ proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;LIB$BBCCI
 
 ;;; <summary>
@@ -165,8 +172,8 @@ endfunction
 ;;; <param name="bitaddress"></param>
 ;;; <returns></returns>
 function LIB$BBSSI                      ,^val
-    required in  ^ref(position)         ,i4
-    required in  ^ref(bitaddress)       ,i4	; address of bitaddress
+    required in  ^ref(position)         ,int
+    required in  ^ref(bitaddress)       ,D_ADDR	; address of bitaddress
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -194,12 +201,14 @@ endfunction
 ;;; <returns></returns>
 function LIB$CREATE_DIR                 ,^val
     required in  directory_spec         ,a
-    optional in  ^ref(uic)              ,i4
-    optional in  ^ref(Protectionenable) ,i2
-    optional in  ^ref(proectionvalue)   ,i2
-    optional in  ^ref(maxversions)      ,i2
-    optional in  ^ref(volume_numner)    ,i2
-    optional in  ^ref(initialsize)      ,i4
+.ifndef dblnet
+    optional in  ^ref(uic)              ,int
+    optional in  ^ref(Protectionenable) ,short
+    optional in  ^ref(protectionvalue)   ,short
+    optional in  ^ref(maxversions)      ,short
+    optional in  ^ref(volume_numner)    ,short
+    optional in  ^ref(initialsize)      ,int
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -225,14 +234,15 @@ endfunction
 ;;; <param name="inputtime"></param>
 ;;; <param name="resulttime"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function LIB$CVT_VECTIM                 ,^val
-    required in  ^ref(inputtime)        ,(*)i2
-    required out ^ref(resulttime)       ,i8
+    required in  ^ref(inputtime)        ,[*]short
+    required out ^ref(resulttime)       ,long
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 
 ;LIB$CVT_xTB
 ;LIB$CVT_xTB_64
@@ -244,8 +254,8 @@ endfunction
 ;;; <param name="day_time"></param>
 ;;; <returns></returns>
 function LIB$DAY                        ,^val
-    out %ref(number_of_days)            ,i4
-    out %ref(day_time)                  ,i8
+    out %ref(number_of_days)            ,int
+    out %ref(day_time)                  ,long
     endparams
 proc
     throw new ApplicationException("Not implemented!")
@@ -290,11 +300,13 @@ endfunction
 function LIB$FIND_FILE                  ,^val
     required in    filespec             ,a
     required inout outspec              ,a
-    required inout ^ref(conext)         ,i4
+.ifndef dblnet
+    required inout ^ref(conext)         ,int
     optional in    defaultspec          ,a
     optional in    relatedspec          ,a
-    optional out   ^ref(status)         ,i4
-    optional in    ^ref(flags)          ,i4
+    optional out   ^ref(status)         ,int
+    optional in    ^ref(flags)          ,int
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -306,7 +318,7 @@ endfunction
 ;;; <param name="Context"></param>
 ;;; <returns></returns>
 function LIB$FIND_FILE_END              ,^val
-    required in ^ref(Context)           ,I4
+    required in ^ref(Context)           ,Int
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -324,9 +336,9 @@ endfunction
 function LIB$FIND_IMAGE_SYMBOL          ,^val
     required in  filename               ,a
     required in  symbol                 ,a
-    required out ^ref(Value)            ,i4
+    required out ^ref(Value)            ,int
     optional in  imagename              ,a
-    required in  ^ref(flags)            ,i4
+    required in  ^ref(flags)            ,int
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -349,10 +361,12 @@ endfunction
 ;;; <returns></returns>
 function LIB$FORMAT_DATE_TIME           ,^val
     required out   datetime             ,a
-    required in    ^ref(date_in)        ,i8
-    optional inout ^ref(context)        ,i4
-    optional out   ^ref(length)         ,i4
-    optional in    ^ref(flags)          ,i4
+    required in    ^ref(date_in)        ,long
+.ifndef dblnet
+    optional inout ^ref(context)        ,int
+    optional out   ^ref(length)         ,int
+    optional in    ^ref(flags)          ,int
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -366,7 +380,7 @@ endfunction
 ;;; <param name="ContextBoundObject"></param>
 ;;; <returns></returns>
 function LIB$FREE_DATE_TIME_CONTEXT     ,^val
-    required inout ^ref(ContextBoundObject),i4
+    required inout ^ref(ContextBoundObject),int
 .include "DBLSTARLET:$SSDEF.DBL"
 proc
     throw new ApplicationException("Not implemented!")
@@ -379,7 +393,7 @@ endfunction
 ;;; <param name="efkey_method"></param>
 ;;; <returns></returns>
 function LIB$FREE_EF                    ,^val
-    required in ^ref(efn)               ,i4
+    required in ^ref(efn)               ,int
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -396,9 +410,11 @@ endfunction
 ;;; <param name="zoneif"></param>
 ;;; <returns></returns>
 function LIB$FREE_VM                    ,^val
-    required in ^ref(bytecnt)           ,i4
-    required in ^ref(address)           ,i4
-    optional in ^ref(zoneif)            ,i4
+    required in ^ref(bytecnt)           ,int
+    required in ^ref(address)           ,D_ADDR
+.ifndef dblnet
+	optional in ^ref(zoneif)            ,int
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -419,19 +435,20 @@ end
 ;;; <param name="resultlen"></param>
 ;;; <param name="pathname"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function LIB$GETDVI                     ,^val
-    in           ^REF(itemcode)         ,i4
+    in           ^REF(itemcode)         ,int
     optional in  ^val(channel)          ,i
     optional in  devicename             ,a
-    optional out ^ref(intvalue)         ,i4
+    optional out ^ref(intvalue)         ,int
     optional out alpha_value            ,a
-    optional out ^ref(resultlen)        ,i2
+    optional out ^ref(resultlen)        ,short
     optional in  pathname               ,a
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 
 ;;; <summary>
 ;;; 
@@ -445,20 +462,22 @@ endfunction
 ;;; <param name="result_string"></param>
 ;;; <param name="result_length"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function LIB$GETQUI                     ,^val
-	required in  ^ref(function_code),	i4
-	optional in  ^ref(item_code),		i4
-	optional in  ^ref(search_number),	i4
+	required in  ^ref(function_code),	int
+	optional in  ^ref(item_code),		int
+	optional in  ^ref(search_number),	int
 	optional in  search_name,			a
-	optional in  ^ref(search_flags),	i4
+	optional in  ^ref(search_flags),	int
 	optional out ^ref(result_value),	D_ADDR
 	optional out result_string,			a
-	optional out ^ref(result_length),	i2
+	optional out ^ref(result_length),	short
 	endparams
 proc
 	throw new ApplicationException("Not implemented!")
 	freturn 0
 endfunction
+.endc
 
 ;LIB$GETSYI
 ;LIB$GET_ACCNAM
@@ -471,7 +490,7 @@ endfunction
 ;;;
 ;;; </summary>
 function LIB$GET_EF                     ,^val
-    required out ^ref(efn),  i4
+    required out ^ref(efn),  int
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -483,7 +502,11 @@ endfunction
 function lib$get_input,^val
 	req out arg,	a
 	req in prompt,	a
-	opt out ^ref(resultlen),i2
+.ifdef dblnet
+	out ^ref(resultlen)	,short
+.else
+	opt out ^ref(resultlen)	,short
+.endc
 	record
 	mychan,	int
 	mybuf,	a16384
@@ -502,7 +525,9 @@ passback,
 	    arg = prompt(1,myrdlen)
 	else
 	    clear arg
+.ifndef dblnet
 	if %passed(resultlen)
+.endc
 		resultlen = myrdlen
 	freturn 0
 endfunction
@@ -525,9 +550,11 @@ endfunction
 ;;; <param name="zoneid"></param>
 ;;; <returns></returns>
 function LIB$GET_VM                     ,^val
-    required in  ^ref(numberofbytes)    ,i4
-    required out ^ref(baseaddress)      ,i4
-    optional in  ^ref(zoneid)           ,i4
+    required in  ^ref(numberofbytes)    ,int
+    required out ^ref(baseaddress)      ,D_ADDR
+.ifndef dblnet
+	optional in  ^ref(zoneid)           ,int
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -568,8 +595,8 @@ endfunction
 ;;; <param name="initstring"></param>
 ;;; <returns></returns>
 function LIB$INIT_DATE_TIME_CONTEXT     ,^val
-    required inout ^ref(Context)        ,i4
-    required in    ^ref(component)      ,i4
+    required inout ^ref(Context)        ,int
+    required in    ^ref(component)      ,int
     required in    initstring           ,a
 proc
     throw new ApplicationException("Not implemented!")
@@ -660,10 +687,10 @@ endfunction
 ;LIB$SYS_FAOL
 ;LIB$SYS_FAOL_64
 function LIB$SYS_GETMSG,^val
-	in ^ref(arg1),	i4
-	out ^ref(arg2),	i2
+	in ^ref(arg1),	int
+	out ^ref(arg2),	short
 	out string,	a
-	in ^ref(mask),	i4
+	in ^ref(mask),	int
 proc
 	throw new ApplicationException("Not implemented!")
 
@@ -1065,15 +1092,16 @@ endfunction
 ;;; <param name="pagecnt"></param>
 ;;; <param name="wsl"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$ADJWSL                     ,^val
     optional in  ^val(pagecnt)          ,i
-    optional out ^ref(wsl)              ,i4
+    optional out ^ref(wsl)              ,int
 	.include "DBLSTARLET:$SSDEF.DBL"
 proc
 	; just a NOP outside VMS
     freturn SS$_NORMAL
 endfunction
-
+.endc
 ;;; <summary>
 ;;;
 ;;; </summary>
@@ -1083,9 +1111,10 @@ endfunction
 ;;; <param name="acmode"></param>
 ;;; <param name="flags"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$ALLOC                      ,^val
     required in  name                   ,a
-    optional out ^ref(outlen)           ,i2
+    optional out ^ref(outlen)           ,short
     optional out physicaldevname        ,a
     optional in  ^val(acmode)           ,i
     optional in  ^val(flags)            ,i
@@ -1093,7 +1122,7 @@ proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$ASCEFC
 ;SYS$ASCTOID
 ;SYS$ASCUTC
@@ -1105,12 +1134,17 @@ endfunction
 ;;; <summary>
 ;;; Not documented in system services reference manual?
 ;;; </summary>
+
 function SYS$BRDCST                     ,^val
 	arg1,a			;message
 	arg2,a			; operator eg opa0:
 proc
+.ifdef dblnet
+	throw new ApplicationException("Not implemented!")
+.else
     xcall syn_reportevent(D_EVENTLOG_INFORMATION_TYPE,arg1)
-    freturn 0
+.endc
+	freturn 0
 endfunction
 
 ;;; <summary>
@@ -1128,23 +1162,24 @@ endfunction
 ;;; <param name="astadr"></param>
 ;;; <param name="astparm"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$BRKTHRU                    ,^val
     opt in  ^val(ef_number)        ,i
     required in  messagebuf             ,a
     optional in  sendto                 ,a
     optional     ^val(sendtype)         ,i
-    optional out ^ref(iosb)             ,[*]i4
+    optional out ^ref(iosb)             ,int
     optional     ^val(carcon)           ,i
     optional     ^val(flags)            ,i
     optional     ^val(reqid)            ,i
     optional     ^val(Timeout)          ,i
-    optional     ^val(astadr)           ,i
+    optional     ^val(astadr)           ,D_ADDR
     optional     ^val(astparm)          ,i
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;;; <summary>
 ;;;
 ;;; </summary>
@@ -1160,22 +1195,24 @@ endfunction
 ;;; <param name="astadr"></param>
 ;;; <param name="astparm"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$BRKTHRUW                   ,^val
     required in  ^val(ef_number)        ,i
     required in  messagebuf             ,a
     optional in  sendto                 ,a
     optional     ^val(sendtype)         ,i
-    optional out ^ref(iosb)             ,[*]i4
+    optional out ^ref(iosb)             ,int
     optional     ^val(carcon)           ,i
     optional     ^val(flags)            ,i
     optional     ^val(reqid)            ,i
     optional     ^val(Timeout)          ,i
-    optional     ^val(astadr)           ,i
+    optional     ^val(astadr)           ,D_ADDR
     optional     ^val(astparm)          ,i
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
+.endc
 
 ;;; <summary>
 ;;;
@@ -1198,8 +1235,8 @@ endfunction
 ;;; <param name="accmode"></param>
 ;;; <returns></returns>
 function SYS$CANTIM                     ,^val
-    optional in ^val(reqidt)            ,i
-    optional in ^val(accmode)           ,i
+    default in ^val(reqidt)            ,int,0
+    default in ^val(accmode)           ,int,0
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -1236,7 +1273,7 @@ endfunction
 ;;; <returns></returns>
 function SYS$CMEXEC                     ,^val
     required in ^val(procmask)          ,i
-    required in ^ref(arglist)           ,i4
+    required in ^ref(arglist)           ,int
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -1263,13 +1300,14 @@ endfunction
 ;;; </summary>
 ;;; <param name="uid"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$CREATE_UID, ^VAL
-	req out ^ref(uid),	[#]i4
+	req out ^ref(uid),	[#]int
 proc
 	throw new ApplicationException("Not implemented!")
 	freturn 0
 endfunction
-
+.endc
 ;SYS$CREATE_USER_PROFILE
 
 ;;; <summary>
@@ -1281,17 +1319,19 @@ endfunction
 ;;; <param name="access_mode"></param>
 ;;; <param name="itemlist"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$CRELNM                     ,^val
-    optional in ^ref(Attr)              ,i4
+    optional in ^ref(Attr)              ,int
     required in tablename               ,a
     required in logicalname             ,a
-    optional in ^ref(access_mode)       ,i1
-    optional in ^ref(itemlist)          ,[*]a12
+    optional in ^ref(access_mode)       ,byte
+    optional in ^ref(itemlist)          ,item_list
 proc
+	; if ever implmented only a single item is allowed not a arraylist
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$CRELNT
 
 ;;; <summary>
@@ -1307,9 +1347,10 @@ endfunction
 ;;; <param name="flags"></param>
 ;;; <param name="unused"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$CREMBX                     ,^val
     optional in  ^val(prmflg)           ,i
-    required out ^ref(chan)             ,i2
+    required out ^ref(chan)             ,short
     optional in  ^val(maxmsg)           ,i
     optional in  ^val(bufquo)           ,i
     optional in  ^val(promsk)           ,i
@@ -1321,7 +1362,7 @@ proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;;; <summary>
 ;;;
 ;;; </summary>
@@ -1339,18 +1380,24 @@ endfunction
 ;;; <param name="mask"></param>
 ;;; <returns></returns>
 function SYS$CREPRC                     ,^val
-    optional out ^ref(pidaddr)          ,i4
+.ifdef dblnet
+    out ^ref(pidaddr)			,D_ADDR
+.else
+    optional out ^ref(pidaddr)          ,D_ADDR
+.endc
     optional in  imagename              ,a
     optional in  sysinput               ,a
     optional in  sysoutput              ,a
     optional in  syserror               ,a
-    optional in  ^ref(privs)            ,i4
-    optional in  ^ref(quota)            ,i4
+.ifndef dblnet
+    optional in  ^ref(privs)            ,int
+    optional in  ^ref(quota)            ,int
     optional in  processname            ,a
     optional in  ^val(basepri)          ,i
     optional in  ^val(uic)              ,i
     optional in  ^val(mbxunit)          ,i
     optional in  ^val(mask)             ,i
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -1374,6 +1421,7 @@ endfunction
 ;;; <param name="devname"></param>
 ;;; <param name="access_mode"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$DALLOC                     ,^val
     optional in devname                 ,a
     optional in ^val(access_mode)       ,i
@@ -1381,7 +1429,7 @@ proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;;; <summary>
 ;;;
 ;;; </summary>
@@ -1417,7 +1465,9 @@ endfunction
 function SYS$DELLNM                     ,^val
     required in tablename               ,a
     optional in logicalname             ,a
-    optional in ^ref(access_mode)       ,i1
+.ifndef dblnet
+	optional in ^ref(access_mode)       ,byte
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -1432,15 +1482,16 @@ endfunction
 ;;; <param name="processname"></param>
 ;;; <param name="flags"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$DELPRC                     ,^val
-    optional inout ^ref(PID)            ,i4
+    optional inout ^ref(PID)            ,int
     optional in    processname          ,a
     optional       ^val(flags)          ,i
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$DELTVA
 ;SYS$DELTVA_64
 ;SYS$DEQ
@@ -1473,15 +1524,16 @@ endfunction
 ;;; <param name="outlen"></param>
 ;;; <param name="outbuf"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$FAO                        ,^val, varargs
     required in  ctstr                  ,a
-    optional out ^ref(outlen)           ,i2
+    optional out ^ref(outlen)           ,short
     required out outbuf                 ,a
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$FAOL
 ;SYS$FAOL_64
 
@@ -1496,11 +1548,14 @@ endfunction
 ;;; <returns></returns>
 function SYS$FILESCAN                   ,^val
     required in    srcstr               ,a
-    required inout ^ref(itemlist)       ,[*]a12
-    optional out   ^ref(flags)          ,i4
+    required inout ^ref(itemlist)       ,item_list
+.ifndef dblnet
+    optional out   ^ref(flags)          ,int
     optional out   auxout               ,a
-    optional out   ^ref(retlen)         ,i2
+    optional out   ^ref(retlen)         ,short
+.endc
 proc
+	; if ever implmented only a single item is allowed not a arraylist
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
@@ -1515,16 +1570,17 @@ endfunction
 ;;; <param name="attrib"></param>
 ;;; <param name="context"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$FIND_HELD                  ,^val
-	required in ^ref(holder)	,i8
-	optional out ^ref(rightsid)	,i4
-	optional out ^ref(attrib)	,i4
-	optional inout ^ref(context)	,i4
+	required in ^ref(holder)	,long
+	optional out ^ref(rightsid)	,int
+	optional out ^ref(attrib)	,int
+	optional inout ^ref(context)	,int
 proc
 	throw new ApplicationException("Not implemented!")
 	freturn 0
 endfunction
-
+.endc
 ;SYS$FIND_HOLDER
 
 ;;; <summary>
@@ -1533,7 +1589,7 @@ endfunction
 ;;; <param name="context"></param>
 ;;; <returns></returns>
 function SYS$FINISH_RDB			,^val
-	required inout ^ref(context)	,i4
+	required inout ^ref(context)	,int
 proc
 	throw new ApplicationException("Not implemented!")
 	freturn 0
@@ -1548,15 +1604,16 @@ endfunction
 ;;; <param name="processname"></param>
 ;;; <param name="code"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$FORCEX                     ,^val
-    optional in ^ref(PID)               ,i4
+    optional in ^ref(PID)               ,int
     optional in processname             ,a
     optional in ^val(code)              ,i
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$FORGET_RM
 ;SYS$FORGET_RMW
 ;SYS$FORMAT_ACL
@@ -1581,18 +1638,25 @@ endfunction
 ;;; <param name="path_name"></param>
 ;;; <returns></returns>
 function SYS$GETDVI                     ,^val
-    optional in  ^val(EFN)              ,i
-    optional in  ^val(channel)          ,i
+.ifdef dblnet
+    in  ^val(EFN)              ,i		; just pass 0
+    in  ^val(channel)          ,i		;just pass 0
+.else
+    default  in  ^val(EFN)              ,i
+    default  in  ^val(channel)          ,i
+.endc
     optional in  devicename             ,a
-    required in  ^ref(itemlist)         ,[*]a12
-    optional out ^ref(iosb)             ,[*]i4
+    required in  ^ref(itemlist)         ,item_list
+.ifndef dblnet
+    optional out ^ref(iosb)             ,int
     optional     ^val(astadr)           ,i
-    optional     ^val(astparm)          ,i
-    optional     ^ref(nullarg)          ,i8
+    optional     ^val(astparm)          ,D_ADDR
+    optional     ^ref(nullarg)          ,long
     optional in  path_name              ,a
+.endc
 proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
+   freturn %sys$getdviw(efn,channel,devicename,^ref(itemlist))
+
 endfunction
 
 ;;; <summary>
@@ -1609,16 +1673,24 @@ endfunction
 ;;; <param name="path_name"></param>
 ;;; <returns></returns>
 function SYS$GETDVIW                    ,^val
-    optional in ^val(EFN)               ,i
-    optional in ^val(channel)           ,i
+.ifdef dblnet
+    in ^val(EFN)               ,i			; just pass 0
+    in ^val(channel)           ,i			; just pass 0
+.else
+    default  in ^val(EFN)               ,i,0
+    default  in ^val(channel)           ,i,0
+.endc
     optional in devicename              ,a
-    required in  ^ref(itemlist)         ,[*]a12
-    optional out ^ref(iosb)             ,[*]i4
-    optional     ^val(astadr)           ,i
+    required in  ^ref(itemlist)         ,item_list
+.ifndef dblnet
+    optional out ^ref(iosb)             ,int
+    optional     ^val(astadr)           ,D_ADDR
     optional     ^val(astparm)          ,i
-    optional     ^ref(nullarg)          ,i8
+    optional     ^ref(nullarg)          ,long
     optional in  path_name              ,a
+.endc
 proc
+	; if ever implmented only a single item is allowed not a arraylist
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
@@ -1639,18 +1711,22 @@ endfunction
 ;;; <param name="astparm"></param>
 ;;; <returns></returns>
 function SYS$GETJPI                     ,^val
+.ifdef dblnet
+    in    ^val(EFN)            ,i
+    inout ^ref(process_id)     ,int
+.else
     optional in    ^val(EFN)            ,i
-    optional inout ^ref(process_id)     ,i4
+    optional inout ^ref(process_id)     ,int
+.endc
     optional in    process_name         ,a
-    required in    ^ref(itemlist)       ,[*]a12
-    optional out   ^ref(iosb)           ,[*]i4
-    optional       ^val(astadr)         ,i
+    required in    ^ref(itemlist)       ,item_list
+.ifndef dblnet
+    optional out   ^ref(iosb)           ,int
+    optional       ^val(astadr)         ,D_ADDR
     optional       ^val(astparm)        ,i
+.endc
 proc
-	;
-	; use lib$getjpi instead
-    throw new ApplicationException("Not implemented!")
-    freturn 0
+    freturn %sys$getjpiw(efn,^ref(process_id),process_name,^ref(itemlist))
 endfunction
 
 ;;; <summary>
@@ -1665,15 +1741,22 @@ endfunction
 ;;; <param name="astparm"></param>
 ;;; <returns></returns>
 function SYS$GETJPIW                    ,^val
+.ifdef dblnet
+    in    ^val(EFN)            ,i		; just pass 0
+    inout ^ref(process_id)     ,int
+.else
     optional in    ^val(EFN)            ,i
-    optional inout ^ref(process_id)     ,i4
+    optional inout ^ref(process_id)     ,int
+.endc
     optional in    process_name         ,a
-    required in    ^ref(itemlist)       ,[*]a12
-    optional out   ^ref(iosb)           ,[*]i4
-    optional       ^val(astadr)         ,i
+    required in    ^ref(itemlist)       ,item_list
+.ifndef dblnet
+    optional out   ^ref(iosb)           ,int
+    optional       ^val(astadr)         ,D_ADDR
     optional       ^val(astparm)        ,i
+.endc
 proc
-	;
+	; if ever implmented only a single item is allowed not a arraylist
 	; use lib$getjpi instead
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -1693,10 +1776,14 @@ endfunction
 ;;; <returns></returns>
 function SYS$GETMSG                     ,^val
     required in  ^val(msgid)            ,i
-    required out ^ref(msglen)           ,i2
+    required out ^ref(msglen)           ,short
     required out buffer                 ,a
+.ifdef dblnet
+    in  ^val(flags)            ,i			; just pass 0
+.else
     optional in  ^val(flags)            ,i
-    optional out ^ref(outadr)           ,(*)i1
+    optional out ^ref(outadr)           ,D_ADDR
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -1715,35 +1802,43 @@ endfunction
 ;;; <param name="astadr"></param>
 ;;; <param name="astparm"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$GETQUIW                    ,^val
     optional in    ^val(efn)            ,i
     required in    ^val(func)           ,i
-    optional inout ^ref(conext)         ,i4
-    optional in    ^ref(itemlist)       ,[*]a12
-    optional out   ^ref(iosb)           ,[*]i4
-    optional       ^val(astadr)         ,i
+    optional inout ^ref(conext)         ,int
+    optional in    ^ref(itemlist)       ,item_list
+    optional out   ^ref(iosb)           ,int
+    optional       ^val(astadr)         ,D_ADDR
     optional       ^val(astparm)        ,i
 proc
+	; if ever implmented only a single item is allowed not a arraylist
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$GETRMI
 
 ;;; <summary>
 ;;;
 ;;; </summary>
 function SYS$GETSYI                     ,^val
-    optional in    ^val(efn)            ,i
-    optional inout ^ref(csidar)         ,i4
+.ifdef dblnet
+    in    ^val(efn)			,i
+    inout ^ref(csidar)			,int
     optional in    process_name         ,a
-    required in    ^ref(itemlist)       ,[*]a12
-    optional out   ^ref(iosb)           ,[*]i4
-    optional       ^val(astadr)         ,i
+    required in    ^ref(itemlist)       ,item_list
+.else
+    optional  in    ^val(efn)            ,i
+    optional inout ^ref(csidar)         ,int
+    optional in    process_name         ,a
+    required in    ^ref(itemlist)       ,item_list
+    optional out   ^ref(iosb)           ,int
+    optional       ^val(astadr)         ,D_ADDR
     optional       ^val(astparm)        ,i
+.endc
 proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
+   freturn %sys$getsyiw(efn,^ref(csidar),process_name,^ref(itemlist))
 endfunction
 
 ;;; <summary>
@@ -1757,15 +1852,24 @@ endfunction
 ;;; <param name="astadr"></param>
 ;;; <param name="astparm"></param>
 ;;; <returns></returns>
+
 function SYS$GETSYIW                    ,^val
+.ifdef dblnet
+    in ^val(efn)			,i
+    inout ^ref(csidar)			,int
+.else
     optional in ^val(efn)               ,i
-    optional inout ^ref(csidar)         ,i4
+    optional inout ^ref(csidar)         ,int
+.endc
     optional in process_name            ,a
-    required in  ^ref(itemlist)         ,[*]a12
-    optional out ^ref(iosb)             ,[*]i4
-    optional ^val(astadr)               ,i
+    required in  ^ref(itemlist)         ,item_list
+.ifndef dblnet
+    optional out ^ref(iosb)             ,int
+    optional ^val(astadr)               ,D_ADDR
     optional ^val(astparm)              ,i
+.endc
 proc
+	; if ever implmented only a single item is allowed not a arraylist
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
@@ -1781,16 +1885,18 @@ endfunction
 ;;; <param name="username"></param>
 ;;; <param name="itemlist"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$GETUAI                     ,^val
     optional in    ^val(unused)         ,i
-    optional inout ^ref(conext)         ,i4
+    optional inout ^ref(conext)         ,int
     required in    username             ,a
-    required in    ^ref(itemlist)       ,[*]a12
+    required in    ^ref(itemlist)       ,item_list
 proc
+	; if ever implmented only a single item is allowed not a arraylist
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$GETUTC
 ;SYS$GET_ALIGN_FAULT_DATA
 ;SYS$GET_ARITH_EXCEPTION
@@ -1814,17 +1920,18 @@ endfunction
 ;;; <param name="name"></param>
 ;;; <param name="prevattrib"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$GRANTID			,^val
-	optional inout ^ref(pidaddr)	,i4
+	optional inout ^ref(pidaddr)	,D_ADDR
 	optional in processname         ,a
-	optional inout ^ref(rightsid)	,i8
+	optional inout ^ref(rightsid)	,long
 	optional in name		,a
-	optional out ^ref(prevattrib)	,i4
+	optional out ^ref(prevattrib)	,int
 proc
 	throw new ApplicationException("Not implemented!")
 	freturn 0
 endfunction
-
+.endc
 ;;; <summary>
 ;;; 
 ;;; </summary>
@@ -1839,7 +1946,7 @@ function SYS$HASH_PASSWORD		,^val
 	required in algorithm		,i1
 	optional in salt		,i2
 	required in usrnam		,a
-	required out ^ref(hash)		,i8
+	required out ^ref(hash)		,long
 proc
 	throw new ApplicationException("Not implemented!")
 	freturn 0
@@ -1873,18 +1980,19 @@ endfunction
 ;;; <param name="attrib"></param>
 ;;; <param name="Context"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$IDTOASC                    ,^val
     required in    ^val(id)             ,i
-    optional out   ^ref(namlen)         ,i2
+    optional out   ^ref(namlen)         ,short
     optional out   namstring            ,a
-    optional out   ^ref(rightsid)       ,i4
-    optional out   ^ref(attrib)         ,i4
-    optional inout ^ref(Context)        ,i4
+    optional out   ^ref(rightsid)       ,int
+    optional out   ^ref(attrib)         ,int
+    optional inout ^ref(Context)        ,int
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$IEEE_SET_FP_CONTROL
 ;SYS$IEEE_SET_PRECISION_MODE
 ;SYS$IEEE_SET_ROUNDING_MODE
@@ -1916,14 +2024,15 @@ endfunction
 ;;; <param name="numbuf"></param>
 ;;; <param name="time"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$NUMTIM                     ,^val
-    required out ^ref(numbuf)           ,(*)i2
-    required in  ^ref(time)             ,i8
+    required out ^ref(numbuf)           ,[*]short
+    required in  ^ref(time)             ,long
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$NUMUTC
 ;SYS$NXTVOL
 ;SYS$OPEN
@@ -1935,15 +2044,16 @@ endfunction
 ;;; <param name="erradr"></param>
 ;;; <param name="sucessadr"></param>
 ;;; <returns></returns>
+.ifdef needswork
 function SYS$PARSE                      ,^val
-    required in ^ref(fab)               ,a80
-    optional    ^val(erradr)            ,i
-    optional    ^val(sucessadr)         ,i
+    required in ^ref(fab)               ,FABDEF
+    default ^val(erradr)            ,D_ADDR,0
+    default ^val(sucessadr)         ,D_ADDR,0
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$PARSE_ACL
 ;SYS$PERM_DIS_ALIGN_FAULT_REPORT
 ;SYS$PERM_REPORT_ALIGN_FAULT
@@ -1970,8 +2080,9 @@ endfunction
 ;;; <param name="addressrange"></param>
 ;;; <returns></returns>
 function SYS$PURGWS                     ,^val
-    required in ^ref(addressrange)      ,(*)i4
+    required in ^ref(addressrange)      ,D_ADDR
 proc
+	; if ever implmented only a single item is allowed not a array
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
@@ -1991,15 +2102,20 @@ endfunction
 ;;; <param name="astparm"></param>
 ;;; <returns></returns>
 function SYS$QIO                        ,^val, varargs
+.ifdef dblnet
+    in  ^val(efn)              ,i		; just pass 0
+.else
     optional in  ^val(efn)              ,i
+.endc
     required in  ^val(channel)          ,i
     required in  ^val(func)             ,i
-    optional out ^ref(iosb)             ,[*]i4
-    optional     ^val(astadr)           ,i
+.ifndef dblnet
+    optional out ^ref(iosb)             ,int
+    optional     ^val(astadr)           ,D_ADDR
     optional     ^val(astparm)          ,i
+.endc
 proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
+    freturn sys$qiow(efn,channel,func)
 endfunction
 
 ;;; <summary>
@@ -2013,12 +2129,18 @@ endfunction
 ;;; <param name="astparm"></param>
 ;;; <returns></returns>
 function SYS$QIOW                       ,^val, varargs
-    optional in  ^val(efn)              ,i
+.ifdef dblnet
+	in  ^val(efn)			,i			; just pass 0 
+.else
+	optional in  ^val(efn)		,i
+.endc
     required in  ^val(channel)          ,i
     required in  ^val(func)             ,i
-    optional out ^ref(iosb)             ,[*]i4
-    optional     ^val(astadr)           ,i
+.ifndef dblnet
+    optional out ^ref(iosb)             ,int
+    optional     ^val(astadr)           ,D_ADDR
     optional     ^val(astparm)          ,i
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -2046,17 +2168,18 @@ endfunction
 ;;; <param name="name"></param>
 ;;; <param name="attrib"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$REVOKID			,^val
-	optional inout ^ref(pidaddr)	,i4
+	optional inout ^ref(pidaddr)	,D_ADDR
 	optional in processname         ,a
-	optional inout ^ref(rightsid)	,i8
+	optional inout ^ref(rightsid)	,long
 	optional in name		,a
-	optional out ^ref(attrib)	,i4
+	optional out ^ref(attrib)	,int
 proc
 	throw new ApplicationException("Not implemented!")
 	freturn 0
 endfunction
-
+.endc
 ;SYS$REWIND
 ;SYS$RMSRUNDWN.
 ;SYS$RPCC_64
@@ -2071,15 +2194,16 @@ endfunction
 ;;; <param name="erradr"></param>
 ;;; <param name="sucessadr"></param>
 ;;; <returns></returns>
+.ifdef needswork
 function SYS$SEARCH                     ,^val
-    required in ^ref(fab)               ,a80
-    optional    ^val(erradr)            ,i
-    optional    ^val(sucessadr)         ,i
+    required in ^ref(fab)               ,FABDEF
+    default    ^val(erradr)            ,D_ADDR,0
+    default   ^val(sucessadr)         ,D_ADDR,0
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$SETAST
 ;SYS$SETCLUEVT
 ;SYS$SETDDIR
@@ -2100,16 +2224,18 @@ endfunction
 ;;; <param name="astaddr"></param>
 ;;; <param name="user_arg"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$SETIMR                     ,^val
-    optional in ^val(efn)               ,i
-    required in ^ref(bintim)            ,i8
-    optional in ^ref(astaddr)           ,i4
+    default  in ^val(efn)               ,i,0
+    required in ^ref(bintim)            ,long
+    optional in ^ref(astaddr)           ,D_ADDR
     optional in ^val(user_arg)          ,i
+
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$SETPRA
 ;SYS$SETPRI
 
@@ -2122,17 +2248,18 @@ endfunction
 ;;; <param name="prevpriority"></param>
 ;;; <param name="basepriority"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$SETPRI                     ,^val
-    optional inout ^ref(processid)      ,i4
+    optional inout ^ref(processid)      ,int
     optional in    processname          ,a
     required in    ^val(priority)       ,i
-    optional out   ^ref(prevpriority)   ,i4
-    optional out   ^ref(basepriority)   ,i4
+    optional out   ^ref(prevpriority)   ,int
+    optional out   ^ref(basepriority)   ,int
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$SETPRT
 ;SYS$SETPRT_64
 ;SYS$SETPRV
@@ -2169,19 +2296,21 @@ endfunction
 ;;; <param name="astaddr"></param>
 ;;; <param name="user_arg"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$SNDJBC                     ,^val
     optional in ^val(efn)               ,i
     required in ^val(func)              ,i
     optional in ^val(unused)            ,i
-    optional in ^ref(itemlist)          ,[*]a12
-    optional in ^ref(iosb)              ,i8
-    optional in ^ref(astaddr)           ,i4
+    optional in ^ref(itemlist)          ,item_list
+    optional in ^ref(iosb)              ,int
+    optional in ^ref(astaddr)           ,D_ADDR
     optional in ^val(user_arg)          ,i
 proc
+	; if ever implmented only a single item is allowed not a arraylist
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;;; <summary>
 ;;;
 ;;; </summary>
@@ -2193,33 +2322,36 @@ endfunction
 ;;; <param name="astaddr"></param>
 ;;; <param name="user_arg"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$SNDJBCW                    ,^val
     optional in ^val(efn)               ,i
     required in ^val(func)              ,i
     optional in ^val(unused)            ,i
-    optional in ^ref(itemlist)          ,[*]a12
-    optional in ^ref(iosb)              ,[*]i4
-    optional in ^ref(astaddr)           ,i4
+    optional in ^ref(itemlist)          ,item_list
+    optional in ^ref(iosb)              ,int
+    optional in ^ref(astaddr)           ,D_ADDR
     optional in ^val(user_arg)          ,i
 proc
+	; if ever implmented only a single item is allowed not a arraylist
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;;; <summary>
 ;;;
 ;;; </summary>
 ;;; <param name="message"></param>
 ;;; <param name="channel"></param>
 ;;; <returns></returns>
+.ifdef needswork
 function SYS$SNDOPR                     ,^val
     required in message                 ,a
-    optional in ^val(channel)           ,i
+    default in ^val(channel)           ,i,0
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$SPACE
 ;SYS$START_ALIGN_FAULT_REPORT
 ;SYS$START_BRANCH
@@ -2237,14 +2369,15 @@ endfunction
 ;;; <param name="efn"></param>
 ;;; <param name="iosb"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function SYS$SYNCH                      ,^val
     optional in ^val(efn)               ,i
-    optional in ^ref(iosb)              ,[*]i4
+    optional in ^ref(iosb)              ,[*]int
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-
+.endc
 ;SYS$TIMCON
 ;SYS$TRANS_EVENT
 ;SYS$TRANS_EVENTW
@@ -2259,12 +2392,19 @@ endfunction
 ;;; <param name="itemlist"></param>
 ;;; <returns></returns>
 function SYS$TRNLNM                     ,^val
-    optional in ^ref(attr)              ,i4
+.ifdef dblnet
+    in ^ref(attr)              ,int
+.else
+    optional in ^ref(attr)              ,int
+.endc
     required in tablename               ,a
     required in logicalname             ,a
-    optional in ^ref(accmode)           ,i4
-    optional in ^ref(itemlist)          ,[*]a12
+.ifndef dblnet
+    optional in ^ref(accmode)           ,int
+    optional in ^ref(itemlist)          ,item_list
+.endc
 proc
+	; if ever implmented only a single item is allowed not a arraylist
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction

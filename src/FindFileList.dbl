@@ -36,6 +36,7 @@ static record
 	translatedLogical	,a1024
 	nonLogicalAttempted	,boolean
 	lastUsedIndex		,i4
+	.align
 	translations		,@ArrayList
 	currentFolder		,a1024
 

@@ -45,14 +45,16 @@
 ;;; <param name="mask"></param>
 ;;; <returns></returns>
 function SYS$GETTIM, ^val
-    req %ref(i8DateTime),i8
+    req %ref(i8DateTime),long
+.ifndef dblnet
     optional ^val(mask), i
+.endc
     endparams
     record 
 	stringDate		,a23
     endrecord
 proc
     xcall lib$date_time(stringDate)
-    xcall sys$bintim(stringDate,i8DateTime)
+    xcall sys$bintim(stringDate,^ref(i8DateTime))
     freturn 1
 endfunction

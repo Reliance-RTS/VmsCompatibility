@@ -1,0 +1,13 @@
+.include  "$CLIMSGDEF" library "DBLSTARLET"
+record
+status,	i4	
+value,	a20
+len,	i2
+	proc
+	xcall cli$present("WIBBLE")
+	xcall xstat(status)
+	if status.eq.CLI$_PRESENT
+	then console.writeline("wibble present")
+	else console.writeline("wibble missing")
+	xcall cli$get_value("WIBBLE",value,^ref(len))
+	console.writeline("wibble is "+%atrim(value)+" length=" +%string(len))

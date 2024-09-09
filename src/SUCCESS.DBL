@@ -43,7 +43,7 @@
 ;;; </summary>
 ;;; <param name="expression"></param>
 ;;; <returns></returns>
-function SUCCESS, i
+function SUCCESS, ^val
 	required in  expression, n
 	endparams
 proc

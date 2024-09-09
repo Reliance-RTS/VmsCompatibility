@@ -46,14 +46,14 @@
 ;;; <param name="destination"></param>
 ;;; <param name="outlen"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function lib$cvt_dx_dx,^val
-    required in  mismatch source		,n
+    required in  mismatch source	,n
     required out  mismatch destination	,n
-    opt out  ^ref(outlen)			,i2
-.include "DBLSTARLET:$SSDEF.DBL"
+    opt out  ^ref(outlen)			,short
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
     
 endfunction
-
+.endc

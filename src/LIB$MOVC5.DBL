@@ -48,14 +48,15 @@
 ;;; <param name="dstaddr"></param>
 ;;; <returns></returns>
 subroutine LIB$MOVC5
-	required in ^ref(srclen)            ,i2
+	required in ^ref(srclen)            ,short
 	required in ^val(srcaddr)           ,D_ADDR      ;an address
-	required in ^ref(fillchar)          ,a1
-	required in ^ref(dstlen)            ,i2
+	required in ^ref(fillchar)          ,byte
+	required in ^ref(dstlen)            ,short
 	required    ^val(dstaddr)           ,D_ADDR      ;an addres
 	record
 		hand,	D_HANDLE
 		hand1,	D_HANDLE
+		ch,	a1
 	structure st
 		,a65534
 proc							;initialize
@@ -63,8 +64,10 @@ proc							;initialize
 	hand = %mem_proc(DM_REG,dstlen,dstaddr)
 	^m(hand)  = ^m(hand1)			;move source to the destination as per indicated number of bytes
 	if (srclen < dstlen)
-		xcall fill(fillchar, ^m(st(srclen+1,dstlen),hand))
-
+	begin
+		ch = %char(fillchar)
+		xcall fill(ch, ^m(st(srclen+1,dstlen),hand))
+	end
 	xreturn
 	
 endsubroutine

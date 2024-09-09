@@ -121,50 +121,58 @@
 .define FAB$M_RCF_AI %x("2")
 .define FAB$M_RCF_BI %x("4")
 .define FAB$K_BLN 80                    ; length of fab              
-.define FAB$C_BLN 80                    ; length of fab              
+.define FAB$C_BLN 80                    ; length of fab    
+.ifdef FABSTRUCT
+.ifdef dblnet
+import System.Runtime.InteropServices
+{StructLayout(LayoutKind.Explicit)}
+.endc
+CLS structure fabdef
+.else
 record fabdef
-    fab$b_bid				,i1	; block id                      
-    fab$b_bln				,i1	; block len                     
-    fab$w_ifi				,i2	; internal file index           
-    fab$l_fop				,i4	; file options                  
-    fab$l_sts				,i4	; status                        
-    fab$l_stv				,i4	; status value                  
-    fab$l_alq				,i4	; allocation quantity           
-    fab$w_deq				,i2	; default allocation quantity   
-    fab$b_fac				,i1	; file access                   
-    fab$b_shr				,i1	; file sharing                  
-    fab$l_ctx				,i4	; user context                  
-    fab$b_rtv				,i1	; retrieval window size         
-    fab$b_org				,i1	; file organization             
-    fab$b_rat				,i1	; record format                 
-    fab$b_rfm				,i1	; record format                 
-    fab$l_jnl				,i4
-    group fab$r_jnl_real_stuff, X
-		fab$b_journal		,i1	; journaling options (from FH2$B_JOURNAL)
-		fab$b_ru_facility	,i1	; recoverable facility id number
-		fabdef$$_fill_7		,i2	; (spare)                       
-    endgroup
+.endc
+    fab$b_bid				,byte	; block id                      
+    fab$b_bln				,byte	; block len                     
+    fab$w_ifi				,short	; internal file index           
+    fab$l_fop				,int	; file options                  
+    fab$l_sts				,int	; status                        
+    fab$l_stv				,int	; status value                  
+    fab$l_alq				,int	; allocation quantity           
+    fab$w_deq				,short	; default allocation quantity   
+    fab$b_fac				,byte	; file access                   
+    fab$b_shr				,byte	; file sharing                  
+    fab$l_ctx				,int	; user context                  
+    fab$b_rtv				,byte	; retrieval window size         
+    fab$b_org				,byte	; file organization             
+    fab$b_rat				,byte	; record format                 
+    fab$b_rfm				,byte	; record format                 
+    fab$l_jnl				,int
+		fab$b_journal		,byte@fab$l_jnl	; journaling options (from FH2$B_JOURNAL)
+		fab$b_ru_facility	,byte@fab$l_jnl+1	; recoverable facility id number
+		fabdef$$_fill_7		,short@fab$l_jnl+2; (spare)                       
     fab$l_xab_ptr			,d_addr	; xab address               
     fab$l_nam_ptr			,d_addr
     fab$l_fna_ptr			,d_addr	; file name string address  
     fab$l_dna_ptr			,d_addr	; default file name string addr
-    fab$b_fns				,i1	; file name string size           
-    fab$b_dns				,i1	; default name string size        
-    fab$w_mrs				,i2	; maximum record size             
-    fab$l_mrn				,i4	; maximum record number           
-    fab$w_bls				,i2	; blocksize for tape              
-    fab$b_bks				,i1	; bucket size                     
-    fab$b_fsz				,i1	; fixed header size               
-    fab$l_dev				,i4	; device characteristics          
-    fab$l_sdc				,i4	; spooling device characteristics 
-    fab$w_gbc				,i2	; Global buffer count             
-    fab$b_acmodes			,i1	; agent access modes              
+    fab$b_fns				,byte	; file name string size           
+    fab$b_dns				,byte	; default name string size        
+    fab$w_mrs				,short	; maximum record size             
+    fab$l_mrn				,int	; maximum record number           
+    fab$w_bls				,short	; blocksize for tape              
+    fab$b_bks				,byte	; bucket size                     
+    fab$b_fsz				,byte	; fixed header size               
+    fab$l_dev				,int	; device characteristics          
+    fab$l_sdc				,int	; spooling device characteristics 
+    fab$w_gbc				,short	; Global buffer count             
+    fab$b_acmodes			,byte	; agent access modes              
                           ; recovery control flags           
-    fab$b_rcf				,i1	; (only for use by RMS Recovery)  
-    fabdef$$_fill_9			,i4	; (spare)                         
-
- 
- 
+    fab$b_rcf				,byte	; (only for use by RMS Recovery)  
+    fabdef$$_fill_9			,int	; (spare)                         
+.ifdef FABSTRUCT
+endstruct
+ .else
+endrecord
+.endc
 ; These are traditional macros that should be hand-maintained for compatibility 
 .define FAB$S_PPF_RAT	8
 .define FAB$S_ORG	4
@@ -175,7 +183,8 @@ record fabdef
 ; The following defines were scrambled before VAX C V3.1 
 .define FAB fabdef
 .define fab$l_jnl_real_stuff fab$r_jnl_real_stuff
+.ifdef D_VMS
 record
 	cc$rms_fab	,d_addr, ^xtrnl(decc$ga_rms_fab)
- 
+.endc 
 .endc ; FABDEF_LOADED ;

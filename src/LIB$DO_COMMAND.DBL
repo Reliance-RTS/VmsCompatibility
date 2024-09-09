@@ -38,10 +38,6 @@
 ;;
 ;;*****************************************************************************
 
-.ifndef SS$_NORMAL
-.define SS$_NORMAL 1
-.endc
-
 ;;; <summary>
 ;;; 
 ;;; </summary>
@@ -50,5 +46,6 @@
 function lib$do_command, ^val
     req  in command		,a
 proc
-    stop command
+	stop command
+	freturn 0
 end
