@@ -7,6 +7,7 @@
     <ProjectGuid>{c78503c8-e2cb-4630-a226-2a6cfc8eeff1}</ProjectGuid>
     <Name>VMSNetCoreLibrary</Name>
     <DBL_qWarnLevel>3</DBL_qWarnLevel>
+    <Prefer32Bit>False</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Prefer32Bit>False</Prefer32Bit>

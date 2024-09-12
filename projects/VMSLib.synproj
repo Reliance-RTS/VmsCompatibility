@@ -23,17 +23,19 @@
     <CommonPropertiesFileLocation>$(SolutionDir)Common.props</CommonPropertiesFileLocation>
     <ProjEnvVars>
     </ProjEnvVars>
+    <WorkingDirectory>
+    </WorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|VMS' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
-    <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
+    <OutputPath>$(SolutionDir)</OutputPath>
     <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
     <PlatformTarget>vms</PlatformTarget>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DebugOptimize>Debug</DebugOptimize>
     <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
+    <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
@@ -43,8 +45,8 @@
     <DebugOptimize>Debug</DebugOptimize>
     <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
+    <OutputPath>$(SolutionDir)</OutputPath>
+    <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
@@ -54,19 +56,19 @@
     <DebugOptimize>Debug</DebugOptimize>
     <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
+    <OutputPath>$(SolutionDir)</OutputPath>
+    <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|VMS' ">
     <IncludeDebugInformation>False</IncludeDebugInformation>
-    <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
+    <OutputPath>$(SolutionDir)</OutputPath>
     <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
     <PlatformTarget>vms</PlatformTarget>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DebugOptimize>Optimize</DebugOptimize>
     <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
+    <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <IncludeDebugInformation>False</IncludeDebugInformation>
@@ -76,8 +78,8 @@
     <DebugOptimize>Optimize</DebugOptimize>
     <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
+    <OutputPath>$(SolutionDir)</OutputPath>
+    <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <IncludeDebugInformation>False</IncludeDebugInformation>
@@ -87,8 +89,8 @@
     <DebugOptimize>Optimize</DebugOptimize>
     <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <TargetRuntimeLevel>12010100</TargetRuntimeLevel>
+    <OutputPath>$(SolutionDir)</OutputPath>
+    <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Synergex\dbl\Synergex.SynergyDE.Traditional.targets" />
   <PropertyGroup>
