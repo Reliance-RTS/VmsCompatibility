@@ -1139,7 +1139,7 @@ function SYS$BRDCST                     ,^val
 	arg1,a			;message
 	arg2,a			; operator eg opa0:
 proc
-.ifdef dblnet
+.if ^defined(DBLNET) && !^defined(DBLV125)
 	throw new ApplicationException("Not implemented!")
 .else
     xcall syn_reportevent(D_EVENTLOG_INFORMATION_TYPE,arg1)
@@ -2044,7 +2044,7 @@ endfunction
 ;;; <param name="erradr"></param>
 ;;; <param name="sucessadr"></param>
 ;;; <returns></returns>
-.ifdef needswork
+
 function SYS$PARSE                      ,^val
     required in ^ref(fab)               ,FABDEF
     default ^val(erradr)            ,D_ADDR,0
@@ -2053,7 +2053,7 @@ proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-.endc
+
 ;SYS$PARSE_ACL
 ;SYS$PERM_DIS_ALIGN_FAULT_REPORT
 ;SYS$PERM_REPORT_ALIGN_FAULT
@@ -2194,7 +2194,7 @@ endfunction
 ;;; <param name="erradr"></param>
 ;;; <param name="sucessadr"></param>
 ;;; <returns></returns>
-.ifdef needswork
+
 function SYS$SEARCH                     ,^val
     required in ^ref(fab)               ,FABDEF
     default    ^val(erradr)            ,D_ADDR,0
@@ -2203,7 +2203,7 @@ proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-.endc
+
 ;SYS$SETAST
 ;SYS$SETCLUEVT
 ;SYS$SETDDIR
@@ -2343,15 +2343,19 @@ endfunction
 ;;; <param name="message"></param>
 ;;; <param name="channel"></param>
 ;;; <returns></returns>
-.ifdef needswork
+
 function SYS$SNDOPR                     ,^val
     required in message                 ,a
     default in ^val(channel)           ,i,0
 proc
-    throw new ApplicationException("Not implemented!")
+.if ^defined(DBLNET) && !^defined(DBLV125)
+	throw new ApplicationException("Not implemented!")
+.else
+	xcall syn_reportevent(D_EVENTLOG_INFORMATION_TYPE,message)
+.endc
     freturn 0
 endfunction
-.endc
+
 ;SYS$SPACE
 ;SYS$START_ALIGN_FAULT_REPORT
 ;SYS$START_BRANCH

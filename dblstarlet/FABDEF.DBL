@@ -167,7 +167,10 @@ record fabdef
     fab$b_acmodes			,byte	; agent access modes              
                           ; recovery control flags           
     fab$b_rcf				,byte	; (only for use by RMS Recovery)  
-    fabdef$$_fill_9			,int	; (spare)                         
+    fabdef$$_fill_9			,int	; (spare)     
+.if ^defined(dblnet) && D_ADDRSIZE == 8
+    fabdef$$_fill_10			,int	; (spare) fill to 64 bit boundary 
+.endc
 .ifdef FABSTRUCT
 endstruct
  .else
