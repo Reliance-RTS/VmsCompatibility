@@ -48,8 +48,8 @@
 ;;; <returns></returns>
 .ifndef dblnet
 function lib$cvt_dx_dx,^val
-    required in  mismatch source	,n
-    required out  mismatch destination	,n
+    required in  source	,any
+    required out  destination	,any
     opt out  ^ref(outlen)			,short
 proc
     throw new ApplicationException("Not implemented!")
