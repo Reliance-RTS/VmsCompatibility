@@ -500,7 +500,7 @@ endfunction
 ;LIB$GET_HOSTNAME
 ;;; <summary>
 function lib$get_input,^val
-	req out arg,	a
+	mismatch req out arg,	a
 	req in prompt,	a
 .ifdef dblnet
 	out ^ref(resultlen)	,short
