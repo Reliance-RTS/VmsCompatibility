@@ -672,7 +672,12 @@ endfunction
 ;LIB$SHOW_VM_64
 ;LIB$SHOW_VM_ZONE
 ;LIB$SHOW_VM_ZONE_64
-;LIB$SIGNAL
+subroutine LIB$SIGNAL
+^val(arg),	i4
+proc
+	throw new ApplicationException("Not implemented!")
+	xreturn 0
+end
 ;LIB$SIG_TO_RET
 ;LIB$SIG_TO_STOP
 ;LIB$SIM_TRAP
