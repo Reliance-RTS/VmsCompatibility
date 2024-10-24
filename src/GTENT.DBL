@@ -48,8 +48,11 @@ subroutine gtent
 	parm,	a
 	external function
 		lib$get_symbol,^val
+	record
+		len,	i2
+
 proc
-	(void)lib$get_symbol("DBL$CHAIN",^a(parm),,)
+	(void)lib$get_symbol("DBL$CHAIN",^a(parm),%ref(len))
 	xreturn
 endsubroutine
 

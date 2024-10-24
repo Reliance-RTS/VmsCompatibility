@@ -8,9 +8,11 @@
     <Name>VMSNetCoreLibrary</Name>
     <DBL_qWarnLevel>3</DBL_qWarnLevel>
     <Prefer32Bit>False</Prefer32Bit>
+    <IncludeDebugInformation>False</IncludeDebugInformation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Prefer32Bit>False</Prefer32Bit>
+    <DebugOptimize>Debug</DebugOptimize>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\src\CHAIN.DBL">

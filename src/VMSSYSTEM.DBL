@@ -676,7 +676,11 @@ subroutine LIB$SIGNAL
 ^val(arg),	i4
 proc
 	throw new ApplicationException("Not implemented!")
+.ifdef dblnet
+	xreturn
+.else
 	xreturn 0
+	.endc
 end
 ;LIB$SIG_TO_RET
 ;LIB$SIG_TO_STOP
