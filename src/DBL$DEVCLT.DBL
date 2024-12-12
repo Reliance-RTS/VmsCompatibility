@@ -53,9 +53,9 @@
 subroutine	dbl$devclt
 	chan,		n	;optional channel
 	devspc,		a	;optional device specifier
-					;
-					; note: either chan or devspc must be passed
-					;  	not both.
+	;
+	; note: either chan or devspc must be passed
+	;  	not both.
 	priclass,	a	;primary class
 	pritype,	a	;type
 	secclass,	a
@@ -65,7 +65,7 @@ subroutine	dbl$devclt
 	.include "$DCDEF" 	library "dblstarlet"
 	.include "$SSDEF" 	library "dblstarlet"
 
-	.align long
+.align long
 	record
 		status,			i4
 		iosb,			[2]i4  
@@ -80,7 +80,7 @@ subroutine	dbl$devclt
 		type,			a20
 		device,			a254
 	endrecord
-	
+.ifdef D_VMS	
 	record
 		group item_list,	[4]a
 			Buff_Length,	i2
@@ -94,6 +94,12 @@ subroutine	dbl$devclt
 	external Function
 		sys$getdviw,		%val
 	endexternal
+.else
+	record
+		name,	a256
+		remote,	d1
+		tmpchan,	i4
+.endc
 
 proc
 
@@ -350,12 +356,54 @@ decode_type,
 
 	if idev.eq.dc$_mailbox
 		type = "MBX"
-	return
-.else
-.ifdef TODO
-	;correct type using getfa if possible
-.endc
-	type = "UNKNOWN"
 	xreturn
-	.endc
-endsubroutine
+.else
+	clear type
+	if %passed(chan) then
+	begin
+		xcall filnm(chan,name)
+		upcase name
+		if (name.eq.'TT:')	type = "VT100SRS"
+		xcall getlog("TERM",name,remote)
+		if name.eq."VT" type = name
+		if .not.type
+		begin
+			xcall getfa(chan,"RMT",remote)
+			if remote then
+				type = "NETWORK"
+			else type = "DISK"
+		end
+	end
+	else
+	begin
+		if (devspc.eq.'TT:'.or.devspc.eq."tt:")
+		begin
+			type = "VT100SRS"
+			xcall getlog("TERM",name,remote)
+			if name.eq."VT" type = name
+		end
+		if .not.type
+		begin
+			clear tmpchan
+			on error noopn
+			open(tmpchan,i,devspc)
+			xcall getfa(chan,"RMT",remote)
+			if remote then
+				type = "NETWORK"
+			else type = "DISK"
+			close tmpchan		
+		noopn,
+		end
+		if .not.type type = "UNKNOWN"
+		if %passed(priclass)
+		begin
+			priclass = type
+		end
+		if %passed(secclass)
+		begin
+			secclass = type
+		end
+	end
+	xreturn
+.endc
+		endsubroutine

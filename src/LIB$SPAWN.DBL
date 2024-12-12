@@ -63,7 +63,7 @@ function LIB$SPAWN		    ,^val
 	optional in  %ref(flags)    ,int			;NOT APPLICABLE
 	optional in  processName    ,a			;NOT APPLICABLE
 	optional out %ref(processID) ,int			;NOT APPLICABLE
-	%val(lStatus)			,D_ADDR			;NOT APPLICABLE
+	%val(lStatus)			,D_ADDR			
 	optional in  %ref(flagNum)	,byte			;NOT APPLICABLE
 	optional in  ^val(astadr)	,D_ADDR			;NOT APPLICABLE		;procedure value? } this was declared as i in the VMSSystem stub
 	optional in  astparm		,n			;NOT APPLICABLE
@@ -74,7 +74,12 @@ function LIB$SPAWN		    ,^val
 	endparams
 
 	.include "DBLSTARLET:$SSDEF.DBL"
-			
+
+	record
+		hand,	d_handle
+		retsts,	i4
+	structure mystr
+		myaddr,	D_ADDR
 
 proc
 	;initialize
@@ -82,13 +87,20 @@ proc
 	if ^passed(processID)
 	    clear processID
 .endc	
+	retsts = 0
 	if ^passed(commandString)
+	begin
 		xcall spawn(commandString)
-.ifdef TODO
-	; lstatus is the address of a variable of size D_ADDR 
-	if lStatus
-		nop; update the status as if this was an int*
-.endc
+		xcall xstat(retsts)
+	end
+	if (lstatus)
+	begin
+		hand = %MEM_PROC(DM_REG,D_ADDRSIZE, lstatus) 
+		; lstatus is the address of a variable of size D_ADDR 
+		xcall xstat(retsts)
+		^m(mystr.myaddr,hand) = retsts
+	end
+
 	freturn SS$_NORMAL
 endfunction
 
