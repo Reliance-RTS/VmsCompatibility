@@ -93,6 +93,7 @@ proc
 		xcall spawn(commandString)
 		xcall xstat(retsts)
 	end
+.ifndef dblnet
 	if (lstatus)
 	begin
 		hand = %MEM_PROC(DM_REG,D_ADDRSIZE, lstatus) 
@@ -100,7 +101,7 @@ proc
 		xcall xstat(retsts)
 		^m(mystr.myaddr,hand) = retsts
 	end
-
+.endc
 	freturn SS$_NORMAL
 endfunction
 
