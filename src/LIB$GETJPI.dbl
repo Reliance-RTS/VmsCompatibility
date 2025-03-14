@@ -1,17 +1,17 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$MOVC3 
+;; Title:       LIB$GETJPI
 ;;
 ;; Type:        Subroutine
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine LIB$MOVC3 
-;;
-;; Author:      Allan Shikhvarg, Synergex Professional Services Group
+;; Description: Emulates the functionality of the OpemVMS routine LIB$GETJPI f
+;;		for limited subfunctions
+;; Author:      Roger Andrews, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
 ;;
-;; Copyright (c) 2014, Synergex International, Inc.
+;; Copyright (c) 2023, Synergex International, Inc.
 ;; All rights reserved.
 ;;
 ;; Redistribution and use in source and binary forms, with or without
@@ -39,25 +39,46 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;;	 Move source to the destination as per indicated number of bytes  
+;;;
 ;;; </summary>
-;;; <param name="sourceLength">Number of bytes to be moved from source to destination </param>
-;;; <param name="source">Item to be moved</param>
-;;; <param name="destination">Item into which source will be moved</param>
-subroutine LIB$MOVC3
-	required in  ^ref(sourceLength)	,short
-	required in  ^val(source)	,D_ADDR
-	required in ^val(destination)	,D_ADDR
-	record
-		hand1,D_HANDLE
-		hand2,D_HANDLE
-proc		
-	hand2 = %MEM_PROC(DM_REG,sourcelength, source) 
-	hand1 = %MEM_PROC(DM_REG,sourcelength, destination) 
-	^m(hand1) = ^m(hand2)
-
-	xreturn
-	
-endsubroutine
-
-					
+;;; <param name="itemcode"></param>
+;;; <param name="process_id"></param>
+;;; <param name="proces_name"></param>
+;;; <param name="intvalue"></param>
+;;; <param name="result_string"></param>
+;;; <param name="resultlen"></param>
+;;; <returns></returns>
+function LIB$GETJPI						,^val
+	in		^ref(itemcode)		,int
+.ifdef dblnet
+	inout		^ref(process_id)	,int
+	optional in	process_name		,a
+	out		^ref(intvalue)		,int
+	optional out	result_string		,a
+	out		^ref(resultlen)		,short
+.else
+	optional inout	^ref(process_id)	,int
+	optional in	process_name		,a
+	optional out	^ref(intvalue)		,int
+	optional out	result_string		,a
+	optional out	^ref(resultlen)		,short
+.endc
+	.include "DBLSTARLET:$JPIDEF.DBL"
+	.include "DBLSTARLET:$LIBDEF.DBL"
+proc
+	using itemcode select
+	(JPI$_USERNAME),
+	begin
+		if ^passed(result_string)
+		begin
+			result_string = %SYN_UNAME()
+			upcase result_string
+.ifndef dblnet
+			if ^passed(resultlen)
+.endc
+			    resultlen = %trim(result_string)
+		end
+	end
+	(),	    throw new ApplicationException("lib$getjpi Not implemented!")
+	endusing
+	freturn LIB$_NORMAL

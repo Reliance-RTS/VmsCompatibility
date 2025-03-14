@@ -46,14 +46,17 @@
 ;;; <param name="fao_argument"></param>
 ;;; <returns></returns>
 subroutine LIB$STOP
-    ^val(condition),			i
+	^val(condition),			i
+.ifndef dblnet
     optional ^val(number_of_arguments),	i
     opt  ^val(fao_argument),		i
-    endparams
+.endc
+	endparams
 proc
     if (condition) then
 	stop D_EXIT_FAILURE
     else
 	stop D_EXIT_SUCCESS
+    xreturn	; stop warning
 endsubroutine
 

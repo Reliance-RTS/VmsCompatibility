@@ -53,7 +53,7 @@
 ;;; </remarks>
 subroutine editor
 	required in fileName	,a
-	optional in readOnly	,boolean	
+	optional in readOnly	,i1	
 	endparams
 
 	record lVars

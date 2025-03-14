@@ -38,9 +38,6 @@
 ;;
 ;;*****************************************************************************
 
-.ifndef SS$_NORMAL
-.define SS$_NORMAL 1
-.endc
 
 ;;; <summary>
 ;;; 
@@ -58,11 +55,14 @@ function edt$edit, ^val
     required in infile			,a
     optional in outfile			,a
     optional in comfile			,a
-    optional in journal			,a
-    optional in ^ref(options)	,i4
-    optional in ^ref(file_io)	,i
-    optional in ^ref(work_io)	,i
-    optional in ^ref(xlate)		,i
+.ifndef dblnet
+	optional in journal			,a
+    optional in ^ref(options)	,int
+    optional in ^ref(file_io)	,int
+    optional in ^ref(work_io)	,int
+    optional in ^ref(xlate)	,int
+.endc
+.include "DBLSTARLET:$SSDEF.DBL"
 proc
     if ^passed(outfile) then
     begin

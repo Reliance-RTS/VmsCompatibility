@@ -38,9 +38,6 @@
 ;;
 ;;*****************************************************************************
 
-.ifndef SS$_NORMAL
-.define SS$_NORMAL 1
-.endc
 
 ;;; <summary>
 ;;; 
@@ -49,13 +46,14 @@
 ;;; <param name="destination"></param>
 ;;; <param name="outlen"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 function lib$cvt_dx_dx,^val
-    required in  mismatch source		,n
-    required out  mismatch destination	,n
-    opt out  ^ref(outlen)			,i2
+    required in  source	,any
+    required out  destination	,any
+    opt out  ^ref(outlen)			,short
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
     
 endfunction
-
+.endc

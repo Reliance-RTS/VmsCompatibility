@@ -46,8 +46,9 @@ subroutine DBL$ASTRST
 proc
 	;Per manual, ASTRST is VMS-only
 	; Confirmed with Development that when called on a non-VMS system, the xcall is ignored.
+.ifdef D_VMS
 	xcall astrst
-
+.endc
 	xreturn
 	
 endsubroutine

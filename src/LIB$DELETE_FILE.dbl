@@ -1,12 +1,11 @@
-;;*****************************************************************************
 ;;
-;; Title:       LIB$MOVC3 
+;; Title:       LIB$DELETE_FILE.DBL
 ;;
-;; Type:        Subroutine
+;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine LIB$MOVC3 
+;; Description: Emulates the functionality of the OpemVMS routine %LIB$DELETE_FILE
 ;;
-;; Author:      Allan Shikhvarg, Synergex Professional Services Group
+;; Author:      Roger Andrews, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -39,25 +38,22 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;;	 Move source to the destination as per indicated number of bytes  
+;;; 
 ;;; </summary>
-;;; <param name="sourceLength">Number of bytes to be moved from source to destination </param>
-;;; <param name="source">Item to be moved</param>
-;;; <param name="destination">Item into which source will be moved</param>
-subroutine LIB$MOVC3
-	required in  ^ref(sourceLength)	,short
-	required in  ^val(source)	,D_ADDR
-	required in ^val(destination)	,D_ADDR
+
+function LIB$DELETE_FILE, ^val
+	required in filename,	a
+	opt in default_filespec,	a
+	opt in related_filespec,	a
+	endparams
+	.include "DBLSTARLET:$LIBDEF.DBL"
 	record
-		hand1,D_HANDLE
-		hand2,D_HANDLE
-proc		
-	hand2 = %MEM_PROC(DM_REG,sourcelength, source) 
-	hand1 = %MEM_PROC(DM_REG,sourcelength, destination) 
-	^m(hand1) = ^m(hand2)
-
-	xreturn
-	
-endsubroutine
-
-					
+		ends,int
+proc
+	ends = %instr(1,filename,';')
+	if ends then			;remove any ; for non vms
+		decr ends
+	else ends = ^size(filename)
+	xcall delet(filename(1,ends))
+	freturn LIB$_NORMAL
+endfunction

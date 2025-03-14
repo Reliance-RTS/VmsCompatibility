@@ -68,7 +68,7 @@ proc
 		freturn STR$_MATCH
 	else														;strings do not match
 		freturn STR$_NOMATCH
-
+	freturn 0;remove compiler warning
 endfunction
 
 					

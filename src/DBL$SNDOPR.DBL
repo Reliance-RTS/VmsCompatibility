@@ -43,9 +43,10 @@
 ;;; </summary>
 ;;; <param name="text"></param>
 ;;; <returns></returns>
+.ifndef dblnet
 subroutine DBL$SNDOPR
 	text	,a
-
+.ifdef D_VMS
 	.include "$OPCDEF" library "DBLSTARLET"
 
 	external function
@@ -63,14 +64,18 @@ subroutine DBL$SNDOPR
 			message_text,	a255			; Message text
 		endgroup
 	endrecord
-
+.endc
 proc
-    if ((len=%size(text)).gt.255)
+.ifdef D_VMS
+	if ((len=%size(text)).gt.255)
 		len = 255
 	type = OPC$_RQ_RQST
     target = OPC$M_NM_CENTRL
 	clear request_id
     message_text = text
 	xreturn %sys$sndopr(tbuf(1:len+8),^val(0))
+.else
+	throw new ApplicationException("Not implemented!")
+.endc
 endsubroutine
-
+.endc

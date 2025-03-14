@@ -1,0 +1,26 @@
+;;*****************************************************************************
+;;
+;; Title:       LIB$FID_TO_NAME.DBL
+;;
+;; Type:        Function
+;;
+;; Description: Emulates the functionality of the OpemVMS routine %LIB$FID_TO_NAME
+;;
+;; Author:      Chris Blundell
+;;
+;;*****************************************************************************
+;;
+
+function LIB$FID_TO_NAME,		^val
+	deviceName,		a
+	%ref(fileID),		i8
+	filesepc,	a
+	%ref(filespec_length), i8
+	endparams
+proc
+	;One of firstTime or secondTime MUST be a delta time
+	; implementation needed
+    throw new ApplicationException("Not implemented!")
+	freturn 1
+endfunction
+

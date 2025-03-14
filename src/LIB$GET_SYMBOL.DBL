@@ -46,25 +46,39 @@
 ;;; <param name="return_length"></param>
 ;;; <param name="return_table"></param>
 ;;; <returns></returns>
-subroutine LIB$GET_SYMBOL
-    required in  symbol,				a
-    required out value,					a
-    optional out ^ref(return_length),	i2
-    optional out ^ref(return_table),	i4
-    endparams
-    stack record
+function LIB$GET_SYMBOL, ^val
+	required in  symbol,		a
+	required out value,		a
+.ifdef dblnet
+	out ^ref(return_length),	short
+.else
+	optional out ^ref(return_length),	short
+	optional out ^ref(return_table),	int
+.endc	
+	endparams
+	stack record
 		len,	i4
-    endrecord
+		status,	i4
+	endrecord
+	.include "DBLSTARLET:$LIBDEF.DBL"
 proc
-    xcall getlog(symbol,value,len)
+	clear status
 
-    if (!len)
+	; Symbols work by using logicals preceded by "DCL"
+
+	xcall getlog(symbol.ne."DBL$"? "DCL"+symbol:symbol,value,len)
+
+	if (!len)
+	begin
 		clear value
+		status = lib$_NOSUCHSYM
+	end
+.ifndef dblnet
+	if ^passed(return_length)
+.endc
+	    return_length = len
 
-    if ^passed(return_length)
-		return_length = len
+	freturn status
 
-    xreturn
-
-endsubroutine
+	endfunction
 

@@ -44,14 +44,21 @@
 ;;; <param name="message"></param>
 ;;; <returns></returns>
 function lib$put_output, ^val
-    required in message, a
-    record
+	MISMATCH required in message, a
+	opt in extravalue, a
+endparams
+.ifndef DBLV12
+   record
 		chan,	i4,	0
+.endc
 proc
-    open(chan,O,'tt:')
+.ifdef DBLV12
+    console.writeline(message)
+.else
+	open(chan,O,'tt:')
     writes(chan,message)
     close chan
-
+.endc
     freturn 0
 
 end

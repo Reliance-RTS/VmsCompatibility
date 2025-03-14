@@ -110,8 +110,11 @@
 .define NAM$C_BLN_DIRWC 96              ; Not documented optional length   
 .define NAM$K_BLN 96                    ; Name block length                
 .define NAM$C_BLN 96                    ; Name block length
-
+.ifdef NAMSTRUCT
+structure NAMDEF
+.else
 record namdef
+.endc	
     nam$b_bid				,i1			; block id                         
     nam$b_bln				,i1			; block length                     
     nam$b_rss				,i1			; resultant string area size       
@@ -164,8 +167,8 @@ record namdef
  ; These are traditional macros that should be hand-maintained for compatibility
 .define NAM$S_DIR_LVLS	3
 .define NAM namdef
-
+.ifdef D_VMS
 record
 	cc$rms_nam	,d_addr, ^xtrnl(decc$ga_rms_nam)
- 
+ .endc
 .endc ; NAMDEF_LOADED

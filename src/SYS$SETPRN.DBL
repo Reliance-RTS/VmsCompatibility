@@ -1,17 +1,17 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$MOVC3 
+;; Title:       SYS$SETPRN
 ;;
-;; Type:        Subroutine
+;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine LIB$MOVC3 
+;; Description: Emulates the functionality of the OpemVMS routine SYS$SETPRN
 ;;
 ;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
 ;;
-;; Copyright (c) 2014, Synergex International, Inc.
+;; Copyright (c) 2022, Synergex International, Inc.
 ;; All rights reserved.
 ;;
 ;; Redistribution and use in source and binary forms, with or without
@@ -39,25 +39,16 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;;	 Move source to the destination as per indicated number of bytes  
+;;;
 ;;; </summary>
-;;; <param name="sourceLength">Number of bytes to be moved from source to destination </param>
-;;; <param name="source">Item to be moved</param>
-;;; <param name="destination">Item into which source will be moved</param>
-subroutine LIB$MOVC3
-	required in  ^ref(sourceLength)	,short
-	required in  ^val(source)	,D_ADDR
-	required in ^val(destination)	,D_ADDR
-	record
-		hand1,D_HANDLE
-		hand2,D_HANDLE
-proc		
-	hand2 = %MEM_PROC(DM_REG,sourcelength, source) 
-	hand1 = %MEM_PROC(DM_REG,sourcelength, destination) 
-	^m(hand1) = ^m(hand2)
+;;; <param name="name"></param>
+;;; <returns></returns>
+function SYS$SETPRN         ,^val
+	required in  name			,a			;NOT APPLICABLE
 
-	xreturn
-	
-endsubroutine
+	endparams
+proc
+	freturn 1
+endfunction
 
 					

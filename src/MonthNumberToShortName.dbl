@@ -62,5 +62,6 @@ proc
 	(12),	freturn "DEC"
 	(),	freturn ""
 	endusing
+	freturn " "			;stop warning
 endfunction
 

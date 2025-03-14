@@ -68,5 +68,6 @@ proc
 	("DEC"),	freturn 12
 	(),			freturn 0
 	endusing
+	freturn 0		; remove compile warning
 endfunction
 

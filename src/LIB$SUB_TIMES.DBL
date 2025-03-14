@@ -46,9 +46,9 @@
 ;;; <param name="deltaTime"></param>
 ;;; <returns></returns>
 function LIB$SUB_TIMES,	^val
-    required in  %ref(laterTime),		i8
-    required in  %ref(earlierTime),		i8
-    required out  %ref(deltaTime),		i8
+    required in  %ref(laterTime),		long
+    required in  %ref(earlierTime),		long
+    required out  %ref(deltaTime),		long
 	endparams
 
 	.include "DBLSTARLET:$LIBDEF.DBL"

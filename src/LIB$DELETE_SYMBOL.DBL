@@ -46,12 +46,15 @@
 ;;; <returns></returns>
 subroutine LIB$DELETE_SYMBOL
     required in symbol,				a
-    optional in ^ref(return_table),	i4
-    endparams
+.ifndef dblnet
+    optional in ^ref(return_table),	int
+.endc
+	endparams
     stack record
 		status,	i4
     endrecord
 proc
-    xcall setlog(symbol,"",status)
+
+    xcall setlog(symbol.ne."DBL$"? "DCL"+symbol:symbol,"",status)
     xreturn
 endsubroutine

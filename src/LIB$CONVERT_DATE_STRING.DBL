@@ -53,7 +53,7 @@
 ;;; </returns>
 function LIB$CONVERT_DATE_STRING, ^val
 	required in  dateString			,a
-	required out ^ref(resDateTime)	,i8
+	required out ^ref(resDateTime)	,long
 	optional inout userContext		,n			;NOT APPLICABLE
 	optional in flags				,n			;NOT APPLICABLE
 	optional in defaults			,(*)n		;NOT APPLICABLE

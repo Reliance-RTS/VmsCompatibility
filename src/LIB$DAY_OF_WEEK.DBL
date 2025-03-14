@@ -45,8 +45,8 @@
 ;;; <param name="dayNumber"></param>
 ;;; <returns></returns>
 function LIB$DAY_OF_WEEK, ^val
-	required in	 %ref(i8Date), i8
-	required out %ref(dayNumber), i4
+	required in	 %ref(i8Date), long
+	required out %ref(dayNumber), int
 	endparams
 
 	external function 
@@ -60,11 +60,12 @@ function LIB$DAY_OF_WEEK, ^val
 			month,			d2
 			day,			a2
 		endgroup
+	outlen,	i2
 	endrecord
 proc
 	clear dayNumber
 
-	xcall sys$asctim(,vmsDate,%ref(i8Date))
+	xcall sys$asctim(^ref(outlen),vmsDate,%ref(i8Date))
 	
 	year = vmsDate(8,11)
 	month = %MonthShortNameToNumber(vmsDate(4,6))

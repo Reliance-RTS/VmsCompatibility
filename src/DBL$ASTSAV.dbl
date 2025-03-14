@@ -46,8 +46,9 @@ subroutine DBL$ASTSAV
 proc
 	;Per manual, ASTSAV is VMS-only
 	; Confirmed with Development that when called on a non-VMS system, the xcall is ignored.
+.ifdef d_vms
 	xcall astsav
-
+.endc
 	xreturn
 	
 endsubroutine

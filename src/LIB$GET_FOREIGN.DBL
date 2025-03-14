@@ -52,9 +52,13 @@
 subroutine LIB$GET_FOREIGN
     required out params,					a
     optional in  propmt,					a
-    optional out ^ref(resultant_length),	i2
-    inout        ^ref(flags),				i4
-    endparams
+.ifdef dblnet
+    out ^ref(resultant_length),	short
+.else
+    optional out ^ref(resultant_length),	short
+    inout        ^ref(flags),			int
+.endc
+	endparams
 
     record 
 		tmpvar,	a256
@@ -92,8 +96,10 @@ proc
 	
     params = tmpvar
     
-	if ^passed(resultant_length)
-		resultant_length = %trimz(tmpvar)
+.ifndef dblnet
+    if ^passed(resultant_length)
+.endc
+	resultant_length = %trimz(tmpvar)
     
 	xreturn
 	

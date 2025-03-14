@@ -43,6 +43,7 @@
 ;;; </summary>
 ;;; <param name="chan"></param>
 ;;; <returns></returns>
+.ifndef DBLV12
 subroutine empbuf
 	required in chan, n
 proc
@@ -53,7 +54,7 @@ exit,
 	xcall exite(%error)
 	xreturn
 endsubroutine
-
+.endc
 ;;; <summary>
 ;;; 
 ;;; </summary>

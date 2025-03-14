@@ -46,7 +46,7 @@
 ;;; <returns></returns>
 function SYS$BINTIM, ^val
 	required in  aDateString, a
-	required out %ref(vms_bintim), i8
+	required out %ref(vms_bintim), long
 	endparams
 
 	external function 
@@ -137,7 +137,7 @@ proc
 		;Absolute string  DD-MMM-YYYY[ hh:mm:ss.xx]
 		; any missing values default to current date\time components
 
-		aString   = lBuffer
+		aString   = lBuffer(1:%size(aString))
 		vmsString = aString
 		if (aHH .eq. "  ") then
 			vsHH = %integer(wHour)

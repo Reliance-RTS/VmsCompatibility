@@ -38,9 +38,6 @@
 ;;
 ;;*****************************************************************************
 
-.ifndef SS$_NORMAL
-.define SS$_NORMAL 1
-.endc
 
 ;;; <summary>
 ;;; 
@@ -50,24 +47,38 @@
 ;;; <param name="character"></param>
 ;;; <returns></returns>
 function str$dupl_char,	^val
-    required out  destination		,a
-    optional in  ^ref(count)		,i4
-    required in  ^ref(character)	,a1
-    record 
+	required out  destination	,a
+.ifdef dblnet
+	in  ^ref(count)			,int	;pass ^szie(1starg)
+	in  ^ref(character)		,byte	;pass space if no argument
+.else
+	optional in  ^ref(count)	,int
+
+	opt  in  ^ref(character)	,byte
+.endc
+	record 
 		counter	,i4
 		max		,i4
+		mychar,	a1
+.include "DBLSTARLET:$SSDEF.DBL"
 proc
-    if !^passed(count) then
-		xcall fill(character, destination)
-    else
-    begin
+.ifndef dblnet
+	if !^passed(count) then
+		max = 1
+	else
+.endc
 		max = count
-		if  max > ^size(destination) 
-			max = ^size(destination)
-		for counter from 1 thru max
-			destination(counter:1) = character 
-    end
+.ifndef dblnet
+	if !^passed(character) then
+		clear mychar
+	else
+.endc
+	clear mychar
+	mychar = %char(character)
+	if  max > ^size(destination) 
+		max = ^size(destination)
+	xcall fill(mychar, destination(1:max))
 
-    freturn SS$_NORMAL
+	freturn SS$_NORMAL
 
 end

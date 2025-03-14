@@ -91,7 +91,11 @@
 .define RAB$C_MAXRAC 2                  ; Maximum RAC value currently supported by RMS ;
 .define RAB$K_BLN 68                    ; length of rab                    ;
 .define RAB$C_BLN 68                    ; length of rab                    ;
+.ifdef RABSTRUCT
+structure RABDEF
+.else
 record rabdef
+.endc
     rab$b_bid				,i1			; block id                         ;
     rab$b_bln				,i1			; block length                     ;
     rab$w_isi				,i2			; internal stream index            ;
@@ -141,7 +145,8 @@ record rabdef
 ; These are traditional macros that should be hand-maintained for compatibility ;
 .define RAB$S_PPF_RAT	8
 .define RAB rabdef
+.ifdef D_VMS
 record
 	cc$rms_rab	,d_addr, ^xtrnl(decc$ga_rms_rab)
- 
+.endc 
 .endc ; RABDEF_LOADED ;

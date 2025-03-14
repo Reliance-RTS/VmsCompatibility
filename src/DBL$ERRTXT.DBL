@@ -37,7 +37,7 @@
 ;; POSSIBILITY OF SUCH DAMAGE.
 ;;
 ;;*****************************************************************************
-
+.ifndef DBLV12
 ;;; <summary>
 ;;;	 Return an error message  
 ;;; </summary>
@@ -54,5 +54,5 @@ proc
 	xreturn
 	
 endsubroutine
-
+.endc
 					

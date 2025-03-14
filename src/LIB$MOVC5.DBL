@@ -1,17 +1,17 @@
 ;;*****************************************************************************
 ;;
-;; Title:       LIB$MOVC3 
+;; Title:       LIB$MOVC5 
 ;;
 ;; Type:        Subroutine
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine LIB$MOVC3 
+;; Description: Emulates the functionality of the OpemVMS routine LIB$MOVC5 
 ;;
-;; Author:      Allan Shikhvarg, Synergex Professional Services Group
+;; Author:      Roger Andrews, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
 ;;
-;; Copyright (c) 2014, Synergex International, Inc.
+;; Copyright (c) 2023, Synergex International, Inc.
 ;; All rights reserved.
 ;;
 ;; Redistribution and use in source and binary forms, with or without
@@ -39,23 +39,35 @@
 ;;*****************************************************************************
 
 ;;; <summary>
-;;;	 Move source to the destination as per indicated number of bytes  
+;;;
 ;;; </summary>
-;;; <param name="sourceLength">Number of bytes to be moved from source to destination </param>
-;;; <param name="source">Item to be moved</param>
-;;; <param name="destination">Item into which source will be moved</param>
-subroutine LIB$MOVC3
-	required in  ^ref(sourceLength)	,short
-	required in  ^val(source)	,D_ADDR
-	required in ^val(destination)	,D_ADDR
+;;; <param name="srclen"></param>
+;;; <param name="srcaddr"></param>
+;;; <param name="fillchar"></param>
+;;; <param name="dstlen"></param>
+;;; <param name="dstaddr"></param>
+;;; <returns></returns>
+subroutine LIB$MOVC5
+	required in ^ref(srclen)            ,short
+	required in ^val(srcaddr)           ,D_ADDR      ;an address
+	required in ^ref(fillchar)          ,byte
+	required in ^ref(dstlen)            ,short
+	required    ^val(dstaddr)           ,D_ADDR      ;an addres
 	record
-		hand1,D_HANDLE
-		hand2,D_HANDLE
-proc		
-	hand2 = %MEM_PROC(DM_REG,sourcelength, source) 
-	hand1 = %MEM_PROC(DM_REG,sourcelength, destination) 
-	^m(hand1) = ^m(hand2)
-
+		hand,	D_HANDLE
+		hand1,	D_HANDLE
+		ch,	a1
+	structure st
+		,a65534
+proc							;initialize
+	hand1 = %mem_proc(DM_REG,srclen,srcaddr)
+	hand = %mem_proc(DM_REG,dstlen,dstaddr)
+	^m(hand)  = ^m(hand1)			;move source to the destination as per indicated number of bytes
+	if (srclen < dstlen)
+	begin
+		ch = %char(fillchar)
+		xcall fill(ch, ^m(st(srclen+1,dstlen),hand))
+	end
 	xreturn
 	
 endsubroutine
