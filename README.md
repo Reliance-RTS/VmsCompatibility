@@ -16,7 +16,3 @@ Included in this environment are both a Workbench workspace file and a
 Visual Studio solution. Open one of these in your preferred IDE and use
 the build command to compile and link the ELB which is named VMSLib.elb.
 
-### IMPORTANT WARNING
-At the time of writing (June 15th 2017) some of the included code requires
-an as yet unreleased version of the DBL compiler. Please contact Synergex
-for additional information.
