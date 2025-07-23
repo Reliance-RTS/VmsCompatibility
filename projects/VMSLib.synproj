@@ -100,6 +100,222 @@
     </PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="..\dblstarlet\%24%24SMGMSGDEF.DBL">
+      <Link>dblstarlet\$$SMGMSGDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24ABDDEF.DBL">
+      <Link>dblstarlet\$ABDDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24ACLDEF.DBL">
+      <Link>dblstarlet\$ACLDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24ARMDEF.DBL">
+      <Link>dblstarlet\$ARMDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24ATRDEF.DBL">
+      <Link>dblstarlet\$ATRDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24BRKDEF.DBL">
+      <Link>dblstarlet\$BRKDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24CHPDEF.DBL">
+      <Link>dblstarlet\$CHPDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24CLIDEF.DBL">
+      <Link>dblstarlet\$CLIDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24CLIMSGDEF.DBL">
+      <Link>dblstarlet\$CLIMSGDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24CMBDEF.DBL">
+      <Link>dblstarlet\$CMBDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24CREDEF.DBL">
+      <Link>dblstarlet\$CREDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24DCDEF.DBL">
+      <Link>dblstarlet\$DCDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24DEVDEF.DBL">
+      <Link>dblstarlet\$DEVDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24DMTDEF.DBL">
+      <Link>dblstarlet\$DMTDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24DSCDEF.DBL">
+      <Link>dblstarlet\$DSCDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24DVIDEF.DBL">
+      <Link>dblstarlet\$DVIDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24FABDEF.DBL">
+      <Link>dblstarlet\$FABDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24FDLDEF.DBL">
+      <Link>dblstarlet\$FDLDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24FIBDEF.DBL">
+      <Link>dblstarlet\$FIBDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24FSCNDEF.DBL">
+      <Link>dblstarlet\$FSCNDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24HLPDEF.DBL">
+      <Link>dblstarlet\$HLPDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24IMPDEF.DBL">
+      <Link>dblstarlet\$IMPDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24IODEF.DBL">
+      <Link>dblstarlet\$IODEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24JBCMSGDEF.DBL">
+      <Link>dblstarlet\$JBCMSGDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24JPIDEF.DBL">
+      <Link>dblstarlet\$JPIDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24LBRDEF.DBL">
+      <Link>dblstarlet\$LBRDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24LCKDEF.DBL">
+      <Link>dblstarlet\$LCKDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24LIBDEF.DBL">
+      <Link>dblstarlet\$LIBDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24LIBDTDEF.DBL">
+      <Link>dblstarlet\$LIBDTDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24LICENSEDEF.DBL">
+      <Link>dblstarlet\$LICENSEDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24LKIDEF.DBL">
+      <Link>dblstarlet\$LKIDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24LNMDEF.DBL">
+      <Link>dblstarlet\$LNMDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24MAILDEF.DBL">
+      <Link>dblstarlet\$MAILDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24MAILMSGDEF.DBL">
+      <Link>dblstarlet\$MAILMSGDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24MNTDEF.DBL">
+      <Link>dblstarlet\$MNTDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24MSGDEF.DBL">
+      <Link>dblstarlet\$MSGDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24NAMDEF.DBL">
+      <Link>dblstarlet\$NAMDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24OBJDEF.DBL">
+      <Link>dblstarlet\$OBJDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24OPCDEF.DBL">
+      <Link>dblstarlet\$OPCDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24PQLDEF.DBL">
+      <Link>dblstarlet\$PQLDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24PRCDEF.DBL">
+      <Link>dblstarlet\$PRCDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24PRVDEF.DBL">
+      <Link>dblstarlet\$PRVDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24PSCANDEF.DBL">
+      <Link>dblstarlet\$PSCANDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24PSLDEF.DBL">
+      <Link>dblstarlet\$PSLDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24QUIDEF.DBL">
+      <Link>dblstarlet\$QUIDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24RABDEF.DBL">
+      <Link>dblstarlet\$RABDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24RMSDEF.DBL">
+      <Link>dblstarlet\$RMSDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24SJCDEF.DBL">
+      <Link>dblstarlet\$SJCDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24SMGDEF.DBL">
+      <Link>dblstarlet\$SMGDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24SSDEF.DBL">
+      <Link>dblstarlet\$SSDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24STRDEF.DBL">
+      <Link>dblstarlet\$STRDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24STSDEF.DBL">
+      <Link>dblstarlet\$STSDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24SYIDEF.DBL">
+      <Link>dblstarlet\$SYIDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24TRMDEF.DBL">
+      <Link>dblstarlet\$TRMDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24TT2DEF.DBL">
+      <Link>dblstarlet\$TT2DEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24TTDEF.DBL">
+      <Link>dblstarlet\$TTDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24UAIDEF.DBL">
+      <Link>dblstarlet\$UAIDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24XABALLDEF.DBL">
+      <Link>dblstarlet\$XABALLDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24XABDATDEF.DBL">
+      <Link>dblstarlet\$XABDATDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\%24XABDEF.DBL">
+      <Link>dblstarlet\$XABDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\DBL%24SNDOPR.DBL">
+      <Link>dblstarlet\DBL$SNDOPR.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\FABDEF.DBL">
+      <Link>dblstarlet\FABDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\GETFA_VALUES.DBL">
+      <Link>dblstarlet\GETFA_VALUES.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\KEYDEFS.DBL">
+      <Link>dblstarlet\KEYDEFS.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\LAT.DBL">
+      <Link>dblstarlet\LAT.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\LATMSGDEF.DBL">
+      <Link>dblstarlet\LATMSGDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\NAMDEF.DBL">
+      <Link>dblstarlet\NAMDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\RABDEF.DBL">
+      <Link>dblstarlet\RABDEF.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\SORTERRS.DBL">
+      <Link>dblstarlet\SORTERRS.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\SORTPARMS.DBL">
+      <Link>dblstarlet\SORTPARMS.DBL</Link>
+    </None>
+    <None Include="..\dblstarlet\synergyitemlist.dbl">
+      <Link>dblstarlet\synergyitemlist.dbl</Link>
+    </None>
+    <None Include="..\dblstarlet\TTCHAR.DBL">
+      <Link>dblstarlet\TTCHAR.DBL</Link>
+    </None>
     <Compile Include="..\src\CHAIN.DBL">
       <Link>CHAIN.DBL</Link>
     </Compile>
@@ -295,5 +511,8 @@
     <Compile Include="..\src\VMSSYSTEM.DBL">
       <Link>VMSSYSTEM.DBL</Link>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dblstarlet" />
   </ItemGroup>
 </Project>
