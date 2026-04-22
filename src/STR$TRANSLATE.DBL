@@ -4,7 +4,7 @@
 ;;
 ;; Type:        Function
 ;;
-;; Description: Emulates the functionality of the OpemVMS routine STR$TRANSLATE
+;; Description: Emulates the functionality of the OpenVMS routine STR$TRANSLATE
 ;;
 ;; Author:      Allan Shikhvarg, Synergex Professional Services Group
 ;;              http://www.synergex.com
@@ -51,9 +51,9 @@
 ;;; </returns>
 function STR$TRANSLATE, ^val
 	required out destinationString	,a
-	required in  sourceString		,a
+	required in  sourceString	,a
 	required in  translationString	,a
-	required in  matchString		,a
+	required in  matchString	,a
 	endparams
 
 	.include "DBLSTARLET:$SSDEF.DBL"
@@ -61,39 +61,51 @@ function STR$TRANSLATE, ^val
 
 	.align
 	record lVars
-		i			,i4
-		i2			,i4
+		i		,i4
+		i2		,i4
 		destSize	,i4
 		sourceLen	,i4
 		transLen	,i4
+		limitLen	,i4
 	endrecord
+
+	record
+		source2	,a32767
+		  source2Array	,32767a1@source2
 
 proc
 	;initialize
-	clear destinationString
 	init lVars
+	source2 = sourceString	; In case they passed the same variable for Source AND Destination
+	clear destinationString
 
-	;get lengths of all strings
-	destSize	= ^size(destinationString)
-	sourceLen	= ^size(sourceString)
-	transLen	= ^size(translationString)
+	;get lengths of strings
+	destSize  = ^size(destinationString)
+	sourceLen = ^size(sourceString)
+	transLen  = ^size(translationString)
+
+	; how many characters we can actually write
+	if (sourceLen .le. destSize) then
+	    limitLen = sourceLen
+	else
+	    limitLen = destSize
 
 	;loop through the source string looking for a match of each character in match string
-	for i from 1 thru sourceLen by 1
+	for i from 1 thru limitLen by 1
 	begin
-		;if source string is larger than destination string - return translated value obtained thus far and signal Truncation Warning
-		if (i .gt. destSize)
-			freturn STR$_TRU
-		
-		i2 = %instr(1, matchString, sourceString(i:1))
+		i2 = %instr(1, matchString, source2Array(i:1))
 
 		using i2 select
-		(0)					,destinationString(i:1) = sourceString(i:1)			;match not found - use character from source string
-		(.le. transLen)		,destinationString(i:1) = translationString(i2:1)	;use translate string character
-		()					,destinationString(i:1) = " "						;matching character is outside translate string - use space
+		(0)		,destinationString(i:1) = source2Array(i)         ;match not found - use character from source string
+		(.le. transLen)	,destinationString(i:1) = translationString(i2:1) ;use translate string character
+		()		,destinationString(i:1) = source2Array(i)         ;matching character is outside translate string - use space
 		endusing
 	end
 
+	;if source string is larger than destination string - return translated value obtained thus far and signal Truncation Warning
+	if (sourceLen .gt. destSize)
+	    freturn STR$_TRU
+		
 	;If we got here, all is well
 	freturn SS$_NORMAL
 endfunction

@@ -37,4 +37,46 @@
 
 .Nolist
 literal
-.list
+ LIB$K_MONTH_NAME,i, 0              ;/*Pre-init the month names          */
+ LIB$K_MONTH_NAME_ABB,i, 3          ;/*Pre-init the month names          */
+ LIB$K_WEEKDAY_NAME,i, 6            ;/*Pre-init the week names           */
+ LIB$K_WEEKDAY_NAME_ABB,i, 9        ;/*Pre-init the week names           */
+ LIB$K_MERIDIEM_INDICATOR,i, 12     ;/*Pre-init the AM/PM names          */
+ LIB$K_OUTPUT_FORMAT,i, 1           ;/*Pre-init the format               */
+ LIB$K_INPUT_FORMAT,i, 2            ;/*Pre-init the format               */
+ LIB$K_RELATIVE_DAY_NAME ,i,15      ;/*Pre-init "TODAY", etc.            */
+ LIB$K_FORMAT_MNEMONICS,i, 18       ;/*Pre-init MM, DD, YYYY, etc.       */
+ LIB$K_LANGUAGE,i, 4                ;/*Pre-init user's language          */
+                                                                        
+ LIB$K_MONTH_OF_YEAR,i, 1           ;/* requests output in units of month of year */
+ LIB$K_DAY_OF_YEAR,i, 2             ;/* requests output in days of year 1-366 */
+ LIB$K_HOUR_OF_YEAR,i, 3            ;/* requests output in hours of year 1-8784 */
+ LIB$K_MINUTE_OF_YEAR,i, 4          ;/* requests output in minutes of year 1-527040 */
+ LIB$K_SECOND_OF_YEAR,i, 5          ;/* requests output in seconds of year 1-31622400 */
+ LIB$K_DAY_OF_MONTH,i, 6            ;/* request output in days of month 1-31 */
+ LIB$K_HOUR_OF_MONTH,i, 7           ;/* request output in hours of month 1-744 */
+ LIB$K_MINUTE_OF_MONTH,i, 8         ;/* request output in minutes of month 1-44640 */
+ LIB$K_SECOND_OF_MONTHv,i, 9        ; /* requests output in seconds of month 1-2678400 */
+ LIB$K_DAY_OF_WEEK,i, 10            ;/* requests output in days of week 1-7 with monday = 1 */
+ LIB$K_HOUR_OF_WEEK,i, 11           ;/* requests output in hours of week 1-168 */
+ LIB$K_MINUTE_OF_WEEK,i, 12         ;/* requests in minutes of week 1-10080 */
+ LIB$K_SECOND_OF_WEEK ,i,13         ;/* requests output in seconds of week 1-604800 */
+ LIB$K_HOUR_OF_DAY ,i,14            ;/* requests output in hours of day 1-24 */
+ LIB$K_MINUTE_OF_DAY,i, 15         ; /* requests output in minutes of day 1-1440 */
+ LIB$K_SECOND_OF_DAY ,i,16          ;/* requests output in seconds of day 1-3600 */
+ LIB$K_MINUTE_OF_HOUR,i, 17         ;/* requests output in minutes of hour 1-60 */
+ LIB$K_SECOND_OF_HOUR ,i,18         ;/* requests output in minutes of hour 1-3600 */
+ LIB$K_SECOND_OF_MINUTE,i, 19       ;/* requests output in seconds of minutes 1-60 */
+ LIB$K_JULIAN_DATE,i, 20            ;/* requests output as a julian day number */
+ LIB$K_DELTA_WEEKS,i, 21            ;/* input/output in terms of delta weeks */
+ LIB$K_DELTA_DAYS ,i,22             ;/* input/output in terms of delta days */
+ LIB$K_DELTA_HOURS, i, 23            ;/* input/output in terns of delta hours */
+ LIB$K_DELTA_MINUTES,i, 24          ;/* input/output in terms of delta minutes */
+ LIB$K_DELTA_SECONDS,i, 25          ;/* input/output in terms of delta seconds */
+ LIB$K_DELTA_WEEKS_F,i, 26          ;/* input/output in terms of fractional delta weeks */
+ LIB$K_DELTA_DAYS_F,i, 27           ;/* input/output in terms of fractional delta days */
+ LIB$K_DELTA_HOURS_F,i, 28          ;/* input/output in terms of fractional delta hours */
+ LIB$K_DELTA_MINUTES_F,i, 29        ;/* input/output in terms of fractional delta minutess */
+ LIB$K_DELTA_SECONDS_F,i, 30        ;/* input/output in terms of fractional delta seconds */
+ LIB$K_MAX_OPERATION,i, 31          ;/* 1+ max # of conversion flags     */
+

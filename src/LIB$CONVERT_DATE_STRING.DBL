@@ -62,16 +62,8 @@ function LIB$CONVERT_DATE_STRING, ^val
 
 	.include "DBLSTARLET:$SSDEF.DBL"
 	.include "DBLSTARLET:$LIBDEF.DBL"
+        .include "DBLSTARLET:SYN_TIME_DEFS.DBL"
 
-	literal
-		EPOCHDATE			,d ,18581117		;VMS date used for starting calculations (Nov. 17, 1858)
-		;1 tick = 100 nanoseconds
-		;1 sec = 1000000000 nanoseconds OR 10000000 ticks
-		TICKS_IN_SECOND		,d ,10000000
-		TICKS_IN_MINUTE		,d ,600000000
-		TICKS_IN_HOUR		,d ,36000000000
-		TICKS_IN_DAY		,d ,864000000000
-	endliteral
 
 	record vmsDate	
 		group DDMMMYYYY
