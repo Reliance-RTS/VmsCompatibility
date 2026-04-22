@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(SolutionDir)Common.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Configuration)' == '' ">VMS</Platform>
+    <Platform Condition=" '$(Configuration)' == '' ">x64</Platform>
     <Name>VMSLib</Name>
     <StartupObject>
     </StartupObject>
@@ -14,90 +13,41 @@
     <DBL_qTrim>True</DBL_qTrim>
     <DBL_qAlign>True</DBL_qAlign>
     <EnableCommonProperties>True</EnableCommonProperties>
+    <CommonPropertiesFileLocation>$(SolutionDir)Common.props</CommonPropertiesFileLocation>
     <RootNamespace>VMSLib</RootNamespace>
-    <DBL_qWarnLevel>3</DBL_qWarnLevel>
     <DBL_qRelaxed>True</DBL_qRelaxed>
     <DBL_qRelaxedOptval>True</DBL_qRelaxedOptval>
     <DBL_qDefineOptCheck>True</DBL_qDefineOptCheck>
-    <DBL_qDefineOpt>needswork</DBL_qDefineOpt>
-    <CommonPropertiesFileLocation>$(SolutionDir)Common.props</CommonPropertiesFileLocation>
-    <ProjEnvVars>
-    </ProjEnvVars>
-    <WorkingDirectory>
-    </WorkingDirectory>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|VMS' ">
-    <IncludeDebugInformation>true</IncludeDebugInformation>
-    <OutputPath>$(SolutionDir)</OutputPath>
-    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
-    <PlatformTarget>vms</PlatformTarget>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DebugOptimize>Debug</DebugOptimize>
-    <ProcessorArchitecture>x64</ProcessorArchitecture>
-    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <IncludeDebugInformation>true</IncludeDebugInformation>
-    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
-    <PlatformTarget>x86</PlatformTarget>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DebugOptimize>Debug</DebugOptimize>
-    <ProcessorArchitecture>x64</ProcessorArchitecture>
-    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <OutputPath>$(SolutionDir)</OutputPath>
-    <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
+    <DBL_qDefineOpt>NEEDSWORK</DBL_qDefineOpt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
+    <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
     <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
     <PlatformTarget>x64</PlatformTarget>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DebugOptimize>Debug</DebugOptimize>
-    <ProcessorArchitecture>x64</ProcessorArchitecture>
-    <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <OutputPath>$(SolutionDir)</OutputPath>
-    <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|VMS' ">
-    <IncludeDebugInformation>False</IncludeDebugInformation>
-    <OutputPath>$(SolutionDir)</OutputPath>
-    <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
-    <PlatformTarget>vms</PlatformTarget>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DebugOptimize>Optimize</DebugOptimize>
-    <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
     <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <IncludeDebugInformation>False</IncludeDebugInformation>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'C-Migration-Test|x64' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
     <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DebugOptimize>Optimize</DebugOptimize>
-    <ProcessorArchitecture>x64</ProcessorArchitecture>
+    <DebugOptimize>Debug</DebugOptimize>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <OutputPath>$(SolutionDir)</OutputPath>
-    <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
+    <OutputPath>bin\x64\C-Migration-Test\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <IncludeDebugInformation>False</IncludeDebugInformation>
+    <OutputPath>$(SolutionDir)\$(Configuration)\$(Platform)</OutputPath>
     <UnevaluatedOutputPath>EXEDIR:</UnevaluatedOutputPath>
     <PlatformTarget>x64</PlatformTarget>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DebugOptimize>Optimize</DebugOptimize>
-    <ProcessorArchitecture>x64</ProcessorArchitecture>
     <DBLink_ReferenceCheck>True</DBLink_ReferenceCheck>
-    <OutputPath>$(SolutionDir)</OutputPath>
     <TargetRuntimeLevel>12030100</TargetRuntimeLevel>
-  </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Synergex\dbl\Synergex.SynergyDE.Traditional.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\dblstarlet\%24%24SMGMSGDEF.DBL">
@@ -515,4 +465,11 @@
   <ItemGroup>
     <Folder Include="dblstarlet" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Synergex\dbl\Synergex.SynergyDE.Traditional.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>
