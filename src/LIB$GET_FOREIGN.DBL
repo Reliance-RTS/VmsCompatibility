@@ -87,13 +87,16 @@ proc
 ;	;;Now lose the program name. We have to assume no spaces in the program name!
 ;	pos = %instr(1,tmpvar," ")
 ;	tmpvar = tmpvar(pos+1,^size(tmpvar))
-		
+.ifdef CUSTOMER		
     if (%instr(1,tmpvar,"RUN.DBR"))
 		clear tmpvar
 
     if (%instr(1,tmpvar,"MENU.DBR"))
 		clear tmpvar
-	
+.endc	
+;
+; should also strip off -d if debug but future task
+;
     params = tmpvar
     
 .ifndef dblnet
