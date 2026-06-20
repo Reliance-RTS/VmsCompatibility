@@ -53,6 +53,9 @@ endparams
 .endc
 proc
 .ifdef DBLV12
+    if ^passed(extravalue)
+	throw new ApplicationException("Not implemented!")
+
     console.writeline(message)
 .else
 	open(chan,O,'tt:')

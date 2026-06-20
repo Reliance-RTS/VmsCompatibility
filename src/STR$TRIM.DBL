@@ -46,71 +46,73 @@
 ;;; <param name="len"></param>
 ;;; <returns></returns>
 function STR$TRIM , ^val
-	required out destination	,a
-	required in  source			,a
+    required out destination	,a
+    required in  source			,a
 .ifdef dblnet
 	out %ref(len)		,short
 .else
-	optional out %ref(len)		,short
+    optional out %ref(len)		,short
 .endc
-	endparams
+    endparams
 
-	.include "DBLSTARLET:$SSDEF.DBL"
-	.include "DBLSTARLET:$STRDEF.DBL"
-	.align
-	record  
-		length		,i4
-		destLength	,i4
-		srclen,		i4
-		lSource		,a65000
-	endrecord
+    .include "DBLSTARLET:$SSDEF.DBL"
+    .include "DBLSTARLET:$STRDEF.DBL"
+.align
+    record  
+	length		,i4
+	destLength	,i4
+	hastab,	i4
+    endrecord
 proc
-	clear length
-	srclen = %size(source)
-	lSource(1:srclen) = source  
+    clear hastab
+    destLength = ^size(destination)
+    length = %trimz(source)
 
-	destLength = ^size(destination)
-
-	if (lSource(1:srclen)) then
+    if (length)
+    begin
+	data ix, i4
+	ix = length
+	while (ix && (source(ix:1).eq. %char(9) || source(ix:1).eq. ' ')) ;check for TAB
 	begin
-		data ix, i4
-		for ix from %trim(lSource(1,srclen)) thru 1 by -1
-		begin
-			data var,a1
-			var = lsource(ix:1)
-			if (var && var!=%char(9))
-			begin
-				length = ix
-				exitloop
-			end
-		end
-
-		if (length) then
-			destination = lSource(1:length)
-		else
-			clear destination
+	    hastab = 1
+	    if (ix > 1) then
+		length = ix - 1
+	    else
+	    begin
+		clear length
+		exitloop
+	    end
+	    decr ix
 	end
-	else
-		clear destination
+    end
+	;only copy source to dest if address different or we found a tab
+    if (length) then
+    begin
+	if ((^addr(destination).ne.^addr(source)).or.hastab) 
+	    destination = Source(1:length)
+    end
+    else
+	if (^addr(destination).ne.^addr(source))
+	    clear destination
 	
-	;destination string is truncating returned result
-	if (destLength .lt. length)
-	begin
+    ;destination string is truncating returned result
+    if (destlength .lt. length)
+    begin
 .ifndef dblnet
-		if (^passed(len))		; if length is passed - set to the size of destination string
+	if (^passed(len))		; if length is passed - set to the size of destination string
 .endc
-		    len = destLength
+	len = destLength
 		
-		freturn STR$_TRU
-	end
+	freturn STR$_TRU
+    end
 	
 .ifndef dblnet
-	if (^passed(len))
+    if (^passed(len))
 .endc
-		len = length
+    len = length
 
-	;If we got here, all is well
-	freturn SS$_NORMAL
+    ;If we got here, all is well
+    freturn SS$_NORMAL
 	
 endfunction
 
