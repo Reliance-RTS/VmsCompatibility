@@ -93,7 +93,7 @@ proc
 	;loop through the source string looking for a match of each character in match string
 	for i from 1 thru limitLen by 1
 	begin
-		i2 = %instr(1, matchString, source2Array(i:1))
+		i2 = %instr(1, matchString, source2Array(i))
 
 		using i2 select
 		(0)		,destinationString(i:1) = source2Array(i)         ;match not found - use character from source string

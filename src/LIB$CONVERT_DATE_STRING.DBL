@@ -65,7 +65,7 @@ function LIB$CONVERT_DATE_STRING, ^val
         .include "DBLSTARLET:SYN_TIME_DEFS.DBL"
 
 
-	record vmsDate	
+	local record vmsDate	
 		group DDMMMYYYY
 			day		,d2
 			,a1	,"-"

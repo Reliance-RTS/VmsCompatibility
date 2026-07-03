@@ -62,31 +62,18 @@ subroutine LIB$GET_FOREIGN
 
     record 
 		tmpvar,	a256
+        origtmpvar,   a256
 		pos,	i4
     endrecord
 proc
     clear params
 	
-    xcall cmdln(tmpvar)
+    xcall cmdln(origtmpvar)
+	tmpvar = origtmpvar
     upcase tmpvar
 	
 ;	;;Strip off the DBR.EXE part of the command
-;	;;Might be a path there, .exe may or mat not be there
-;	;;Might have spaces in
-;	if (pos=%instr(1,tmpvar,"DBR.EXE ")) then
-;	begin
-;		;;Found "DBR.EXE "
-;		tmpvar = tmpvar(pos+8,^size(tmpvar))
-;	end
-;	else if (pos=%instr(1,tmpvar,"DBR "))
-;	begin
-;		;;Found "DBR "
-;		tmpvar = tmpvar(pos+4,^size(tmpvar))
-;	end
-;
-;	;;Now lose the program name. We have to assume no spaces in the program name!
-;	pos = %instr(1,tmpvar," ")
-;	tmpvar = tmpvar(pos+1,^size(tmpvar))
+
 .ifdef CUSTOMER		
     if (%instr(1,tmpvar,"RUN.DBR"))
 		clear tmpvar
@@ -97,12 +84,23 @@ proc
 ;
 ; should also strip off -d if debug but future task
 ;
-    params = tmpvar
+    pos = 1
+.ifndef dblnet
+    if tmpvar.eq. "DBS" || tmpvar.eq."DBR"
+	begin
+		pos = 5
+		while(!tmpvar(pos))     ; strip more spaces 
+            incr pos
+		if tmpvar(pos:2) == "-d"        ;strip off debug
+            pos += 3
+	end
+.endc
+    params = origtmpvar(pos,^size(origtmpvar))
     
 .ifndef dblnet
     if ^passed(resultant_length)
 .endc
-	resultant_length = %trimz(tmpvar)
+	resultant_length = %trimz(tmpvar(pos,^size(tmpvar)))
     
 	xreturn
 	
