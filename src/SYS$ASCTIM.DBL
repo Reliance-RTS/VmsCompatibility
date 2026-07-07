@@ -56,6 +56,7 @@ function SYS$ASCTIM, ^val
 	required out stringDate,	a
 .ifdef dblnet
     in  %ref(i8BinTime),		long
+    in ^val(cvtflag),	I
 .else
     optional in  %ref(i8BinTime),	long
     optional in  ^val(cvtflag),		i
@@ -117,10 +118,19 @@ proc
 
 	;;Return the data
 	if (deltaConvert) then
-		stringDate = %string(fullDays) + vmsTime
+		xcall s_bld(stringDate,, '%04d%a', fullDays, vmsTime)
 	else
-		stringDate = vmsDate
-	
+	begin
+.ifdef dblnet
+		if (cvtflag) then
+.else
+		if (^passed(cvtflag) .and. cvtflag) then
+.endc
+			stringDate = vmsDate(1:11)
+		else
+			stringDate = vmsDate
+	end
+
 	;;Return the length if passed
 .ifndef dblnet
 	if (^passed(length))
