@@ -301,16 +301,26 @@ function LIB$FIND_FILE                  ,^val
     required in    filespec             ,a
     required inout outspec              ,a
 .ifndef dblnet
-    required inout ^ref(conext)         ,int
+    required inout ^ref(context)         ,int
     optional in    defaultspec          ,a
     optional in    relatedspec          ,a
     optional out   ^ref(status)         ,int
     optional in    ^ref(flags)          ,int
 .endc
+	record
+		mychan, i2
+        .include "$RMSDEF" library "DBLSTARLET"
 proc
+	context = -1
+    if %instr(1,filespec,"*") .or.%instr(1,filespec,"%")
 	;
     ; nb needs to handle %%%%% that vms allows but windows and unix do not
-    throw new ApplicationException("Not implemented!")
+		throw new ApplicationException("Not implemented!")
+	open(mychan=0,i,filespec) [ERR=notfound]
+    xcall filnm(mychan,outspec)
+    close mychan
+    freturn RMS$_NORMAL
+notfound, context=0
     freturn 0
 endfunction
 
@@ -322,7 +332,8 @@ endfunction
 function LIB$FIND_FILE_END              ,^val
     required in ^ref(Context)           ,Int
 proc
-	if (context)
+	; no need unless we have some conext returned from 
+	if (context > 0)
         throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
