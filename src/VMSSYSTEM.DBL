@@ -308,6 +308,8 @@ function LIB$FIND_FILE                  ,^val
     optional in    ^ref(flags)          ,int
 .endc
 proc
+	;
+    ; nb needs to handle %%%%% that vms allows but windows and unix do not
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
@@ -320,7 +322,8 @@ endfunction
 function LIB$FIND_FILE_END              ,^val
     required in ^ref(Context)           ,Int
 proc
-    throw new ApplicationException("Not implemented!")
+	if (context)
+        throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
 
