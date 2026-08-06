@@ -6,7 +6,7 @@
 ;;
 ;; Description: Emulates the functionality of the OpemVMS routine lib$cvt_dx_dx
 ;;
-;; Author:      Steve Ives, Synergex Professional Services Group
+;; Author:      Roger Andrews, Synergex Professional Services Group
 ;;              http://www.synergex.com
 ;;
 ;;*****************************************************************************
@@ -48,12 +48,36 @@
 ;;; <returns></returns>
 .ifndef dblnet
 function lib$cvt_dx_dx,^val
+.ifdef dblnet
+	req in from,	@variantdesc
+	req out to,	@variantdesc
+proc
+	;todo implementation for alpha input types
+	on error fatal
+	to.store(from)
+.else
     required in  source	,any
     required out  destination	,any
-    opt out  ^ref(outlen)			,short
+	opt out  ^ref(outlen)			,short
+	.include "$SSDEF" library "DBLSTARLET"
+	.include "$LIBDEF" library "DBLSTARLET"
+	record
+	indatatype,	int
+	outdatatype,	int
 proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
-    
+	on error fatal
+	outdatatype = ^datatype(2)
+	indatatype = ^datatype(1)
+	if indatatype.eq.D_TYPE_A then
+	begin
+		destination = source(1,%trim(source))
+	end
+	else
+		destination = source
+	if outdatatype.eq.D_TYPE_A.and. (^size(destination) < ^size(source))
+		freturn LIB$_OUTSTRTRU
+.endc	
+	freturn SS$_NORMAL
+fatal,	freturn LIB$_INVNBDS
 endfunction
 .endc

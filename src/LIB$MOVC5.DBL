@@ -65,7 +65,7 @@ proc							;initialize
 	^m(hand)  = ^m(hand1)			;move source to the destination as per indicated number of bytes
 	if (srclen < dstlen)
 	begin
-		ch = %char(fillchar)
+		ch = %char(%unsigned(fillchar))
 		xcall fill(ch, ^m(st(srclen+1,dstlen),hand))
 	end
 	xreturn
