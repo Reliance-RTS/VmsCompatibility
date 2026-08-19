@@ -18,7 +18,7 @@
     <DBL_qRelaxed>True</DBL_qRelaxed>
     <DBL_qRelaxedOptval>True</DBL_qRelaxedOptval>
     <DBL_qDefineOptCheck>True</DBL_qDefineOptCheck>
-    <DBL_qDefineOpt>NEEDSWORK</DBL_qDefineOpt>
+    <DBL_qDefineOpt>PHASE2</DBL_qDefineOpt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
