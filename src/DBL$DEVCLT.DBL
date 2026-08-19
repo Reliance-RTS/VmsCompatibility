@@ -99,6 +99,7 @@ subroutine	dbl$devclt
 		name,	a256
 		remote,	d1
 		tmpchan,	i4
+		lclclass,	a20
 .endc
 
 proc
@@ -358,29 +359,40 @@ decode_type,
 		type = "MBX"
 	xreturn
 .else
-	clear type
+	clear type,lclclass
 	if %passed(chan) then
 	begin
 		xcall filnm(chan,name)
 		upcase name
-		if (name.eq.'TT:')	type = "VT100SRS"
-		xcall getlog("TERM",name,remote)
-		if name.eq."VT" type = name
+		if (name.eq.'TT:')
+		begin
+			type = "VT200SRS"
+			xcall getlog("TERM",name,remote)
+			upcase name
+			if name.eq."VT"
+				type = name
+			lclclass = "TERM"
+			if %tnmbr.lt.0 lclclass = "DISK"
+		end
 		if .not.type
 		begin
 			xcall getfa(chan,"RMT",remote)
 			if remote then
-				type = "NETWORK"
-			else type = "DISK"
+				lclclass = "NETWORK"
+			else lclclass = "DISK"
 		end
 	end
 	else
+	if (^passed(devspc))
 	begin
 		if (devspc.eq.'TT:'.or.devspc.eq."tt:")
 		begin
-			type = "VT100SRS"
+			lclclass = "VT200SRS"
 			xcall getlog("TERM",name,remote)
-			if name.eq."VT" type = name
+			if name.eq."VT"
+				lclclass = name
+			TYPE = "TERM"
+			if %tnmbr.lt.0 type = "DISK"
 		end
 		if .not.type
 		begin
@@ -392,18 +404,15 @@ decode_type,
 				type = "NETWORK"
 			else type = "DISK"
 			close tmpchan		
-		noopn,
-		end
-		if .not.type type = "UNKNOWN"
-		if %passed(priclass)
-		begin
-			priclass = type
-		end
-		if %passed(secclass)
-		begin
-			secclass = type
+		noopn,	off error
 		end
 	end
+	if %passed(priclass)
+		priclass = lclclass
+	if %passed(secclass)
+		secclass = lclclass
+	if %passed(pritype)
+		pritype = type
 	xreturn
 .endc
-		endsubroutine
+	endsubroutine

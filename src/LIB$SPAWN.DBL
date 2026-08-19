@@ -98,7 +98,6 @@ proc
 	begin
 		hand = %MEM_PROC(DM_REG,D_ADDRSIZE, lstatus) 
 		; lstatus is the address of a variable of size D_ADDR 
-		xcall xstat(retsts)
 		^m(mystr.myaddr,hand) = retsts
 	end
 .endc

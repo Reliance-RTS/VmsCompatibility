@@ -172,8 +172,12 @@ endfunction
 ;;; <param name="bitaddress"></param>
 ;;; <returns></returns>
 function LIB$BBSSI                      ,^val
-    required in  ^ref(position)         ,int
-    required in  ^ref(bitaddress)       ,D_ADDR	; address of bitaddress
+	required in  ^ref(position)         ,int
+.ifdef PHASE2
+    required in  bitaddress		,I	; address of bitaddress var an I4
+.else
+    required in  ^VAL(bitaddress)       ,I	; address of bitaddress var an I4
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
@@ -1633,6 +1637,8 @@ function SYS$FORCEX                     ,^val
     optional in processname             ,a
     optional in ^val(code)              ,i
 proc
+	;
+	; if pid == current process use xcall kill
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction

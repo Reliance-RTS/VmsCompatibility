@@ -69,16 +69,14 @@ function STR$TRANSLATE, ^val
 		limitLen	,i4
 	endrecord
 
+	record source2
+		  source2Array,	[32767]a1
 	record
-		source2	,a32767
-		  source2Array	,32767a1@source2
-
+		char,	a1
+		var,	int
 proc
-	;initialize
-	init lVars
 	source2 = sourceString	; In case they passed the same variable for Source AND Destination
 	clear destinationString
-
 	;get lengths of strings
 	destSize  = ^size(destinationString)
 	sourceLen = ^size(sourceString)
@@ -93,12 +91,13 @@ proc
 	;loop through the source string looking for a match of each character in match string
 	for i from 1 thru limitLen by 1
 	begin
-		i2 = %instr(1, matchString, source2Array(i))
+		char = source2Array[i]
+		i2 = %instr(1, matchString, char)
 
 		using i2 select
-		(0)		,destinationString(i:1) = source2Array(i)         ;match not found - use character from source string
+		(0)		,destinationString(i:1) = char         ;match not found - use character from source string
 		(.le. transLen)	,destinationString(i:1) = translationString(i2:1) ;use translate string character
-		()		,destinationString(i:1) = source2Array(i)         ;matching character is outside translate string - use space
+		()		, clear destinationString(i:1)        ;matching character is outside translate string - use space
 		endusing
 	end
 
