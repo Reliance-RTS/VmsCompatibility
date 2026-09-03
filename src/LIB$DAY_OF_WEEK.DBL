@@ -65,7 +65,7 @@ function LIB$DAY_OF_WEEK, ^val
 proc
 	clear dayNumber
 
-	xcall sys$asctim(^ref(outlen),vmsDate,%ref(i8Date))
+	xcall sys$asctim(^ref(outlen),vmsDate,%ref(i8Date),^val(0))
 	
 	year = vmsDate(8,11)
 	month = %MonthShortNameToNumber(vmsDate(4,6))

@@ -304,8 +304,8 @@ endfunction
 function LIB$FIND_FILE                  ,^val
     required in    filespec             ,a
     required inout outspec              ,a
-.ifndef dblnet
     required inout ^ref(context)         ,int
+.ifndef dblnet
     optional in    defaultspec          ,a
     optional in    relatedspec          ,a
     optional out   ^ref(status)         ,int
@@ -315,17 +315,22 @@ function LIB$FIND_FILE                  ,^val
 		mychan, i2
         .include "$RMSDEF" library "DBLSTARLET"
 proc
+.ifndef DBLNET
 	context = -1
-    if %instr(1,filespec,"*") .or.%instr(1,filespec,"%")
+.endc   
+	if %instr(1,filespec,"*") .or.%instr(1,filespec,"%")
 	;
-    ; nb needs to handle %%%%% that vms allows but windows and unix do not
+	; nb needs to handle %%%%% that vms allows but windows and unix do not
 		throw new ApplicationException("Not implemented!")
 	open(mychan=0,i,filespec) [ERR=notfound]
     xcall filnm(mychan,outspec)
     close mychan
     freturn RMS$_NORMAL
-notfound, context=0
-    freturn 0
+notfound, 
+.ifndef DBLNET	
+	context=0
+.endc
+	freturn 0
 endfunction
 
 ;;; <summary>
