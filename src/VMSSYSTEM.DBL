@@ -37,9 +37,9 @@
 ;; POSSIBILITY OF SUCH DAMAGE.
 ;;
 ;;*****************************************************************************
-.include "synergyitemlist" library "dblstarlet"
+.include "synergyitemlist.dbl" library "DBLSTARLET"
 .define FABSTRUCT
-.include "FABDEF" library "DBLSTARLET"
+.include "FABDEF.DBL" library "DBLSTARLET"
 .ifndef dblnet
 .define default optional
 .endc
@@ -178,7 +178,7 @@ endfunction
 ;;; <returns></returns>
 function LIB$BBSSI                      ,^val
 	required in  ^ref(position)         ,int
-.ifdef PHASE2
+.if ^defined(PHASE2) &&  .not.^defined(DBLNET)
     required in  bitaddress		,I	; address of bitaddress var an I4
 .else
     required in  ^VAL(bitaddress)       ,I	; address of bitaddress var an I4
@@ -318,7 +318,7 @@ function LIB$FIND_FILE                  ,^val
 .endc
 	record
 		mychan, i2
-        .include "$RMSDEF" library "DBLSTARLET"
+        .include "$RMSDEF.DBL" library "DBLSTARLET"
 proc
 .ifndef DBLNET
 	context = -1
