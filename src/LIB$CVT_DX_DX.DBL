@@ -46,15 +46,30 @@
 ;;; <param name="destination"></param>
 ;;; <param name="outlen"></param>
 ;;; <returns></returns>
-.ifndef dblnet
+
 function lib$cvt_dx_dx,^val
 .ifdef dblnet
-	req in from,	@variantdesc
-	req out to,	@variantdesc
+	req in source,	@variantdesc
+	req in destination,	@variantdesc
+	.include "$SSDEF" library "DBLSTARLET"
+	.include "$LIBDEF" library "DBLSTARLET"
+	record
+		tempvar,	D56.28
 proc
 	;todo implementation for alpha input types
 	on error fatal
-	to.store(from)
+	if source.is.Synergex.Synergyde.Alphadesc then
+	begin
+		destination.store(source)
+	end
+	else
+	begin
+		;handle overlapped moves
+		((@variantdesc)tempvar).store(source)
+		destination.store(tempvar)
+	end
+;	if source.m_type == destination.m_type .and. (^size(destination) < ^size(source))
+;		freturn LIB$_OUTSTRTRU
 .else
 	required in  source	,any
 	required out  destination	,any
@@ -85,4 +100,4 @@ proc
 	freturn SS$_NORMAL
 fatal,	freturn LIB$_INVNBDS
 endfunction
-.endc
+

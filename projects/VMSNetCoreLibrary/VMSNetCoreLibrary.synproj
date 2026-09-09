@@ -17,6 +17,14 @@
     <Prefer32Bit>False</Prefer32Bit>
     <DebugOptimize>Debug</DebugOptimize>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <Prefer32Bit>False</Prefer32Bit>
+    <DebugOptimize>Debug</DebugOptimize>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\src\CHAIN.DBL">
       <Link>CHAIN.DBL</Link>

@@ -50,27 +50,27 @@
 ;;; <param name="flags"></param>
 ;;; <returns></returns>
 subroutine LIB$GET_FOREIGN
-    required out params,					a
-    optional in  propmt,					a
+	required out params,					a
+	optional in  propmt,					a
 .ifdef dblnet
     out ^ref(resultant_length),	short
 .else
-    optional out ^ref(resultant_length),	short
-    inout        ^ref(flags),			int
+	optional out ^ref(resultant_length),	short
+	inout        ^ref(flags),			int
 .endc
 	endparams
 
-    record 
+	record 
 		tmpvar,	a256
-        origtmpvar,   a256
+		origtmpvar,   a256
 		pos,	i4
-    endrecord
+	endrecord
 proc
-    clear params
+	clear params
 	
-    xcall cmdln(origtmpvar)
+	xcall cmdln(origtmpvar)
 	tmpvar = origtmpvar
-    upcase tmpvar
+	upcase tmpvar
 	
 ;	;;Strip off the DBR.EXE part of the command
 
@@ -84,21 +84,21 @@ proc
 ;
 ; should also strip off -d if debug but future task
 ;
-    pos = 1
+	pos = 1
 .ifndef dblnet
-    if tmpvar.eq. "DBS" || tmpvar.eq."DBR"
+	if tmpvar.eq. "DBS" || tmpvar.eq."DBR"
 	begin
 		pos = 5
-		while(!tmpvar(pos))     ; strip more spaces 
-            incr pos
+		while(!tmpvar(pos:1))     ; strip more spaces 
+			incr pos
 		if tmpvar(pos:2) == "-d"        ;strip off debug
-            pos += 3
+			pos += 3
 	end
 .endc
-    params = origtmpvar(pos,^size(origtmpvar))
+	params = origtmpvar(pos,^size(origtmpvar))
     
 .ifndef dblnet
-    if ^passed(resultant_length)
+	if ^passed(resultant_length)
 .endc
 	resultant_length = %trimz(tmpvar(pos,^size(tmpvar)))
     
