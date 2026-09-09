@@ -116,7 +116,7 @@
 ;;; <returns></returns>
 function FDL$CREATE                     ,^val
     required in  fdlstring              ,a
-    optional in  filename               ,a
+    req  in  filename               ,a
     optional in  defaultname            ,a
     optional out resultname             ,a
 .ifndef dblnet
@@ -126,12 +126,17 @@ function FDL$CREATE                     ,^val
     optional out ^ref(retlen)           ,short
     optional out ^ref(sts)              ,int
     optional out ^ref(stv)              ,int
-    optional in  default_fdl            ,a
+	optional in  default_fdl            ,a
 .endc
-
+	record
+		chan,	int
+	.include "$SSDEF.DBL" library "DBLSTARLET"
 proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
+	clear chan
+	open(chan,o:i,filename,fdl:"@"+%atrim(FDLSTRING))
+	close chan
+err,	
+    freturn ss$_NORMAL
 endfunction
 
 ;FDL$GENERATE
