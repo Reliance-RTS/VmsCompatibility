@@ -1199,12 +1199,17 @@ endfunction
 ;;; <param name="astadr"></param>
 ;;; <param name="astparm"></param>
 ;;; <returns></returns>
-.ifndef dblnet
+
 function SYS$BRKTHRU                    ,^val
-    opt in  ^val(ef_number)        ,i
-    required in  messagebuf             ,a
+.ifdef dblnet
+	opt unused_ef_number,	i
+.else
+	opt in  ^val(ef_number)        ,i
+   .endc
+	required in  messagebuf             ,a
     optional in  sendto                 ,a
-    optional     ^val(sendtype)         ,i
+ .ifndef dblnet
+optional     ^val(sendtype)         ,i
     optional out ^ref(iosb)             ,int
     optional     ^val(carcon)           ,i
     optional     ^val(flags)            ,i
@@ -1212,11 +1217,12 @@ function SYS$BRKTHRU                    ,^val
     optional     ^val(Timeout)          ,i
     optional     ^val(astadr)           ,D_ADDR
     optional     ^val(astparm)          ,i
+.endc
 proc
     throw new ApplicationException("Not implemented!")
     freturn 0
 endfunction
-.endc
+
 ;;; <summary>
 ;;;
 ;;; </summary>
