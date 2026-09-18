@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk" DefaultTargets="restore;Build">
   <Import Project="$(SolutionDir)Common.props" />
   <PropertyGroup>
-    <TargetFramework Condition="'$(TargetFrameworkOverride)' == ''">net8.0</TargetFramework>
+    <TargetFramework Condition="'$(TargetFrameworkOverride)' == ''">net10.0</TargetFramework>
     <TargetFramework Condition="'$(TargetFrameworkOverride)' != ''">$(TargetFrameworkOverride)</TargetFramework>
     <DefaultLanguageSourceExtension>.dbl</DefaultLanguageSourceExtension>
     <EnableDefaultItems>false</EnableDefaultItems>
@@ -223,7 +223,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Synergex.SynergyDE.Build" Version="24.*" />
+    <PackageReference Include="Synergex.SynergyDE.Build">
+      <Version>26.8.1692</Version>
+    </PackageReference>
     <PackageReference Include="Synergex.SynergyDE.synrnt" Version="12.*" />
   </ItemGroup>
 </Project>
