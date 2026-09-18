@@ -263,8 +263,8 @@ endfunction
 ;;; <param name="day_time"></param>
 ;;; <returns></returns>
 function LIB$DAY                        ,^val
-    out %ref(number_of_days)            ,int
-    in  %ref(day_time)                  ,long
+    req out %ref(number_of_days)            ,int
+    req in  %ref(day_time)                  ,long
     endparams
 proc
     throw new ApplicationException("Not implemented!")
