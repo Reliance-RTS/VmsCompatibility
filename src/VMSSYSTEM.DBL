@@ -1352,7 +1352,7 @@ proc
 endfunction
 .else
 function SYS$CREATE_UIDNET, ^VAL
-	req out uid,	[#]int
+	req out uid,	[#]i4
 proc
 	throw new ApplicationException("Not implemented!")
 	freturn 0
