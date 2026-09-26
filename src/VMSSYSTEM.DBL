@@ -1350,6 +1350,13 @@ proc
 	throw new ApplicationException("Not implemented!")
 	freturn 0
 endfunction
+.else
+function SYS$CREATE_UIDNET, ^VAL
+	req out uid,	[#]int
+proc
+	throw new ApplicationException("Not implemented!")
+	freturn 0
+endfunction
 .endc
 ;SYS$CREATE_USER_PROFILE
 

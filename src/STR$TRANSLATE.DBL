@@ -75,8 +75,6 @@ function STR$TRANSLATE, ^val
 		char,	a1
 		var,	int
 proc
-	source2 = sourceString	; In case they passed the same variable for Source AND Destination
-	clear destinationString
 	;get lengths of strings
 	destSize  = ^size(destinationString)
 	sourceLen = ^size(sourceString)
@@ -87,7 +85,8 @@ proc
 	    limitLen = sourceLen
 	else
 	    limitLen = destSize
-
+	source2(1,limitlen)  = sourceString	; In case they passed the same variable for Source AND Destination
+	clear destinationString
 	;loop through the source string looking for a match of each character in match string
 	for i from 1 thru limitLen by 1
 	begin
