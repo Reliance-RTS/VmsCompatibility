@@ -29,9 +29,7 @@ end
 function cli$get_value, ^val
 	req in symbol,	a
 	mismatch opt out value,a
-.ifdef dblnet
-	out ^ref(retlen),short
-.else
+.ifndef dblnet
 	opt out ^ref(retlen),short
 .endc
 	.include "$CLIMSGDEF" library "DBLSTARLET"
@@ -50,8 +48,8 @@ proc
 			value = values[cnt]
 .ifndef dblnet
 			if %passed(retlen)
-.endc
 				retlen = %trim(value)
+.endc
 			freturn SS$_NORMAL
 		end
 	freturn CLI$_ABSENT

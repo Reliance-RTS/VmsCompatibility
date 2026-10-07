@@ -531,7 +531,7 @@ function lib$get_input,^val
 	mismatch req out arg,	a
 	req in prompt,	a
 .ifdef dblnet
-	out ^ref(resultlen)	,short
+	optional out unused,A
 .else
 	opt out ^ref(resultlen)	,short
 .endc
@@ -555,8 +555,8 @@ passback,
 	    clear arg
 .ifndef dblnet
 	if %passed(resultlen)
-.endc
 		resultlen = myrdlen
+.endc
 	freturn 0
 endfunction
 ;LIB$GET_INPUT
