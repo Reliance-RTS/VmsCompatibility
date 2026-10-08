@@ -20,7 +20,7 @@ cnt,	int
 	proc
 	if .not.vars[1] xcall load_cli_values	;load values from command line
 	for cnt from 1 thru items
-		if symbol.eqs.vars[cnt]
+		if (symbol.eqs.vars[cnt]) .or. ("/"+%atrim(symbol) .eqs. vars[cnt])
 			freturn CLI$_PRESENT
 	freturn CLI$_ABSENT
 end

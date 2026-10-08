@@ -130,10 +130,16 @@ function FDL$CREATE                     ,^val
 .endc
 	record
 		chan,	int
+		filenamet,	a255
 	.include "$SSDEF.DBL" library "DBLSTARLET"
 proc
+	;
+	; in case a logical is passed eg mds$file_78
+	xcall getlog(filename,filenamet, chan)
+	if (!chan)
+			filenamet = filename
 	clear chan
-	open(chan,o:i,filename,fdl:"@"+%atrim(FDLSTRING))
+	open(chan,o:i,%atrim(filenamet),fdl:"@"+%atrim(FDLSTRING))
 	close chan
 err,	
     freturn ss$_NORMAL
