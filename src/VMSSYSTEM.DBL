@@ -556,7 +556,7 @@ passback,
 	off error
 	if (mychan) close mychan
 	if myrdlen then
-	    arg = prompt(1,myrdlen)
+	    arg = mybuf(1,myrdlen)
 	else
 	    clear arg
 .ifndef dblnet
