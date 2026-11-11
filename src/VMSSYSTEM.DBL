@@ -545,8 +545,14 @@ function lib$get_input,^val
 	mychan,	int
 	mybuf,	a16384
 	myrdlen,int
+	myflags,	d3
+	fflags,		d10
 proc
 	clear mychan,myrdlen
+	xcall ttflgs(myflags,2)
+	xcall flags(fflags,2)
+	xcall flags(1000000000,0)		;echo terminator like vms does
+	xcall ttflgs(0001,0)			;turn off passthru
 	on error passback
 	open(mychan,o,'tt:')
 	display(mychan,prompt)
@@ -563,9 +569,11 @@ passback,
 	if %passed(resultlen)
 		resultlen = myrdlen
 .endc
+	xcall ttflgs(myflags)
+	xcall flags(fflags)
 	freturn 0
 endfunction
-;LIB$GET_INPUT
+
 ;LIB$GET_INVO_CONTEXT
 ;LIB$GET_INVO_HANDLE
 ;LIB$GET_LOGICAL

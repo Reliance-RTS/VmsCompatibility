@@ -45,16 +45,20 @@
 ;;; <returns></returns>
 function lib$put_output, ^val
 	MISMATCH required in message, a
-	opt in extravalue, a
+;	opt in extravalue, a
 endparams
 .ifndef DBLV12
    record
 		chan,	i4,	0
 .endc
+	record
+myflags,	d4
 proc
+	xcall ttflgs(myflags,2)
+	xcall ttflgs(0001,0)			;turn off passthru mode same as rms $put
 .ifdef DBLV12
-    if ^passed(extravalue)
-	throw new ApplicationException("Not implemented!")
+;    if ^passed(extravalue)
+;	throw new ApplicationException("Not implemented!")
 
     console.writeline(message)
 .else
@@ -62,6 +66,7 @@ proc
     writes(chan,message)
     close chan
 .endc
+	xcall ttflgs(myflags)
     freturn 0
 
 end
