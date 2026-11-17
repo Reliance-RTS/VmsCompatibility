@@ -184,7 +184,7 @@ endfunction
 ;;; <returns></returns>
 function LIB$BBSSI                      ,^val
 	required in  ^ref(position)         ,int
-.if ^defined(PHASE2) &&  .not.^defined(DBLNET)
+.if .not.^defined(DBLNET)
     required in  bitaddress		,I	; address of bitaddress var an I4
 .else
     required in  ^VAL(bitaddress)       ,I	; address of bitaddress var an I4
@@ -270,10 +270,18 @@ endfunction
 ;;; <returns></returns>
 function LIB$DAY                        ,^val
     req out %ref(number_of_days)            ,int
-    req in  %ref(day_time)                  ,long
+    req in  %ref(user_time)                  ,long
+.ifndef dblnet
+    opt out %ref(day_time)            ,int	    ; unimplemented
+.endc
     endparams
 proc
+.ifndef dblnet
+    if (^passed(day_time))
+	throw new ApplicationException("Not implemented!")
+.else
     throw new ApplicationException("Not implemented!")
+.endc
     freturn 0
 endfunction
 
