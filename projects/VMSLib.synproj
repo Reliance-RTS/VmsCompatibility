@@ -344,6 +344,9 @@
     <Compile Include="..\src\LIB%24DATE_TIME.DBL">
       <Link>LIB$DATE_TIME.DBL</Link>
     </Compile>
+    <Compile Include="..\src\LIB%24DAY.DBL">
+      <Link>LIB$DAY.DBL</Link>
+    </Compile>
     <Compile Include="..\src\LIB%24DAY_OF_WEEK.DBL">
       <Link>LIB$DAY_OF_WEEK.DBL</Link>
     </Compile>

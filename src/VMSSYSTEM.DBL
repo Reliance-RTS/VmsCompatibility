@@ -261,22 +261,7 @@ endfunction
 
 ;LIB$CVT_xTB
 ;LIB$CVT_xTB_64
-
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="number_of_days"></param>
-;;; <param name="day_time"></param>
-;;; <returns></returns>
-function LIB$DAY                        ,^val
-    req out %ref(number_of_days)            ,int
-    req in  %ref(day_time)                  ,long
-    endparams
-proc
-    throw new ApplicationException("Not implemented!")
-    freturn 0
-endfunction
-
+;LIB$DAY
 ;LIB$DECODE_FAULT
 ;LIB$DEC_OVER
 ;LIB$DELETE_VM_ZONE
