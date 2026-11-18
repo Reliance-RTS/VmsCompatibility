@@ -1,0 +1,27 @@
+function decc$time,^val
+    ^ref(date),	int         ; unused its the same as the ^val return
+record
+t1,     int
+t2,     int
+tz,     int
+record mytime
+hh,     d2
+MM,     d2
+SS,     d2
+
+external function
+decc$time,      ^val
+        proc
+        xcall time(mytime)
+.ifdef D_VMS
+        t1 = %decc$time(date)
+.endc
+        tz = %timezone
+        t2 = (%jperiod - %jperiod(19700101)) * 
+&               (24*60*60) + (((hh*60)+mm)*60)+ss
+.ifdef D_VMS
+        t2 += 60*60*1
+.endc
+	freturn t2
+;        console.writeline(%string(t1))
+;       console.writeline(%string(t2))

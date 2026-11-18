@@ -311,6 +311,9 @@
     <Compile Include="..\src\DBL%24XSTAT.DBL">
       <Link>DBL$XSTAT.DBL</Link>
     </Compile>
+    <Compile Include="..\src\DECC%24TIME.DBL">
+      <Link>DECC$TIME.DBL</Link>
+    </Compile>
     <Compile Include="..\src\Editor.dbl">
       <Link>Editor.dbl</Link>
     </Compile>

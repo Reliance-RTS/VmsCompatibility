@@ -71,6 +71,9 @@
     <Compile Include="..\..\src\DBL%24XSTAT.DBL">
       <Link>DBL$XSTAT.DBL</Link>
     </Compile>
+    <Compile Include="..\..\src\DECC%24TIME.DBL">
+      <Link>DECC$TIME.DBL</Link>
+    </Compile>
     <Compile Include="..\..\src\Editor.dbl">
       <Link>Editor.dbl</Link>
     </Compile>
@@ -223,9 +226,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Synergex.SynergyDE.Build">
-      <Version>26.8.1692</Version>
-    </PackageReference>
     <PackageReference Include="Synergex.SynergyDE.synrnt" Version="12.*" />
   </ItemGroup>
 </Project>
