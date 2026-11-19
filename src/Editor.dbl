@@ -69,10 +69,13 @@ proc
 		lReadOnly =  readOnly
 	else
 		lReadOnly = false			;assume read\write
-
+.ifdef D_GUI
 	;construct command line
 	cmdLine = 'notepad ' + %atrim(fileName) 
+.else
+    cmdLine = 'vi ' + %atrim(fileName) 
 
+.endc
 	;execute shell to bring up the file in Notepad
 	if (lReadOnly) then
 		nop							;for future 
