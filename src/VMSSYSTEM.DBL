@@ -96,55 +96,6 @@
 ;DCX$EXPAND_INIT
 ;DCX$MAKE_MAP
 
-;;-----------------------------------------------------------------------------
-;;File Definition Language (FDL$) routines (See Utility Routines Manual)
-
-;;; <summary>
-;;;
-;;; </summary>
-;;; <param name="fdlstring"></param>
-;;; <param name="filename"></param>
-;;; <param name="defaultname"></param>
-;;; <param name="resultname"></param>
-;;; <param name="fid_block"></param>
-;;; <param name="flags"></param>
-;;; <param name="stmt_num"></param>
-;;; <param name="retlen"></param>
-;;; <param name="sts"></param>
-;;; <param name="stv"></param>
-;;; <param name="default_fdl"></param>
-;;; <returns></returns>
-function FDL$CREATE                     ,^val
-    required in  fdlstring              ,a
-    req  in  filename               ,a
-    optional in  defaultname            ,a
-    optional out resultname             ,a
-.ifndef dblnet
-    optional out ^ref(fid_block)        ,int
-    optional in  ^ref(flags)            ,int
-    optional out ^ref(stmt_num)         ,int
-    optional out ^ref(retlen)           ,short
-    optional out ^ref(sts)              ,int
-    optional out ^ref(stv)              ,int
-	optional in  default_fdl            ,a
-.endc
-	record
-		chan,	int
-		filenamet,	a255
-	.include "$SSDEF.DBL" library "DBLSTARLET"
-proc
-	;
-	; in case a logical is passed eg mds$file_78
-	xcall getlog(filename,filenamet, chan)
-	if (!chan)
-			filenamet = filename
-	clear chan
-	open(chan,o:i,%atrim(filenamet),fdl:"@"+%atrim(FDLSTRING))
-	close chan
-err,	
-    freturn ss$_NORMAL
-endfunction
-
 ;FDL$GENERATE
 ;FDL$PARSE
 ;FDL$RELEASE

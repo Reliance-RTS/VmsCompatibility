@@ -323,6 +323,9 @@
     <Compile Include="..\src\EMPBUF.DBL">
       <Link>EMPBUF.DBL</Link>
     </Compile>
+    <Compile Include="..\src\FDL%24CREATE.DBL">
+      <Link>FDL$CREATE.DBL</Link>
+    </Compile>
     <Compile Include="..\src\FindFileList.dbl">
       <Link>FindFileList.dbl</Link>
     </Compile>
